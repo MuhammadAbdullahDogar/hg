@@ -1,9 +1,23 @@
-html,
-body {
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+@import url('https://fonts.googleapis.com/css?family=Urbanist');
+
+:root {
+  --font-family-Comfortaa: 'Comfortaa', sans-serif;
+  --font-family-Urbanist: 'Urbanist', sans-serif;
+
+  --hg-gradient: linear-gradient(89.95deg, rgba(50, 177, 38, 0.6) 1.99%, rgba(36, 162, 233, 0.6) 85.34%, rgba(36, 162, 233, 0.6) 104.58%);
+  --hg-gradient2:linear-gradient(91.17deg, rgba(50, 177, 38, 0.3) -1.88%, rgba(36, 162, 233, 0.3) 104.89%);
+  --color-text: #19177E;
+}
+
+*{
+
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  scroll-behavior: smooth;
+
+
+
 }
 
 a {
@@ -11,16 +25,154 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+
+html {
+  font-size: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+
+
+.circle_top_login {
+  position: absolute;
+  width: 29.5rem;
+  height: 29.5rem;
+  border-radius: 100%;
+  background: rgba(49, 177, 39, 0.63);
+  z-index: -1;
+  left: -8.628rem;
+  top: -10.6875rem;
+
+  animation: roll-in-down 1500ms ease-out;
+}
+
+.circle_bottom_signup {
+  position: absolute;
+  width: 29.5rem;
+  height: 29.5rem;
+  border-radius: 100%;
+  background: #31B127A1;
+  z-index: -1;
+  left: -8.628rem;
+  animation: roll-in-top 1500ms ease-out;
+  bottom: -10.6875rem;
+}
+
+.circle_bottom_login {
+  position: absolute;
+  z-index: -1;
+  right: -8.628rem;
+  bottom: -10.6875rem;
+  width: 29.5rem;
+  height: 29.5rem;
+  border-radius: 100%;
+  background: #24A2E9;
+  animation: roll-in-top 1500ms ease-out;
+}
+
+.circle_top_signup {
+  z-index: -1;
+  position: absolute;
+  width: 29.5rem;
+  height: 29.5rem;
+
+  right: -8.628rem;
+  top: -10.6875rem;
+  border-radius: 100%;
+  background: #24A2E9;
+  animation: roll-in-down 1500ms ease-out;
+}
+
+@keyframes roll-in-top {
+
+  0% {
+    transform: translateY(-29.5rem) rotate(-540deg);
+    opacity: 1;
   }
-  body {
-    color: white;
-    background: black;
+
+  100% {
+
+    transform: translateY(0px) rotate(0deg);
+    opacity: 1;
   }
+}
+
+@keyframes roll-in-down {
+
+  0% {
+    transform: translateY(29.5rem) rotate(540deg);
+    opacity: 1;
+  }
+
+  100% {
+
+    transform: translateY(0px) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.login_signup_container {
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+
+  position: absolute;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.login_signup_glass {
+  position: absolute;
+  left: 2.5625rem;
+  top: 1.875rem;
+  bottom: 1.875rem;
+  right: 2.5625rem;
+  background: rgba(236, 236, 236, 0.34);
+  backdrop-filter: blur(.625rem);
+  border-radius: 1.875rem;
+
+
+  border: .1rem solid;
+  border-top-color: #EDEDED;
+  border-right-color: #EDEDED;
+  border-left-color: #E0E0E0;
+  border-bottom-color: #E0E0E0;
+}
+
+
+
+.signup_canidate_btn {
+  border-radius: 1rem 0 0 1rem;
+  border-style: solid;
+  border-width: 0.125rem 0 0.125rem 0.125rem;
+  border-color: #B8DEF3;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-family: var(--font-family-Urbanist);
+  font-size: 1.25rem;
+  color: var(--color-text);
+  width: 14.3125rem;
+  height: 4.125rem;
+}
+
+.signup_company_btn {
+  border-radius: 0 1rem 1rem 0;
+  border-style: solid;
+  border-width: 0.125rem 0.125rem 0.125rem 0;
+  border-color: #B8DEF3;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-family: var(--font-family-Urbanist);
+  font-size: 1.25rem;
+  color: var(--color-text);
+  width: 14.3125rem;
+  height: 4.125rem;
+}
+
+.btn_active {
+  background: linear-gradient(89.95deg, rgba(50, 177, 38, 0.3) 1.99%, rgba(36, 162, 233, 0.3) 85.34%, rgba(36, 162, 233, 0.3) 104.58%);
 }
