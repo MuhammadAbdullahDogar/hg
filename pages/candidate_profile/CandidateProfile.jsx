@@ -1,6 +1,6 @@
 import React from 'react'
 import CandidateProfileNavbar from './CandidateProfileNavbar'
-import { Grid,Avatar } from '@mui/material'
+import { Grid, Avatar } from '@mui/material'
 import CandidateProfileTopNavbar from './CandidateProfileTopNavbar'
 const circle_blue = {
     position: 'absolute',
@@ -39,18 +39,17 @@ const glass = {
 const CandidateProfile = () => {
     return (
         <Grid container>
-            <Grid item xs={2.87}><CandidateProfileNavbar value={2} /></Grid>
-            <Grid item xs={9.13} >
-                <Grid item xs={12} ><CandidateProfileTopNavbar /></Grid>
-                <Grid item xs={4}>
+            <Grid item sm={2} md={2.87}><CandidateProfileNavbar value={2} /></Grid>
+            <Grid item sm={10} md={12} ><CandidateProfileTopNavbar /></Grid>
+
+            {/* <Grid item xs={4}>
                     <div style={circle_blue}></div>
                     <div style={circle_green}></div>
                     <div style={glass}>
                         <Avatar alt="Image" src="/demo.jpg" sx={{ marginLeft:'4.375rem',width: 142, height: 142,marginTop:'2.875rem'}} />
                     </div>
 
-                </Grid>
-            </Grid>
+                </Grid> */}
             <Grid item xs={12}></Grid>
 
         </Grid>

@@ -67,7 +67,7 @@ const MyTab = (props) => {
             <StyledTab component={NextLinkComposed} to='/candidate_profile/CandidateApplicationsstatus' icon={<RestoreIcon />} iconPosition="start" label="Applications Status" />
             <StyledTab component={NextLinkComposed} to='/candidate_profile/CandidateProfile' icon={<AccountCircleIcon />} iconPosition="start" label="Profile" />
             <StyledTab component={NextLinkComposed} to='/candidate_profile/CandidateInterviewFeedback' icon={<FeedbackIcon />} iconPosition="start" label="Interview Feedback" />
-            <StyledTab component={NextLinkComposed} to='/candidate_profile/CandidateMessages' icon={<MessageIcon />} iconPosition="start" label="Messages" />
+            <StyledTab component={NextLinkComposed} to='/candidate_profile/CandidateMessages' icon={<AccountCircleIcon />} iconPosition="start" label="Messages" />
         </AntTabs>
 
     )

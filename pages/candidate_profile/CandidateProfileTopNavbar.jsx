@@ -6,30 +6,22 @@ import SearchIcon from '@mui/icons-material/Search';
 import EmailIcon from '@mui/icons-material/Email';
 import MyTextField from '../../styles/MyTextField'
 import { makeStyles } from '@mui/styles';
+import CancelIcon from '@mui/icons-material/Cancel';
 const useStyles = makeStyles((customTheme) => ({
     Toolbar: {
         display: "flex",
-        justifyContent: "space-between",
-        background: '#fff'
-    },
-    logDiv: {
-        display: "flex",
-        alignItems: "center"
-    },
-    logoText: {
-        marginLeft: 20,
-        display: "none",
-        [customTheme.breakpoints.up("sm")]: {
-            display: "block",
-        }
-
+        justifyContent: "flex-end",
+        background: 'white',
+        paddingTop:'1rem'
     },
     search: {
         display: "flex",
         alignItems: "center",
+        marginRight: "10rem",
+        width: '60%',
         [customTheme.breakpoints.down("sm")]: {
             display: (props) => (props.open ? "flex" : "none"),
-            width:'70%'
+            width: '100%'
         }
     },
     searchButton: {
@@ -39,6 +31,8 @@ const useStyles = makeStyles((customTheme) => ({
         }
     },
     Icons: {
+        display: 'flex',
+        justifyContent: 'flex-start',
         alignItems: "center",
         marginRight: customTheme.spacing(1),
         display: (props) => (props.open ? "none" : "flex"),
@@ -52,20 +46,20 @@ const CandidateProfileTopNavbar = () => {
     const [open, setOpen] = useState(false);
     const classes = useStyles({ open });
     return (
-        <AppBar color='secondary' position='fixed'>
+        <AppBar  position='static'>
             <Toolbar className={classes.Toolbar}>
-                <div className={classes.logDiv}>
-                    <Link href="/" ><img src='/logo.svg'></img></Link>
-                    <div className={classes.logoText}><Typography variant="profileLogoFont" >Hiring Genie</Typography></div>
-                </div>
-
                 <div className={classes.search}>
                     <MyTextField label="Type here to search..."
-                        size="medium"
+                        
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start" >
-                                    <SearchIcon onClick={() => setOpen(false)}/>
+                                    <SearchIcon />
+                                </InputAdornment>
+                            ),
+                            endAdornment: (
+                                <InputAdornment position="start" >
+                                    <CancelIcon onClick={() => setOpen(false)} />
                                 </InputAdornment>
                             ),
                         }}
@@ -74,8 +68,8 @@ const CandidateProfileTopNavbar = () => {
 
 
                 <div className={classes.Icons}>
-                <SearchIcon  className={classes.searchButton} onClick={() => setOpen(true)}/>
-                    <Badge color="secondary" badgeContent={55} className={classes.badge} >
+                    <SearchIcon className={classes.searchButton} onClick={() => setOpen(true)} />
+                    <Badge color="secondary"  className={classes.badge} >
                         <EmailIcon fontSize='medium' color='primary' />
                     </Badge>
                     <Badge color="secondary" badgeContent={99} className={classes.badge}>

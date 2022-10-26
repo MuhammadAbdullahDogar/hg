@@ -1,27 +1,87 @@
 import React from 'react'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography, Container } from '@mui/material'
 import Link from 'next/link'
 import MyTab from '../../styles/MyTab'
+import EmailIcon from '@mui/icons-material/Email';
+import RestoreIcon from '@mui/icons-material/Restore';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MessageIcon from '@mui/icons-material/Message';
+import FeedIcon from '@mui/icons-material/Feed';
+import FeedbackIcon from '@mui/icons-material/Feedback';
+import { makeStyles } from '@mui/styles';
+const useStyles = makeStyles((customTheme) => ({
+    container: {
+        display:'flex',
+        flexDirection:'column',
+        height: '100vh',
+        backgroundColor:"#f0f5ef",
+    },
+    logoText:{
+        paddingLeft:'1rem',
+        [customTheme.breakpoints.down("sm")]: {
+            display: 'none'
+        },
+    },
+    logo:{
+        display:'flex',
+        alignItems:'center',
+        padding :'2rem'
+    },
+    item: {
+        display: "flex",
+        alignItems: "center",
+        color:"green",
+        margin:'1.5rem',
+        [customTheme.breakpoints.up("sm")]: {
+            marginBottom: customTheme.spacing(3),
+            cursor: 'pointer'
+        }
 
+    },
+    text: {
+        paddingLeft: '1rem',
+        minHeight: '1rem',
+        textTransform: 'none',
+        fontFamily: 'Urbanist',
+        fontWeight: 500,
+        fontSize: '1.25rem',
+        lineHeight: '1.5rem',
+        justifyContent: 'left',
+        color: '#a2b8a0',
+        [customTheme.breakpoints.down("sm")]: {
+            display: 'none'
+        },
+    }
+
+}));
 const CandidateProfileNavbar = (props) => {
-
+    const classes = useStyles();
     return (
-        <Grid container sx={{ background: '#f0f5ef',height:'100vh'}}>
-            <Grid item xs={12}></Grid>
+        <Container className={classes.container}>
+            <div className={classes.logo}>
+                <Link href="/"><img src='/logo.svg'></img></Link>
+                <Typography variant="profileLogoFont" className={classes.logoText}>Hiring Genie</Typography>
+            </div>
+            <div className={classes.item}>
+                <FeedIcon className={classes.icon} />
+                <Typography className={classes.text}>Job Feed</Typography>
+            </div>
 
-            <Grid item xs={2}></Grid>
-            <Grid item xs={1}><Link href="/"><img src='/logo.svg'></img></Link></Grid>
-            <Grid item xs={1}></Grid>
-            <Grid item xs={7} sx={{ marginTop: '.7rem' }}><Typography variant="profileLogoFont">Hiring Genie</Typography></Grid>
-            <Grid item xs={1}></Grid>
+            <div className={classes.item}>
+                <RestoreIcon className={classes.icon} />
+                <Typography className={classes.text}>Applications Status</Typography>
+            </div>
 
+            <div className={classes.item}>
+                <AccountCircleIcon className={classes.icon} />
+                <Typography className={classes.text}>Interview Feedback</Typography>
+            </div>
 
-            <Grid item xs={1}></Grid>
-            <Grid item xs={11}><MyTab value={props.value}/></Grid>
-            <Grid item xs={1.5}></Grid>
-            <Grid item xs={9} sx={{ background: 'linear-gradient(133.64deg, rgba(50, 177, 38, 0.7) 2.11%, rgba(36, 162, 233, 0.7) 96.3%)', borderRadius: '1.875rem', height: '12rem' }}></Grid>
-            <Grid item xs={1.5}></Grid>
-        </Grid >
+            <div className={classes.item}>
+                <EmailIcon className={classes.icon} />
+                <Typography className={classes.text}>Messages</Typography>
+            </div>
+        </Container>
     )
 }
 
