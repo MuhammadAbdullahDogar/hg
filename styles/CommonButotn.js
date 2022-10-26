@@ -6,6 +6,7 @@ const CommonButotn = (props) => {
                 fontStyle: 'normal',
                 fontWeight: '600',
                 borderRadius: '.8125rem',
+              
                 fontFamily: 'Comfortaa',
                 fontSize: '1.25rem',
                 padding: '.875rem 1.5625rem',

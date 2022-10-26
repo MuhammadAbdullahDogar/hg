@@ -10,7 +10,7 @@ import FeedbackIcon from '@mui/icons-material/Feedback';
 import NextLink from "next/link";
 
 const Anchor = styled('a')({});
-function NextLinkComposed(props, ref) {
+function NextLinkComposed(props) {
     const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
 
     return (
@@ -32,7 +32,7 @@ function NextLinkComposed(props, ref) {
 const AntTabs = styled(Tabs)({
     '& .MuiTabs-indicator': {
         width: '.5rem',
-        height: '.25rem',
+        height: '4rem',
         borderRadius: '.625rem 0 0 .625rem',
     },
 });
@@ -47,7 +47,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
         fontSize: '1.25rem',
         lineHeight: '1.5rem',
         justifyContent: 'left',
-        color: '#A2B8A0',
+        color: '#a2b8a0',
         '&.Mui-selected': {
             fontWeight: 600,
             color: '#32B126',

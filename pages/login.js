@@ -15,22 +15,21 @@ const Login_dark = () => {
                 <div className='circle_top_login'></div>
                 <div className='circle_bottom_login'></div>
                 <div className='login_signup_glass'>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={{ sm: 3, md: 2 }} >
                         <Grid item xs={12}></Grid>
-
                         <Grid item xs={12}><Navbar color='var(--color-text)' btnName='signup' /></Grid>
 
-                        <Grid item xs={12} align="center"><Typography variant="hgTopHeading">LOGIN TO HIRING GENIE</Typography></Grid>
+                        <Grid item xs={12} md={12} align="center"><Typography variant="hgTopHeading">LOGIN TO HIRING GENIE</Typography></Grid>
 
                         <Grid item xs={12}> </Grid>
-                        <Grid item xs={4.35}></Grid>
-                        <Grid item xs={3.3}><MyTextField label="Email Address" type="email" /></Grid>
-                        <Grid item xs={4.35}></Grid>
+                        <Grid item md={4.35} sm={1}></Grid>
+                        <Grid item md={3.3}  sm={10}><MyTextField label="Email Address" type="email" /></Grid>
+                        <Grid item md={4.35} sm={1}></Grid>
 
 
-                        <Grid item xs={4.35}></Grid>
-                        <Grid item xs={3.3} ><MyTextField label="Password" type="password" autoComplete="current-password" /></Grid>
-                        <Grid item xs={4.35}></Grid>
+                        <Grid item md={4.35} sm={1}></Grid>
+                        <Grid item md={3.3}  sm={10}><MyTextField label="Password" type="password" autoComplete="current-password" /></Grid>
+                        <Grid item md={4.35} sm={1}></Grid>
 
                         <Grid item xs={12} align="center"><FormControlLabel control={<Checkbox defaultChecked size="small" />} label="Remember me on this device" /></Grid>
 

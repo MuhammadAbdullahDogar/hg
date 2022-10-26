@@ -113,7 +113,6 @@ const Home = () => {
             </div>
           </Grid>
           <Grid item xs={.3} md={.7}></Grid>
-
         </Grid>
       </Grid>
     </>

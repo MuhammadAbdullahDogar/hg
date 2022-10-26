@@ -54,13 +54,15 @@ const Navbar = (props) => {
         <>
             <Grid container >
                 <Grid item xs={1} sx={{ marginTop: '.4rem' }}><img src="/logo.svg" alt='logo' style={{ marginLeft: '3.75rem', width: '1.8125', height: '2.875' }}></img></Grid>
-                <Grid item xs={9}>
+                <Grid item xs={9} >
                     <Tabs value={value} onChange={handleChange} centered sx={{
                         fontFamily: 'Comfortaa',
                         fontWeight: 500,
                         fontSize: '.9375rem',
                         lineHeight: '1.0625rem'
-                    }}>
+                    }}
+                        variant="scrollable"
+                        scrollButtons="auto">
                         <Tab component={NextLinkComposed} to='/' style={{ color: props.color }} label="Home" />
                         <Tab component={NextLinkComposed} to='/' style={{ color: props.color }} label="How it works?" />
                         <Tab component={NextLinkComposed} to='/candidate_profile/CandidateJobFeed' style={{ color: props.color }} label="Pricing" />

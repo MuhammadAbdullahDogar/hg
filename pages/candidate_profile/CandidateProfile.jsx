@@ -39,8 +39,8 @@ const glass = {
 const CandidateProfile = () => {
     return (
         <Grid container>
-            <Grid item xs={2.5}><CandidateProfileNavbar value={2} /></Grid>
-            <Grid item xs={9.5} >
+            <Grid item xs={2.87}><CandidateProfileNavbar value={2} /></Grid>
+            <Grid item xs={9.13} >
                 <Grid item xs={12} ><CandidateProfileTopNavbar /></Grid>
                 <Grid item xs={4}>
                     <div style={circle_blue}></div>

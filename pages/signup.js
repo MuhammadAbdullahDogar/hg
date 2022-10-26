@@ -65,21 +65,21 @@ const SignUp = () => {
                 <button className={`signup_company_btn ${changeNames.btn_active_company}`} onClick={changeNameCompany}>as a company</button>
               </div>
             </Grid>
-            <Grid item xs={1} md={3}></Grid>
-            <Grid item xs={5} md={3}><MyTextField id="outlined-basic" label={changeNames.fName} fullWidth variant="outlined" /></Grid>
+            <Grid item sm={1} md={3}></Grid>
+            <Grid item sm={5} md={3}><MyTextField id="outlined-basic" label={changeNames.fName} fullWidth variant="outlined" /></Grid>
 
-            <Grid item xs={5} md={3}><MyTextField id="outlined-basic" label={changeNames.fName} fullWidth variant="outlined" /></Grid>
-            <Grid item xs={1} md={3}></Grid>
+            <Grid item sm={5} md={3}><MyTextField id="outlined-basic" label={changeNames.fName} fullWidth variant="outlined" /></Grid>
+            <Grid item sm={1} md={3}></Grid>
 
-            <Grid item xs={1} md={3}></Grid>
-            <Grid item xs={5} md={3}><MyTextField id="outlined-basic" label="Phone Number" fullWidth variant="outlined" /></Grid>
-            <Grid item xs={5} md={3}><MyTextField id="outlined-basic" label="Email Address" fullWidth variant="outlined" /></Grid>
-            <Grid item xs={1} md={3}></Grid>
+            <Grid item sm={1} md={3}></Grid>
+            <Grid item sm={5} md={3}><MyTextField id="outlined-basic" label="Phone Number" fullWidth variant="outlined" /></Grid>
+            <Grid item sm={5} md={3}><MyTextField id="outlined-basic" label="Email Address" fullWidth variant="outlined" /></Grid>
+            <Grid item sm={1} md={3}></Grid>
 
-            <Grid item xs={1} md={3}></Grid>
-            <Grid item xs={5} md={3}><MyTextField id="outlined-password-input" label="Password" type="password" autoComplete="current-password" fullWidth /></Grid>
-            <Grid item xs={5} md={3}><MyTextField id="outlined-password-input" label="Confirm Password" type="password" autoComplete="current-password" fullWidth /></Grid>
-            <Grid item xs={1} md={3}></Grid>
+            <Grid item sm={1} md={3}></Grid>
+            <Grid item sm={5} md={3}><MyTextField id="outlined-password-input" label="Password" type="password" autoComplete="current-password" fullWidth /></Grid>
+            <Grid item sm={5} md={3}><MyTextField id="outlined-password-input" label="Confirm Password" type="password" autoComplete="current-password" fullWidth /></Grid>
+            <Grid item sm={1} md={3}></Grid>
 
             <Grid item xs={12} align='center'><CommonButton variant="Gradient">SIGN UP</CommonButton></Grid>
             <Grid item xs={12} align='center'><Typography variant="hgLink"><Link href="/login">dont have account? sign up now</Link></Typography></Grid>
