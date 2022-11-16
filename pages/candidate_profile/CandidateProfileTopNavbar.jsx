@@ -156,7 +156,7 @@ export default function CandidateProfileTopNavbar() {
 
     return (
         <Box sx={{ flexGrow: 1}}>
-            <AppBar position="static">
+            {/* <AppBar position="static">
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -227,7 +227,7 @@ export default function CandidateProfileTopNavbar() {
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
-            {renderMenu}
+            {renderMenu} */}
         </Box>
     );
 }

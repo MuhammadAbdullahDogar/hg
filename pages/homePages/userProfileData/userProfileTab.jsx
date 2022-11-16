@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-const userProfileTab = () => {
-    const [value, setValue] = React.useState(0);
+const UserProfileTab = () => {
+    const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -14,14 +14,14 @@ const userProfileTab = () => {
                 value={value}
                 onChange={handleChange}
                 variant="fullWidth"
-                sx={{backgrondColor:'red'}}
+                sx={{ backgrondColor: 'red' }}
             >
-                <Tab  label="Personal Details" />
-                <Tab  label="Academic Information" />
-                <Tab  label="Experience and Skills" />
+                <Tab label="Personal Details" />
+                <Tab label="Academic Information" />
+                <Tab label="Experience and Skills" />
             </Tabs>
         </>
     )
 }
 
-export default userProfileTab
+export default UserProfileTab
