@@ -31,10 +31,10 @@ const useStyles = makeStyles((customTheme) => ({
         display: "flex",
         alignItems: "center",
         color:"green",
-        margin:'1.5rem',
+        margin:'1rem 0 0 0',
         [customTheme.breakpoints.up("sm")]: {
             marginBottom: customTheme.spacing(3),
-            cursor: 'pointer'
+            cursor: 'pointer',
         }
 
     },

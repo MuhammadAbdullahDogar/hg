@@ -26,7 +26,7 @@ const CustomTextField = styled(TextField)(() => ({
 
 const MyTextField = (props) => {
     return (
-        <CustomTextField {...props}  fullWidth/>
+        <CustomTextField {...props}/>
     )
 };
 

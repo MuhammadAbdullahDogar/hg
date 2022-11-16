@@ -1,139 +1,233 @@
-import React, { useState } from 'react'
-import Link from 'next/link'
-import { Grid, Typography, Avatar, Badge, IconButton, Paper, InputAdornment, AppBar, Toolbar, } from '@mui/material'
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputBase from '@mui/material/InputBase';
+import Badge from '@mui/material/Badge';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import EmailIcon from '@mui/icons-material/Email';
-import MyTextField from '../../styles/MyTextField'
-import { makeStyles } from '@mui/styles';
-import CancelIcon from '@mui/icons-material/Cancel';
-const useStyles = makeStyles((customTheme) => ({
-    Toolbar: {
-        display: "flex",
-        justifyContent: "flex-end",
-        background: 'white',
-        paddingTop:'1rem'
-    },
-    search: {
-        display: "flex",
-        alignItems: "center",
-        marginRight: "10rem",
-        width: '60%',
-        [customTheme.breakpoints.down("sm")]: {
-            display: (props) => (props.open ? "flex" : "none"),
-            width: '100%'
-        }
-    },
-    searchButton: {
-        marginRight: customTheme.spacing(3),
-        [customTheme.breakpoints.up("sm")]: {
-            display: "none",
-        }
-    },
-    Icons: {
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: "center",
-        marginRight: customTheme.spacing(1),
-        display: (props) => (props.open ? "none" : "flex"),
-    },
-    badge: {
-        marginRight: customTheme.spacing(3),
-    }
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MoreIcon from '@mui/icons-material/MoreVert';
 
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+    },
 }));
-const CandidateProfileTopNavbar = () => {
-    const [open, setOpen] = useState(false);
-    const classes = useStyles({ open });
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: '20ch',
+        },
+    },
+}));
+
+export default function CandidateProfileTopNavbar() {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+    };
+
+    const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
+    };
+
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </Menu>
+    );
+
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const renderMobileMenu = (
+        <Menu
+            anchorEl={mobileMoreAnchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={mobileMenuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMobileMenuOpen}
+            onClose={handleMobileMenuClose}
+        >
+            <MenuItem>
+                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                    <Badge badgeContent={4} color="error">
+                        <MailIcon />
+                    </Badge>
+                </IconButton>
+                <p>Messages</p>
+            </MenuItem>
+            <MenuItem>
+                <IconButton
+                    size="large"
+                    aria-label="show 17 new notifications"
+                    color="inherit"
+                >
+                    <Badge badgeContent={17} color="error">
+                        <NotificationsIcon />
+                    </Badge>
+                </IconButton>
+                <p>Notifications</p>
+            </MenuItem>
+            <MenuItem onClick={handleProfileMenuOpen}>
+                <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <AccountCircle />
+                </IconButton>
+                <p>Profile</p>
+            </MenuItem>
+        </Menu>
+    );
+
     return (
-        <AppBar  position='static'>
-            <Toolbar className={classes.Toolbar}>
-                <div className={classes.search}>
-                    <MyTextField label="Type here to search..."
-                        
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start" >
-                                    <SearchIcon />
-                                </InputAdornment>
-                            ),
-                            endAdornment: (
-                                <InputAdornment position="start" >
-                                    <CancelIcon onClick={() => setOpen(false)} />
-                                </InputAdornment>
-                            ),
-                        }}
-                    ></MyTextField>
-                </div>
-
-
-                <div className={classes.Icons}>
-                    <SearchIcon className={classes.searchButton} onClick={() => setOpen(true)} />
-                    <Badge color="secondary"  className={classes.badge} >
-                        <EmailIcon fontSize='medium' color='primary' />
-                    </Badge>
-                    <Badge color="secondary" badgeContent={99} className={classes.badge}>
-                        <NotificationsIcon fontSize='medium' color='primary' />
-                    </Badge>
-                    <Avatar alt="Image" src="/demo.jpg" sx={{ width: 56, height: 56 }} />
-                </div>
-            </Toolbar>
-        </AppBar >
-    )
+        <Box sx={{ flexGrow: 1}}>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        sx={{ mr: 2 }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                    >
+                        Hiring Genie
+                    </Typography>
+                    <Search>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase
+                            placeholder="Search…"
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </Search>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                            <Badge badgeContent={4} color="error">
+                                <MailIcon />
+                            </Badge>
+                        </IconButton>
+                        <IconButton
+                            size="large"
+                            aria-label="show 17 new notifications"
+                            color="inherit"
+                        >
+                            <Badge badgeContent={17} color="error">
+                                <NotificationsIcon />
+                            </Badge>
+                        </IconButton>
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            aria-label="account of current user"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={handleProfileMenuOpen}
+                            color="inherit"
+                        >
+                            <AccountCircle />
+                        </IconButton>
+                    </Box>
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="show more"
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="true"
+                            onClick={handleMobileMenuOpen}
+                            color="inherit"
+                        >
+                            <MoreIcon />
+                        </IconButton>
+                    </Box>
+                </Toolbar>
+            </AppBar>
+            {renderMobileMenu}
+            {renderMenu}
+        </Box>
+    );
 }
-
-
-
-
-
-
-
-
-
-// import React from 'react'
-// import { Grid, Typography, Avatar, Badge, IconButton, Paper, InputAdornment } from '@mui/material'
-// import NotificationsIcon from '@mui/icons-material/Notifications';
-// import SearchIcon from '@mui/icons-material/Search';
-// import MyTextField from '../../styles/MyTextField'
-// const CandidateProfileTopNavbar = () => {
-//     return (
-//         <Grid container sx={{ marginTop: '1.5rem' }}>
-//             <Grid xs={.5}></Grid>
-//             <Grid item xs={6}>
-//                 <MyTextField label="Type here to search..."
-//                     InputProps={{
-//                         endAdornment: (
-//                             <InputAdornment position="start">
-//                                 <IconButton type="button" sx={{ p: '10px' }}>
-//                                     <SearchIcon />
-//                                 </IconButton>
-//                             </InputAdornment>
-//                         ),
-//                     }}
-//                 ></MyTextField>
-
-//             </Grid>
-//             <Grid item xs={.5}></Grid>
-//             <Grid item xs={.5} sx={{ marginTop: '.6rem' }}>
-//                 <Badge color="secondary" badgeContent={99}>
-//                     <NotificationsIcon fontSize='large' color='primary' />
-//                 </Badge>
-
-//             </Grid>
-//             <Grid item container xs={4.5} >
-//                 <Grid item xs={12}></Grid>
-//                 <Grid item xs={2}></Grid>
-//                 <Grid item xs={2}><Avatar alt="Image" src="/demo.jpg" sx={{ width: 56, height: 56 }} /></Grid>
-//                 <Grid container direction="column" xs={8}>
-//                     <Grid item xs={2}></Grid>
-//                     <Grid item><Typography variant='profielH6'>Welcome,</Typography></Grid>
-//                     <Grid item><Typography variant='profielH5'>James Smith</Typography> </Grid>
-//                 </Grid>
-//             </Grid>
-//         </Grid>
-//     )
-// }
-
-// export default CandidateProfileTopNavbar
-
-export default CandidateProfileTopNavbar

@@ -60,9 +60,7 @@ const Navbar = (props) => {
                         fontWeight: 500,
                         fontSize: '.9375rem',
                         lineHeight: '1.0625rem'
-                    }}
-                        variant="scrollable"
-                        scrollButtons="auto">
+                    }}>
                         <Tab component={NextLinkComposed} to='/' style={{ color: props.color }} label="Home" />
                         <Tab component={NextLinkComposed} to='/' style={{ color: props.color }} label="How it works?" />
                         <Tab component={NextLinkComposed} to='/candidate_profile/CandidateJobFeed' style={{ color: props.color }} label="Pricing" />

@@ -1,22 +1,19 @@
 import React from 'react'
-import CandidateProfileLeftBar from './CandidateProfileLeftBar'
+import MyTab from '../../styles/MyTab'
 import { Grid } from '@mui/material'
 import CandidateProfileTopNavbar from './CandidateProfileTopNavbar'
+import CandidateProfileLeftBar from './CandidateProfileLeftBar'
 const CandidateJobFeed = () => {
     return (
-        <Grid container>
-            <Grid item xs={12} ><CandidateProfileTopNavbar /></Grid>
-            <Grid item xs={2.5}><CandidateProfileLeftBar /></Grid>
-            <Grid item xs={9.5} >
-                
-                <Grid item xs={4}>
-
-
+        <>
+            <Grid container >
+                <Grid item xs={112}>
+                    <Grid item xs={12}><CandidateProfileTopNavbar /></Grid>
+                    <Grid item xs={12}>
+                    </Grid>
                 </Grid>
             </Grid>
-            <Grid item xs={12}></Grid>
-
-        </Grid>
+        </>
     )
 }
 
