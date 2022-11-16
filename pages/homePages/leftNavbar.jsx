@@ -1,20 +1,14 @@
 import { Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
-import React, { useState } from 'react'
+import React from 'react'
 
 const leftNavbar = () => {
-    const [value, setValue] = useState('true');
-
-    const handleChange = () => {
-        console.log('jaklf');
-        setValue(false);
-    };
     return (
         <>
             <Drawer
                 variant="persistent"
                 anchor="left"
-                open={value}
+                open='true'
 
             >
                 <IconButton  ><MenuIcon onClick={handleChange} /></IconButton>

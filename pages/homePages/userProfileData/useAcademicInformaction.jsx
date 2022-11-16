@@ -15,7 +15,7 @@ const useAcademicInformaction = () => {
         <Grid item xs={.5}></Grid>
         <Grid item xs={4}>University Name<br />University of Central Punjab</Grid>
         <Grid item xs={1.5}></Grid>
-        <Grid item xs={2}>Degree Title<br />Bachelor's</Grid>
+        <Grid item xs={2}>Degree Title<br />Bachelors</Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={3}>Majors<br />Computer Science</Grid>
 
