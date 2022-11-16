@@ -5,7 +5,7 @@ const userProfileData = () => {
     return (
         <>
             <Grid container sx={{ borderRadius: '2rem' }} spacing={3}>
-                <Grid item xs={12} ><UserProfileTab></UserProfileTab></Grid>
+                <Grid item xs={12} ><UserProfileTab value='0'></UserProfileTab></Grid>
                 <Grid item xs={.5}></Grid>
                 <Grid item xs={11}>About Information</Grid>
                 <Grid item xs={.5}></Grid>
