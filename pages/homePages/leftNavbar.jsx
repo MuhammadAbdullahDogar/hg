@@ -5,13 +5,15 @@ import React from 'react'
 const leftNavbar = () => {
     return (
         <>
+
+        
             <Drawer
                 variant="persistent"
                 anchor="left"
                 open='true'
 
             >
-                <IconButton  ><MenuIcon onClick={handleChange} /></IconButton>
+                <IconButton  ><MenuIcon /></IconButton>
                 <List sx={{ mt: '5rem' }}>
                     <ListItem disablePadding>
                         <ListItemButton>
