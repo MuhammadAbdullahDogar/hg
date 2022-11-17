@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Grid } from '@mui/material';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
@@ -11,8 +11,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 
 import DialogTitle from '@mui/material/DialogTitle';
+import { useState } from 'react';
 
-const userStatus = () => {
+const UserStatus = () => {
     // const Transition = forwardRef(function Transition(props, ref) {
     //     return <Slide direction="up" ref={ref} {...props} />;
     // });
@@ -144,4 +145,4 @@ const userStatus = () => {
     )
 }
 
-export default userStatus
+export default UserStatus
