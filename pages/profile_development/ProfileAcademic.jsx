@@ -71,7 +71,7 @@ const ProfileAcademic = () => {
         </form>
         <Grid item xs={3}></Grid>
         <Grid item xs={9}><AddIcon fontSize='large' color='secondary' onClick={addFields} /></Grid>
-        <Grid item xs={12} align='center'><Link href='/Profile_development/profile_experience'><CommonButton variant="Gradient" onClick={submit}>NEXT</CommonButton></Link></Grid>
+        <Grid item xs={12} align='center'><Link href='/Profile_development/ProfileExperience'><CommonButton variant="Gradient" onClick={submit}>NEXT</CommonButton></Link></Grid>
       </Grid>
 
     </div>
