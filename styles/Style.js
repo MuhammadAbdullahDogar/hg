@@ -127,13 +127,6 @@ const customTheme = createTheme({
             letterSpacing: '0.01rem'
         }
     },
-    components: {
-        MuiButton: {
-            defaultProps: {
-                disableRipple: false
-            }
-        },
-    },
     shape: {
         // borderRadius: '2.3vmin',
     }

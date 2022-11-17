@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import NextLink from "next/link";
 
 const Anchor = styled('a')({});
-function NextLinkComposed(props) {
+const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
     const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
 
     return (
@@ -22,7 +22,7 @@ function NextLinkComposed(props) {
             <Anchor {...other} />
         </NextLink>
     );
-}
+},);
 const UserProfileTab = (props) => {
     const [value, setValue] = useState(props.value);
 
@@ -37,9 +37,9 @@ const UserProfileTab = (props) => {
                 variant="fullWidth"
                 sx={{ backgrondColor: 'red' }}
             >
-                <Tab component={NextLinkComposed} label="Personal Details" to="/homePages/userDashboard"/>
+                <Tab component={NextLinkComposed} label="Personal Details" to="/homePages/userDashboard" />
                 <Tab component={NextLinkComposed} label="Academic Information" to="/homePages/userAcademicInformation" />
-                <Tab component={NextLinkComposed} label="Experience and Skills" to="/homePages/userExperience"/>
+                <Tab component={NextLinkComposed} label="Experience and Skills" to="/homePages/userExperience" />
             </Tabs>
         </>
     )

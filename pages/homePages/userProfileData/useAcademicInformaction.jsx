@@ -7,7 +7,7 @@ const useAcademicInformaction = () => {
   return (
     <>
       <Grid container sx={{ borderRadius: '2rem' }} spacing={3}>
-        <Grid item xs={12} ><UserProfileTab value='1'></UserProfileTab></Grid>
+        <Grid item xs={12} ><UserProfileTab value={1}></UserProfileTab></Grid>
         <Grid item xs={.5}></Grid>
         <Grid item xs={11}>Bachelors In Computer Science,2023</Grid>
         <Grid item xs={.5}></Grid>

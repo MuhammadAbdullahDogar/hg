@@ -3,14 +3,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
 
 const leftNavbar = () => {
+    const value = true;
     return (
         <>
 
-        
+
             <Drawer
                 variant="persistent"
                 anchor="left"
-                open='true'
+                open={value}
 
             >
                 <IconButton  ><MenuIcon /></IconButton>
@@ -65,7 +66,7 @@ const leftNavbar = () => {
                             <ListItemIcon>
                                 <img src="/Logout.svg" alt=''></img>
                             </ListItemIcon>
-                            <ListItemText primary="Logout"/>
+                            <ListItemText primary="Logout" />
                         </ListItemButton>
                     </ListItem>
                 </List>
