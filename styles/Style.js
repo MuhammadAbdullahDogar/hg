@@ -4,9 +4,9 @@ const customTheme = createTheme({
         values: {
             xs: 0,
             sm: 480,
-            md:900,
-            lg:1200,
-            xl:1536,
+            md: 900,
+            lg: 1200,
+            xl: 1536,
         }
     },
     palette: {
@@ -125,6 +125,30 @@ const customTheme = createTheme({
             fontSize: "1rem",
             lineHeight: "1.2rem",
             letterSpacing: '0.01rem'
+        },
+        displayh1: {
+            fontFamily: 'Urbanist',
+            letterSpacing: '0.02em',
+            fontWeight: '700',
+            lineHeight: "1.875rem",
+            fontSize: '1.5625rem',
+            color: '#000000'
+        },
+        displayh4: {
+            fontFamily: 'Urbanist',
+            letterSpacing: '0.02em',
+            fontWeight: '500',
+            lineHeight: "1.375rem",
+            fontSize: '1.125rem',
+            color: '#646464'
+        },
+        displayh5: {
+            fontFamily: 'Urbanist',
+            letterSpacing: '0.02em',
+            fontWeight: '600',
+            lineHeight: "1.375rem",
+            fontSize: '1.125rem',
+            color: '#363636'
         }
     },
     shape: {

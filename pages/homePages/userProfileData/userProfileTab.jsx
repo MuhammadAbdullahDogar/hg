@@ -33,9 +33,14 @@ const UserProfileTab = (props) => {
         <>
             <Tabs
                 value={value}
-                onChange={handleChange}
+                onChIange={handleChange}
                 variant="fullWidth"
-                sx={{ backgrondColor: 'red' }}
+                sx={{fontFamily: 'Urbanist',
+                letterSpacing: '0.02em',
+                fontWeight: '600',
+                lineHeight: "1.375rem",
+                fontSize: '1.125rem',
+                color: '#363636'}}
             >
                 <Tab component={NextLinkComposed} label="Personal Details" to="/homePages/userDashboard" />
                 <Tab component={NextLinkComposed} label="Academic Information" to="/homePages/userAcademicInformation" />
