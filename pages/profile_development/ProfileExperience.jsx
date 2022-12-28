@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import  Link  from "next/link";
 import ProfileNavbar from './profileNavbar/ProfileNavbar'
 import { Grid, Typography, FormControlLabel, Checkbox } from '@mui/material'
@@ -6,7 +6,82 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import CommonButton from '../../styles/CommonButotn'
 import MyTextField from '../../styles/MyTextField'
-const ProfileAcademic = () => {
+import Router from "next/router";
+
+
+
+
+const ProfileExperience = () => {
+
+  //backend
+
+  const [experience, setExperience] = useState({experienceYears : ""  });
+
+
+  let name, value;
+  const handleInputs = (e) => {
+    console.log(e);
+    name = e.target.name;
+    value = e.target.value;
+    
+    setExperience({ ...experience, [name]: value });
+  }
+  
+  const userID = async () => {
+    const res = await fetch('/api/getUserId', {
+      method: 'POST',
+      credentials: 'include', // Don't forget to specify this if you need cookies
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const data = await res.json();
+    const id = data.id;
+    
+    if(id === undefined) 
+      return "";
+
+    return id;
+  }
+  
+  const PostData = async (e) => {
+    e.preventDefault();
+
+    // const id = await userID();
+    // const { fname, lname, phone, title, dob, city, country, description } = aboutUser;
+
+    // console.log(aboutUser);
+    // let userData = { _id: id, fname, lname, phone, title, dob, city, country, description, portfolios:portfolios };
+
+
+    // const res = await fetch('/api/profileAbout', {
+    //   method: 'POST',
+    //   credentials: 'include', // Don't forget to specify this if you need cookies
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(userData)
+    // });
+
+    // const data = await res.json();
+
+    // if(res.status === 200) {
+    //   Router.push('/profile_development/ProfileAcademic');
+    // }
+    // else {
+    //   // show database error message
+    //   console.log(res.status);
+    // }
+
+    Router.push('../homePages/userDashboard');
+
+
+  };
+
+
+
+
+
   return (
     <>
       <div style={{ overflow: 'hidden', width: '100vw' }}>
@@ -56,7 +131,7 @@ const ProfileAcademic = () => {
           <Grid item xs={1.5}></Grid>
 
           <Grid item xs={12} align='center'>
-          <Link href='/'><CommonButton variant="Gradient">SUBMIT PROFILE</CommonButton></Link>
+          <CommonButton variant="Gradient" onClick={PostData} >SUBMIT PROFILE</CommonButton>
           </Grid>
         </Grid>
       </div>
@@ -64,4 +139,4 @@ const ProfileAcademic = () => {
   )
 }
 
-export default ProfileAcademic
+export default ProfileExperience

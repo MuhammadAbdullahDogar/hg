@@ -24,7 +24,6 @@ function NextLinkComposed(props, ref) {
         </NextLink>
     );
 }
-
 const Navbar = (props) => {
     const navbar_sign = {
         width: '5.5625rem',

@@ -1,4 +1,8 @@
+import AcademicUser from './AcademicUser';
+
 const mongoose = require('mongoose');
+var CryptoJS = require("crypto-js");
+
 // const bcrypt= require('bcrypt');
 // const jwt= require('jsonwebtoken');
 // const dotenv = require("dotenv");
@@ -7,20 +11,41 @@ const mongoose = require('mongoose');
 
 
 const UserSchema = new mongoose.Schema({
-    fname: {type: String, required: true},
-    lname: {type: String,required: true},
-    email: {type: String, required: true, unique: true},
-    phone: {type: Number,required: true},
-    password: {type: String,required: true}
+    fname: { type: String, required: true },
+    lname: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    phone: { type: Number, required: true },
+    password: { type: String, required: true },
+    about: {
+        title: { type: String, required: true },
+        gender: { type: String, required: true },
+        dob: { type: String, required: true },
+        city: { type: String, required: true },
+        country: { type: String, required: true },
+        portfolios: [{
+            linkType: { type: String, required: true },
+            portfolioLink: { type: String, required: true }
+        }],
+        description: { type: String, required: true }
+    },
+    academic: {
+        universityName: {type: String, required: true},
+        major: {type: String, required: true},
+        startingYear: {type: String, required: true},
+        endingYear: {type: String, required: true},
+        obtainedCgpa: {type: String, required: true},
+        totalCgpa: {type: String, required: true},
+        learning: {type: String, required: true}
+    }
 });
 
-// // hashing password before saveing on save function call
-// registerSchema.pre('save', async function(next) {
-//     if(this.isModified('password')){
-//         this.password = await bcrypt.hash(this.password,12);
-//     }
-//     next();
-// });
+// hashing password before saveing on save function call
+UserSchema.pre('save', function (next) {
+    if (this.isModified('password')) {
+        this.password = CryptoJS.AES.encrypt(this.password, process.env.SECRET_KEY).toString();
+    }
+    next();
+});
 
 
 // registerSchema.methods.generateAuthToken = async function(){

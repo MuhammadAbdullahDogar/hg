@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link rel="shortcut icon" href="/logo.svg" />
       </Head>
-      <Component {...pageProps} />
+      <Component {...pageProps}/>
     </ThemeProvider>
   )
 }

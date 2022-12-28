@@ -2,7 +2,8 @@ import React from 'react'
 import { Grid, Typography } from '@mui/material';
 import CommonButton from '../styles/CommonButotn'
 import Navbar from './Navbar';
-import Head from 'next/head'
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
 
 const Home_bg = { background: '#0A0D4E', borderRadius: '1.875rem', height: '29.0625rem' }
 const circle_green = {
@@ -68,6 +69,21 @@ const blue_glass_text = {
   margin: '7.4375rem 0 0 1.875rem'
 }
 const Home = () => {
+
+
+  const [user, setUser] = useState({});
+
+  useEffect(() =>{
+    const token = localStorage.getItem('token');
+
+    if(token) {
+      console.log(token);
+      setUser({token});
+    }
+    console.log(user);
+  },[]);
+
+
   return (
     <>
       <Head>
@@ -78,7 +94,7 @@ const Home = () => {
 
           <Grid item xs={.3}></Grid>
           <Grid item xs={11.4} sx={Home_bg}>
-            <Grid item xs={12} sx={{ marginTop: '1.5rem' }}><Navbar color='#CDD5F9' btnName='login' /></Grid>
+            <Grid item xs={12} sx={{ marginTop: '1.5rem' }}><Navbar color='#CDD5F9' btnName='login' user={user} /></Grid>
             <Grid item xs={11.4} align='center' sx={{ marginTop: '3.5rem' }}><Typography variant="home_top_text">HIRING GENIE</Typography></Grid>
             <Grid item xs={11.4} align='center' sx={{ marginTop: '.9375' }}><Typography variant="home_text">Developed to simplify the recruitment tasks as well as give the hiring manager a<br />better detailed insight about the candidates being interviewed.</Typography></Grid>
             <Grid container sx={{ marginTop: '2.8125rem' }}>

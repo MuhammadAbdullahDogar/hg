@@ -8,26 +8,93 @@ import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
 import CommonButton from '../../styles/CommonButotn'
 import { useState } from 'react';
 import Date_Picker from '../../styles/Date_Picker';
+import Router from "next/router";
+
+
+
 const ProfileAcademic = () => {
-  const [formFields, setFormFields] = useState([{ universityName: '', Major: '', startingYear: '', endignYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' }])
+
+  const [academicInfos, setAcademicInfos] = useState([{ universityName: '', major: '', startingYear: '', endingYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' }])
   const handelFormChange = (event, index) => {
-    let data = [...formFields];
+    let data = [...academicInfos];
     data[index][event.target.name] = event.target.value;
-    setFormFields(data);
+    setAcademicInfos(data);
   }
   const submit = () => {
-    console.log(formFields)
+    console.log(academicInfos)
   }
 
   const addFields = () => {
-    let object = { universityName: '', Major: '', startingYear: '', endignYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' }
-    setFormFields([...formFields, object])
+    let object = { universityName: '', major: '', startingYear: '', endignYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' }
+    setAcademicInfos([...academicInfos, object])
   }
   const removeFields = (index) => {
-    let data = [...formFields];
+    let data = [...academicInfos];
     data.splice(index, 1)
-    setFormFields(data)
+    setAcademicInfos(data)
   }
+
+
+
+  //backend
+
+
+  const userID = async () => {
+    const res = await fetch('/api/getUserId', {
+      method: 'POST',
+      credentials: 'include', // Don't forget to specify this if you need cookies
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const data = await res.json();
+    const id = data.id;
+
+    if (id === undefined)
+      return "";
+
+    return id;
+  }
+
+
+  const PostData = async (e) => {
+    e.preventDefault();
+
+    const id = await userID();
+    let userData = { _id: id, academic: academicInfos };
+
+
+    const res = await fetch('/api/profile_development/profileAcademic', {
+      method: 'POST',
+      credentials: 'include', // Don't forget to specify this if you need cookies
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
+    });
+    console.log(userData);
+
+    const data = await res.json();
+
+    if (res.status === 200) {
+      console.log(data);
+      Router.push('/profile_development/ProfileExperience');
+    }
+    else {
+      // show database error message
+      console.log(res.status);
+    }
+
+  };
+
+
+
+
+
+
+
+
+
   return (
     <div style={{ overflow: 'hidden', width: '100vw' }}>
       <Grid container spacing={2}>
@@ -39,7 +106,7 @@ const ProfileAcademic = () => {
         <Grid item xs={9.1} md={7}><Typography variant="profileH2">Fill this form about the last degree that you did and you can add another university by tapping on add more</Typography></Grid>
         <Grid item xs={0.1} md={2} ></Grid>
         <form onSubmit={submit}>
-          {formFields.map((form, index) => {
+          {academicInfos.map((form, index) => {
             return (
 
               <div key={index}>
@@ -49,12 +116,12 @@ const ProfileAcademic = () => {
                   <Grid item xs={0.1} md={0.5}></Grid>
                   <Grid item xs={2.1} md={2.5}><Typography variant="profileH2">Last Attended University</Typography></Grid>
                   <Grid item xs={4} md={4}  ><MyTextField name='universityName' value={form.universityName} label="University Name" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
-                  <Grid item xs={4} md={3}  ><MyTextField name='Major' value={form.Major} label="Major/Degree" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
+                  <Grid item xs={4} md={3}  ><MyTextField name='major' value={form.major} label="Major/Degree" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={0.1} md={2}  >{index !== 0 && (<RemoveIcon fontSize='large' color='error' onClick={removeFields} />)}</Grid>
 
                   <Grid item xs={0.1} md={3}></Grid>
                   <Grid item xs={2.8} md={1.75}><Date_Picker name='startingYear' value={form.startingYear} label="Starting Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)}></Date_Picker></Grid>
-                  <Grid item xs={2.8} md={1.75}><Date_Picker name='endignYear' value={form.endignYear} label="Ending Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
+                  <Grid item xs={2.8} md={1.75}><Date_Picker name='endignYear' value={form.endingYear} label="Ending Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='obtainedCgpa' value={form.obtainedCgpa} label="Obtained CGPA" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='totalCgpa' value={form.totalCgpa} label="Total CGPA" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={0.1} md={2}></Grid>
@@ -71,7 +138,7 @@ const ProfileAcademic = () => {
         </form>
         <Grid item xs={3}></Grid>
         <Grid item xs={9}><AddIcon fontSize='large' color='secondary' onClick={addFields} /></Grid>
-        <Grid item xs={12} align='center'><Link href='/Profile_development/ProfileExperience'><CommonButton variant="Gradient" onClick={submit}>NEXT</CommonButton></Link></Grid>
+        <Grid item xs={12} align='center'><CommonButton variant="Gradient" onClick={PostData}>NEXT</CommonButton></Grid>
       </Grid>
 
     </div>
