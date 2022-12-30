@@ -17,25 +17,25 @@ const UserSchema = new mongoose.Schema({
     phone: { type: Number, required: true },
     password: { type: String, required: true },
     about: {
-        title: { type: String, required: true },
-        gender: { type: String, required: true },
-        dob: { type: String, required: true },
-        city: { type: String, required: true },
-        country: { type: String, required: true },
+        title: { type: String },
+        gender: { type: String },
+        dob: { type: String },
+        city: { type: String},
+        country: { type: String },
         portfolios: [{
-            linkType: { type: String, required: true },
-            portfolioLink: { type: String, required: true }
+            linkType: { type: String},
+            portfolioLink: { type: String }
         }],
-        description: { type: String, required: true }
+        description: { type: String }
     },
     academic: {
-        universityName: {type: String, required: true},
-        major: {type: String, required: true},
-        startingYear: {type: String, required: true},
-        endingYear: {type: String, required: true},
-        obtainedCgpa: {type: String, required: true},
-        totalCgpa: {type: String, required: true},
-        learning: {type: String, required: true}
+        universityName: {type: String},
+        major: {type: String},
+        startingYear: {type: String},
+        endingYear: {type: String},
+        obtainedCgpa: {type: String},
+        totalCgpa: {type: String},
+        learning: {type: String}
     }
 });
 
