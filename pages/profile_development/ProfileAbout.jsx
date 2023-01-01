@@ -117,32 +117,33 @@ const ProfileAbout = () => {
   
   const PostData = async (e) => {
     e.preventDefault();
+console.log('hello');
+console.log(aboutUser);
+    // const id = await userID();
+    // const { fname, lname, phone, title, dob, city, country, description } = aboutUser;
 
-    const id = await userID();
-    const { fname, lname, phone, title, dob, city, country, description } = aboutUser;
-
-    console.log(aboutUser);
-    let userData = { _id: id, fname, lname, phone, title, dob, city, country, description, portfolios:portfolios };
+    // console.log(aboutUser);
+    // let userData = { _id: id, fname, lname, phone, title, dob, city, country, description, portfolios:portfolios };
 
 
-    const res = await fetch('/api/profileAbout', {
-      method: 'POST',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    });
+    // const res = await fetch('/api/profileAbout', {
+    //   method: 'POST',
+    //   credentials: 'include', // Don't forget to specify this if you need cookies
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(userData)
+    // });
 
-    const data = await res.json();
+    // const data = await res.json();
 
-    if(res.status === 200) {
-      Router.push('/profile_development/ProfileAcademic');
-    }
-    else {
-      // show database error message
-      console.log(res.status);
-    }
+    // if(res.status === 200) {
+    //   Router.push('/profile_development/ProfileAcademic');
+    // }
+    // else {
+    //   // show database error message
+    //   console.log(res.status);
+    // }
 
   };
 
@@ -164,7 +165,7 @@ const ProfileAbout = () => {
         <Grid item xs={12}></Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={2.5}><Typography variant="profileH1">About You</Typography></Grid>
-        <Grid item ><IconButton color="primary" aria-label="upload picture" component="label">
+        <Grid item ><IconButton color="primary">
           <input hidden accept="image/*" type="file" />
           <PhotoCamera />
         </IconButton>
@@ -180,28 +181,28 @@ const ProfileAbout = () => {
         <Grid item xs={2.5}><Typography variant="profileH2">Personal Information</Typography></Grid>
         <Grid item md={1} xs={2} >
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Title</InputLabel>
-            <MySelect labelId="demo-simple-select-label" id="demo-simple-select" label="Gender" value={aboutUser.title} onChange={handleInputs} name="title" >
-              <MenuItem value="Mr">Mr  </MenuItem>
+            <InputLabel>Title</InputLabel>
+            <MySelect label="Gender" value={aboutUser.title} onChange={handleInputs} name="title" >
+              <MenuItem value='Mr'>Mr  </MenuItem>
               <MenuItem value="Mrs">Mrs </MenuItem>
               <MenuItem value="Miss">Miss</MenuItem>
               <MenuItem value="Ms">Ms  </MenuItem>
               <MenuItem value="Mx">Mx  </MenuItem>
             </MySelect>
           </FormControl></Grid>
-        <Grid item xs={3}><MyTextField id="outlined-basic" label="First Name" variant="outlined" fullWidth value={aboutUser.fname} onChange={handleInputs} name="fname" /></Grid>
-        <Grid item xs={3}><MyTextField id="outlined-basic" label="Last Name" variant="outlined" fullWidth value={aboutUser.lname} onChange={handleInputs} name="lname" /></Grid>
+        <Grid item xs={3}><MyTextField  label="First Name" variant="outlined" fullWidth value={aboutUser.fname} onChange={handleInputs} name="fname" /></Grid>
+        <Grid item xs={3}><MyTextField  label="Last Name" variant="outlined" fullWidth value={aboutUser.lname} onChange={handleInputs} name="lname" /></Grid>
         <Grid item xs={1} md={1.5}></Grid>
 
         <Grid item xs={3.5}></Grid>
-        <Grid item xs={3.5}><MyTextField id="outlined-basic" label="Email Address" variant="outlined" fullWidth value={user.email} disabled /></Grid>
-        <Grid item xs={3.5}><MyTextField id="outlined-basic" label="Phone Number" variant="outlined" fullWidth value={aboutUser.phone} onChange={handleInputs} name="phone" /></Grid>
+        <Grid item xs={3.5}><MyTextField  label="Email Address" variant="outlined" fullWidth value={user.email} disabled /></Grid>
+        <Grid item xs={3.5}><MyTextField  label="Phone Number" variant="outlined" fullWidth value={aboutUser.phone} onChange={handleInputs} name="phone" /></Grid>
         <Grid item xs={1.5} md={1.5}></Grid>
 
         <Grid item xs={3.5}></Grid>
-        <Grid item md={2.33} xs={3}><Date_Picker></Date_Picker></Grid>
-        <Grid item md={2.33} xs={3}><MyTextField id="outlined-basic" label="City" variant="outlined" fullWidth value={aboutUser.city} onChange={handleInputs} name="city" /></Grid>
-        <Grid item md={2.33} xs={2}><Countryselect></Countryselect></Grid>
+        <Grid item md={2.33} xs={3}><Date_Picker name='dob'></Date_Picker></Grid>
+        <Grid item md={2.33} xs={3}><MyTextField  label="City" variant="outlined" fullWidth value={aboutUser.city} onChange={handleInputs} name="city" /></Grid>
+        <Grid item md={2.33} xs={2}><Countryselect name='country' value={aboutUser.country}></Countryselect></Grid>
         <Grid item xs={1} md={1.5}></Grid>
 
         <Grid item xs={12}></Grid>
