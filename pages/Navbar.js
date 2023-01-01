@@ -6,7 +6,7 @@ import { Grid } from '@mui/material'
 import { styled } from '@mui/material/styles';
 
 const Anchor = styled('a')({});
-function NextLinkComposed(props, ref) {
+function NextLinkComposed(props) {
     const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
 
     return (
