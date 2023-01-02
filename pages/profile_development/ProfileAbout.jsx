@@ -40,25 +40,26 @@ const ProfileAbout = () => {
   }
 
   //backend
-  
+
   const [user, setUser] = useState({});
-  
-  const [aboutUser, setAboutUser] = useState({ temp:"",
-  fname: "", lname: "", phone: "",email: "",
-  title: "", dob: "", city: "", country: "", description: "", portfolios
-});
+
+  const [aboutUser, setAboutUser] = useState({
+    temp: "",gender:'',
+    fname: "", lname: "", phone: "", email: "",
+    title: "", dob: "1/2/1992", city: "", country: "pakistan", description: "", portfolios
+  });
 
 
-  
+
   let name, value;
   const handleInputs = (e) => {
     console.log(e);
     name = e.target.name;
     value = e.target.value;
-    
+
     setAboutUser({ ...aboutUser, [name]: value });
   }
-  
+
   const userID = async () => {
     const res = await fetch('/api/candidate/getUserId', {
       method: 'POST',
@@ -69,15 +70,15 @@ const ProfileAbout = () => {
     });
     const data = await res.json();
     const id = data.id;
-    
-    if(id === undefined) 
+
+    if (id === undefined)
       return "";
 
     return id;
-    
+
   }
-  
-  
+
+
   const getData = async () => {
     const id = await userID();
     const res = await fetch('/api/candidate/getData', {
@@ -87,64 +88,64 @@ const ProfileAbout = () => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ id })
-      
+
     });
-    
+
     const data = await res.json();
     setUser(data.userExist);
 
   }
-  
+
   // used to make useEffect work
   let a = null;
-    if(aboutUser.temp  === "")
-       a=true;
-    else
-      a = null;
+  if (aboutUser.temp === "")
+    a = true;
+  else
+    a = null;
 
-  
+
   useEffect(() => {
-      
+
     getData();
     aboutUser.temp = "abc";
-    aboutUser.fname = user.fname || "";    
-    aboutUser.lname = user.lname || "";    
-    aboutUser.phone = user.phone || "";    
-    aboutUser.email = user.email || "";    
+    aboutUser.fname = user.fname || "";
+    aboutUser.lname = user.lname || "";
+    aboutUser.phone = user.phone || "";
+    aboutUser.email = user.email || "";
 
   }, [a])
 
-  
-  
+
+
   const PostData = async (e) => {
     e.preventDefault();
-console.log('hello');
-console.log(aboutUser);
-    // const id = await userID();
-    // const { fname, lname, phone, title, dob, city, country, description } = aboutUser;
+    console.log('hello');
+    console.log(aboutUser);
+    const id = await userID();
+    const { fname, lname, phone, title, dob, city, country, description } = aboutUser;
 
-    // console.log(aboutUser);
-    // let userData = { _id: id, fname, lname, phone, title, dob, city, country, description, portfolios:portfolios };
+    console.log(aboutUser);
+    let userData = { _id: id, fname, lname, phone, title, dob, city, country, description, portfolios:portfolios };
 
 
-    // const res = await fetch('/api/profileAbout', {
-    //   method: 'POST',
-    //   credentials: 'include', // Don't forget to specify this if you need cookies
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(userData)
-    // });
+    const res = await fetch('/api/profileAbout', {
+      method: 'POST',
+      credentials: 'include', // Don't forget to specify this if you need cookies
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
+    });
 
-    // const data = await res.json();
+    const data = await res.json();
 
-    // if(res.status === 200) {
-    //   Router.push('/profile_development/ProfileAcademic');
-    // }
-    // else {
-    //   // show database error message
-    //   console.log(res.status);
-    // }
+    if(res.status === 200) {
+      Router.push('/profile_development/ProfileAcademic');
+    }
+    else {
+      // show database error message
+      console.log(res.status);
+    }
 
   };
 
@@ -191,18 +192,27 @@ console.log(aboutUser);
               <MenuItem value="Mx">Mx  </MenuItem>
             </MySelect>
           </FormControl></Grid>
-        <Grid item xs={3}><MyTextField  label="First Name" variant="outlined" fullWidth value={aboutUser.fname} onChange={handleInputs} name="fname" /></Grid>
-        <Grid item xs={3}><MyTextField  label="Last Name" variant="outlined" fullWidth value={aboutUser.lname} onChange={handleInputs} name="lname" /></Grid>
+        <Grid item xs={3}><MyTextField label="First Name" variant="outlined" fullWidth value={aboutUser.fname} onChange={handleInputs} name="fname" /></Grid>
+        <Grid item xs={3}><MyTextField label="Last Name" variant="outlined" fullWidth value={aboutUser.lname} onChange={handleInputs} name="lname" /></Grid>
         <Grid item xs={1} md={1.5}></Grid>
 
         <Grid item xs={3.5}></Grid>
-        <Grid item xs={3.5}><MyTextField  label="Email Address" variant="outlined" fullWidth value={aboutUser.email} disabled /></Grid>
-        <Grid item xs={3.5}><MyTextField  label="Phone Number" variant="outlined" fullWidth value={aboutUser.phone} onChange={handleInputs} name="phone" /></Grid>
+        <Grid item xs={3}><MyTextField label="Email Address" variant="outlined" fullWidth value={aboutUser.email} disabled /></Grid>
+        <Grid item xs={2.5}><MyTextField label="Phone Number" variant="outlined" fullWidth value={aboutUser.phone} onChange={handleInputs} name="phone" /></Grid>
+        <Grid item xs={1.5} >
+          <FormControl fullWidth>
+            <InputLabel>Gender</InputLabel>
+            <MySelect label="Gender" value={aboutUser.gender} onChange={handleInputs} name="gender">
+              <MenuItem value='male'>Male</MenuItem>
+              <MenuItem value="female">Female</MenuItem>
+              <MenuItem value="other">Other</MenuItem>
+            </MySelect>
+          </FormControl></Grid>
         <Grid item xs={1.5} md={1.5}></Grid>
 
         <Grid item xs={3.5}></Grid>
-        <Grid item md={2.33} xs={3}><Date_Picker name='dob'></Date_Picker></Grid>
-        <Grid item md={2.33} xs={3}><MyTextField  label="City" variant="outlined" fullWidth value={aboutUser.city} onChange={handleInputs} name="city" /></Grid>
+        <Grid item md={2.33} xs={3}><Date_Picker name='dob' value={aboutUser.fname}></Date_Picker></Grid>
+        <Grid item md={2.33} xs={3}><MyTextField label="City" variant="outlined" fullWidth value={aboutUser.city} onChange={handleInputs} name="city" /></Grid>
         <Grid item md={2.33} xs={2}><Countryselect name='country' value={aboutUser.country}></Countryselect></Grid>
         <Grid item xs={1} md={1.5}></Grid>
 
