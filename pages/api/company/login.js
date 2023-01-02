@@ -1,5 +1,5 @@
-import User from "../../models/User";
-import connectDb from "../../middleware/mongoose";
+import User from "../../../models/Company";
+import connectDb from "../../../middleware/mongoose";
 var CryptoJS = require("crypto-js");
 import { sign } from "jsonwebtoken";
 import { serialize } from "cookie";

@@ -71,7 +71,7 @@ const SignUp = () => {
     let data,res;
 
     if (changeNames['fName'] == 'First Name') {
-        res = await fetch("/api/signupUser", {
+        res = await fetch("/api/candidate/signup", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
@@ -82,7 +82,7 @@ const SignUp = () => {
       data = await res.json();
     }
     else {
-      res = await fetch("/api/signupCompany", {
+      res = await fetch("/api/company/signup", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

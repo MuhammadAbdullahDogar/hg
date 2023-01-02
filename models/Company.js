@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+var CryptoJS = require("crypto-js");
+
 // const bcrypt= require('bcrypt');
 // const jwt= require('jsonwebtoken');
 // const dotenv = require("dotenv");
@@ -13,6 +15,14 @@ const CompanySchema = new mongoose.Schema({
     phone: {type: Number,required: true},
     password: {type: String,required: true}
 });
+
+CompanySchema.pre('save', function (next) {
+    if (this.isModified('password')) {
+        this.password = CryptoJS.AES.encrypt(this.password, process.env.SECRET_KEY).toString();
+    }
+    next();
+});
+
 
 // // hashing password before saveing on save function call
 // registerSchema.pre('save', async function(next) {

@@ -37,25 +37,56 @@ const Login_dark = () => {
         }
         else {
             setOpen(!open);
-            const res = await fetch('/api/login', {
-                method: 'POST',
-                credentials: 'include', // Don't forget to specify this if you need cookies
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email, password })
-            });
 
-            const data = await res.json();
+            let data, res;
 
-            if (res.status === 400 || !data) {
-                setOpen(false);
-                setError({ err_msg: "Invalid credentials", err_color: 'error' })
+            if (state['active_candiate_btn'] == 'btn_active') {
+                // console.log("Candidate");
 
-            } else {
-                Router.push('/profile_development/ProfileAbout');
+                res = await fetch('/api/candidate/login', {
+                    method: 'POST',
+                    credentials: 'include', // Don't forget to specify this if you need cookies
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                data = await res.json();
+
+                if (res.status === 400 || !data) {
+                    setOpen(false);
+                    setError({ err_msg: "Invalid credentials", err_color: 'error' })
+    
+                } else {
+                    Router.push('/profile_development/ProfileAbout');
+                }
+
             }
+            else {
+                // console.log("Company");
 
+                res = await fetch('/api/company/login', {
+                    method: 'POST',
+                    credentials: 'include', // Don't forget to specify this if you need cookies
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                data = await res.json();
+
+                if (res.status === 400 || !data) {
+                    setOpen(false);
+                    setError({ err_msg: "Invalid credentials", err_color: 'error' })
+    
+                } else {
+                    // Router.push('/profile_development/ProfileAbout');
+                    window.alert('Company Pages Misssing');
+                }
+            }
+            
         }
     }
     return (

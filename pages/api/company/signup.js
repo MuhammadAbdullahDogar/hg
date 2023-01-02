@@ -1,10 +1,11 @@
-import Company from "../../models/Company";
-import connectDb from "../../middleware/mongoose";
+import Company from "../../../models/Company";
+import connectDb from "../../../middleware/mongoose";
 
 
 const handler = async (req, res)=> {
     if(req.method == 'POST'){
-        console.log(req.body);
+        // console.log(req.body);
+        
         let u = new Company({
             cname: req.body.fname,
             domain: req.body.lname,
@@ -12,7 +13,7 @@ const handler = async (req, res)=> {
             phone: req.body.phone,
             password: req.body.password
         })
-
+        console.log("company");
         await u.save();
         res.status(200).json({success: "sucess"});
 
@@ -25,9 +26,3 @@ const handler = async (req, res)=> {
 }
 
 export default connectDb(handler);
-
-
-// fname: {type: String, required: true},
-// lname: {type: String, required: true},
-// email: {type: String, required: true},
-// password: {type: String, required: true}

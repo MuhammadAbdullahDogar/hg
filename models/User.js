@@ -1,5 +1,3 @@
-import AcademicUser from './AcademicUser';
-
 const mongoose = require('mongoose');
 var CryptoJS = require("crypto-js");
 
