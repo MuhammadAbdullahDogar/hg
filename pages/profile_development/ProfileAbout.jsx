@@ -44,7 +44,7 @@ const ProfileAbout = () => {
   const [user, setUser] = useState({});
   
   const [aboutUser, setAboutUser] = useState({ temp:"",
-  fname: "", lname: "", phone: "",
+  fname: "", lname: "", phone: "",email: "",
   title: "", dob: "", city: "", country: "", description: "", portfolios
 });
 
@@ -60,7 +60,7 @@ const ProfileAbout = () => {
   }
   
   const userID = async () => {
-    const res = await fetch('/api/getUserId', {
+    const res = await fetch('/api/candidate/getUserId', {
       method: 'POST',
       credentials: 'include', // Don't forget to specify this if you need cookies
       headers: {
@@ -80,7 +80,7 @@ const ProfileAbout = () => {
   
   const getData = async () => {
     const id = await userID();
-    const res = await fetch('/api/getData', {
+    const res = await fetch('/api/candidate/getData', {
       method: 'POST',
       credentials: 'include', // Don't forget to specify this if you need cookies
       headers: {
@@ -110,6 +110,7 @@ const ProfileAbout = () => {
     aboutUser.fname = user.fname || "";    
     aboutUser.lname = user.lname || "";    
     aboutUser.phone = user.phone || "";    
+    aboutUser.email = user.email || "";    
 
   }, [a])
 
@@ -195,7 +196,7 @@ console.log(aboutUser);
         <Grid item xs={1} md={1.5}></Grid>
 
         <Grid item xs={3.5}></Grid>
-        <Grid item xs={3.5}><MyTextField  label="Email Address" variant="outlined" fullWidth value={user.email} disabled /></Grid>
+        <Grid item xs={3.5}><MyTextField  label="Email Address" variant="outlined" fullWidth value={aboutUser.email} disabled /></Grid>
         <Grid item xs={3.5}><MyTextField  label="Phone Number" variant="outlined" fullWidth value={aboutUser.phone} onChange={handleInputs} name="phone" /></Grid>
         <Grid item xs={1.5} md={1.5}></Grid>
 

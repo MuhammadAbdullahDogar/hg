@@ -1,5 +1,5 @@
-import User from "../../models/User";
-import connectDb from "../../middleware/mongoose";
+import User from "../../../models/User";
+import connectDb from "../../../middleware/mongoose";
 
 
 const handler = async (req, res) => {
