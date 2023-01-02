@@ -8,7 +8,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function Date_Picker(props) {
     const [value, setValue] = React.useState(null);
-
+    console.log({value});
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
