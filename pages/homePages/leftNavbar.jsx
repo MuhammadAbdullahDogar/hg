@@ -1,20 +1,21 @@
 import { Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
+import Link from "next/link";
 import React from 'react'
+import Image from 'next/image';
 
 const leftNavbar = () => {
     const value = true;
+    const iconSize = 20;
     return (
         <>
-
-
             <Drawer
                 variant="persistent"
                 anchor="left"
                 open={value}
 
             >
-                <IconButton  ><MenuIcon /></IconButton>
+                {/* <IconButton  ><MenuIcon /></IconButton> */}
                 <List sx={{ mt: '5rem' }}>
                     <ListItem disablePadding>
                         <ListItemButton>
@@ -34,24 +35,36 @@ const leftNavbar = () => {
                         </ListItemButton>
                     </ListItem>
 
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <img src="/applications.svg" alt=''></img>
-                            </ListItemIcon>
-                            <ListItemText primary="Job Application" />
-                        </ListItemButton>
-                    </ListItem>
-
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <img src="/profile.png" alt=''></img>
-                            </ListItemIcon>
-                            <ListItemText primary="Profile" />
-                        </ListItemButton>
-                    </ListItem>
-
+                    <Link href="jobApplication">
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <Image
+                                        src="/applications.svg"
+                                        alt="clickable image"
+                                        width={iconSize}
+                                        height={iconSize}
+                                    />
+                                </ListItemIcon>
+                                <ListItemText primary="Job Application" />
+                            </ListItemButton>
+                        </ListItem>
+                    </Link>
+                    <Link href="userDashboard">
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                <Image
+                                        src="/profile.png"
+                                        alt="clickable image"
+                                        width={iconSize}
+                                        height={iconSize}
+                                    />
+                                </ListItemIcon>
+                                <ListItemText primary="Profile" />
+                            </ListItemButton>
+                        </ListItem>
+                    </Link>
                     <ListItem disablePadding>
                         <ListItemButton>
                             <ListItemIcon>

@@ -59,7 +59,7 @@ const Login_dark = () => {
                     setError({ err_msg: "Invalid credentials", err_color: 'error' })
     
                 } else {
-                    Router.push('/profile_development/ProfileAbout');
+                    Router.push('/homePages/userDashboard');
                 }
 
             }

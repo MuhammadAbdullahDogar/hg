@@ -120,8 +120,8 @@ const ProfileAcademic = () => {
                   <Grid item xs={0.1} md={2}  >{index !== 0 && (<RemoveIcon fontSize='large' color='error' onClick={removeFields} />)}</Grid>
 
                   <Grid item xs={0.1} md={3}></Grid>
-                  <Grid item xs={2.8} md={1.75}><Date_Picker name='startingYear' value={form.startingYear} label="Starting Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)}></Date_Picker></Grid>
-                  <Grid item xs={2.8} md={1.75}><Date_Picker name='endignYear' value={form.endingYear} label="Ending Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
+                  <Grid item xs={2.8} md={1.75}><MyTextField name='startingYear' value={form.startingYear} label="Starting Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)}></MyTextField></Grid>
+                  <Grid item xs={2.8} md={1.75}><MyTextField name='endignYear' value={form.endingYear} label="Ending Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='obtainedCgpa' value={form.obtainedCgpa} label="Obtained CGPA" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='totalCgpa' value={form.totalCgpa} label="Total CGPA" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={0.1} md={2}></Grid>

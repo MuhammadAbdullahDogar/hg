@@ -90,19 +90,19 @@ const ProfileExperience = () => {
           <Grid item xs={12}></Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={2.5}><Typography variant="profileH1">Experience and Skills</Typography></Grid>
-          <Grid item xs={2}><MyTextField id="outlined-basic" label="Years Of Experience" variant="outlined" /></Grid>
+          <Grid item xs={2}><MyTextField label="Job Level" variant="outlined" /></Grid>
           <Grid item xs={6.5}></Grid>
 
           <Grid item xs={1}></Grid>
           <Grid item xs={2.5}><Typography variant="profileH2">Latest Experience</Typography></Grid>
-          <Grid item xs={4}><MyTextField id="outlined-basic" label="Company Name" variant="outlined" fullWidth /></Grid>
-          <Grid item xs={3}><MyTextField id="outlined-basic" label="Company Domain" variant="outlined" fullWidth /></Grid>
+          <Grid item xs={4}><MyTextField label="Company Name" variant="outlined" fullWidth /></Grid>
+          <Grid item xs={3}><MyTextField label="Company Domain" variant="outlined" fullWidth /></Grid>
           <Grid item xs={1.5}></Grid>
 
           <Grid item xs={3.5}></Grid>
-          <Grid item xs={2.33}><MyTextField id="outlined-basic" label="Job Title" variant="outlined" fullWidth /></Grid>
-          <Grid item xs={2.33}><MyTextField id="outlined-basic" label="Starting Date" variant="outlined" fullWidth /></Grid>
-          <Grid item xs={2.33}><MyTextField id="outlined-basic" label="Ending Date" variant="outlined" fullWidth /></Grid>
+          <Grid item xs={2.33}><MyTextField label="Job Title" variant="outlined" fullWidth /></Grid>
+          <Grid item xs={2.33}><MyTextField label="Starting Date" variant="outlined" fullWidth /></Grid>
+          <Grid item xs={2.33}><MyTextField label="Ending Date" variant="outlined" fullWidth /></Grid>
           <Grid item xs={1.5}></Grid>
 
           <Grid item xs={3.5}></Grid>
@@ -112,7 +112,7 @@ const ProfileExperience = () => {
           <Grid item xs={2.5}><Typography variant="profileH2">Key Responsibities</Typography><br />
             <Typography variant="profileH3">Explain what tasks were you assigned and how were you able to achieve them,</Typography></Grid>
 
-          <Grid item xs={7}><MyTextField id="outlined-multiline-static" multiline fullWidth rows={7} /></Grid>
+          <Grid item xs={7}><MyTextField  multiline fullWidth rows={7} /></Grid>
           <Grid item xs={1.5}></Grid>
 
           <Grid item xs={3.5}></Grid>
@@ -121,13 +121,13 @@ const ProfileExperience = () => {
           <Grid item xs={1}></Grid>
           <Grid item xs={2.5}><Typography variant="profileH2">Open to working as</Typography><br />
             <Typography variant="profileH3">Write names of the roles that you’d like to work as (upto 5)</Typography></Grid>
-          <Grid item xs={7}><MyTextField id="outlined-multiline-static" multiline fullWidth rows={3} /></Grid>
+          <Grid item xs={7}><MyTextField  multiline fullWidth rows={3} /></Grid>
           <Grid item xs={1.5}></Grid>
 
           <Grid item xs={1}></Grid>
           <Grid item xs={2.5}><Typography variant="profileH2">Skills </Typography><br />
             <Typography variant="profileH3">Write names of the skills that have and want the recruiters to knoow (upto 7)</Typography></Grid>
-          <Grid item xs={7}><MyTextField id="outlined-multiline-static" multiline fullWidth rows={3} /></Grid>
+          <Grid item xs={7}><MyTextField  multiline fullWidth rows={3} /></Grid>
           <Grid item xs={1.5}></Grid>
 
           <Grid item xs={12} align='center'>

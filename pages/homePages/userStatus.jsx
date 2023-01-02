@@ -34,7 +34,7 @@ const UserStatus = () => {
                 <Grid item xs={3}></Grid>
 
                 <Grid item xs={1}></Grid>
-                <Grid item xs={10}>Muhammad Abdullah</Grid>
+                <Grid item xs={10}>Muhammad Abdullah Abdullah</Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={11}>
