@@ -40,7 +40,7 @@ const ProfileAcademic = () => {
 
 
   const userID = async () => {
-    const res = await fetch('/api/getUserId', {
+    const res = await fetch('/api/candidate/getUserId', {
       method: 'POST',
       credentials: 'include', // Don't forget to specify this if you need cookies
       headers: {
@@ -64,7 +64,7 @@ const ProfileAcademic = () => {
     let userData = { _id: id, academic: academicInfos };
 
 
-    const res = await fetch('/api/profile_development/profileAcademic', {
+    const res = await fetch('/api/candidate/profile_development/profileAcademic', {
       method: 'POST',
       credentials: 'include', // Don't forget to specify this if you need cookies
       headers: {
@@ -121,7 +121,7 @@ const ProfileAcademic = () => {
 
                   <Grid item xs={0.1} md={3}></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='startingYear' value={form.startingYear} label="Starting Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)}></MyTextField></Grid>
-                  <Grid item xs={2.8} md={1.75}><MyTextField name='endignYear' value={form.endingYear} label="Ending Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
+                  <Grid item xs={2.8} md={1.75}><MyTextField name='endingYear' value={form.endingYear} label="Ending Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='obtainedCgpa' value={form.obtainedCgpa} label="Obtained CGPA" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='totalCgpa' value={form.totalCgpa} label="Total CGPA" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={0.1} md={2}></Grid>

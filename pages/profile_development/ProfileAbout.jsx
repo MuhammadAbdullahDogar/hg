@@ -45,7 +45,7 @@ const ProfileAbout = () => {
 
   const [aboutUser, setAboutUser] = useState({
     temp: "",gender:'',
-    fname: "", lname: "", phone: "", email: "",
+    fname: "", lname: "", phone: "", email: "",gender: "",
     title: "", dob: "1/2/1992", city: "", country: "", description: "", portfolios
   });
 
@@ -131,13 +131,13 @@ const ProfileAbout = () => {
     console.log('hello');
     console.log(aboutUser);
     const id = await userID();
-    const { fname, lname, phone, title, dob, city, country, description } = aboutUser;
+    const { fname, lname, phone, title,gender, dob, city, country, description } = aboutUser;
 
     console.log(aboutUser);
-    let userData = { _id: id, fname, lname, phone, title, dob, city, country, description, portfolios:portfolios };
+    let userData = { _id: id, fname, lname, phone, title,gender, dob, city, country, description, portfolios:portfolios };
 
 
-    const res = await fetch('/api/candidate/profileAbout', {
+    const res = await fetch('/api/candidate/profile_development/profileAbout', {
       method: 'POST',
       credentials: 'include', // Don't forget to specify this if you need cookies
       headers: {
@@ -149,7 +149,7 @@ const ProfileAbout = () => {
     const data = await res.json();
 
     if(res.status === 200) {
-      Router.push('/profile_development/ProfileAcademic');
+      Router.push('/ProfileAcademic');
     }
     else {
       // show database error message
