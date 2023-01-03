@@ -34,7 +34,7 @@ const UserProfileTab = (props) => {
         <>
             <Tabs
                 value={value}
-                onChIange={handleChange}
+                onChange={handleChange}
                 variant="fullWidth"
                 sx={{
                     fontFamily: 'Urbanist',

@@ -4,8 +4,8 @@ import { Grid, Typography } from '@mui/material'
 
 const userProfileData = () => {
 
-    // const [user, setUser] = useState({});
-    // const [about, setAbout] = useState({});
+    const [user, setUser] = useState({});
+    const [about, setAbout] = useState({});
 
     const userID = async () => {
         const res = await fetch('/api/getUserId', {
@@ -47,23 +47,23 @@ const userProfileData = () => {
 
     // used to make useEffect work
     //   let a = null;
-    //     if(aboutUser.temp  === "")
+    //     if(about.temp  === "")
     //        a=true;
     //     else
     //       a = null;
 
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     getData();
+        getData();
 
-    // }, [])
+    }, [])
 
-    // const { title, dob, city, country, description, portfolios } = about;
-    // const { fname, lname, email, phone } = user;
+    const { title, dob, city, country, description, portfolios } = about;
+    const { fname, lname, email, phone } = user;
 
-    const { title, dob, city, country, description, portfolios } = "";
-    const { fname, lname, email, phone } = "";
+    // const { title, dob, city, country, description, portfolios } = "";
+    // const { fname, lname, email, phone } = "";
 
 
 
