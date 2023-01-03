@@ -8,7 +8,7 @@ const UserProfileData = () => {
     const [about, setAbout] = useState({});
 
     const userID = async () => {
-        const res = await fetch('/api/getUserId', {
+        const res = await fetch('/api/candidate/getUserId', {
             method: 'POST',
             credentials: 'include', // Don't forget to specify this if you need cookies
             headers: {
@@ -28,7 +28,7 @@ const UserProfileData = () => {
 
     const getData = async () => {
         const id = await userID();
-        const res = await fetch('/api/getData', {
+        const res = await fetch('/api/candidate/getData', {
             method: 'POST',
             credentials: 'include', // Don't forget to specify this if you need cookies
             headers: {
@@ -45,14 +45,6 @@ const UserProfileData = () => {
 
     }
 
-    // used to make useEffect work
-    //   let a = null;
-    //     if(about.temp  === "")
-    //        a=true;
-    //     else
-    //       a = null;
-
-
     useEffect(() => {
 
         getData();
@@ -61,12 +53,6 @@ const UserProfileData = () => {
 
     const { title, dob, city, country, description, portfolios } = about;
     const { fname, lname, email, phone } = user;
-
-    // const { title, dob, city, country, description, portfolios } = "";
-    // const { fname, lname, email, phone } = "";
-
-
-
     return (
         <>
             <Grid container sx={{ borderRadius: '2rem', backgroundColor: '#F8F8F8', minHeight: '80vh' }} spacing={2}>
