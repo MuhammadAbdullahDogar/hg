@@ -1,13 +1,22 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
 import MyTextField from '../../styles/MyTextField';
 
-const Countryselect = () => {
+const Countryselect = ({ chooseCountry }) => {
+
+    const [country, setCountry] = useState('');
+    chooseCountry(country.label);
+
+
+
     return (
         <>
             <Autocomplete
                 id="country-select-demo"
+                onChange={(event, newValue) => {
+                    setCountry(newValue);
+                  }}
                 options={countries}
                 autoHighlight
                 getOptionLabel={(option) => option.label}
@@ -21,9 +30,11 @@ const Countryselect = () => {
                             alt=""
                         />
                         {option.label}
+
                     </Box>
                 )}
                 renderInput={(params) => (
+                    
                     <MyTextField
                         {...params}
                         label="Choose a country"
@@ -32,12 +43,15 @@ const Countryselect = () => {
                             autoComplete: 'true', // disable autocomplete and autofill
                         }}
                     />
-                )}
-            />
-        </>
-    )
-}
 
+                )}
+              />
+        
+        </>
+        
+    )
+    
+}
 export default Countryselect
 const countries = [
     { code: 'AD', label: 'Andorra', phone: '376' },

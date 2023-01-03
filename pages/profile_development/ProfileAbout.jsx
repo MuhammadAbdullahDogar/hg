@@ -46,8 +46,16 @@ const ProfileAbout = () => {
   const [aboutUser, setAboutUser] = useState({
     temp: "",gender:'',
     fname: "", lname: "", phone: "", email: "",
-    title: "", dob: "1/2/1992", city: "", country: "pakistan", description: "", portfolios
+    title: "", dob: "1/2/1992", city: "", country: "", description: "", portfolios
   });
+
+  const chooseCountry = (country) => {
+    aboutUser.country=country;
+  };
+
+  const chooseDob = (dob) => {
+    aboutUser.dob=dob;
+  };
 
 
 
@@ -57,6 +65,7 @@ const ProfileAbout = () => {
     name = e.target.name;
     value = e.target.value;
 
+    console.log(aboutUser.dob);
     setAboutUser({ ...aboutUser, [name]: value });
   }
 
@@ -128,7 +137,7 @@ const ProfileAbout = () => {
     let userData = { _id: id, fname, lname, phone, title, dob, city, country, description, portfolios:portfolios };
 
 
-    const res = await fetch('/api/profileAbout', {
+    const res = await fetch('/api/candidate/profileAbout', {
       method: 'POST',
       credentials: 'include', // Don't forget to specify this if you need cookies
       headers: {
@@ -211,11 +220,11 @@ const ProfileAbout = () => {
         <Grid item xs={1.5} md={1.5}></Grid>
 
         <Grid item xs={3.5}></Grid>
-        <Grid item md={2.33} xs={3}><Date_Picker name='dob' value={aboutUser.fname}></Date_Picker></Grid>
+        <Grid item md={2.33} xs={3}><Date_Picker name='dob' chooseDob={chooseDob}></Date_Picker></Grid>
         <Grid item md={2.33} xs={3}><MyTextField label="City" variant="outlined" fullWidth value={aboutUser.city} onChange={handleInputs} name="city" /></Grid>
-        <Grid item md={2.33} xs={2}><Countryselect name='country' value={aboutUser.country}></Countryselect></Grid>
+        <Grid item md={2.33} xs={2}><Countryselect name='country' chooseCountry={chooseCountry} ></Countryselect></Grid>
         <Grid item xs={1} md={1.5}></Grid>
-
+        {console.log(aboutUser.country)}
         <Grid item xs={12}></Grid>
 
 
