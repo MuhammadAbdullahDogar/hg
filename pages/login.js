@@ -98,7 +98,7 @@ const Login_dark = () => {
                 <Box className='circle_top_login'></Box>
                 <Box className='circle_bottom_login'></Box>
                 <Box className='login_signup_glass' >
-                    {/* <Box sx={{ marginTop: '1.5rem' }}><Navbar color='var(--color-text)' btnName='signup' /></Box> */}
+                    <Box sx={{ marginTop: '1.5rem' }}><Navbar color='var(--color-text)' btnName='signup' /></Box>
                     <Stack direction="column" justifyContent="center" alignItems="center" mt={{ xs: 2, md: 1 }} spacing={{ xs: 1.5, md: 2.5, xl: 3.5 }}>
                         <Typography variant="hgTopHeading">LOGIN TO HIRING GENIE</Typography>
                         <div>
