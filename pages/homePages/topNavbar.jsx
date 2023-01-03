@@ -19,7 +19,7 @@ const navbar = () => {
                     <MailIcon />
                 </Badge></Grid>
                 <Grid item xs={.8} sx={{ marginTop: '1rem' }}><Avatar alt="Travis Howard" src="/demo.jpg" /></Grid>
-                <Grid item xs={12} sx={{borderBottom:'3px solid #F6F6F6',marginTop:'.5rem'}}I></Grid>
+                <Grid item xs={12} sx={{borderBottom:'3px solid #F6F6F6',marginTop:'.5rem'}}></Grid>
             </Grid>
         </>
     )
