@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import UserProfileTab from './userProfileTab'
 import { Grid, Typography } from '@mui/material'
 
-const userProfileData = () => {
+const UserProfileData = () => {
 
     const [user, setUser] = useState({});
     const [about, setAbout] = useState({});
@@ -103,4 +103,4 @@ const userProfileData = () => {
     )
 }
 
-export default userProfileData
+export default UserProfileData

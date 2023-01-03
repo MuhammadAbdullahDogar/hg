@@ -12,7 +12,7 @@ const navbar = () => {
                 <Grid item xs={.5} sx={{ marginTop: '.7rem' }}><img src='/logo.svg'></img></Grid>
                 <Grid item xs={2} sx={{ marginTop: '1.5rem' }}><Typography variant='profileLogoFont'>Hiring Genie</Typography></Grid>
                 <Grid item xs={3}></Grid>
-                <Grid item xs={2.5} sx={{ marginTop: '.5rem'}}><MyTextField label="Search" fullwidth ></MyTextField></Grid>
+                <Grid item xs={2.5} sx={{ marginTop: '.5rem'}}><MyTextField label="Search" fullWidth ></MyTextField></Grid>
                 <Grid item xs={.7}></Grid>
                 <Grid item xs={.5}sx={{ marginTop: '1.7rem' }}>
                     <Badge color="secondary" >
