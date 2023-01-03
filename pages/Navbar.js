@@ -6,7 +6,7 @@ import { Grid } from '@mui/material'
 import { styled } from '@mui/material/styles';
 
 const Anchor = styled('a')({});
-function NextLinkComposed(props) {
+const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
     const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
 
     return (
@@ -23,7 +23,7 @@ function NextLinkComposed(props) {
             <Anchor {...other} />
         </NextLink>
     );
-}
+},);
 const Navbar = (props) => {
     const navbar_sign = {
         width: '5.5625rem',

@@ -1,11 +1,15 @@
 import React from 'react'
 import UserProfileTab from './userProfileTab'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography,Box } from '@mui/material'
 const useExperienceAndSkills = () => {
     return (
         <>
-            <Grid container sx={{ borderRadius: '2rem', backgroundColor: '#F8F8F8', minHeight: '80vh' }} spacing={2}>
-                <Grid item xs={12} sx={{ backgroundColor: '#D8EBF6', borderRadius: '2rem 2rem 0 0' }}><UserProfileTab value={2}></UserProfileTab></Grid>
+            <Grid container sx={{ borderRadius: '2rem', backgroundColor: '#F8F8F8', minHeight: '80vh' }}>
+                <Grid item xs={12} >
+                    <Box sx={{ backgroundColor: '#D8EBF6', borderRadius: '2rem 2rem 0 0'}}>
+                        <UserProfileTab value={2}></UserProfileTab>
+                    </Box>
+                </Grid>
                 <Grid item xs={.5}></Grid>
                 <Grid item xs={11}><Typography variant="displayh1">Advance Web Developer</Typography></Grid>
                 <Grid item xs={.5}></Grid>

@@ -11,7 +11,7 @@ import Backdrop from '@mui/material/Backdrop';
 
 const Login_dark = () => {
     const [state, setState] = useState({ active_candiate_btn: 'btn_active', active_company_btn: '' });
-    const [err, setError] = useState({ err_msg: '', err_color: '' });
+    const [err, setError] = useState({ err_msg: '', err_color:false });
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [open, setOpen] = useState(false);
@@ -79,7 +79,7 @@ const Login_dark = () => {
 
                 if (res.status === 400 || !data) {
                     setOpen(false);
-                    setError({ err_msg: "Invalid credentials", err_color: 'error' })
+                    setError({ err_msg: "Invalid credentials", err_color:true })
     
                 } else {
                     // Router.push('/profile_development/ProfileAbout');
@@ -98,7 +98,7 @@ const Login_dark = () => {
                 <Box className='circle_top_login'></Box>
                 <Box className='circle_bottom_login'></Box>
                 <Box className='login_signup_glass' >
-                    <Box sx={{ marginTop: '1.5rem' }}><Navbar color='var(--color-text)' btnName='signup' /></Box>
+                    {/* <Box sx={{ marginTop: '1.5rem' }}><Navbar color='var(--color-text)' btnName='signup' /></Box> */}
                     <Stack direction="column" justifyContent="center" alignItems="center" mt={{ xs: 2, md: 1 }} spacing={{ xs: 1.5, md: 2.5, xl: 3.5 }}>
                         <Typography variant="hgTopHeading">LOGIN TO HIRING GENIE</Typography>
                         <div>

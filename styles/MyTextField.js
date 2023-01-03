@@ -7,6 +7,7 @@ import React from 'react'
 const CustomTextField = styled(TextField)(() => ({
     '& .MuiOutlinedInput-input': {
         fontSize:20,
+        height:'1.5rem'
     },
     '& label.Mui-focused': {
         color: '#32B126'

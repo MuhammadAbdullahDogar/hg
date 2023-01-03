@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { styled } from '@mui/material/styles';
 import NextLink from "next/link";
+import { Box } from '@mui/material';
 
 const Anchor = styled('a')({});
 const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
@@ -35,12 +36,14 @@ const UserProfileTab = (props) => {
                 value={value}
                 onChIange={handleChange}
                 variant="fullWidth"
-                sx={{fontFamily: 'Urbanist',
-                letterSpacing: '0.02em',
-                fontWeight: '600',
-                lineHeight: "1.375rem",
-                fontSize: '1.125rem',
-                color: '#363636'}}
+                sx={{
+                    fontFamily: 'Urbanist',
+                    letterSpacing: '0.02em',
+                    fontWeight: '600',
+                    lineHeight: "1.375rem",
+                    fontSize: '1.125rem',
+                    color: '#363636',
+                }}
             >
                 <Tab component={NextLinkComposed} label="Personal Details" to="/homePages/userDashboard" />
                 <Tab component={NextLinkComposed} label="Academic Information" to="/homePages/userAcademicInformation" />
