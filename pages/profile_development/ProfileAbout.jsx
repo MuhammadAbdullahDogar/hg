@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import Link from "next/link";
 import ProfileNavbar from './profileNavbar/ProfileNavbar'
 import { Grid, Typography, MenuItem, InputLabel, FormControl } from '@mui/material'
 import MySelect from '../../styles/MySelect';
