@@ -47,7 +47,7 @@ const UserSchema = new mongoose.Schema({
     openToWorkingAs: [{ type: String }],
     skills: [{
         name: { type: String},
-        percent: { type: number }
+        percent: { type: Number }
     }]
 });
 

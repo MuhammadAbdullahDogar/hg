@@ -7,7 +7,7 @@ import MySelect from '../../styles/MySelect';
 import AddIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
 import CommonButton from '../../styles/CommonButotn'
-import Countryselect from './Countryselect';
+import Countryselect from '../profile_development/Countryselect';
 import MyTextField from '../../styles/MyTextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
@@ -48,8 +48,10 @@ const ProfileAbout = () => {
     fname: "", lname: "", phone: "", email: "",gender: "",
     title: "", dob: "1/2/1992", city: "", country: "", description: "", portfolios
   });
+  const [countryy, setCountryy] = useState([]);
 
-  const chooseCountry = (country) => {
+  function chooseCountry(country){
+    countryy = country;
     aboutUser.country=country;
   };
 
@@ -149,7 +151,7 @@ const ProfileAbout = () => {
     const data = await res.json();
 
     if(res.status === 200) {
-      Router.push('/ProfileAcademic');
+      Router.push('/profile_development/ProfileAcademic');
     }
     else {
       // show database error message

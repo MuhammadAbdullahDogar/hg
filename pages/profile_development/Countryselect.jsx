@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
 import MyTextField from '../../styles/MyTextField';
 
-const Countryselect = ({ chooseCountry }) => {
+export default function Countryselect(props) {
 
-    const [country, setCountry] = useState('');
-    chooseCountry(country.label);
+    // const [country, setCountry] = useState([]);
+    // props.chooseCountry(country.label);
 
 
 
@@ -52,7 +52,7 @@ const Countryselect = ({ chooseCountry }) => {
     )
     
 }
-export default Countryselect
+
 const countries = [
     { code: 'AD', label: 'Andorra', phone: '376' },
     {
