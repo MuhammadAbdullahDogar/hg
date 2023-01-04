@@ -165,6 +165,10 @@ a {
 .btn_active {
   background: linear-gradient(89.95deg, rgba(50, 177, 38, 0.3) 1.99%, rgba(36, 162, 233, 0.3) 85.34%, rgba(36, 162, 233, 0.3) 104.58%);
 }
+.ProfileImage{
+border-radius: 100%;
+margin-top: .8rem;
+}
 
 /* @media(max-width:998px) {
   html {

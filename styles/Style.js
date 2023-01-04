@@ -148,7 +148,41 @@ const customTheme = createTheme({
             fontWeight: '600',
             lineHeight: "1.375rem",
             fontSize: '1.125rem',
-            color: '#363636'
+            color: '#363636',
+        },
+        userStatush1:{
+            fontFamily: 'Urbanist',
+            fontWeight: '600',
+            fontSize: '1.375rem',
+            lineHeight: "1.65rem",
+            letterSpacing: '0.02em',
+            color: '#0C0B38'
+
+
+        },
+        userStatush2:{
+            fontFamily: 'Urbanist',
+            fontWeight: '600',
+            fontSize: '1.125rem',
+             lineHeight: "1.35rem",
+             letterSpacing: '0.02em',
+             color: '#074D75'
+        },
+        userStatush3:{
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '0.9375rem',
+             lineHeight: "1.125rem",
+             letterSpacing: '0.02em',
+             color: '#394565'
+        },
+        userStatush4:{
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '1rem',
+             lineHeight: "1.2rem",
+             letterSpacing: '0.02em',
+             color: '#0B1A2A'
         }
     },
     shape: {

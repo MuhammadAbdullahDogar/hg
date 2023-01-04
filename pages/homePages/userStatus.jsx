@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 
@@ -13,7 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
 
-const UserStatus = () => {
+const UserStatus = (props) => {
     // const Transition = forwardRef(function Transition(props, ref) {
     //     return <Slide direction="up" ref={ref} {...props} />;
     // });
@@ -30,12 +30,11 @@ const UserStatus = () => {
         <>
             <Grid container sx={{ backgroundColor: '#f8f8f8', borderRadius: '1.5rem' }} spacing={1}>
                 <Grid item xs={3}></Grid>
-                <Grid item xs={6}><img src='/demo.jpg'></img></Grid>
-                <Grid item xs={3}></Grid>
+                <Grid item xs={5}><img className="ProfileImage" src='/demo.jpg'></img></Grid>
+                <Grid item xs={3.5}></Grid>
 
-                <Grid item xs={1}></Grid>
-                <Grid item xs={10}>Muhammad Abdullah Abdullah</Grid>
-                <Grid item xs={1}></Grid>
+                <Grid item xs={12}><Typography variant="userStatush1" sx={{ ml: '4.5rem' }}>Adam Miller</Typography></Grid>
+                <Grid item xs={12}></Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={11}>
                     <Button>
@@ -57,90 +56,86 @@ const UserStatus = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                    Open to work
+                    <Button><Typography variant='userStatush4'> Open to work</Typography></Button>
                 </Grid>
 
 
                 <Grid item xs={12}>
-                    Open to interview
+                <Button><Typography variant='userStatush4'> Open to interview</Typography></Button>
                 </Grid>
 
 
                 <Grid item xs={12}>
-                    Open to working as
+                    <Typography variant='userStatush2'> Open to working as</Typography>
                 </Grid>
 
 
                 <Grid item xs={12}>
-                    Box1
+                    <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}><Typography variant='userStatush3'>Data Analyst</Typography></Button>
                 </Grid>
 
                 <Grid item xs={12}>
-                    Box2
+                    <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}><Typography variant='userStatush3'> Software Engineer</Typography></Button>
                 </Grid>
 
                 <Grid item xs={12}>
-                    Box2
+                    <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}><Typography variant='userStatush3'> Quality Engineer</Typography></Button>
                 </Grid>
 
-
+               
                 <Grid item xs={12}>
-                    Box3
+                    <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}> <Typography variant='userStatush3'>Product Designer</Typography></Button>
                 </Grid>
+            </Grid >
 
-                <Grid item xs={12}>
-                    Box4
+    <Dialog
+        open={open}
+        // TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+    >
+        <DialogTitle>{"Portfolio/Social Links"}</DialogTitle>
+        <DialogContent>
+            <Grid item container spacing={3}>
+                <Grid item xs={2}>
+                    <Avatar>
+                        <LanguageSharpIcon />
+                    </Avatar>
+                </Grid>
+                <Grid item xs={10}>
+                    www.adammiller.com
+                </Grid>
+                <Grid item xs={2}>
+                    <Avatar>
+                        <LanguageSharpIcon />
+                    </Avatar>
+                </Grid>
+                <Grid item xs={10}>
+                    www.behance.net/adammiller
+                </Grid>
+                <Grid item xs={2}>
+                    <Avatar>
+                        <LanguageSharpIcon />
+                    </Avatar>
+                </Grid>
+                <Grid item xs={10}>
+                    www.dribble.com/adammiller05
+                </Grid>
+                <Grid item xs={2}>
+                    <Avatar>
+                        <LanguageSharpIcon />
+                    </Avatar>
+                </Grid>
+                <Grid item xs={10}>
+                    www.linkendin/in/adammiller9287
                 </Grid>
             </Grid>
-
-            <Dialog
-                open={open}
-                // TransitionComponent={Transition}
-                keepMounted
-                onClose={handleClose}
-            >
-                <DialogTitle>{"Portfolio/Social Links"}</DialogTitle>
-                <DialogContent>
-                    <Grid item container spacing={3}>
-                        <Grid item xs={2}>
-                            <Avatar>
-                                <LanguageSharpIcon />
-                            </Avatar>
-                        </Grid>
-                        <Grid item xs={10}>
-                            www.adammiller.com
-                        </Grid>
-                        <Grid item xs={2}>
-                            <Avatar>
-                                <LanguageSharpIcon />
-                            </Avatar>
-                        </Grid>
-                        <Grid item xs={10}>
-                            www.behance.net/adammiller
-                        </Grid>
-                        <Grid item xs={2}>
-                            <Avatar>
-                                <LanguageSharpIcon />
-                            </Avatar>
-                        </Grid>
-                        <Grid item xs={10}>
-                            www.dribble.com/adammiller05
-                        </Grid>
-                        <Grid item xs={2}>
-                            <Avatar>
-                                <LanguageSharpIcon />
-                            </Avatar>
-                        </Grid>
-                        <Grid item xs={10}>
-                            www.linkendin/in/adammiller9287
-                        </Grid>
-                    </Grid>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleClose}>Agree</Button>
-                </DialogActions>
-            </Dialog>
+        </DialogContent>
+        <DialogActions>
+            <Button onClick={handleClose}>Disagree</Button>
+            <Button onClick={handleClose}>Agree</Button>
+        </DialogActions>
+    </Dialog>
         </>
     )
 }
