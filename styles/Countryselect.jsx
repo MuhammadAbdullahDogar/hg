@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react'
 import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
-import MyTextField from '../../styles/MyTextField';
+import MyTextField from './MyTextField';
 
-export default function Countryselect(props) {
+export default function Countryselect({chooseCountry}) {
 
-    // const [country, setCountry] = useState([]);
-    // props.chooseCountry(country.label);
+    const [country, setCountry] = useState({});
+    chooseCountry(country.label);
 
 
 
