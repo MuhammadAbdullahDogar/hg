@@ -44,11 +44,13 @@ const UserSchema = new mongoose.Schema({
         endingDate: {type: String},
         responsibities: {type: String},
     },
-    openToWorkingAs: [{ type: String }],
-    skills: [{
-        name: { type: String},
-        percent: { type: Number }
-    }]
+    openToWorkingAs: { type: String },
+    skills: {}
+    // openToWorkingAs: [{ type: String }],
+    // skills: [{
+    //     name: { type: String},
+    //     percent: { type: Number }
+    // }]
 });
 
 // hashing password before saveing on save function call

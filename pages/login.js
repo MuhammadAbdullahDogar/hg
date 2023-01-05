@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Navbar from './Navbar'
 import Head from 'next/head'
 import Link from "next/link";
@@ -8,10 +8,12 @@ import MyTextField from '../styles/MyTextField'
 import Router from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
+import UserContext from '../context/UserContext';
+
 
 const Login_dark = () => {
     const [state, setState] = useState({ active_candiate_btn: 'btn_active', active_company_btn: '' });
-    const [err, setError] = useState({ err_msg: '', err_color:false });
+    const [err, setError] = useState({ err_msg: '', err_color: false });
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [open, setOpen] = useState(false);
@@ -27,6 +29,70 @@ const Login_dark = () => {
         setError({ err_msg: '' });
 
     }
+
+    const user = {
+        "fname": "check2",
+        "lname": "check",
+        "email": "check@check.com",
+        "phone": 123,
+        "about": {
+            "title": "Mr",
+            "gender": "",
+            "dob": "24/01/1902",
+            "city": "Lahore",
+            "country": "Egypt",
+            "description": "sxdcfvgbhnjmk,lhbj",
+            "portfolios": [
+                {
+                    "linkType": "link1",
+                    "portfolioLink": "linkkk",
+                }
+            ]
+        },
+        "academic": [
+            {
+                "universityName": "University of Central Punjab",
+                "major": "bgbg",
+                "startingYear": "54",
+                "endingYear": "554",
+                "obtainedCgpa": "454",
+                "totalCgpa": "45",
+                "learning": "65432gfdsnhtbgr"
+            },
+            {
+                "universityName": "abc",
+                "major": "abc",
+                "startingYear": "564",
+                "endignYear": "",
+                "obtainedCgpa": "465",
+                "totalCgpa": "463",
+                "learning": "hgbfvdcsx",
+                "endingYear": "546"
+            }
+        ],
+        "experience": [
+            {
+                "jobLevel": "qqq",
+                "cName": "qqq",
+                "cDomain": "qqq",
+                "jobTitle": "qqq",
+                "startingDate": "qqq",
+                "endingDate": "qqq",
+                "responsibities": "qqq"
+            }
+        ],
+        "openToWorkingAs": "fghbjnm",
+        "skills": [
+            {
+                "name": "s1",
+                "percent": 33
+            }
+        ]
+    };
+    const context = useContext(UserContext);
+
+
+
 
 
     //data send backend
@@ -57,8 +123,13 @@ const Login_dark = () => {
                 if (res.status === 400 || !data) {
                     setOpen(false);
                     setError({ err_msg: "Invalid credentials", err_color: 'error' })
-    
+
                 } else {
+                    // setting user context
+                    context.setUser(user);
+                    console.log(context.user);
+
+
                     Router.push('/homePages/userDashboard');
                 }
 
@@ -79,16 +150,21 @@ const Login_dark = () => {
 
                 if (res.status === 400 || !data) {
                     setOpen(false);
-                    setError({ err_msg: "Invalid credentials", err_color:true })
-    
+                    setError({ err_msg: "Invalid credentials", err_color: true })
+
                 } else {
                     // Router.push('/profile_development/ProfileAbout');
                     window.alert('Company Pages Misssing');
                 }
             }
-            
+
         }
     }
+
+
+
+
+
     return (
         <>
             <Head>

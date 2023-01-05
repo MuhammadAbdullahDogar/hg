@@ -55,6 +55,8 @@ const ProfileExperience = () => {
     jobLevel: "", cName: "", cDomain: "", jobTitle: "", startingDate: "", endingDate: "", responsibities: "",
   }]);
   const [skill, setSkill] = useState([{ skills: "" }]);
+  const [openToWorkingAs, setOpenToWorkingAs] = useState('');
+
 
   const handelFormChange = (event, index) => {
     let data = [...experiences];
@@ -118,10 +120,10 @@ const ProfileExperience = () => {
     e.preventDefault();
 
     const id = await userID();
-    let userData = { _id: id, experience: experiences };
+    let userData = { _id: id, experience: experiences, openToWorkingAs , skills:skill };
 
 
-    const res = await fetch('/api/candidate/profile_development/profileAcademic', {
+    const res = await fetch('/api/candidate/profile_development/profileExperience', {
       method: 'POST',
       credentials: 'include', // Don't forget to specify this if you need cookies
       headers: {
@@ -135,7 +137,7 @@ const ProfileExperience = () => {
 
     if (res.status === 200) {
       console.log(data);
-      Router.push('/profile_development/ProfileExperience');
+      Router.push('/homePages/userDashboard');
     }
     else {
       // show database error message
@@ -198,7 +200,7 @@ const ProfileExperience = () => {
             <Grid item xs={1}></Grid>
             <Grid item xs={2.5}><Typography variant="profileH2">Open to working as</Typography><br />
               <Typography variant="profileH3">Write names of the roles that you’d like to work as (upto 5)</Typography></Grid>
-            <Grid item xs={7}><MyTextField multiline fullWidth rows={1} /></Grid>
+            <Grid item xs={7}><MyTextField multiline fullWidth rows={1} onChange={(e) => setOpenToWorkingAs(e.target.value)} /></Grid>
             <Grid item xs={1.5}></Grid>
             <Grid item xs={12}></Grid>
             <Grid item xs={1}></Grid>

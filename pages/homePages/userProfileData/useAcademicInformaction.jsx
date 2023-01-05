@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import UserProfileTab from './userProfileTab'
+// import UserContext from '../../../context/UserContext'
 
 import { Grid, Typography } from '@mui/material'
 
 const useAcademicInformaction = () => {
+
+  // const context = useContext(UserContext);  
+  // {context.user?.academic[0].universityName}
+
+
   return (
     <>
       <Grid container sx={{ borderRadius: '2rem', backgroundColor: '#F8F8F8', minHeight: '80vh'}} spacing={2}>
