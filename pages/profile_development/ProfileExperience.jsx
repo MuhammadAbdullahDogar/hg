@@ -61,11 +61,10 @@ const ProfileExperience = () => {
   const handelFormChange = (event, index) => {
     let data = [...experiences];
     data[index][event.target.name] = event.target.value;
-    setExperiences(data);
 
     let skillData = [...skill];
     skillData[index][event.target.name] = event.target.value;
-    setExperiences(skillData);
+    setSkill(skillData);
   }
   const removeFields = (index) => {
     let data = [...experiences];
@@ -91,7 +90,8 @@ const ProfileExperience = () => {
   }
 
   const submit = () => {
-    console.log(experiences, skill)
+    console.log(experiences,skill)
+
   }
 
 
@@ -158,6 +158,7 @@ const ProfileExperience = () => {
           <Grid container spacing={2} >
             <Grid item xs={12}><ProfileNavbar step={2} /></Grid>
             <Grid item xs={12}>
+
               {experiences.map((form, index) => {
                 return (
                   <div key={index}>
@@ -165,19 +166,19 @@ const ProfileExperience = () => {
                       <Grid item xs={12}></Grid>
                       <Grid item xs={1}></Grid>
                       <Grid item xs={2.5}><Typography variant="profileH1">Experience and Skills</Typography></Grid>
-                      <Grid item xs={2}><MyTextField label="Job Level" variant="outlined" onChange={event => handelFormChange(event, index)} value={experiences.jobLevel} /></Grid>
+                      <Grid item xs={2}><MyTextField label="Job Level" variant="outlined" onChange={event => handelFormChange(event, index)} value={experiences.jobLevel} name="jobLevel" /></Grid>
                       <Grid item xs={6.5}></Grid>
 
                       <Grid item xs={1}></Grid>
                       <Grid item xs={2.5}><Typography variant="profileH2">Latest Experience</Typography></Grid>
-                      <Grid item xs={4}><MyTextField label="Company Name" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={experiences.cName} /></Grid>
-                      <Grid item xs={3}><MyTextField label="Company Domain" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={experiences.cDomain} /></Grid>
+                      <Grid item xs={4}><MyTextField label="Company Name" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={experiences.cName} name="cName" /></Grid>
+                      <Grid item xs={3}><MyTextField label="Company Domain" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={experiences.cDomain} name="cDomain" /></Grid>
                       <Grid item xs={1.5}></Grid>
 
                       <Grid item xs={3.5}></Grid>
-                      <Grid item xs={2.33}><MyTextField label="Job Title" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={experiences.jobTitle} /></Grid>
-                      <Grid item xs={2.33}><MyTextField label="Starting Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={experiences.startingDate} /></Grid>
-                      <Grid item xs={2.33}><MyTextField label="Ending Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={experiences.endingDate} /></Grid>
+                      <Grid item xs={2.33}><MyTextField label="Job Title" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={experiences.jobTitle} name="jobTitle" /></Grid>
+                      <Grid item xs={2.33}><MyTextField label="Starting Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={experiences.startingDate} name="startingDate" /></Grid>
+                      <Grid item xs={2.33}><MyTextField label="Ending Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={experiences.endingDate} name="endingDate" /></Grid>
                       <Grid item xs={1.5}></Grid>
 
                       <Grid item xs={3.5}></Grid>
@@ -188,12 +189,13 @@ const ProfileExperience = () => {
                       <Grid item xs={2.5}><Typography variant="profileH2">Key Responsibities</Typography><br />
                         <Typography variant="profileH3">Explain what tasks were you assigned and how were you able to achieve them,</Typography></Grid>
 
-                      <Grid item xs={7}><MyTextField multiline fullWidth rows={4} onChange={event => handelFormChange(event, index)} /></Grid>
+                      <Grid item xs={7}><MyTextField multiline fullWidth rows={4} onChange={event => handelFormChange(event, index)} value={experiences.responsibities} name="responsibities" /></Grid>
                       <Grid item xs={1.5}></Grid>
                     </Grid>
                   </div>
                 )
               })}
+
             </Grid>
             <Grid item xs={3.5}></Grid>
             <Grid item xs={8.5}><Fab size="small" color="secondary" aria-label="add" onClick={addFields}><AddIcon /></Fab></Grid>
@@ -213,7 +215,7 @@ const ProfileExperience = () => {
                     <div key={index}>
                       <Grid container spacing={2} mt={.1}>
                         <Grid item xs={3.5}></Grid>
-                        <Grid item xs={3}><MyTextField label="Skill" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={skill.skills} /></Grid>
+                        <Grid item xs={3}><MyTextField label="Skill" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={skill.skills} name="skills"/></Grid>
                         <Grid item xs={3.5}  mt={1}>
                           <PrettoSlider
                             valueLabelDisplay="auto"
