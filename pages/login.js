@@ -37,7 +37,7 @@ const Login_dark = () => {
         "phone": 123,
         "about": {
             "title": "Mr",
-            "gender": "",
+            "gender": "Male",
             "dob": "24/01/1902",
             "city": "Lahore",
             "country": "Egypt",
@@ -52,12 +52,12 @@ const Login_dark = () => {
         "academic": [
             {
                 "universityName": "University of Central Punjab",
-                "major": "bgbg",
-                "startingYear": "54",
-                "endingYear": "554",
-                "obtainedCgpa": "454",
-                "totalCgpa": "45",
-                "learning": "65432gfdsnhtbgr"
+                "major": "Computer Science",
+                "startingYear": "2019",
+                "endingYear": "2023",
+                "obtainedCgpa": "4",
+                "totalCgpa": "4.0",
+                "learning": "Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum."
             },
             {
                 "universityName": "abc",
@@ -127,6 +127,7 @@ const Login_dark = () => {
                 } else {
                     // setting user context
                     context.setUser(user);
+                    window.localStorage.setItem('user', JSON.stringify(user));
                     console.log(context.user);
 
 
