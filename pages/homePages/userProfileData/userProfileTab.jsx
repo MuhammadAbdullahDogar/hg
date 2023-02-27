@@ -2,28 +2,8 @@ import React, { useState } from 'react'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { styled } from '@mui/material/styles';
-import NextLink from "next/link";
-import { Box } from '@mui/material';
 
 const Anchor = styled('a')({});
-const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
-    const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
-
-    return (
-        <NextLink
-            href={to}
-            prefetch={prefetch}
-            as={linkAs}
-            replace={replace}
-            scroll={scroll}
-            shallow={shallow}
-            passHref
-            locale={locale}
-        >
-            <Anchor {...other} />
-        </NextLink>
-    );
-},);
 const UserProfileTab = (props) => {
     const [value, setValue] = useState(props.value);
 
@@ -45,9 +25,9 @@ const UserProfileTab = (props) => {
                     color: '#363636',
                 }}
             >
-                <Tab component={NextLinkComposed} label="Personal Details" to="/homePages/UserDashboard" onClick={() => props.setUserInfo(0)} />
-                <Tab component={NextLinkComposed} label="Academic Information" to="/homePages/UserDashboard" onClick={() => props.setUserInfo(1)} />
-                <Tab component={NextLinkComposed} label="Experience and Skills" to="/homePages/UserDashboard" onClick={() => props.setUserInfo(2)} />
+                <Tab  label="Personal Details"  onClick={() => props.setUserInfo(0)} />
+                <Tab  label="Academic Information"  onClick={() => props.setUserInfo(1)} />
+                <Tab  label="Experience and Skills"  onClick={() => props.setUserInfo(2)} />
             </Tabs>
         </>
     )
