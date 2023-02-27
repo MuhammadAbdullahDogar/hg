@@ -3,7 +3,6 @@ import { Grid, Typography } from '@mui/material'
 
 const UserProfileData = ({user}) => {
 
-    const { fname, lname, email, phone } = user
     return (
         <>
             <Grid container sx={{ borderRadius: '0 0 2rem 2rem', backgroundColor: '#F8F8F8', minHeight: '80vh' }} >
@@ -15,9 +14,9 @@ const UserProfileData = ({user}) => {
                 <Grid item xs={.5}></Grid>
                 <Grid item xs={1}><Typography variant="displayh4">Title</Typography><br /><Typography variant="displayh5">{user?.about?.title}</Typography></Grid>
                 <Grid item xs={2}></Grid>
-                <Grid item xs={1}><Typography variant="displayh4">FirstName</Typography> <br /><Typography variant="displayh5">{fname}</Typography></Grid>
+                <Grid item xs={1}><Typography variant="displayh4">FirstName</Typography> <br /><Typography variant="displayh5">{user?.fname}</Typography></Grid>
                 <Grid item xs={2}></Grid>
-                <Grid item xs={1}><Typography variant="displayh4">LastName</Typography><br /><Typography variant="displayh5">{lname}</Typography></Grid>
+                <Grid item xs={1}><Typography variant="displayh4">LastName</Typography><br /><Typography variant="displayh5">{user?.lname}</Typography></Grid>
                 <Grid item xs={1.5}></Grid>
                 <Grid item xs={2}><Typography variant="displayh4">Gender</Typography><br /><Typography variant="displayh5">Male</Typography></Grid>
                 <Grid item xs={1}></Grid>
@@ -28,7 +27,7 @@ const UserProfileData = ({user}) => {
                 <Grid item xs={2}></Grid>
                 <Grid item xs={1}><Typography variant="displayh4">Country</Typography><br /><Typography variant="displayh5">{user?.about?.country}</Typography></Grid>
                 <Grid item xs={1.5}></Grid>
-                <Grid item xs={3}><Typography variant="displayh4">Phone Number</Typography><br /><Typography variant="displayh5">{phone}</Typography></Grid>
+                <Grid item xs={3}><Typography variant="displayh4">Phone Number</Typography><br /><Typography variant="displayh5">{user?.phone}</Typography></Grid>
 
                 <Grid item xs={.5}></Grid>
                 <Grid item xs={11.5}><Typography variant="displayh4">About Tech:</Typography></Grid>

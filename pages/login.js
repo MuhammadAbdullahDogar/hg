@@ -131,7 +131,7 @@ const Login_dark = () => {
                     console.log(context.user);
 
 
-                    Router.push('/homePages/userDashboard');
+                    Router.push('/homePages/UserDashboard');
                 }
 
             }
