@@ -3,26 +3,12 @@ import UserProfileTab from './userProfileTab'
 import UserContext from '../../../context/UserContext'
 import { Grid, Typography } from '@mui/material'
 
-const useAcademicInformaction = () => {
-
-
-  useEffect(() => {
-    const data = window.localStorage.getItem('user');
-    const user = JSON.parse(data);
-    context.setUser(user);
-  }, [])
-
-
-
-  const context = useContext(UserContext);
-  const academics = context.user?.academic;
-  // console.log(academics);
-
+const useAcademicInformaction = ({academics}) => {
 
   return (
     <>
-      <Grid container sx={{ borderRadius: '2rem', backgroundColor: '#F8F8F8', minHeight: '80vh' }} spacing={2}>
-        <Grid item xs={12} sx={{ backgroundColor: '#D8EBF6', borderRadius: '2rem 2rem 0 0' }}><UserProfileTab value={1}></UserProfileTab></Grid>
+       <Grid container sx={{ borderRadius: '2rem', backgroundColor: '#F8F8F8', minHeight: '80vh' }} spacing={2}>
+        {/* <Grid item xs={12} sx={{ backgroundColor: '#D8EBF6', borderRadius: '2rem 2rem 0 0' }}><UserProfileTab value={1}></UserProfileTab></Grid>  */}
 
         {academics?.map((academic) => {
           return (

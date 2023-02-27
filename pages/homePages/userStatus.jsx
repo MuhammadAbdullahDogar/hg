@@ -33,7 +33,7 @@ const UserStatus = (props) => {
                 <Grid item xs={5}><img className="ProfileImage" src='/demo.jpg'></img></Grid>
                 <Grid item xs={3.5}></Grid>
 
-                <Grid item xs={12}><Typography variant="userStatush1" sx={{ ml: '4.5rem' }}>Adam Miller</Typography></Grid>
+                <Grid item xs={12}><Typography variant="userStatush1" sx={{ ml: '4.5rem' }}>{props.user?.fname} {props.user?.lname} </Typography></Grid>
                 <Grid item xs={12}></Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={11}>
@@ -61,7 +61,7 @@ const UserStatus = (props) => {
 
 
                 <Grid item xs={12}>
-                <Button><Typography variant='userStatush4'> Open to interview</Typography></Button>
+                    <Button><Typography variant='userStatush4'> Open to interview</Typography></Button>
                 </Grid>
 
 
@@ -82,60 +82,48 @@ const UserStatus = (props) => {
                     <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}><Typography variant='userStatush3'> Quality Engineer</Typography></Button>
                 </Grid>
 
-               
+
                 <Grid item xs={12}>
                     <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}> <Typography variant='userStatush3'>Product Designer</Typography></Button>
                 </Grid>
             </Grid >
 
-    <Dialog
-        open={open}
-        // TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-    >
-        <DialogTitle>{"Portfolio/Social Links"}</DialogTitle>
-        <DialogContent>
-            <Grid item container spacing={3}>
-                <Grid item xs={2}>
-                    <Avatar>
-                        <LanguageSharpIcon />
-                    </Avatar>
-                </Grid>
-                <Grid item xs={10}>
-                    www.adammiller.com
-                </Grid>
-                <Grid item xs={2}>
-                    <Avatar>
-                        <LanguageSharpIcon />
-                    </Avatar>
-                </Grid>
-                <Grid item xs={10}>
-                    www.behance.net/adammiller
-                </Grid>
-                <Grid item xs={2}>
-                    <Avatar>
-                        <LanguageSharpIcon />
-                    </Avatar>
-                </Grid>
-                <Grid item xs={10}>
-                    www.dribble.com/adammiller05
-                </Grid>
-                <Grid item xs={2}>
-                    <Avatar>
-                        <LanguageSharpIcon />
-                    </Avatar>
-                </Grid>
-                <Grid item xs={10}>
-                    www.linkendin/in/adammiller9287
-                </Grid>
-            </Grid>
-        </DialogContent>
-        <DialogActions>
-            <Button onClick={handleClose}>Disagree</Button>
-            <Button onClick={handleClose}>Agree</Button>
-        </DialogActions>
-    </Dialog>
+            <Dialog
+                open={open}
+                // TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClose}
+            >
+                <DialogTitle>{"Portfolio/Social Links"}</DialogTitle>
+                <DialogContent>
+
+                    {props?.user?.about?.portfolios?.map((portfolio) => {
+                        return (
+                            <>
+
+
+                                <Grid item container spacing={3}>
+                                    <Grid item xs={2}>
+                                        <Avatar>
+                                            <LanguageSharpIcon />
+                                        </Avatar>
+                                    </Grid>
+                                    <Grid item xs={10}>
+                                    {portfolio.portfolioLink}
+                                    </Grid>
+
+                                </Grid>
+
+                            </>
+                        )
+                    })}
+
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Disagree</Button>
+                    <Button onClick={handleClose}>Agree</Button>
+                </DialogActions>
+            </Dialog>
         </>
     )
 }

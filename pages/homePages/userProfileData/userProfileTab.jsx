@@ -45,9 +45,9 @@ const UserProfileTab = (props) => {
                     color: '#363636',
                 }}
             >
-                <Tab component={NextLinkComposed} label="Personal Details" to="/homePages/userDashboard" />
-                <Tab component={NextLinkComposed} label="Academic Information" to="/homePages/userAcademicInformation" />
-                <Tab component={NextLinkComposed} label="Experience and Skills" to="/homePages/userExperience" />
+                <Tab component={NextLinkComposed} label="Personal Details" to="/homePages/userDashboard" onClick={() => props.setUserInfo(0)} />
+                <Tab component={NextLinkComposed} label="Academic Information" to="/homePages/userDashboard" onClick={() => props.setUserInfo(1)} />
+                <Tab component={NextLinkComposed} label="Experience and Skills" to="/homePages/userDashboard" onClick={() => props.setUserInfo(2)} />
             </Tabs>
         </>
     )
