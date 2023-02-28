@@ -19,7 +19,7 @@ const UserDashboard = (props) => {
             <Grid container spacing={4}>
                 <input type="text" value={user} />
                 <Grid item xs={12}><TopNavbar /></Grid>
-                <Grid item xs={2}><LeftNavbar /></Grid>
+                <Grid item xs={2}><LeftNavbar id={user._id} /></Grid>
                 <Grid item xs={2.4}><UserStatus user={user} /></Grid>
                 <Grid item xs={.2}></Grid>
                 <Grid item xs={7} sx={{ backgroundColor: '#D8EBF6', borderRadius: '2rem 2rem 5rem 5rem' }}>
@@ -35,20 +35,21 @@ const UserDashboard = (props) => {
 
 export default UserDashboard
 
-export async function getServerSideProps({ query, req, res }) {
+export async function getServerSideProps({ params, req, res }) {
 
-    const { id } = query;
+    // const id="fgd"
+    const { candidate } = params;
     console.log("aaaaa")
-    console.log(id)
+    console.log(candidate)
     console.log("aaaaa")
 
-    const ress = await fetch('https://hiringgenie.vercel.app/api/candidate/getData', {
+    const ress = await fetch(`${process.env.WEBSITE}/api/candidate/getData`, {
         method: 'POST',
         credentials: 'include', // Don't forget to specify this if you need cookies
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ id })
+        body: JSON.stringify({ id:candidate })
 
     });
 

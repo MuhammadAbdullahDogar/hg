@@ -133,7 +133,7 @@ const Login_dark = () => {
 
                     const id = await userID();
 
-                    Router.push(`/homePages/UserDashboard?id=${id}`);
+                    Router.push(`/${id}/UserDashboard`);
                 }
 
             }
