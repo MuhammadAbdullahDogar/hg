@@ -42,7 +42,7 @@ export async function getServerSideProps({ query, req, res }) {
     console.log(id)
     console.log("aaaaa")
 
-    const ress = await fetch('http://localhost:3000/api/candidate/getData', {
+    const ress = await fetch('https://hiringgenie.vercel.app/api/candidate/getData', {
         method: 'POST',
         credentials: 'include', // Don't forget to specify this if you need cookies
         headers: {
