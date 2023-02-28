@@ -3,7 +3,6 @@ import { Grid, Typography } from '@mui/material'
 
 const UserProfileData = ({user}) => {
 
-    console.log(user)
     return (
         <>
             <Grid container sx={{ borderRadius: '0 0 2rem 2rem', backgroundColor: '#F8F8F8', minHeight: '80vh' }} >
@@ -11,7 +10,7 @@ const UserProfileData = ({user}) => {
                 <Grid item xs={.5}></Grid>
                 <Grid item xs={11}><Typography variant="displayh1"> About Information</Typography></Grid>
                 <Grid item xs={.5}></Grid>
-    {console.log(user)}
+    {/* {console.log(user)} */}
                 
                 <Grid item xs={.5}></Grid>
                 <Grid item xs={1}><Typography variant="displayh4">Title</Typography><br /><Typography variant="displayh5">{user?.about?.title}</Typography></Grid>

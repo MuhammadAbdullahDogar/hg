@@ -1,6 +1,5 @@
 import React from 'react'
-import UserProfileTab from './userProfileTab'
-import { Grid, Typography, Box } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 const useExperienceAndSkills = ({ experiences }) => {
     return (
         <>

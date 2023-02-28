@@ -131,7 +131,9 @@ const Login_dark = () => {
                     console.log(context.user);
 
 
-                    Router.push('/homePages/UserDashboard');
+                    const id = await userID();
+
+                    Router.push(`/homePages/UserDashboard?id=${id}`);
                 }
 
             }
@@ -198,3 +200,21 @@ const Login_dark = () => {
 }
 
 export default Login_dark
+
+const userID = async () => {
+        const res = await fetch('/api/candidate/getUserId', {
+            method: 'POST',
+            credentials: 'include', // Don't forget to specify this if you need cookies
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await res.json();
+        const id = data.id;
+
+        if (id === undefined)
+            return "";
+
+        return id;
+
+    }

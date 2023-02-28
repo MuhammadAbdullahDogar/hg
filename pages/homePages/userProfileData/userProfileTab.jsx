@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { styled } from '@mui/material/styles';
 
-const Anchor = styled('a')({});
 const UserProfileTab = (props) => {
     const [value, setValue] = useState(props.value);
 
