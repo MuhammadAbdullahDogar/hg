@@ -8,43 +8,46 @@ import UserCompanyData from './userProfileData/useExperienceAndSkills'
 import UserStatus from './userStatus'
 import UserProfileTab from './userProfileData/userProfileTab'
 
-const userID = async () => {
-    const res = await fetch('/api/candidate/getUserId', {
-        method: 'POST',
-        credentials: 'include', // Don't forget to specify this if you need cookies
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-    const data = await res.json();
-    const id = data.id;
-
-    if (id === undefined)
-        return "";
-
-    return id;
-
-}
-
-const getData = async () => {
-    const id = await userID();
-    const res = await fetch('/api/candidate/getData', {
-        method: 'POST',
-        credentials: 'include', // Don't forget to specify this if you need cookies
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ id })
-
-    });
-
-    const data = await res.json();
-    return data.userExist;
-    // setUser(data.userExist)
-
-}
 
 const UserDashboard = () => {
+
+
+    const userID = async () => {
+        const res = await fetch('/api/candidate/getUserId', {
+            method: 'POST',
+            credentials: 'include', // Don't forget to specify this if you need cookies
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await res.json();
+        const id = data.id;
+
+        if (id === undefined)
+            return "";
+
+        return id;
+
+    }
+
+    const getData = async () => {
+        const id = await userID();
+        const res = await fetch('/api/candidate/getData', {
+            method: 'POST',
+            credentials: 'include', // Don't forget to specify this if you need cookies
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id })
+
+        });
+
+        const data = await res.json();
+        return data.userExist;
+        // setUser(data.userExist)
+
+    }
+
 
     const [user, setUser] = useState({})
 
@@ -65,6 +68,7 @@ const UserDashboard = () => {
                 <Grid item xs={.2}></Grid>
                 <Grid item xs={7} sx={{ backgroundColor: '#D8EBF6', borderRadius: '2rem 2rem 5rem 5rem' }}>
                     <UserProfileTab value={userInfo} setUserInfo={setUserInfo} />
+                    {console.log(user)}
                     {(userInfo == 0 && <UserProfileData user={user} />) || (userInfo == 1 && <UserAcademicData academics={user.academic} />) || <UserCompanyData experiences={user.experience} />}
                 </Grid>
             </Grid>

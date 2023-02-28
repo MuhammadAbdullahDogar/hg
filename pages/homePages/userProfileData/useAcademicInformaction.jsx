@@ -1,6 +1,4 @@
 import React, { useContext, useEffect } from 'react'
-import UserProfileTab from './userProfileTab'
-import UserContext from '../../../context/UserContext'
 import { Grid, Typography } from '@mui/material'
 
 const useAcademicInformaction = ({academics}) => {
