@@ -20,15 +20,17 @@ const customTheme = createTheme({
     typography: {
         fontFamily: 'Urbanist',
         color: "#19177E",
-        home_top_text: {
+        HomeH1: {
+            fontStyle: 'normal',
             fontFamily: 'Comfortaa',
-            fontSize: '3.75rem',
-            fontWeight: 600,
-            lineHeight: '4.1875rem',
-            color: '#EBEFFF',
+            fontSize: '3.125rem',
+            fontWeight: 700,
+            lineHeight: '4rem',
+            letterSpacing: '5%',
+            color: '#2D91C9',
             animation: 'tracking-in-contract 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both'
         },
-        home_text: {
+        home_text: {//extra
             fontFamily: 'Urbanist',
             fontSize: '1.125rem',
             lineHeight: '1.625rem',
@@ -40,17 +42,50 @@ const customTheme = createTheme({
         HomeH2: {
             fontFamily: 'Comfortaa',
             fontWeight: 700,
-            lineHeight: '1.6rem',
-            fontSize: '1.51rem',
-            color: '#19177E'
+            lineHeight: '4.59375rem',
+            fontSize: '3.4375rem',
+            color: '#5748F5',
+            letterSpacing: '2%'
         },
         HomeH3: {
-            fontFamily: 'Urbanist',
-            fontWeight: 500,
-            lineHeight: '1.8125rem',
+            fontFamily: 'Comfortaa',
+            fontWeight: 700,
+            lineHeight: '4.625rem',
+            fontSize: '2.5rem',
+            color: '#5748F5',
+            letterSpacing: '0.05em'
+        },
+        HomeH4: {
+            fontFamily: 'Comfortaa',
+            fontWeight: 400,
+            lineHeight: '2.25rem',
+            fontSize: '1.25rem',
+            color: '#000000',
+            letterSpacing: '0.05em'
+        },
+        HomeH5: {
+            fontFamily: 'Comfortaa',
+            fontWeight: 700,
+            lineHeight: '1.75rem',
+            fontSize: '1.25rem',
+            color: '#FFFFFF',
+            opacity: '0.75'
+        },
+        HomeH6: {
+            fontFamily: 'Comfortaa',
+            fontWeight: 400,
+            lineHeight: '1.5rem',
+            fontSize: '1.125rem',
+            color: '#FFFFFF',
+            opacity: '0.75'
+        },
+        HomeAccordion: {
+            fontFamily: 'Comfortaa',
+            fontWeight: 400,
+            lineHeight: '1.546875rem',
             fontSize: '1.375rem',
-            letterSpacing: '0.01em',
-            color: '#074D75'
+            color: '#5748F5',
+            letterSpacing: '1%'
         },
         HomeGlassText: {
             fontFamily: 'Comfortaa',
@@ -150,7 +185,7 @@ const customTheme = createTheme({
             fontSize: '1.125rem',
             color: '#363636',
         },
-        userStatush1:{
+        userStatush1: {
             fontFamily: 'Urbanist',
             fontWeight: '600',
             fontSize: '1.375rem',
@@ -160,29 +195,29 @@ const customTheme = createTheme({
 
 
         },
-        userStatush2:{
+        userStatush2: {
             fontFamily: 'Urbanist',
             fontWeight: '600',
             fontSize: '1.125rem',
-             lineHeight: "1.35rem",
-             letterSpacing: '0.02em',
-             color: '#074D75'
+            lineHeight: "1.35rem",
+            letterSpacing: '0.02em',
+            color: '#074D75'
         },
-        userStatush3:{
+        userStatush3: {
             fontFamily: 'Urbanist',
             fontWeight: '500',
             fontSize: '0.9375rem',
-             lineHeight: "1.125rem",
-             letterSpacing: '0.02em',
-             color: '#394565'
+            lineHeight: "1.125rem",
+            letterSpacing: '0.02em',
+            color: '#394565'
         },
-        userStatush4:{
+        userStatush4: {
             fontFamily: 'Urbanist',
             fontWeight: '500',
             fontSize: '1rem',
-             lineHeight: "1.2rem",
-             letterSpacing: '0.02em',
-             color: '#0B1A2A'
+            lineHeight: "1.2rem",
+            letterSpacing: '0.02em',
+            color: '#0B1A2A'
         }
     },
     shape: {
