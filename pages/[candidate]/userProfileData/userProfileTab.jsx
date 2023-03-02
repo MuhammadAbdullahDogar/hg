@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { useState } from 'react';
 
 const UserProfileTab = (props) => {
     const [value, setValue] = useState(props.value);

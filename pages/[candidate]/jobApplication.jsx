@@ -8,7 +8,6 @@ const JobApplication = () => {
 
     const router = useRouter()
     const  { candidate  }  = router.query
-    console.log(candidate);
 
     return (
         <>

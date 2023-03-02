@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import LeftNavbar from './leftNavbar'
 import TopNavbar from './topNavbar'
 import UserProfileData from './userProfileData/userProfileData'
