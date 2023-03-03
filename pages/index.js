@@ -186,7 +186,7 @@ const Home = () => {
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
               >
-                <Typography variant="HomeAccordion">What's Hiring Genie?</Typography>
+                <Typography variant="HomeAccordion">Whats Hiring Genie?</Typography>
               </AccordionSummary>
               <AccordionDetails
               >
