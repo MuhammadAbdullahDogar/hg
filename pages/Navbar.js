@@ -61,7 +61,7 @@ const Navbar = (props) => {
                         lineHeight: '1.0625rem'
                     }}>
                         <Tab component={NextLinkComposed} to='/' style={{ color: props.color }} label="Home" />
-                        <Tab component={NextLinkComposed} to='/' style={{ color: props.color }} label="How it works?" />
+                        <Tab component={NextLinkComposed} to='/PostJob' style={{ color: props.color }} label="How it works?" />
                         <Tab component={NextLinkComposed} to='/' style={{ color: props.color }} label="FAQs" />
                     </Tabs>
                 </Grid>

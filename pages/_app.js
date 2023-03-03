@@ -5,18 +5,55 @@ import Head from 'next/head'
 import { useState, createContext } from "react"
 import UserContext from '../context/UserContext';
 
+
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import PrintIcon from '@mui/icons-material/Print';
+import NextLink from "next/link";
+
+const actions = [
+  { icon: <NextLink href="/"><PrintIcon /></NextLink>, name: "Landing page"},
+  { icon: <NextLink href="/login"><PrintIcon /></NextLink>, name: "Login"},
+  { icon: <NextLink href="/signup"><PrintIcon /></NextLink>, name: "Signup"},
+  { icon: <NextLink href="/company/PostJob"><PrintIcon /></NextLink>, name: "Post Job"},
+  { icon: <NextLink href="/profile_development/ProfileAbout"><PrintIcon /></NextLink>, name: "User About"},
+  { icon: <NextLink href="/profile_development/ProfileAcademic"><PrintIcon /></NextLink>, name: "User Academic"},
+  { icon: <NextLink href="/profile_development/ProfileExperience"><PrintIcon /></NextLink>, name: "User Experience"},
+  { icon: <NextLink href="/candidate/UserDashboard"><PrintIcon /></NextLink>, name: "Dashboard"},
+
+];
+
+
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState({});
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <Head>
-        <link rel="shortcut icon" href="/logo.svg" />
-      </Head>
-      <UserContext.Provider value={{ user, setUser }}>
-        <Component {...pageProps} />
-      </UserContext.Provider>
-    </ThemeProvider>
+    <>
+      <div style={{position:'fixed',zIndex:'10'}}>
+        <SpeedDial
+          ariaLabel="SpeedDial basic example"
+          icon={<SpeedDialIcon />}
+          direction="left"
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+            />
+          ))}
+        </SpeedDial>
+      </div>
+      <ThemeProvider theme={customTheme}>
+        <Head>
+          <link rel="shortcut icon" href="/logo.svg" />
+        </Head>
+        <UserContext.Provider value={{ user, setUser }}>
+          <Component {...pageProps} />
+        </UserContext.Provider>
+      </ThemeProvider>
+    </>
   )
 }
 
