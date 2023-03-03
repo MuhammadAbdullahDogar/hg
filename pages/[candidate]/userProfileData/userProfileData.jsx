@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { Grid, Typography } from '@mui/material'
 
 const UserProfileData = ({user}) => {

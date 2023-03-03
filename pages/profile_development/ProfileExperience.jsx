@@ -137,7 +137,7 @@ const ProfileExperience = () => {
 
     if (res.status === 200) {
       console.log(data);
-      Router.push('/homePages/userDashboard');
+      Router.push(`/${id}/UserDashboard`);
     }
     else {
       // show database error message
@@ -232,7 +232,7 @@ const ProfileExperience = () => {
             <Grid item xs={3.5}></Grid>
             <Grid item xs={8.5}><Fab size="small" color="secondary" aria-label="add" onClick={addSkills}><AddIcon /></Fab></Grid>
             <Grid item xs={12} align='center'>
-              <CommonButton variant="Gradient" onClick={submit} >SUBMIT PROFILE</CommonButton>
+              <CommonButton variant="Gradient" onClick={PostData} >SUBMIT PROFILE</CommonButton>
             </Grid>
           </Grid>
         </div>

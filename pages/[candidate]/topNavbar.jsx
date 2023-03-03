@@ -1,4 +1,3 @@
-import React from 'react'
 import { Grid, Avatar, Typography } from '@mui/material'
 import MyTextField from '../../styles/MyTextField'
 import Badge from '@mui/material/Badge';

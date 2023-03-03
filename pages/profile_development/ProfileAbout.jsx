@@ -127,8 +127,6 @@ const ProfileAbout = () => {
 
   const PostData = async (e) => {
     e.preventDefault();
-    console.log('hello');
-    console.log(aboutUser);
     const id = await userID();
     const { fname, lname, phone, title,gender, dob, city, country, description } = aboutUser;
 
@@ -144,8 +142,6 @@ const ProfileAbout = () => {
       },
       body: JSON.stringify(userData)
     });
-
-    const data = await res.json();
 
     if(res.status === 200) {
       Router.push('/profile_development/ProfileAcademic');

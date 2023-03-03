@@ -68,7 +68,7 @@ const SignUp = () => {
     } else {
       window.alert('Show toast success');
       console.log('Registration Sucessful');
-      Router.push('/login');
+      Router.push('/profile_development/ProfileAbout');
     }
   };
 
