@@ -1,16 +1,10 @@
 import React, { useState } from 'react'
-import Link from "next/link";
-// import ProfileNavbar from './profileNavbar/ProfileNavbar'
-import { Grid, Typography, FormControlLabel, Checkbox } from '@mui/material'
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import CompanyNavbar from './companyNavbar/CompanyNavbar';
+import { Grid, Typography, MenuItem, InputLabel, FormControl,FormControlLabel, Checkbox } from '@mui/material'
+import MySelect from '../../styles/MySelect';
 import CommonButton from '../../styles/CommonButotn'
-import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
 import MyTextField from '../../styles/MyTextField'
-import Router from "next/router";
 
-import Slider from '@mui/material/Slider';
-import { styled } from '@mui/material/styles';
 const submit = () => {
   console.log(experiences, skill)
 
@@ -22,7 +16,7 @@ const PostJob = () => {
       <form onSubmit={submit}>
         <div style={{ overflow: 'hidden', width: '100vw' }}>
           <Grid container spacing={2} >
-            {/* <Grid item xs={12}><ProfileNavbar step={2} /></Grid> */}
+            <Grid item xs={12}><CompanyNavbar step={1} step1_Name={'Job details'} step2_Name={'Screening Questions'} /></Grid>
 
             <Grid item xs={1}></Grid>
             <Grid item xs={2.5}><Typography variant="profileH1">About Job</Typography></Grid>
@@ -32,7 +26,22 @@ const PostJob = () => {
 
             <Grid item xs={3.5}></Grid>
             <Grid item xs={2.5}><MyTextField label="Job Type" variant="outlined" fullWidth name="JobType" /></Grid>
-            <Grid item xs={2.5}><MyTextField label="Job Compensation" variant="outlined" fullWidth name="JobCompensation" /></Grid>
+            <Grid item xs={2.5}><FormControl fullWidth>
+              <InputLabel>Job Compensation</InputLabel>
+              <MySelect label="Job Compensation" name="Job Compensation" >
+                <MenuItem value='PKR 5,000-PKR 15,000'>PKR 5,000-PKR 15,000  </MenuItem>
+                <MenuItem value="PKR 15,000-PKR 30,000">PKR 15,000-PKR 30,000 </MenuItem>
+                <MenuItem value="PKR 30,000-PKR 50,000">PKR 30,000-PKR 50,000</MenuItem>
+                <MenuItem value="PKR 50,000-PKR 70,000">PKR 50,000-PKR 70,000  </MenuItem>
+                <MenuItem value="PKR 70,000-PKR 90,000">PKR 70,000-PKR 90,000</MenuItem>
+                <MenuItem value="PKR 90,000-PKR 120,000">PKR 90,000-PKR 120,000</MenuItem>
+                <MenuItem value="PKR 120,000-PKR 150,000">PKR 120,000-PKR 150,000</MenuItem>
+                <MenuItem value="Above PKR 150,000">Above PKR 150,000</MenuItem>
+
+
+              </MySelect>
+            </FormControl></Grid>
+
             <Grid item xs={3.5}></Grid>
 
             <Grid item xs={1}></Grid>
