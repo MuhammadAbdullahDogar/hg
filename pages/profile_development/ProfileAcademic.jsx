@@ -9,11 +9,14 @@ import CommonButton from '../../styles/CommonButotn'
 import { useState } from 'react';
 import Date_Picker from '../../styles/Date_Picker';
 import Router from "next/router";
+import { getSession } from "next-auth/react"
+import { signIn } from 'next-auth/react'
 
 
 
-const ProfileAcademic = () => {
+const ProfileAcademic = ({ user }) => {
 
+  console.log(user);
   const [academicInfos, setAcademicInfos] = useState([{ universityName: '', major: '', startingYear: '', endingYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' }])
   const handelFormChange = (event, index) => {
     let data = [...academicInfos];
@@ -39,29 +42,29 @@ const ProfileAcademic = () => {
   //backend
 
 
-  const userID = async () => {
-    const res = await fetch('/api/candidate/getUserId', {
-      method: 'POST',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    const data = await res.json();
-    const id = data.id;
+  // const userID = async () => {
+  //   const res = await fetch('/api/candidate/getUserId', {
+  //     method: 'POST',
+  //     credentials: 'include', // Don't forget to specify this if you need cookies
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     }
+  //   });
+  //   const data = await res.json();
+  //   const id = data.id;
 
-    if (id === undefined)
-      return "";
+  //   if (id === undefined)
+  //     return "";
 
-    return id;
-  }
+  //   return id;
+  // }
 
 
   const PostData = async (e) => {
     e.preventDefault();
 
-    const id = await userID();
-    let userData = { _id: id, academic: academicInfos };
+    // const id = await userID();
+    let userData = { _id: user?._id, academic: academicInfos };
 
 
     const res = await fetch('/api/candidate/profile_development/profileAcademic', {
@@ -72,13 +75,35 @@ const ProfileAcademic = () => {
       },
       body: JSON.stringify(userData)
     });
-    console.log(userData);
+    // console.log(userData);
 
     const data = await res.json();
 
     if (res.status === 200) {
       console.log(data);
-      Router.push('/profile_development/ProfileExperience');
+
+
+
+      if (res.status === 200) {
+
+        const credential = {
+          role: 'candidate',
+          log: 'auto',
+          email: user?.email,
+          password: user?.password
+        }
+
+
+        const ress = await signIn('credentials', {
+          ...credential,
+          redirect: false
+        })
+
+        if (ress.status === 200) {
+
+          Router.push('/profile_development/ProfileExperience');
+        }
+      }
     }
     else {
       // show database error message
@@ -86,14 +111,6 @@ const ProfileAcademic = () => {
     }
 
   };
-
-
-
-
-
-
-
-
 
   return (
     <div style={{ overflow: 'hidden', width: '100vw' }}>
@@ -146,3 +163,19 @@ const ProfileAcademic = () => {
 }
 
 export default ProfileAcademic;
+
+export async function getServerSideProps(ctx) {
+
+  const session = await getSession(ctx)
+  console.log(session);
+  const user = session?.user?.user || null
+
+  ctx.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
+  return {
+    props: { user },
+  }
+}

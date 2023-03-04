@@ -2,6 +2,7 @@ import { Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListI
 import Link from "next/link";
 import React from 'react'
 import Image from 'next/image';
+import { signOut } from 'next-auth/react'
 
 
 const leftNavbar = (props) => {
@@ -35,7 +36,7 @@ const leftNavbar = (props) => {
                         </ListItemButton>
                     </ListItem>
 
-                    <Link href={`/${props.id}/jobApplication`}>
+                    <Link href={`/candidate/jobApplication`}>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
@@ -50,7 +51,7 @@ const leftNavbar = (props) => {
                             </ListItemButton>
                         </ListItem>
                     </Link>
-                    <Link href={`/${props.id}/UserDashboard`}>
+                    <Link href={`/candidate/UserDashboard`}>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>

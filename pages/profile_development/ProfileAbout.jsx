@@ -13,11 +13,14 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Date_Picker from '../../styles/Date_Picker';
 import Head from 'next/head';
 import Router from "next/router";
+import { getSession } from "next-auth/react"
+import { signIn } from 'next-auth/react'
 
 
 
 
-const ProfileAbout = () => {
+
+const ProfileAbout = ({ user }) => {
   const [portfolios, setPortfolios] = useState([{ linkType: '', portfolioLink: '' }])
   const handelFormChange = (event, index) => {
     let data = [...portfolios];
@@ -40,98 +43,95 @@ const ProfileAbout = () => {
 
   //backend
 
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
 
   const [aboutUser, setAboutUser] = useState({
-    temp: "",gender:'',
-    fname: "", lname: "", phone: "", email: "",gender: "",
+    temp: "", gender: '',
+    fname: user?.fname, lname: user?.lname, phone: user?.phone, email: user?.email, gender: "",
     title: "", dob: "1/2/1992", city: "", country: "", description: "", portfolios
   });
 
-  function chooseCountry(country){
-    aboutUser.country=country;
+  function chooseCountry(country) {
+    aboutUser.country = country;
   };
 
   const chooseDob = (dob) => {
-    aboutUser.dob=dob;
+    aboutUser.dob = dob;
   };
 
 
 
   let name, value;
   const handleInputs = (e) => {
-    console.log(e);
     name = e.target.name;
     value = e.target.value;
 
-    console.log(aboutUser.dob);
     setAboutUser({ ...aboutUser, [name]: value });
   }
 
-  const userID = async () => {
-    const res = await fetch('/api/candidate/getUserId', {
-      method: 'POST',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    const data = await res.json();
-    const id = data.id;
+  // const userID = async () => {
+  //   const res = await fetch('/api/candidate/getUserId', {
+  //     method: 'POST',
+  //     credentials: 'include', // Don't forget to specify this if you need cookies
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     }
+  //   });
+  //   const data = await res.json();
+  //   const id = data.id;
 
-    if (id === undefined)
-      return "";
+  //   if (id === undefined)
+  //     return "";
 
-    return id;
+  //   return id;
 
-  }
-
-
-  const getData = async () => {
-    const id = await userID();
-    const res = await fetch('/api/candidate/getData', {
-      method: 'POST',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ id })
-
-    });
-
-    const data = await res.json();
-    setUser(data.userExist);
-
-  }
-
-  // used to make useEffect work
-  let a = null;
-  if (aboutUser.temp === "")
-    a = true;
-  else
-    a = null;
+  // }
 
 
-  useEffect(() => {
+  // const getData = async () => {
+  //   const id = await userID();
+  //   const res = await fetch('/api/candidate/getData', {
+  //     method: 'POST',
+  //     credentials: 'include', // Don't forget to specify this if you need cookies
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({ id })
 
-    getData();
-    aboutUser.temp = "abc";
-    aboutUser.fname = user.fname || "";
-    aboutUser.lname = user.lname || "";
-    aboutUser.phone = user.phone || "";
-    aboutUser.email = user.email || "";
+  //   });
 
-  }, [a])
+  //   const data = await res.json();
+  //   setUser(data.userExist);
+
+  // }
+
+  // // used to make useEffect work
+  // let a = null;
+  // if (aboutUser.temp === "")
+  //   a = true;
+  // else
+  //   a = null;
+
+
+  // useEffect(() => {
+
+  //   getData();
+  //   aboutUser.temp = "abc";
+  //   aboutUser.fname = user.fname || "";
+  //   aboutUser.lname = user.lname || "";
+  //   aboutUser.phone = user.phone || "";
+  //   aboutUser.email = user.email || "";
+
+  // }, [a])
 
 
 
   const PostData = async (e) => {
     e.preventDefault();
-    const id = await userID();
-    const { fname, lname, phone, title,gender, dob, city, country, description } = aboutUser;
+    // const id = await userID();
+    const { fname, lname, phone, title, gender, dob, city, country, description } = aboutUser;
 
-    console.log(aboutUser);
-    let userData = { _id: id, fname, lname, phone, title,gender, dob, city, country, description, portfolios:portfolios };
+    let userData = { _id: user?._id, fname, lname, phone, title, gender, dob, city, country, description, portfolios: portfolios };
 
 
     const res = await fetch('/api/candidate/profile_development/profileAbout', {
@@ -143,8 +143,26 @@ const ProfileAbout = () => {
       body: JSON.stringify(userData)
     });
 
-    if(res.status === 200) {
-      Router.push('/profile_development/ProfileAcademic');
+    if (res.status === 200) {
+
+      const credential = {
+        role: 'candidate',
+        log: 'auto',
+        email: user?.email,
+        password: user?.password
+      }
+
+
+      const ress = await signIn('credentials', {
+        ...credential,
+        redirect: false
+      })
+
+      if (ress.status === 200) {
+
+
+        Router.push('/profile_development/ProfileAcademic');
+      }
     }
     else {
       // show database error message
@@ -219,7 +237,6 @@ const ProfileAbout = () => {
         <Grid item md={2.33} xs={3}><MyTextField label="City" variant="outlined" fullWidth value={aboutUser.city} onChange={handleInputs} name="city" /></Grid>
         <Grid item md={2.33} xs={2}><Countryselect name='country' chooseCountry={chooseCountry} ></Countryselect></Grid>
         <Grid item xs={1} md={1.5}></Grid>
-        {console.log(aboutUser.country)}
         <Grid item xs={12}></Grid>
 
 
@@ -260,3 +277,18 @@ const ProfileAbout = () => {
 }
 
 export default ProfileAbout
+
+export async function getServerSideProps(ctx) {
+
+  const session = await getSession(ctx)
+  const user = session?.user?.user || null
+
+  ctx.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
+  return {
+    props: { user },
+  }
+}

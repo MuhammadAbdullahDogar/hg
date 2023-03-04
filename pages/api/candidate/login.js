@@ -5,58 +5,63 @@ import { sign } from "jsonwebtoken";
 import { serialize } from "cookie";
 
 
-const handler = async (req,res) => {
-    if(req.method == "POST") {
+const handler = async (req, res) => {
+    if (req.method == "POST") {
 
-        const { email, password } = req.body;
+        const { email, password, log } = req.body;
 
         if (!email || !password) {
-            return res.status(400).json({ error: "Please fill data" });
+            return res.status(400);
         }
-
+        
         // checking if email exists
-        const userExist = await User.findOne({ email});
-
+        const userExist = await User.findOne({ email });
+        
         // print details of user
         // console.log(userExist);
-
-
+        
+        
         if (!userExist) {
-            res.status(400).json({ mesage: "Invalid details" });
+            res.status(401);
         }
         else {
-            console.log(userExist);
+            if (log === 'auto') {
+                return res.status(200).json({ user: userExist });
+    
+            }
             // match password if email exisits
             const isMatch = password === CryptoJS.AES.decrypt(userExist.password, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8);
 
-            if(!isMatch){
-                res.status(400).json({ mesage: "Invalid details" });
+            if (!isMatch) {
+                res.status(401).json({ mesage: "Invalid details" });
             }
-            else{
-                
-               var token = sign({_id: userExist._id}, process.env.SECRET_KEY_JWT , { expiresIn: process.env.JWT_EXPIRE_TIME });
-                
-            //    const serialised = serialize("JWT_Token", token, {
-            //     httpOnly: true,
-            //     secure: process.env.NODE_ENV !== "development",
-            //     sameSite: "strict",
-            //     maxAge: 60 * 60 * 24 * 30,
-            //     path: "/",
-            //   });
-          
+            else {
 
-            const serialised = serialize("JWT_Token", token);
+                //                 // console.log("ucnndujcjjjjjjjjjjjjjjjjj");
+                //                 // console.log(userExist.password);
+                //                 // console.log("ucnndujcjjjjjjjjjjjjjjjjj");
 
-        
-            res.setHeader("Set-Cookie", serialised);
-            res.status(200).json({ message: "Success!" });
-                
+                //    var token = sign({_id: userExist._id}, process.env.SECRET_KEY_JWT , { expiresIn: process.env.JWT_EXPIRE_TIME });
+
+                // //    const serialised = serialize("JWT_Token", token, {
+                // //     httpOnly: true,
+                // //     secure: process.env.NODE_ENV !== "development",
+                // //     sameSite: "strict",
+                // //     maxAge: 60 * 60 * 24 * 30,
+                // //     path: "/",
+                // //   });
+
+
+                // const serialised = serialize("JWT_Token", token);
+                // res.setHeader("Set-Cookie", serialised);
+                res.status(200).json({ user: userExist });
+
             }
         }
 
     }
     else {
-        res.status(400).json({error: "fail request"});
+        res.status(400).json({ error: "fail request" });
     }
 }
 

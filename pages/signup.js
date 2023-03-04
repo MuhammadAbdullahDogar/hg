@@ -8,6 +8,8 @@ import CommonButton from '../styles/CommonButotn'
 import Router from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
+import { signIn } from 'next-auth/react'
+
 
 const SignUp = () => {
   const [changeNames, setChangeNames] = useState({ fName: 'First Name', lName: 'Last Name', active_candiate_btn: 'btn_active', active_company_btn: '' })
@@ -66,9 +68,26 @@ const SignUp = () => {
       setOpen(false);
       console.log('Invalid Registration');
     } else {
-      window.alert('Show toast success');
-      console.log('Registration Sucessful');
-      Router.push('/profile_development/ProfileAbout');
+
+
+      const credential = {
+        role: 'candidate',
+        email: email,
+        password: password
+      }
+
+
+      const ress = await signIn('credentials', {
+        ...credential,
+        redirect: false
+      })
+
+      if (ress.status === 200) {
+
+        window.alert('Show toast success');
+        console.log('Registration Sucessful');
+        Router.push('/profile_development/ProfileAbout');
+      }
     }
   };
 

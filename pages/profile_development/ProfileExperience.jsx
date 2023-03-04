@@ -11,8 +11,11 @@ import Router from "next/router";
 
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
+import { getSession } from "next-auth/react"
+import { signIn } from 'next-auth/react'
 
-const ProfileExperience = () => {
+
+const ProfileExperience = ({ user }) => {
   const PrettoSlider = styled(Slider)({
     color: '#52af77',
     height: 14,
@@ -90,7 +93,7 @@ const ProfileExperience = () => {
   }
 
   const submit = () => {
-    console.log(experiences,skill)
+    console.log(experiences, skill)
 
   }
 
@@ -98,29 +101,29 @@ const ProfileExperience = () => {
   //backend
 
 
-  const userID = async () => {
-    const res = await fetch('/api/candidate/getUserId', {
-      method: 'POST',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    const data = await res.json();
-    const id = data.id;
+  // const userID = async () => {
+  //   const res = await fetch('/api/candidate/getUserId', {
+  //     method: 'POST',
+  //     credentials: 'include', // Don't forget to specify this if you need cookies
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     }
+  //   });
+  //   const data = await res.json();
+  //   const id = data.id;
 
-    if (id === undefined)
-      return "";
+  //   if (id === undefined)
+  //     return "";
 
-    return id;
-  }
+  //   return id;
+  // }
 
 
   const PostData = async (e) => {
     e.preventDefault();
 
-    const id = await userID();
-    let userData = { _id: id, experience: experiences, openToWorkingAs , skills:skill };
+    // const id = await userID();
+    let userData = { _id: user?._id, experience: experiences, openToWorkingAs, skills: skill };
 
 
     const res = await fetch('/api/candidate/profile_development/profileExperience', {
@@ -137,7 +140,27 @@ const ProfileExperience = () => {
 
     if (res.status === 200) {
       console.log(data);
-      Router.push(`/${id}/UserDashboard`);
+
+
+
+      const credential = {
+        role: 'candidate',
+        log: 'auto',
+        email: user?.email,
+        password: user?.password
+      }
+
+
+      const ress = await signIn('credentials', {
+        ...credential,
+        redirect: false
+      })
+
+      if (ress.status === 200) {
+        Router.push(`/candidate/UserDashboard`);
+      }
+
+
     }
     else {
       // show database error message
@@ -215,8 +238,8 @@ const ProfileExperience = () => {
                     <div key={index}>
                       <Grid container spacing={2} mt={.1}>
                         <Grid item xs={3.5}></Grid>
-                        <Grid item xs={3}><MyTextField label="Skill" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={skill.skills} name="skills"/></Grid>
-                        <Grid item xs={3.5}  mt={1}>
+                        <Grid item xs={3}><MyTextField label="Skill" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={skill.skills} name="skills" /></Grid>
+                        <Grid item xs={3.5} mt={1}>
                           <PrettoSlider
                             valueLabelDisplay="auto"
                             defaultValue={20}
@@ -242,3 +265,20 @@ const ProfileExperience = () => {
 }
 
 export default ProfileExperience
+
+
+export async function getServerSideProps(ctx) {
+
+  const session = await getSession(ctx)
+  console.log(session);
+  const user = session?.user?.user || null
+
+  ctx.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
+  return {
+    props: { user },
+  }
+}
