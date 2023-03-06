@@ -21,7 +21,7 @@ import { signIn } from 'next-auth/react'
 
 const ProfileAbout = ({ user }) => {
 
-    console.log(user)
+    // console.log(user)
     const formik = useFormik({
         initialValues: {
             cname: user.cname,
