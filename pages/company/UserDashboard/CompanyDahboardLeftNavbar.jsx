@@ -8,8 +8,8 @@ const CompanyDahboardLeftNavbar = () => {
                 <Stack
                 spacing={10}
                     direction="column"
-                    justifyContent="center"
-                    alignItems="center"
+                    // justifyContent="center"
+                    // alignItems="center"
                     
                 >
                     <Image
