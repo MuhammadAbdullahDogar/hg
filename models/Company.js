@@ -24,7 +24,15 @@ const CompanySchema = new mongoose.Schema({
         }],
         statement: { type: String },
         description: { type: String }
-    }
+    },
+    notableWork:[{
+        recognizedBy: {type: String},
+        natureOfWork: {type: String},
+        yearOfAchievement: {type: String},
+        linkToRecognition: {type: String},
+        description: {type: String},
+    }],
+    culture: { type: String}
 });
 
 CompanySchema.pre('save', function (next) {

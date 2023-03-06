@@ -42,11 +42,11 @@ const ProfileAbout = ({ user }) => {
 
 
     const postData = async () => {
-        console.log(formik.values.description)
+        // console.log(formik.values.description)
 
         const { cname, domain, phone, foundingDate, city, country, statement, description, portfolios } = formik.values
         const about = { foundingDate, city, country, statement, description, portfolios }
-        console.log(about);
+        // console.log(about);
 
         const res = await fetch('/api/company/profile_development/profileAbout', {
             method: 'POST',
