@@ -2,12 +2,12 @@ import React from 'react'
 import Link from "next/link";
 import ProfileNavbar from './profileNavbar/ProfileNavbar'
 import { Grid, Typography } from '@mui/material'
-import MyTextField from '../../styles/MyTextField'
+import MyTextField from '../../../styles/MyTextField'
 import AddIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
-import CommonButton from '../../styles/CommonButotn'
+import CommonButton from '../../../styles/CommonButotn'
 import { useState } from 'react';
-import Date_Picker from '../../styles/Date_Picker';
+import Date_Picker from '../../../styles/Date_Picker';
 import Router from "next/router";
 import { getSession } from "next-auth/react"
 import { signIn } from 'next-auth/react'

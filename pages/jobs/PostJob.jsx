@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import CompanyNavbar from './companyNavbar/CompanyNavbar';
+import CompanyNavbar from '../company/companyNavbar/CompanyNavbar';
 import { Grid, Typography, MenuItem, InputLabel, FormControl,FormControlLabel, Checkbox } from '@mui/material'
 import MySelect from '../../styles/MySelect';
 import CommonButton from '../../styles/CommonButotn'

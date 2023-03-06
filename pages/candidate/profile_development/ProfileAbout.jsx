@@ -2,15 +2,15 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import ProfileNavbar from './profileNavbar/ProfileNavbar'
 import { Grid, Typography, MenuItem, InputLabel, FormControl } from '@mui/material'
-import MySelect from '../../styles/MySelect';
+import MySelect from '../../../styles/MySelect';
 import AddIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
-import CommonButton from '../../styles/CommonButotn'
-import Countryselect from '../../styles/Countryselect';
-import MyTextField from '../../styles/MyTextField';
+import CommonButton from '../../../styles/CommonButotn'
+import Countryselect from '../../../styles/Countryselect';
+import MyTextField from '../../../styles/MyTextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import Date_Picker from '../../styles/Date_Picker';
+import Date_Picker from '../../../styles/Date_Picker';
 import Head from 'next/head';
 import Router from "next/router";
 import { getSession } from "next-auth/react"
@@ -134,7 +134,7 @@ const ProfileAbout = ({ user }) => {
     let userData = { _id: user?._id, fname, lname, phone, title, gender, dob, city, country, description, portfolios: portfolios };
 
 
-    const res = await fetch('/api/candidate/profile_development/profileAbout', {
+    const res = await fetch('/api/candidate/profile_development/ProfileAbout', {
       method: 'POST',
       credentials: 'include', // Don't forget to specify this if you need cookies
       headers: {

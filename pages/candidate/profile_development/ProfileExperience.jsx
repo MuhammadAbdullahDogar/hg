@@ -4,9 +4,9 @@ import ProfileNavbar from './profileNavbar/ProfileNavbar'
 import { Grid, Typography, FormControlLabel, Checkbox } from '@mui/material'
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import CommonButton from '../../styles/CommonButotn'
+import CommonButton from '../../../styles/CommonButotn'
 import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
-import MyTextField from '../../styles/MyTextField'
+import MyTextField from '../../../styles/MyTextField'
 import Router from "next/router";
 
 import Slider from '@mui/material/Slider';

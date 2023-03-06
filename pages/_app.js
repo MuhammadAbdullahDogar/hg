@@ -16,16 +16,16 @@ import NextLink from "next/link";
 
 const actions = [
   { icon: <NextLink href="/company/companyDashboard/CompanyDashboard"><PrintIcon /></NextLink>, name: "Company dashboard" },
-  { icon: <NextLink href="/company/CompanyAbout"><PrintIcon /></NextLink>, name: "Company About Page" },
-  { icon: <NextLink href="/company/CompanyNotableWork"><PrintIcon /></NextLink>, name: "Company Notable Work Page" },
+  { icon: <NextLink href="/company/profile_development/ProfileAbout"><PrintIcon /></NextLink>, name: "Company About Page" },
+  { icon: <NextLink href="/company/profile_development/CompanyNotableWork"><PrintIcon /></NextLink>, name: "Company Notable Work Page" },
   { icon: <NextLink href="/"><PrintIcon /></NextLink>, name: "Landing page" },
   { icon: <NextLink href="/login"><PrintIcon /></NextLink>, name: "Login" },
   { icon: <NextLink href="/signup"><PrintIcon /></NextLink>, name: "Signup" },
   { icon: <NextLink href="/company/PostJob"><PrintIcon /></NextLink>, name: "Post Job" },
   { icon: <NextLink href="/company/QuestionForm"><PrintIcon /></NextLink>, name: "Post Question" },
-  { icon: <NextLink href="/profile_development/ProfileAbout"><PrintIcon /></NextLink>, name: "User About" },
-  { icon: <NextLink href="/profile_development/ProfileAcademic"><PrintIcon /></NextLink>, name: "User Academic" },
-  { icon: <NextLink href="/profile_development/ProfileExperience"><PrintIcon /></NextLink>, name: "User Experience" },
+  { icon: <NextLink href="/candidate/profile_development/ProfileAbout"><PrintIcon /></NextLink>, name: "User About" },
+  { icon: <NextLink href="/candidate/profile_development/ProfileAcademic"><PrintIcon /></NextLink>, name: "User Academic" },
+  { icon: <NextLink href="/candidate/profile_development/ProfileExperience"><PrintIcon /></NextLink>, name: "User Experience" },
   { icon: <NextLink href="/candidate/UserDashboard"><PrintIcon /></NextLink>, name: "Dashboard" },
 
 ];

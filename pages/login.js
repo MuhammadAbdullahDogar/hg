@@ -106,92 +106,40 @@ const Login_dark = () => {
             setOpen(!open);
 
 
+            let credential = {
+                role: '',
+                email: email,
+                password: password
+            }
 
-            // let data, res;
+            if (state['active_candiate_btn'] == 'btn_active') 
+                credential.role = 'candidate';
+            else 
+                credential.role = 'company';
 
-            if (state['active_candiate_btn'] == 'btn_active') {
-                // console.log("Candidate");
+            const res = await signIn('credentials', {
+                ...credential,
+                redirect: false
+            })
 
-                const credential = {
-                    role: 'candidate',
-                    email: email,
-                    password: password
-                }
-                const res = await signIn('credentials', {
-                    ...credential,
-                    redirect: false
-                })
+            if (res.status === 200) {
+                Router.push(`/${credential.role}/UserDashboard`);
 
-                if (res.status === 200) {
-                    Router.push(`/candidate/UserDashboard`);
+                // console.log(res)
 
-                    console.log(res)
+            }
+            else if (res.status === 401) {
+                setOpen(false);
+                setError({ err_msg: "Invalid credentials", err_color: 'error' })
 
-                }
-                else if (res.status === 401) {
-                    setOpen(false);
-                    setError({ err_msg: "Invalid credentials", err_color: 'error' })
-
-                    console.log(res)
-                    console.log("error")
-                }
-                else {
-                    setOpen(false);
-                    setError({ err_msg: "An Unknown Error occured", err_color: 'error' })
-                }
-
-
-                // res = await fetch('/api/candidate/login', {
-                //     method: 'POST',
-                //     credentials: 'include', // Don't forget to specify this if you need cookies
-                //     headers: {
-                //         "Content-Type": "application/json"
-                //     },
-                //     body: JSON.stringify({ email, password })
-                // });
-
-                // data = await res.json();
-
-                // if (res.status === 401 || !data) {
-                //     setOpen(false);
-                //     setError({ err_msg: "Invalid credentials", err_color: 'error' })
-
-                // } else {
-                //     // setting user context
-                //     context.setUser(user);
-                //     window.localStorage.setItem('user', JSON.stringify(user));
-                //     console.log(context.user);
-
-
-                // const id = await userID();
-
-                // Router.push(`/${id}/UserDashboard`);
-                // }
-
+                console.log(res)
+                console.log("error")
             }
             else {
-                // console.log("Company");
-
-                res = await fetch('/api/company/login', {
-                    method: 'POST',
-                    credentials: 'include', // Don't forget to specify this if you need cookies
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ email, password })
-                });
-
-                data = await res.json();
-
-                if (res.status === 400 || !data) {
-                    setOpen(false);
-                    setError({ err_msg: "Invalid credentials", err_color: true })
-
-                } else {
-                    // Router.push('/profile_development/ProfileAbout');
-                    window.alert('Company Pages Misssing');
-                }
+                setOpen(false);
+                setError({ err_msg: "An Unknown Error occured", err_color: 'error' })
             }
+
 
         }
     }

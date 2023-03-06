@@ -39,59 +39,43 @@ const SignUp = () => {
     setOpen(!open);
     const { fname, lname, email, phone, password } = user;
     let userData = { fname, lname, email, phone, password };
-    let data, res;
 
-    if (changeNames['fName'] == 'First Name') {
-      res = await fetch("/api/candidate/signup", {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userData)
-      });
-
-      data = await res.json();
-    }
-    else {
-      res = await fetch("/api/company/signup", {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userData)
-      });
-
-      data = await res.json();
+    let credential = {
+      role: '',
+      email: email,
+      password: password
     }
 
-    if (res.status === 422 || !data) {
-      setOpen(false);
-      console.log('Invalid Registration');
-    } else {
+    if (changeNames['fName'] == 'First Name') 
+      credential.role = 'candidate';
+    else 
+      credential.role = 'company';
 
+    const res = await fetch(`/api/${credential.role}/signup`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
+    });
 
-      const credential = {
-        role: 'candidate',
-        email: email,
-        password: password
-      }
-
-
+    if (res.status === 200) {
       const ress = await signIn('credentials', {
         ...credential,
         redirect: false
       })
 
       if (ress.status === 200) {
-
         window.alert('Show toast success');
         console.log('Registration Sucessful');
-        Router.push('/profile_development/ProfileAbout');
+        Router.push(`/${credential.role}/profile_development/ProfileAbout`);
       }
+      
+    } else {
+      setOpen(false);
+      console.log('Invalid Registration');
     }
   };
-
-
 
 
   return (
