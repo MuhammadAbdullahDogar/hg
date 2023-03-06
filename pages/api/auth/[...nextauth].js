@@ -18,8 +18,7 @@ export const authOptions = {
                 const { email, password, role, log } = credentials
                 console.log(email, password, role);
                 let res;
-                if (role == "candidate") {
-                    res = await fetch(`${process.env.WEBSITE}/api/candidate/login`, {
+                    res = await fetch(`${process.env.WEBSITE}/api/${role}/login`, {
                         method: 'POST',
                         credentials: 'include', // Don't forget to specify this if you need cookies
                         headers: {
@@ -27,17 +26,11 @@ export const authOptions = {
                         },
                         body: JSON.stringify({ email, password , log})
                     });
-                }
-
+                
                 const user = await res.json();
-                console.log(res);
-                console.log("ccccccccccccccc");
-                console.log(user);
-                console.log("ccccccccccccccc");
-
-                if (res.status === 200) {
+    
+                if (res.status === 200) 
                     return user;
-                }
                 else
                     return null
             }

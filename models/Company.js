@@ -13,7 +13,18 @@ const CompanySchema = new mongoose.Schema({
     domain: {type: String,required: true},
     email: {type: String, required: true, unique: true},
     phone: {type: Number,required: true},
-    password: {type: String,required: true}
+    password: {type: String,required: true},
+    about:{
+        foundingDate: { type: String },
+        city: { type: String},
+        country: { type: String },
+        portfolios: [{
+            linkType: { type: String},
+            portfolioLink: { type: String }
+        }],
+        statement: { type: String },
+        description: { type: String }
+    }
 });
 
 CompanySchema.pre('save', function (next) {

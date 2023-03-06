@@ -20,13 +20,15 @@
     "cookies": "^0.8.0",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.6",
+    "formik": "^2.2.9",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2",
     "next": "12.3.1",
     "next-auth": "^4.20.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "eslint": "8.25.0",

@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import CompanyNavbar from './companyNavbar/CompanyNavbar';
+import CompanyNavbar from '../companyNavbar/CompanyNavbar';
 import { Grid, Typography, MenuItem, InputLabel, FormControl } from '@mui/material'
-import MySelect from '../../styles/MySelect';
+import MySelect from '../../../styles/MySelect';
 import AddIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
-import CommonButton from '../../styles/CommonButotn'
-import MyTextField from '../../styles/MyTextField';
+import CommonButton from '../../../styles/CommonButotn'
+import MyTextField from '../../../styles/MyTextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Head from 'next/head';
