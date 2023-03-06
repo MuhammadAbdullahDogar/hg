@@ -15,6 +15,7 @@ import PrintIcon from '@mui/icons-material/Print';
 import NextLink from "next/link";
 
 const actions = [
+  { icon: <NextLink href="/company/JobCard"><PrintIcon /></NextLink>, name: "Job Card" },
   { icon: <NextLink href="/company/companyDashboard/CompanyDashboard"><PrintIcon /></NextLink>, name: "Company dashboard" },
   { icon: <NextLink href="/company/CompanyAbout"><PrintIcon /></NextLink>, name: "Company About Page" },
   { icon: <NextLink href="/company/CompanyNotableWork"><PrintIcon /></NextLink>, name: "Company Notable Work Page" },

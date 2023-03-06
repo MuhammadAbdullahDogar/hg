@@ -218,7 +218,31 @@ const customTheme = createTheme({
             lineHeight: "1.2rem",
             letterSpacing: '0.02em',
             color: '#0B1A2A'
+        },
+        JobCardH1: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.125rem',
+            lineHeight: "1.5rem",
+            color: '#143FCD'
+        },
+        JobCardH2: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.937rem',
+            lineHeight: "1.125rem",
+            letterSpacing: '0.02em',
+            color: '#76A5DC'
+        },
+        JobCardH3: {
+            fontFamily: 'Urbanist',
+            fontWeight: '600',
+            fontSize: '.8125rem',
+            lineHeight: "1rem",
+            letterSpacing: '0.02em',
+            color: '#143FCD'
         }
+
     },
     shape: {
         // borderRadius: '2.3vmin',
