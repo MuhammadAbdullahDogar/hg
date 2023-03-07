@@ -12,6 +12,7 @@ import { signIn } from 'next-auth/react'
 
 
 const SignUp = () => {
+  let role = '';
   const [changeNames, setChangeNames] = useState({ fName: 'First Name', lName: 'Last Name', active_candiate_btn: 'btn_active', active_company_btn: '' })
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({
@@ -38,7 +39,7 @@ const SignUp = () => {
     e.preventDefault();
     setOpen(!open);
     const { fname, lname, email, phone, password } = user;
-    let userData = { fname, lname, email, phone, password };
+    let userData = { role, fname, lname, email, phone, password };
 
     let credential = {
       role: '',
@@ -46,10 +47,15 @@ const SignUp = () => {
       password: password
     }
 
-    if (changeNames['fName'] == 'First Name') 
+    if (changeNames['fName'] == 'First Name'){
       credential.role = 'candidate';
+      userData.role = 'candidate';
+    }
     else 
+    {
       credential.role = 'company';
+      userData.role = 'company';
+    }
 
     const res = await fetch(`/api/${credential.role}/signup`, {
       method: 'POST',

@@ -7,9 +7,11 @@ import MyTextField from '../../styles/MyTextField'
 import { useFormik } from 'formik';
 import { postJobSchema } from '../../validationSchema'
 import { getSession } from "next-auth/react"
+import Router from "next/router";
+import { signIn } from 'next-auth/react'
 
 
-const PostJob = () => {
+const PostJob = ({ user }) => {
 
   const formik = useFormik({
     initialValues: {
@@ -20,7 +22,8 @@ const PostJob = () => {
       matchPercentage: '',
       description: '',
       responsibilites: '',
-      skills: ''
+      skills: '',
+      companyId: user._id
     },
     validationSchema: postJobSchema,
     onSubmit: () => { postData() }
@@ -31,44 +34,42 @@ const PostJob = () => {
   const postData = async () => {
     console.log(formik.values)
 
-    // const { cname, domain, phone, foundingDate, city, country, statement, description, portfolios } = formik.values
-    // const about = { foundingDate, city, country, statement, description, portfolios }
-    // // console.log(about);
+    const { title, level, type, compensation, matchPercentage, description, responsibilites, skills, companyId } = formik.values
 
-    // const res = await fetch('/api/company/profile_development/profileAbout', {
-    //   method: 'POST',
-    //   credentials: 'include', // Don't forget to specify this if you need cookies
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({ _id: user._id, cname, domain, phone, about })
-    // });
+    const res = await fetch('/api/job/postJob', {
+      method: 'POST',
+      credentials: 'include', // Don't forget to specify this if you need cookies
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ title, level, type, compensation, matchPercentage, description, responsibilites, skills, companyId })
+    });
 
-    // if (res.status === 200) {
+    if (res.status === 200) {
 
-    //   const credential = {
-    //     role: 'company',
-    //     log: 'auto',
-    //     email: user?.email,
-    //     password: user?.password
-    //   }
+      const credential = {
+        role: 'company',
+        log: 'auto',
+        email: user?.email,
+        password: user?.password
+      }
 
 
-    //   const ress = await signIn('credentials', {
-    //     ...credential,
-    //     redirect: false
-    //   })
+      const ress = await signIn('credentials', {
+        ...credential,
+        redirect: false
+      })
 
-    //   if (ress.status === 200) {
+      if (ress.status === 200) {
 
 
-    //     Router.push('/company/profile_development/CompanyNotableWork');
-    //   }
-    // }
-    // else {
-    //   // show database error message
-    //   console.log(res.status);
-    // }
+        Router.push('/job/QuestionForm');
+      }
+    }
+    else {
+      // show database error message
+      console.log(res.status);
+    }
 
 
   }
@@ -147,3 +148,18 @@ const PostJob = () => {
 }
 
 export default PostJob
+
+export async function getServerSideProps(ctx) {
+
+  const session = await getSession(ctx)
+  const user = session?.user?.user || null
+
+  ctx.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
+  return {
+    props: { user },
+  }
+}

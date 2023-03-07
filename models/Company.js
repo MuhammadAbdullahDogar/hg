@@ -9,30 +9,35 @@ var CryptoJS = require("crypto-js");
 
 
 const CompanySchema = new mongoose.Schema({
-    cname: {type: String, required: true},
-    domain: {type: String,required: true},
-    email: {type: String, required: true, unique: true},
-    phone: {type: Number,required: true},
-    password: {type: String,required: true},
-    about:{
+    role: { type: String },
+    cname: { type: String, required: true },
+    domain: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    phone: { type: Number, required: true },
+    password: { type: String, required: true },
+    about: {
         foundingDate: { type: String },
-        city: { type: String},
+        city: { type: String },
         country: { type: String },
         portfolios: [{
-            linkType: { type: String},
+            linkType: { type: String },
             portfolioLink: { type: String }
         }],
         statement: { type: String },
         description: { type: String }
     },
-    notableWork:[{
-        recognizedBy: {type: String},
-        natureOfWork: {type: String},
-        yearOfAchievement: {type: String},
-        linkToRecognition: {type: String},
-        description: {type: String},
+    notableWork: [{
+        recognizedBy: { type: String },
+        natureOfWork: { type: String },
+        yearOfAchievement: { type: String },
+        linkToRecognition: { type: String },
+        description: { type: String },
     }],
-    culture: { type: String}
+    culture: { type: String },
+    jobs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Job'
+    }]
 });
 
 CompanySchema.pre('save', function (next) {

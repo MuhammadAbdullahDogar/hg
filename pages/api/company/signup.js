@@ -5,6 +5,7 @@ const handler = async (req, res)=> {
     if(req.method == 'POST'){
         
         let u = new Company({
+            role: req.body.role,
             cname: req.body.fname,
             domain: req.body.lname,
             email: req.body.email,
