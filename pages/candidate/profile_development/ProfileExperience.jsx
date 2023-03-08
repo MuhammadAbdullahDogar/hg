@@ -57,7 +57,7 @@ const ProfileExperience = ({ user }) => {
   const [experiences, setExperiences] = useState([{
     jobLevel: "", cName: "", cDomain: "", jobTitle: "", startingDate: "", endingDate: "", responsibities: "",
   }]);
-  const [skill, setSkill] = useState([{ skills: "" }]);
+  const [skills, setSkills] = useState([{ skill: "", percent: 0 }]);
   const [openToWorkingAs, setOpenToWorkingAs] = useState('');
 
 
@@ -98,74 +98,65 @@ const ProfileExperience = ({ user }) => {
   }
 
 
+  const skillHandleChange = (index, key, value) => {
+    setSkills((prevFields) => {
+      const updatedFields = [...prevFields];
+      updatedFields[index][key] = value;
+      return updatedFields;
+    });
+  };
+
+
   //backend
-
-
-  // const userID = async () => {
-  //   const res = await fetch('/api/candidate/getUserId', {
-  //     method: 'POST',
-  //     credentials: 'include', // Don't forget to specify this if you need cookies
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     }
-  //   });
-  //   const data = await res.json();
-  //   const id = data.id;
-
-  //   if (id === undefined)
-  //     return "";
-
-  //   return id;
-  // }
-
 
   const PostData = async (e) => {
     e.preventDefault();
 
     // const id = await userID();
-    let userData = { _id: user?._id, experience: experiences, openToWorkingAs, skills: skill };
+    let userData = { _id: user?._id, experience: experiences, openToWorkingAs, skills };
 
-
-    const res = await fetch('/api/candidate/profile_development/profileExperience', {
-      method: 'POST',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    });
     console.log(userData);
 
-    const data = await res.json();
+    // const res = await fetch('/api/candidate/profile_development/profileExperience', {
+    //   method: 'POST',
+    //   credentials: 'include', // Don't forget to specify this if you need cookies
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(userData)
+    // });
+    // console.log(userData);
 
-    if (res.status === 200) {
-      console.log(data);
+    // const data = await res.json();
 
-
-
-      const credential = {
-        role: 'candidate',
-        log: 'auto',
-        email: user?.email,
-        password: user?.password
-      }
-
-
-      const ress = await signIn('credentials', {
-        ...credential,
-        redirect: false
-      })
-
-      if (ress.status === 200) {
-        Router.push(`/candidate/UserDashboard`);
-      }
+    // if (res.status === 200) {
+    //   console.log(data);
 
 
-    }
-    else {
-      // show database error message
-      console.log(res.status);
-    }
+
+    //   const credential = {
+    //     role: 'candidate',
+    //     log: 'auto',
+    //     email: user?.email,
+    //     password: user?.password
+    //   }
+
+
+    //   const ress = await signIn('credentials', {
+    //     ...credential,
+    //     redirect: false
+    //   })
+
+    //   if (ress.status === 200) {
+    //     Router.push(`/candidate/UserDashboard`);
+    //   }
+
+
+    // }
+    // else {
+    //   // show database error message
+    //   console.log(res.status);
+    // }
 
 
   };
@@ -232,28 +223,39 @@ const ProfileExperience = ({ user }) => {
             <Grid item xs={2.5}><Typography variant="profileH1">Skills </Typography></Grid>
             <Grid item xs={8.5}><Typography variant="profileH3">Write names of the skills that have and want the recruiters to know (upto 7)</Typography></Grid>
             <Grid item xs={12}>
-              {skill.map((form, index) => {
-                return (
-                  <>
+              {skills.map((field, index) => (
+                
                     <div key={index}>
                       <Grid container spacing={2} mt={.1}>
                         <Grid item xs={3.5}></Grid>
-                        <Grid item xs={3}><MyTextField label="Skill" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} value={skill.skills} name="skills" /></Grid>
+                        <Grid item xs={3}><MyTextField label="Skill" variant="outlined" fullWidth value={field.value}
+                          onChange={(event) =>
+                            skillHandleChange(index, "skill", event.target.value)
+                          }
+                          placeholder={`Skill ${index + 1}`} /></Grid>
                         <Grid item xs={3.5} mt={1}>
                           <PrettoSlider
                             valueLabelDisplay="auto"
-                            defaultValue={20}
+                            value={field.percent}
+                            onChange={(event) =>
+                              skillHandleChange(index, "percent", parseInt(event.target.value))
+                            }
                           />
                         </Grid>
-                        <Grid item xs={2} mt={1}>{index !== 0 && (<RemoveIcon fontSize='large' color='error' onClick={removeSkill} />)}</Grid>
+                        <Grid item xs={2} mt={1}>{index > 0 && (<RemoveIcon fontSize='large' color='error' onClick={() =>
+                          setSkills((prevFields) =>
+                            prevFields.filter((_, i) => i !== index)
+                          )
+                        } />)}</Grid>
                       </Grid>
                     </div>
-                  </>
-                )
-              })}
+                 
+              ))}
             </Grid>
             <Grid item xs={3.5}></Grid>
-            <Grid item xs={8.5}><Fab size="small" color="secondary" aria-label="add" onClick={addSkills}><AddIcon /></Fab></Grid>
+            <Grid item xs={8.5}><Fab size="small" color="secondary" aria-label="add" onClick={() =>
+              setSkills((prevFields) => [...prevFields, { skill: "", percent: 0 }])
+            }><AddIcon /></Fab></Grid>
             <Grid item xs={12} align='center'>
               <CommonButton variant="Gradient" onClick={PostData} >SUBMIT PROFILE</CommonButton>
             </Grid>
