@@ -1,17 +1,20 @@
-import React from 'react'
-import CompanyNavbar from '../company/companyNavbar/CompanyNavbar';
+import React, {useState} from 'react'
+import CompanyNavbar from '../../company/companyNavbar/CompanyNavbar';
 import { Grid, Typography, MenuItem, InputLabel, FormControl, FormHelperText } from '@mui/material'
-import MySelect from '../../styles/MySelect';
-import CommonButton from '../../styles/CommonButotn'
-import MyTextField from '../../styles/MyTextField'
+import MySelect from '../../../styles/MySelect';
+import CommonButton from '../../../styles/CommonButotn'
+import MyTextField from '../../../styles/MyTextField'
 import { useFormik } from 'formik';
-import { postJobSchema } from '../../validationSchema'
+import { postJobSchema } from '../../../validationSchema'
 import { getSession } from "next-auth/react"
 import Router from "next/router";
 import { signIn } from 'next-auth/react'
+import TagField from "../../../components/TagField";
 
 
 const PostJob = ({ user }) => {
+  
+  const [skill, setSkills] = useState('')
 
   const formik = useFormik({
     initialValues: {
@@ -31,12 +34,18 @@ const PostJob = ({ user }) => {
   });
 
 
-  const postData = async () => {
-    console.log(formik.values)
+  const suggestions = ["React", "Vue", "Angular", "JavaScript"];
+  const getSkills = (value) => {
+    setSkills(value);
+  };
 
+  const postData = async () => {
+    formik.values.skills=skill
+    // console.log(formik.values)
+    // console.log(skill);
     const { title, level, type, compensation, matchPercentage, description, responsibilites, skills, companyId } = formik.values
 
-    const res = await fetch('/api/job/postJob', {
+    const res = await fetch('/api/company/job/postJob', {
       method: 'POST',
       credentials: 'include', // Don't forget to specify this if you need cookies
       headers: {
@@ -63,7 +72,7 @@ const PostJob = ({ user }) => {
       if (ress.status === 200) {
 
 
-        Router.push('/job/QuestionForm');
+        Router.push('/company/job/QuestionForm');
       }
     }
     else {
@@ -134,7 +143,8 @@ const PostJob = ({ user }) => {
             <Grid item xs={1}></Grid>
             <Grid item xs={2.5}><Typography variant="profileH2">Job Skills</Typography><br />
               <Typography variant="profileH3">Write names of the skills that have and want the recruiters to knoow (upto 7)</Typography></Grid>
-            <Grid item xs={7}><MyTextField multiline fullWidth rows={2} name="skills" {...formik.getFieldProps('skills')} error={formik.touched.skills && Boolean(formik.errors.skills)} helperText={formik.touched.skills && formik.errors.skills} /></Grid>
+            {/* <Grid item xs={7}><MyTextField multiline fullWidth rows={2} name="skills" {...formik.getFieldProps('skills')} error={formik.touched.skills && Boolean(formik.errors.skills)} helperText={formik.touched.skills && formik.errors.skills} /></Grid> */}
+            <Grid item xs={7}><TagField suggestions={suggestions} placeholder={"skills"} tag={getSkills} /></Grid>
             <Grid item xs={1.5}></Grid>
 
             <Grid item xs={12} align='center'>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import CompanyNavbar from '../company/companyNavbar/CompanyNavbar';
+import CompanyNavbar from '../../company/companyNavbar/CompanyNavbar';
 import { Grid, Typography, FormControlLabel, Checkbox } from '@mui/material'
-import CommonButton from '../../styles/CommonButotn'
-import MyTextField from '../../styles/MyTextField'
+import CommonButton from '../../../styles/CommonButotn'
+import MyTextField from '../../../styles/MyTextField'
 import AddIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
 

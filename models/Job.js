@@ -29,13 +29,26 @@ const JobSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  skills: {
-    type: String,
-    required: true
-  },
+  skills: [{
+    type: String
+  }],
   company: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Company'
+  },
+  candidates: [{
+    candidate: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Candidate'
+    },
+    matchPercent: {
+      type: String
+    }
+  }],
+  status: {
+    type: String,
+    enum: ['open', 'closed'],
+    default: 'open'
   }
 });
 

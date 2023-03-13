@@ -48,8 +48,5 @@ export const postJobSchema = Yup.object().shape({
         .required('Required'),
     responsibilites: Yup.string()
         .max(120, 'Must be 120 characters or less')
-        .required('Required'),
-    skills: Yup.string()
-        .max(120, 'Must be 120 characters or less')
         .required('Required')
 })

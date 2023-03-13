@@ -1,6 +1,6 @@
-import Job from "../../../models/Job";
-import Company from "../../../models/Company";
-import connectDb from "../../../middleware/mongoose";
+import Job from "../../../../models/Job";
+import Company from "../../../../models/Company";
+import connectDb from "../../../../middleware/mongoose";
 
 const handler = async (req, res) => {
     if (req.method == 'POST') {

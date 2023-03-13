@@ -9,7 +9,7 @@ var CryptoJS = require("crypto-js");
 
 
 const UserSchema = new mongoose.Schema({
-    role: {type: String},
+    role: { type: String },
     fname: { type: String, required: true },
     lname: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -19,39 +19,53 @@ const UserSchema = new mongoose.Schema({
         title: { type: String },
         gender: { type: String },
         dob: { type: String },
-        city: { type: String},
+        city: { type: String },
         country: { type: String },
         portfolios: [{
-            linkType: { type: String},
+            linkType: { type: String },
             portfolioLink: { type: String }
         }],
         description: { type: String }
     },
     academic: {
-        universityName: {type: String},
-        major: {type: String},
-        startingYear: {type: String},
-        endingYear: {type: String},
-        obtainedCgpa: {type: String},
-        totalCgpa: {type: String},
-        learning: {type: String}
+        universityName: { type: String },
+        major: { type: String },
+        startingYear: { type: String },
+        endingYear: { type: String },
+        obtainedCgpa: { type: String },
+        totalCgpa: { type: String },
+        learning: { type: String }
     },
     experience: {
-        jobLevel: {type: String},
-        cName: {type: String},
-        cDomain: {type: String},
-        jobTitle: {type: String},
-        startingDate: {type: String},
-        endingDate: {type: String},
-        responsibities: {type: String},
+        jobLevel: { type: String },
+        cName: { type: String },
+        cDomain: { type: String },
+        jobTitle: { type: String },
+        startingDate: { type: String },
+        endingDate: { type: String },
+        responsibities: { type: String },
     },
-    openToWorkingAs: { type: String },
-    skills: {}
-    // openToWorkingAs: [{ type: String }],
-    // skills: [{
-    //     name: { type: String},
-    //     percent: { type: Number }
-    // }]
+    // openToWorkingAs: { type: String },
+    // skills: {}
+    openToWorkingAs: [{ type: String }],
+    skills: [{
+        skill: { type: String },
+        percent: { type: Number }
+    }],
+    jobsApplied: [{
+        job: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Job',
+            required: true
+        },
+        status: {
+            type: String,
+            enum: ['applied', 'invited', 'inInterview', 'feedback']
+        },
+        matchPercent: {
+            type: String
+        }
+    }]
 });
 
 // hashing password before saveing on save function call
@@ -82,4 +96,23 @@ UserSchema.pre('save', function (next) {
 // module.exports =User;
 
 // mongoose.models = {};
+
+
+// const candidates = await Candidate.find({ jobsApplied: { $elemMatch: { job: jobId, status: 'invited' } } });
+// const candidates = await Candidate.find().populate('jobsApplied.job');
+//find count of applied, invited, or interviewed
+
+// const jobId = '6074f4a251c85a2c8c2c1b44'; // replace with the ID of the job you want to calculate totals for
+
+// const result = await Job.aggregate([
+//   { $match: { _id: mongoose.Types.ObjectId(jobId) } },
+//   { $lookup: { from: 'candidates', localField: '_id', foreignField: 'jobsApplied.job', as: 'candidates' } },
+//   { $unwind: '$candidates' },
+//   { $unwind: '$candidates.jobsApplied' },
+//   { $group: { _id: '$candidates.jobsApplied.status', count: { $sum: 1 } } }
+// ]);
+
+// console.log(result);
+
+
 export default mongoose.models.User || mongoose.model("User", UserSchema);

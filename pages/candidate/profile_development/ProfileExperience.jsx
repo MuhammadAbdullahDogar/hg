@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Link from "next/link";
 import ProfileNavbar from './profileNavbar/ProfileNavbar'
 import { Grid, Typography, FormControlLabel, Checkbox } from '@mui/material'
 import Fab from '@mui/material/Fab';
@@ -13,6 +12,7 @@ import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 import { getSession } from "next-auth/react"
 import { signIn } from 'next-auth/react'
+import TagField from "../../../components/TagField";
 
 
 const ProfileExperience = ({ user }) => {
@@ -65,9 +65,6 @@ const ProfileExperience = ({ user }) => {
     let data = [...experiences];
     data[index][event.target.name] = event.target.value;
 
-    let skillData = [...skill];
-    skillData[index][event.target.name] = event.target.value;
-    setSkill(skillData);
   }
   const removeFields = (index) => {
     let data = [...experiences];
@@ -81,21 +78,16 @@ const ProfileExperience = ({ user }) => {
   }
 
 
-  const addSkills = () => {
-    let object = { skill: "" }
-    setSkill([...skill, object])
-  }
-
-  const removeSkill = (index) => {
-    let data = [...skill];
-    data.splice(index, 1)
-    setSkill(data)
-  }
-
   const submit = () => {
     console.log(experiences, skill)
 
   }
+
+
+  const suggestions = ["React", "Vue", "Angular", "JavaScript"];
+  const getOpenToWorkingValue = (value) => {
+    setOpenToWorkingAs(value);
+  };
 
 
   const skillHandleChange = (index, key, value) => {
@@ -112,51 +104,50 @@ const ProfileExperience = ({ user }) => {
   const PostData = async (e) => {
     e.preventDefault();
 
-    // const id = await userID();
     let userData = { _id: user?._id, experience: experiences, openToWorkingAs, skills };
 
     console.log(userData);
 
-    // const res = await fetch('/api/candidate/profile_development/profileExperience', {
-    //   method: 'POST',
-    //   credentials: 'include', // Don't forget to specify this if you need cookies
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(userData)
-    // });
+    const res = await fetch('/api/candidate/profile_development/profileExperience', {
+      method: 'POST',
+      credentials: 'include', // Don't forget to specify this if you need cookies
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
+    });
     // console.log(userData);
 
-    // const data = await res.json();
+    const data = await res.json();
 
-    // if (res.status === 200) {
-    //   console.log(data);
-
-
-
-    //   const credential = {
-    //     role: 'candidate',
-    //     log: 'auto',
-    //     email: user?.email,
-    //     password: user?.password
-    //   }
+    if (res.status === 200) {
+      console.log(data);
 
 
-    //   const ress = await signIn('credentials', {
-    //     ...credential,
-    //     redirect: false
-    //   })
 
-    //   if (ress.status === 200) {
-    //     Router.push(`/candidate/UserDashboard`);
-    //   }
+      const credential = {
+        role: 'candidate',
+        log: 'auto',
+        email: user?.email,
+        password: user?.password
+      }
 
 
-    // }
-    // else {
-    //   // show database error message
-    //   console.log(res.status);
-    // }
+      const ress = await signIn('credentials', {
+        ...credential,
+        redirect: false
+      })
+
+      if (ress.status === 200) {
+        Router.push(`/candidate/UserDashboard`);
+      }
+
+
+    }
+    else {
+      // show database error message
+      console.log(res.status);
+    }
 
 
   };
@@ -216,7 +207,8 @@ const ProfileExperience = ({ user }) => {
             <Grid item xs={1}></Grid>
             <Grid item xs={2.5}><Typography variant="profileH2">Open to working as</Typography><br />
               <Typography variant="profileH3">Write names of the roles that you’d like to work as (upto 5)</Typography></Grid>
-            <Grid item xs={7}><MyTextField multiline fullWidth rows={1} onChange={(e) => setOpenToWorkingAs(e.target.value)} /></Grid>
+            {/* <Grid item xs={7}><MyTextField multiline fullWidth rows={1} onChange={(e) => setOpenToWorkingAs(e.target.value)} /></Grid> */}
+            <Grid item xs={7}><TagField suggestions={suggestions} placeholder={"E.g: Graphic Designer, Content Writer etc..."} tag={getOpenToWorkingValue} /></Grid>
             <Grid item xs={1.5}></Grid>
             <Grid item xs={12}></Grid>
             <Grid item xs={1}></Grid>

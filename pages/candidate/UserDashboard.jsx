@@ -44,7 +44,6 @@ export default UserDashboard
 export async function getServerSideProps(ctx) {
 
     const session = await getSession(ctx)
-    console.log(session);
     const user = session?.user?.user || null
     // const { params, req, res } =ctx
     // const id="fgd"
