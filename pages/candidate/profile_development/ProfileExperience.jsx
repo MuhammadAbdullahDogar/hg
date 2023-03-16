@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ProfileNavbar from './profileNavbar/ProfileNavbar'
-import { Grid, Typography, FormControlLabel, Checkbox } from '@mui/material'
+import { Grid, Typography, FormControlLabel, Checkbox, Button } from '@mui/material'
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import CommonButton from '../../../styles/CommonButotn'
@@ -14,8 +14,71 @@ import { getSession } from "next-auth/react"
 import { signIn } from 'next-auth/react'
 import TagField from "../../../components/TagField";
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+
+import DialogTitle from '@mui/material/DialogTitle';
+
+import Radio from '@mui/material/Radio';
+import FormGroup from '@mui/material/RadioGroup';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
 
 const ProfileExperience = ({ user }) => {
+
+  const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
+
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  function BpRadio(props) {
+    return (
+      <Radio
+        disableRipple
+        color="default"
+        {...props}
+      />
+    );
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+    setOpen1(false);
+    setOpen2(false);
+    setOpen3(false);
+  }
+  const handleOpen = () => {
+    setOpen(false);
+    setOpen1(true);
+    setOpen2(false);
+    setOpen3(false);
+  }
+  const handleOpen1 = () => {
+    setOpen(false);
+    setOpen1(false);
+    setOpen2(true);
+    setOpen3(false);
+  }
+  const handleOpen2 = () => {
+    setOpen(false);
+    setOpen1(false);
+    setOpen2(false);
+    setOpen3(true);
+  }
+  const handleOpen3 = () => {
+    setOpen(false);
+    setOpen1(false);
+    setOpen2(false);
+    setOpen3(false);
+  }
+
+
   const PrettoSlider = styled(Slider)({
     color: '#52af77',
     height: 14,
@@ -98,59 +161,58 @@ const ProfileExperience = ({ user }) => {
     });
   };
 
-
   //backend
 
-  const PostData = async (e) => {
-    e.preventDefault();
+  // const PostData = async (e) => {
+  //   e.preventDefault();
 
-    let userData = { _id: user?._id, experience: experiences, openToWorkingAs, skills };
+  //   let userData = { _id: user?._id, experience: experiences, openToWorkingAs, skills };
 
-    console.log(userData);
+  //   console.log(userData);
 
-    const res = await fetch('/api/candidate/profile_development/profileExperience', {
-      method: 'POST',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    });
-    // console.log(userData);
+  //   const res = await fetch('/api/candidate/profile_development/profileExperience', {
+  //     method: 'POST',
+  //     credentials: 'include', // Don't forget to specify this if you need cookies
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(userData)
+  //   });
+  //   // console.log(userData);
 
-    const data = await res.json();
+  //   const data = await res.json();
 
-    if (res.status === 200) {
-      console.log(data);
-
-
-
-      const credential = {
-        role: 'candidate',
-        log: 'auto',
-        email: user?.email,
-        password: user?.password
-      }
+  //   if (res.status === 200) {
+  //     console.log(data);
 
 
-      const ress = await signIn('credentials', {
-        ...credential,
-        redirect: false
-      })
 
-      if (ress.status === 200) {
-        Router.push(`/candidate/UserDashboard`);
-      }
-
-
-    }
-    else {
-      // show database error message
-      console.log(res.status);
-    }
+  //     const credential = {
+  //       role: 'candidate',
+  //       log: 'auto',
+  //       email: user?.email,
+  //       password: user?.password
+  //     }
 
 
-  };
+  //     const ress = await signIn('credentials', {
+  //       ...credential,
+  //       redirect: false
+  //     })
+
+  //     if (ress.status === 200) {
+  //       Router.push(`/candidate/UserDashboard`);
+  //     }
+
+
+  //   }
+  //   else {
+  //     // show database error message
+  //     console.log(res.status);
+  //   }
+
+
+  // };
 
 
 
@@ -216,32 +278,32 @@ const ProfileExperience = ({ user }) => {
             <Grid item xs={8.5}><Typography variant="profileH3">Write names of the skills that have and want the recruiters to know (upto 7)</Typography></Grid>
             <Grid item xs={12}>
               {skills.map((field, index) => (
-                
-                    <div key={index}>
-                      <Grid container spacing={2} mt={.1}>
-                        <Grid item xs={3.5}></Grid>
-                        <Grid item xs={3}><MyTextField label="Skill" variant="outlined" fullWidth value={field.value}
-                          onChange={(event) =>
-                            skillHandleChange(index, "skill", event.target.value)
-                          }
-                          placeholder={`Skill ${index + 1}`} /></Grid>
-                        <Grid item xs={3.5} mt={1}>
-                          <PrettoSlider
-                            valueLabelDisplay="auto"
-                            value={field.percent}
-                            onChange={(event) =>
-                              skillHandleChange(index, "percent", parseInt(event.target.value))
-                            }
-                          />
-                        </Grid>
-                        <Grid item xs={2} mt={1}>{index > 0 && (<RemoveIcon fontSize='large' color='error' onClick={() =>
-                          setSkills((prevFields) =>
-                            prevFields.filter((_, i) => i !== index)
-                          )
-                        } />)}</Grid>
-                      </Grid>
-                    </div>
-                 
+
+                <div key={index}>
+                  <Grid container spacing={2} mt={.1}>
+                    <Grid item xs={3.5}></Grid>
+                    <Grid item xs={3}><MyTextField label="Skill" variant="outlined" fullWidth value={field.value}
+                      onChange={(event) =>
+                        skillHandleChange(index, "skill", event.target.value)
+                      }
+                      placeholder={`Skill ${index + 1}`} /></Grid>
+                    <Grid item xs={3.5} mt={1}>
+                      <PrettoSlider
+                        valueLabelDisplay="auto"
+                        value={field.percent}
+                        onChange={(event) =>
+                          skillHandleChange(index, "percent", parseInt(event.target.value))
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={2} mt={1}>{index > 0 && (<RemoveIcon fontSize='large' color='error' onClick={() =>
+                      setSkills((prevFields) =>
+                        prevFields.filter((_, i) => i !== index)
+                      )
+                    } />)}</Grid>
+                  </Grid>
+                </div>
+
               ))}
             </Grid>
             <Grid item xs={3.5}></Grid>
@@ -249,11 +311,134 @@ const ProfileExperience = ({ user }) => {
               setSkills((prevFields) => [...prevFields, { skill: "", percent: 0 }])
             }><AddIcon /></Fab></Grid>
             <Grid item xs={12} align='center'>
-              <CommonButton variant="Gradient" onClick={PostData} >SUBMIT PROFILE</CommonButton>
+              <CommonButton variant="Gradient" onClick={handleClickOpen}>SUBMIT PROFILE</CommonButton>
             </Grid>
           </Grid>
         </div>
       </form>
+
+      <Dialog
+        open={open}
+        // TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+      >
+        <DialogTitle>Preference Selection Form</DialogTitle>
+        <DialogContent>
+
+          Select your preferred location, mode and type of job that suits you and our algorithm will only
+          fetch you jobs with those filters.
+          These preferences will reflect on your Job-Candidate match score.
+
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleOpen}>Next</Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={open1}
+        // TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+      >
+        <DialogTitle>Preferred Job Mode</DialogTitle>
+        <DialogContent>
+          <FormControl >
+            <FormLabel >
+              Select as many as you want, you can edit this from your profile anytime.
+            </FormLabel>
+            <FormGroup col>
+              <FormControlLabel
+                value="On-Site"
+                control={<Checkbox />}
+                label="On-Site"
+              />
+              <FormControlLabel
+                value="Remote"
+                control={<Checkbox />}
+                label="Remote"
+              />
+              <FormControlLabel
+                value="Hybrid"
+                control={<Checkbox />}
+                label="Hybrid"
+              />
+              <FormControlLabel
+                value="All"
+                control={<Checkbox />}
+                label="All"
+              />
+
+            </FormGroup>
+          </FormControl>
+
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleOpen1}>Next</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={open2}
+        // TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+      >
+        <DialogTitle>Preferred Job Location</DialogTitle>
+        <DialogContent>
+        Select as many as you want, you can edit this from your profile anytime.
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleOpen2}>Next</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={open3}
+        // TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+      >
+        <DialogTitle>Preferred Job Category</DialogTitle>
+        <DialogContent>
+          <FormControl >
+            <FormLabel >
+            Select as many as you want, you can edit this from your profile anytime.
+            </FormLabel>
+            <FormGroup col>
+              <FormControlLabel
+                value="Internship"
+                control={<Checkbox />}
+                label="Internship"
+              />
+              <FormControlLabel
+                value="Full-Time"
+                control={<Checkbox />}
+                label="Full-Time"
+              />
+              <FormControlLabel
+                value="Part-Time"
+                control={<Checkbox />}
+                label="Part-Time"
+              />
+              <FormControlLabel
+                value="Contract"
+                control={<Checkbox />}
+                label="Contract"
+              />
+
+            </FormGroup>
+          </FormControl>
+
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleOpen3}>Submit</Button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 }
