@@ -10,7 +10,7 @@ import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
 
 
 const QuestionForm = () => {
-    const [Question, setQuestion] = useState([])
+    const [Question, setQuestion] = useState([{question:''}])
     const addFields = () => {
         let object = {}
         setQuestion([...Question, object])
@@ -36,15 +36,14 @@ const QuestionForm = () => {
                         <Grid item xs={8.5}><Typography variant="profileH2">These are the optional questions that you can ask the candidate at the time they apply to this job. This will help you
                             screen them initally and only invite the potential candidates to interview.</Typography></Grid>
                         <Grid item xs={12}>
-                            {Question.map((index) => {
+                            {Question.map((form,index) => {
                                 return (
                                     <div key={index}>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}></Grid>
                                             <Grid item xs={1}></Grid>
                                             <Grid item xs={2.5}><Typography variant="profileH1">Question 1</Typography></Grid>
-                                            <Grid item xs={3}><MyTextField label="Question Type" variant="outlined" fullWidth name="Question Type" /></Grid>
-                                            <Grid item xs={4}><MyTextField label="Question" variant="outlined" fullWidth name="Question" /></Grid>
+                                            <Grid item xs={7}><MyTextField label="Question" variant="outlined" fullWidth name="Question" /></Grid>
                                             <Grid item xs={1}><RemoveIcon fontSize='large' color='error' onClick={removeFields} /></Grid>
                                         </Grid>
                                     </div>

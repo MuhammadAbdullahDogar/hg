@@ -13,6 +13,8 @@ import { styled } from '@mui/material/styles';
 import { getSession } from "next-auth/react"
 import { signIn } from 'next-auth/react'
 import TagField from "../../../components/TagField";
+import Countryselect from '../../../styles/Countryselect';
+
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -37,15 +39,7 @@ const ProfileExperience = ({ user }) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-  function BpRadio(props) {
-    return (
-      <Radio
-        disableRipple
-        color="default"
-        {...props}
-      />
-    );
-  }
+  
 
   const handleClose = () => {
     setOpen(false);
@@ -118,7 +112,7 @@ const ProfileExperience = ({ user }) => {
     },
   });
   const [experiences, setExperiences] = useState([{
-    jobLevel: "", cName: "", cDomain: "", jobTitle: "", startingDate: "", endingDate: "", responsibities: "",
+    jobLevel: "", cName: "", cDomain: "", jobTitle: "", startingDate: "", endingDate: "", responsibities: "",country:""
   }]);
   const [skills, setSkills] = useState([{ skill: "", percent: 0 }]);
   const [openToWorkingAs, setOpenToWorkingAs] = useState('');
@@ -139,6 +133,9 @@ const ProfileExperience = ({ user }) => {
     let object = { jobLevel: "", cName: "", cDomain: "", jobTitle: "", startingDate: "", endingDate: "", responsibities: "" }
     setExperiences([...experiences, object])
   }
+  function chooseCountry(country) {
+    experiences.country = country;
+  };
 
 
   const submit = () => {
@@ -389,6 +386,9 @@ const ProfileExperience = ({ user }) => {
         <DialogTitle>Preferred Job Location</DialogTitle>
         <DialogContent>
         Select as many as you want, you can edit this from your profile anytime.
+        <Countryselect name='country1' chooseCountry={chooseCountry} ></Countryselect>
+        <Countryselect name='country2' chooseCountry={chooseCountry} ></Countryselect>
+        <Countryselect name='country3' chooseCountry={chooseCountry} ></Countryselect>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
