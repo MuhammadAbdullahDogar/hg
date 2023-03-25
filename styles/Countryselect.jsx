@@ -3,11 +3,13 @@ import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
 import MyTextField from './MyTextField';
 
-export default function Countryselect({chooseCountry}) {
+export default function Countryselect({chooseCountry, name}) {
 
     const [country, setCountry] = useState({});
-    chooseCountry(country.label);
-
+    if(name)
+        chooseCountry(country.label,name);
+    else
+        chooseCountry(country.label);
 
 
     return (

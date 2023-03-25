@@ -5,9 +5,9 @@ import connectDb from "../../../../middleware/mongoose";
 const handler = async (req, res) => {
     if (req.method == 'POST') {
         // console.log(req.body);
-        
-        const { _id, experience, openToWorkingAs , skills } = req.body;
-        let u = await User.findByIdAndUpdate( {_id },{experience, openToWorkingAs , skills});
+
+        const { _id, experience, openToWorkingAs, skills, yearsOfExperience, preferences } = req.body;
+        let u = await User.findByIdAndUpdate({ _id }, { experience, openToWorkingAs, skills, yearsOfExperience, preferences });
         res.status(200).json({ status: "success" });
 
     }

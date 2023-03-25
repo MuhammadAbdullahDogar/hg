@@ -37,7 +37,6 @@ const UserSchema = new mongoose.Schema({
         learning: { type: String }
     },
     experience: {
-        jobLevel: { type: String },
         cName: { type: String },
         cDomain: { type: String },
         jobTitle: { type: String },
@@ -45,13 +44,21 @@ const UserSchema = new mongoose.Schema({
         endingDate: { type: String },
         responsibities: { type: String },
     },
-    // openToWorkingAs: { type: String },
+    yearsOfExperience: { type: String },
     // skills: {}
     openToWorkingAs: [{ type: String }],
     skills: [{
         skill: { type: String },
         percent: { type: Number }
     }],
+    preferences: {
+        jobMode: [{ type: String }],
+        selectedCountries: [{ 
+            name: {type: String },
+            country: {type: String }
+    }],
+        jobCategory: [{ type: String }]
+    },
     jobsApplied: [{
         job: {
             type: mongoose.Schema.Types.ObjectId,

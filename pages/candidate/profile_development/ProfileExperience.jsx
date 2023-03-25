@@ -39,7 +39,7 @@ const ProfileExperience = ({ user }) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-  
+
 
   const handleClose = () => {
     setOpen(false);
@@ -54,12 +54,14 @@ const ProfileExperience = ({ user }) => {
     setOpen3(false);
   }
   const handleOpen1 = () => {
+    console.log(jobMode);
     setOpen(false);
     setOpen1(false);
     setOpen2(true);
     setOpen3(false);
   }
   const handleOpen2 = () => {
+    console.log(selectedCountries);
     setOpen(false);
     setOpen1(false);
     setOpen2(false);
@@ -70,6 +72,7 @@ const ProfileExperience = ({ user }) => {
     setOpen1(false);
     setOpen2(false);
     setOpen3(false);
+    PostData();
   }
 
 
@@ -112,11 +115,16 @@ const ProfileExperience = ({ user }) => {
     },
   });
   const [experiences, setExperiences] = useState([{
-    jobLevel: "", cName: "", cDomain: "", jobTitle: "", startingDate: "", endingDate: "", responsibities: "",country:""
+    cName: "", cDomain: "", jobTitle: "", startingDate: "", endingDate: "", responsibities: ""
   }]);
   const [skills, setSkills] = useState([{ skill: "", percent: 0 }]);
   const [openToWorkingAs, setOpenToWorkingAs] = useState('');
+  const [yearsOfExperience, setYearsOfExperience] = useState('');
 
+  const handelChange = (event) => {
+    setYearsOfExperience(event.target.value);
+
+  }
 
   const handelFormChange = (event, index) => {
     let data = [...experiences];
@@ -130,12 +138,10 @@ const ProfileExperience = ({ user }) => {
   }
 
   const addFields = () => {
-    let object = { jobLevel: "", cName: "", cDomain: "", jobTitle: "", startingDate: "", endingDate: "", responsibities: "" }
+    let object = { cName: "", cDomain: "", jobTitle: "", startingDate: "", endingDate: "", responsibities: "" }
     setExperiences([...experiences, object])
   }
-  function chooseCountry(country) {
-    experiences.country = country;
-  };
+
 
 
   const submit = () => {
@@ -158,59 +164,101 @@ const ProfileExperience = ({ user }) => {
     });
   };
 
+  //checkbox
+
+  const [jobMode, setJobMode] = useState([]);
+
+  const handleJobModeChange = (event) => {
+    const checkedValues = event.target.value;
+    if (event.target.checked) {
+      setJobMode([...jobMode, checkedValues]);
+    } else {
+      setJobMode(jobMode.filter(value => value !== checkedValues));
+    }
+  };
+
+  const [jobCategory, setJobCategory] = useState([]);
+
+  const handleJobCategoryChange = (event) => {
+    const checkedValues = event.target.value;
+    if (event.target.checked) {
+      setJobCategory([...jobCategory, checkedValues]);
+    } else {
+      setJobCategory(jobCategory.filter(value => value !== checkedValues));
+    }
+  };
+
+  const [selectedCountries, setSelectedCountries] = useState([
+    { name: 'country1', country: '' },
+    { name: 'country2', country: '' },
+    { name: 'country3', country: '' }]);
+
+  function chooseCountry(country, name) {
+    for (let index = 0; index < 3; index++) {
+      if (selectedCountries[index].name === name) {
+        selectedCountries[index].country = country;
+      }
+
+    }
+  };
+
   //backend
 
-  // const PostData = async (e) => {
-  //   e.preventDefault();
+  const PostData = async (e) => {
+    // e.preventDefault();
+    
+    const preferences = { jobMode, selectedCountries, jobCategory };
 
-  //   let userData = { _id: user?._id, experience: experiences, openToWorkingAs, skills };
+    let userData = { _id: user?._id, experience: experiences, openToWorkingAs, skills, yearsOfExperience, preferences };
 
-  //   console.log(userData);
+    console.log(userData);
 
-  //   const res = await fetch('/api/candidate/profile_development/profileExperience', {
-  //     method: 'POST',
-  //     credentials: 'include', // Don't forget to specify this if you need cookies
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(userData)
-  //   });
-  //   // console.log(userData);
+    const res = await fetch('/api/candidate/profile_development/profileExperience', {
+      method: 'POST',
+      credentials: 'include', // Don't forget to specify this if you need cookies
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
+    });
+    // console.log(userData);
 
-  //   const data = await res.json();
+    const data = await res.json();
 
-  //   if (res.status === 200) {
-  //     console.log(data);
-
-
-
-  //     const credential = {
-  //       role: 'candidate',
-  //       log: 'auto',
-  //       email: user?.email,
-  //       password: user?.password
-  //     }
+    if (res.status === 200) {
+      console.log(data);
 
 
-  //     const ress = await signIn('credentials', {
-  //       ...credential,
-  //       redirect: false
-  //     })
 
-  //     if (ress.status === 200) {
-  //       Router.push(`/candidate/UserDashboard`);
-  //     }
-
-
-  //   }
-  //   else {
-  //     // show database error message
-  //     console.log(res.status);
-  //   }
+      const credential = {
+        role: 'candidate',
+        log: 'auto',
+        email: user?.email,
+        password: user?.password
+      }
 
 
-  // };
+      const ress = await signIn('credentials', {
+        ...credential,
+        redirect: false
+      })
 
+      if (ress.status === 200) {
+        Router.push(`/candidate/UserDashboard`);
+      }
+
+
+    }
+    else {
+      // show database error message
+      console.log(res.status);
+    }
+
+
+  };
+
+
+  
 
 
 
@@ -223,15 +271,16 @@ const ProfileExperience = ({ user }) => {
             <Grid item xs={12}><ProfileNavbar step={2} /></Grid>
             <Grid item xs={12}>
 
+              <Grid item xs={12}></Grid>
+              <Grid item xs={1}></Grid>
+              <Grid item xs={4.5}><Typography variant="profileH1">Experience and Skills</Typography>
+                <MyTextField label="Years of Experience" variant="outlined" onChange={event => handelChange(event)} name="yearsOfExperience" /></Grid>
+              <Grid item xs={6.5}></Grid>
+
               {experiences.map((form, index) => {
                 return (
                   <div key={index}>
                     <Grid container spacing={2}>
-                      <Grid item xs={12}></Grid>
-                      <Grid item xs={1}></Grid>
-                      <Grid item xs={2.5}><Typography variant="profileH1">Experience and Skills</Typography></Grid>
-                      <Grid item xs={2}><MyTextField label="Job Level" variant="outlined" onChange={event => handelFormChange(event, index)} value={experiences.jobLevel} name="jobLevel" /></Grid>
-                      <Grid item xs={6.5}></Grid>
 
                       <Grid item xs={1}></Grid>
                       <Grid item xs={2.5}><Typography variant="profileH2">Latest Experience</Typography></Grid>
@@ -350,21 +399,28 @@ const ProfileExperience = ({ user }) => {
                 value="On-Site"
                 control={<Checkbox />}
                 label="On-Site"
+                onChange={handleJobModeChange}
               />
               <FormControlLabel
                 value="Remote"
                 control={<Checkbox />}
                 label="Remote"
+                onChange={handleJobModeChange}
+
               />
               <FormControlLabel
                 value="Hybrid"
                 control={<Checkbox />}
                 label="Hybrid"
+                onChange={handleJobModeChange}
+
               />
               <FormControlLabel
                 value="All"
                 control={<Checkbox />}
                 label="All"
+                onChange={handleJobModeChange}
+
               />
 
             </FormGroup>
@@ -385,10 +441,10 @@ const ProfileExperience = ({ user }) => {
       >
         <DialogTitle>Preferred Job Location</DialogTitle>
         <DialogContent>
-        Select as many as you want, you can edit this from your profile anytime.
-        <Countryselect name='country1' chooseCountry={chooseCountry} ></Countryselect>
-        <Countryselect name='country2' chooseCountry={chooseCountry} ></Countryselect>
-        <Countryselect name='country3' chooseCountry={chooseCountry} ></Countryselect>
+          Select as many as you want, you can edit this from your profile anytime.
+          <Countryselect name='country1' chooseCountry={chooseCountry} ></Countryselect>
+          <Countryselect name='country2' chooseCountry={chooseCountry} ></Countryselect>
+          <Countryselect name='country3' chooseCountry={chooseCountry} ></Countryselect>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
@@ -406,28 +462,32 @@ const ProfileExperience = ({ user }) => {
         <DialogContent>
           <FormControl >
             <FormLabel >
-            Select as many as you want, you can edit this from your profile anytime.
+              Select as many as you want, you can edit this from your profile anytime.
             </FormLabel>
             <FormGroup col>
               <FormControlLabel
                 value="Internship"
                 control={<Checkbox />}
                 label="Internship"
+                onChange={handleJobCategoryChange}
               />
               <FormControlLabel
                 value="Full-Time"
                 control={<Checkbox />}
                 label="Full-Time"
+                onChange={handleJobCategoryChange}
               />
               <FormControlLabel
                 value="Part-Time"
                 control={<Checkbox />}
                 label="Part-Time"
+                onChange={handleJobCategoryChange}
               />
               <FormControlLabel
                 value="Contract"
                 control={<Checkbox />}
                 label="Contract"
+                onChange={handleJobCategoryChange}
               />
 
             </FormGroup>

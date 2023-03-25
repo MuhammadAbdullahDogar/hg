@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import CompanyNavbar from '../../company/companyNavbar/CompanyNavbar';
 import { Grid, Typography, MenuItem, InputLabel, FormControl, FormHelperText } from '@mui/material'
 import MySelect from '../../../styles/MySelect';
@@ -13,7 +13,7 @@ import TagField from "../../../components/TagField";
 
 
 const PostJob = ({ user }) => {
-  
+
   const [skill, setSkills] = useState('')
 
   const formik = useFormik({
@@ -21,11 +21,14 @@ const PostJob = ({ user }) => {
       title: '',
       level: '',
       type: '',
+      domain: 'check',
       compensation: '',
       matchPercentage: '',
       description: '',
       responsibilites: '',
       skills: '',
+      location: 'Pakistan',
+      category: 'Internship',
       companyId: user._id
     },
     validationSchema: postJobSchema,
@@ -40,10 +43,10 @@ const PostJob = ({ user }) => {
   };
 
   const postData = async () => {
-    formik.values.skills=skill
+    formik.values.skills = skill
     // console.log(formik.values)
     // console.log(skill);
-    const { title, level, type, compensation, matchPercentage, description, responsibilites, skills, companyId } = formik.values
+    const { title, level, type, domain, compensation, matchPercentage, description, responsibilites, skills, location, category, companyId } = formik.values
 
     const res = await fetch('/api/company/job/postJob', {
       method: 'POST',
@@ -51,7 +54,7 @@ const PostJob = ({ user }) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ title, level, type, compensation, matchPercentage, description, responsibilites, skills, companyId })
+      body: JSON.stringify({ title, level, type, domain, compensation, matchPercentage, description, responsibilites, skills, location, category, companyId })
     });
 
     if (res.status === 200) {

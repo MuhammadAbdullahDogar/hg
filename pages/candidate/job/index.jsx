@@ -23,14 +23,13 @@ export async function getServerSideProps(ctx) {
 
     const session = await getSession(ctx)
     const user = session?.user?.user || null
-    const candidateSkills = user.skills
     console.log(user.skills);
     const res = await fetch(`${process.env.WEBSITE}/api/candidate/job`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(user.skills)
+        body: JSON.stringify(user)
     });
 
     const jobs = await res.json();
