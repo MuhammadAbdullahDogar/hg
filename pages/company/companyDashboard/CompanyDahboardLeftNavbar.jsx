@@ -34,7 +34,7 @@ const CompanyDahboardLeftNavbar = () => {
                         </Link>
                     </Item>
                     <Item>
-                        <Link href="/company/companyDashboard/ActiveJobs">
+                        <Link href="/company/job/ActiveJobs">
                             <Image
                                 src="/BriefcaseFill.svg"
                                 alt="logo"
@@ -54,7 +54,7 @@ const CompanyDahboardLeftNavbar = () => {
                         </Link>
                     </Item>
                     <Item>
-                        <Link href="/company/companyDashboard/jobResult/JobResult">
+                        <Link href="/company/job/jobResult/JobResult">
                             <AutoGraphIcon/>
                           
                         </Link>

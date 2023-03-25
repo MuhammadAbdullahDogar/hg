@@ -3,9 +3,11 @@ import CompanyDashboardTopNavbar from '../../CompanyDashboardTopNavbar';
 import CompanyDashboardLeftNavbar from '../../CompanyDahboardLeftNavbar';
 import CompanyStatus from '../CompanyStatus';
 import CompanyProfileTab from './CompanyProfileTab';
+import { getSession } from "next-auth/react"
 
-const CompanyDetails = () => {
 
+const CompanyDetails = ({user}) => {
+    //description missing
     return (
         <>
             <Grid container spacing={2}>
@@ -21,26 +23,26 @@ const CompanyDetails = () => {
                                 <Grid item xs={11}><Typography variant="displayh1"> Company Details</Typography></Grid>
                                 
                                 <Grid item xs={1}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">Company Name</Typography><br /><Typography variant="displayh5">Rech Geeks</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">Company Name</Typography><br /><Typography variant="displayh5">{user.cname}</Typography></Grid>
                                 <Grid item xs={2}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">Company Domain</Typography> <br /><Typography variant="displayh5">Software Development</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">Company Domain</Typography> <br /><Typography variant="displayh5">{user.domain}</Typography></Grid>
                                 <Grid item xs={2}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">Date of Birth</Typography><br /><Typography variant="displayh5">May 18, 1992</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">Date of Birth</Typography><br /><Typography variant="displayh5">{user.about.foundingDate}</Typography></Grid>
                                 <Grid item xs={1}></Grid>
 
                                 <Grid item xs={1}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">City/State</Typography><br /><Typography variant="displayh5">Bostan</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">City/State</Typography><br /><Typography variant="displayh5">{user.about.city}</Typography></Grid>
                                 <Grid item xs={2}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">Country</Typography><br /><Typography variant="displayh5">America</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">Country</Typography><br /><Typography variant="displayh5">{user.about.country}</Typography></Grid>
                                 <Grid item xs={2}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">Phone Number</Typography><br /><Typography variant="displayh5">+1 256 347 6785</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">Phone Number</Typography><br /><Typography variant="displayh5">{user.phone}</Typography></Grid>
                                 <Grid item xs={1}></Grid>
 
                                 <Grid item xs={1}></Grid>
                                 <Grid item xs={11}><Typography variant="displayh4">About Tech:</Typography></Grid>
                                 <Grid item xs={1}></Grid>
                                 
-                                <Grid item xs={11}><Typography variant="displayh5">We do what we do for the love of improving human connections and making them more real.Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor.</Typography></Grid>
+                                <Grid item xs={11}><Typography variant="displayh5">{user.about.statement}</Typography></Grid>
                                 <Grid item xs={.5}></Grid>
                             </Grid>
                         </Grid>
@@ -52,3 +54,19 @@ const CompanyDetails = () => {
 }
 
 export default CompanyDetails
+
+
+export async function getServerSideProps(ctx) {
+
+    const session = await getSession(ctx)
+    const user = session?.user?.user || null
+
+    ctx.res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=10, stale-while-revalidate=59'
+    )
+
+    return {
+        props: { user },
+    }
+}

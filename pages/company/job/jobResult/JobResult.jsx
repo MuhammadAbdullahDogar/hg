@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@mui/material'
-import CompanyDashboardTopNavbar from '../CompanyDashboardTopNavbar';
-import CompanyDashboardLeftNavbar from '../CompanyDahboardLeftNavbar';
-import CompanyStatus from '../companyProfileDetails/CompanyStatus';
+import CompanyDashboardTopNavbar from '../../companyDashboard/CompanyDashboardTopNavbar';
+import CompanyDashboardLeftNavbar from '../../companyDashboard/CompanyDahboardLeftNavbar';
+import CompanyStatus from '../../companyDashboard/companyProfileDetails/CompanyStatus';
 
 const JobResult = () => {
     return (

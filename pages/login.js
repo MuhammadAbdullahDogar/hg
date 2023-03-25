@@ -123,7 +123,10 @@ const Login_dark = () => {
             })
 
             if (res.status === 200) {
+                if(credential.role === 'candidate')
                 Router.push(`/${credential.role}/UserDashboard`);
+                else
+                Router.push(`/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails`);
 
                 // console.log(res)
 
