@@ -37,7 +37,7 @@ const ActiveJobs = () => {
                         {
                             data.map(job => (
 
-                                <Grid item xs={2.4} sx={{ margin: '1rem' }}>
+                                <Grid item xs={2.4} sx={{ margin: '1rem' }} key={job.id}>
                                     <JobCard ></JobCard>
                                 </Grid>
                             ))
