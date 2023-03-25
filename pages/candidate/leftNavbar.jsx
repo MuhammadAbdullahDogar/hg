@@ -26,15 +26,16 @@ const leftNavbar = (props) => {
                             <ListItemText primary="Overview" />
                         </ListItemButton>
                     </ListItem>
-
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <img src="/job.svg" alt=''></img>
-                            </ListItemIcon>
-                            <ListItemText primary="Job Postss" />
-                        </ListItemButton>
-                    </ListItem>
+                    <Link href={`/candidate/JobPost`}>
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <img src="/job.svg" alt=''></img>
+                                </ListItemIcon>
+                                <ListItemText primary="Job Post" />
+                            </ListItemButton>
+                        </ListItem>
+                    </Link>
 
                     <Link href={`/candidate/jobApplication`}>
                         <ListItem disablePadding>

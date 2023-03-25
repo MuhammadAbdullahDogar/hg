@@ -2,7 +2,7 @@ import { Grid, Typography, Box, Stack, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
@@ -24,7 +24,7 @@ const CompanyDahboardLeftNavbar = () => {
                     spacing={3}
                 >
                     <Item>
-                        <Link href="/company/companyDashboard/ActiveJobs">
+                        <Link href="/company/companyDashboard/company_dashboard/CompanyDashboard">
                             <Image
                                 src="/Vector.svg"
                                 alt="logo"
@@ -44,7 +44,7 @@ const CompanyDahboardLeftNavbar = () => {
                         </Link>
                     </Item>
                     <Item>
-                        <Link href="/company/companyDashboard/ActiveJobs">
+                        <Link href="/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails">
                             <Image
                                 src="/Vector-1.svg"
                                 alt="logo"
@@ -54,13 +54,9 @@ const CompanyDahboardLeftNavbar = () => {
                         </Link>
                     </Item>
                     <Item>
-                        <Link href="/company/companyDashboard/ActiveJobs">
-                            <Image
-                                src="/Vector-1.svg"
-                                alt="logo"
-                                width={30}
-                                height={30}
-                            />
+                        <Link href="/company/companyDashboard/jobResult/JobResult">
+                            <AutoGraphIcon/>
+                          
                         </Link>
                     </Item>
                 </Stack>
