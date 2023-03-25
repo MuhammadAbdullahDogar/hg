@@ -112,9 +112,9 @@ const Login_dark = () => {
                 password: password
             }
 
-            if (state['active_candiate_btn'] == 'btn_active') 
+            if (state['active_candiate_btn'] == 'btn_active')
                 credential.role = 'candidate';
-            else 
+            else
                 credential.role = 'company';
 
             const res = await signIn('credentials', {
@@ -123,10 +123,10 @@ const Login_dark = () => {
             })
 
             if (res.status === 200) {
-                if(credential.role === 'candidate')
-                Router.push(`/${credential.role}/UserDashboard`);
+                if (credential.role === 'candidate')
+                    Router.push(`/${credential.role}/UserDashboard`);
                 else
-                Router.push(`/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails`);
+                    Router.push(`/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails`);
 
                 // console.log(res)
 

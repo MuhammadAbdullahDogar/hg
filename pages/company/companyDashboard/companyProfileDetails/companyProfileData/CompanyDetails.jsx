@@ -23,26 +23,26 @@ const CompanyDetails = ({user}) => {
                                 <Grid item xs={11}><Typography variant="displayh1"> Company Details</Typography></Grid>
                                 
                                 <Grid item xs={1}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">Company Name</Typography><br /><Typography variant="displayh5">{user.cname}</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">Company Name</Typography><br /><Typography variant="displayh5">{user?.cname}</Typography></Grid>
                                 <Grid item xs={2}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">Company Domain</Typography> <br /><Typography variant="displayh5">{user.domain}</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">Company Domain</Typography> <br /><Typography variant="displayh5">{user?.domain}</Typography></Grid>
                                 <Grid item xs={2}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">Date of Birth</Typography><br /><Typography variant="displayh5">{user.about.foundingDate}</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">Date of Birth</Typography><br /><Typography variant="displayh5">{user?.about?.foundingDate}</Typography></Grid>
                                 <Grid item xs={1}></Grid>
 
                                 <Grid item xs={1}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">City/State</Typography><br /><Typography variant="displayh5">{user.about.city}</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">City/State</Typography><br /><Typography variant="displayh5">{user?.about?.city}</Typography></Grid>
                                 <Grid item xs={2}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">Country</Typography><br /><Typography variant="displayh5">{user.about.country}</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">Country</Typography><br /><Typography variant="displayh5">{user?.about?.country}</Typography></Grid>
                                 <Grid item xs={2}></Grid>
-                                <Grid item xs={2}><Typography variant="displayh4">Phone Number</Typography><br /><Typography variant="displayh5">{user.phone}</Typography></Grid>
+                                <Grid item xs={2}><Typography variant="displayh4">Phone Number</Typography><br /><Typography variant="displayh5">{user?.phone}</Typography></Grid>
                                 <Grid item xs={1}></Grid>
 
                                 <Grid item xs={1}></Grid>
                                 <Grid item xs={11}><Typography variant="displayh4">About Tech:</Typography></Grid>
                                 <Grid item xs={1}></Grid>
                                 
-                                <Grid item xs={11}><Typography variant="displayh5">{user.about.statement}</Typography></Grid>
+                                <Grid item xs={11}><Typography variant="displayh5">{user?.about?.statement}</Typography></Grid>
                                 <Grid item xs={.5}></Grid>
                             </Grid>
                         </Grid>
@@ -61,6 +61,7 @@ export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
     const user = session?.user?.user || null
 
+    console.log(user);
     ctx.res.setHeader(
       'Cache-Control',
       'public, s-maxage=10, stale-while-revalidate=59'

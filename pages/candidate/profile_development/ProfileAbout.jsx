@@ -41,7 +41,8 @@ const ProfileAbout = ({ user }) => {
     setPortfolios(data)
   }
 
-  //backend
+  //backend 
+  console.log(user);
 
   // const [user, setUser] = useState({});
 
@@ -161,7 +162,7 @@ const ProfileAbout = ({ user }) => {
       if (ress.status === 200) {
 
 
-        Router.push('/profile_development/ProfileAcademic');
+        Router.push('ProfileAcademic');
       }
     }
     else {

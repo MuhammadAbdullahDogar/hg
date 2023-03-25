@@ -101,7 +101,7 @@ const ProfileAcademic = ({ user }) => {
 
         if (ress.status === 200) {
 
-          Router.push('/profile_development/ProfileExperience');
+          Router.push('ProfileExperience');
         }
       }
     }
