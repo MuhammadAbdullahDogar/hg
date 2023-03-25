@@ -7,7 +7,7 @@ const JobCard = ({job}) => {
             <Grid container spacing={2}>
                 <Grid item xs={12}></Grid>
                 <Grid item xs={1}></Grid>
-                <Grid item xs={11}><Typography variant='JobCardH2'> Developer</Typography></Grid>
+                <Grid item xs={11}><Typography variant='JobCardH2'>{job?.domain}</Typography></Grid>
 
                 <Grid item xs={1}></Grid>
                 <Grid item xs={11}><Typography variant='JobCardH1'>{job?.title}</Typography></Grid>
