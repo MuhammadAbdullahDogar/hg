@@ -4,7 +4,7 @@ import CompanyDashboardLeftNavbar from '../../CompanyDahboardLeftNavbar';
 import CompanyStatus from '../CompanyStatus';
 import CompanyProfileTab from './CompanyProfileTab';
 import { getSession } from "next-auth/react"
-
+import React from 'react';
 
 const CompanyNotableWork = ({ user }) => {
 
@@ -26,7 +26,8 @@ const CompanyNotableWork = ({ user }) => {
                 {
                   user.notableWork.map(work => (
 
-                    <>
+                    <React.Fragment key={work._id}>
+
 
 
                       <Grid item xs={11}><Typography variant="displayh1">Notable Work</Typography></Grid>
@@ -50,7 +51,8 @@ const CompanyNotableWork = ({ user }) => {
 
                       <Grid item xs={11}><Typography variant="displayh5">{work.description}</Typography></Grid>
                       <Grid item xs={.5}></Grid>
-                    </>
+                      </React.Fragment>
+
 
 
                   ))

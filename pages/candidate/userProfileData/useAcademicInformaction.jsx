@@ -1,15 +1,18 @@
 import { Grid, Typography } from '@mui/material'
+import React from 'react'
 
-const useAcademicInformaction = ({academics}) => {
+const useAcademicInformaction = ({ academics }) => {
 
   return (
     <>
-       <Grid container sx={{ borderRadius: '2rem', backgroundColor: '#F8F8F8', minHeight: '80vh' }} spacing={2}>
+      <Grid container sx={{ borderRadius: '2rem', backgroundColor: '#F8F8F8', minHeight: '80vh' }} spacing={2}>
         {/* <Grid item xs={12} sx={{ backgroundColor: '#D8EBF6', borderRadius: '2rem 2rem 0 0' }}><UserProfileTab value={1}></UserProfileTab></Grid>  */}
 
-        {academics?.map((academic) => {
+
+        {academics?.map((academic, index) => {
           return (
-            <>
+            <React.Fragment key={index}>
+
               <Grid item xs={.5}></Grid>
               <Grid item xs={11}><Typography variant="displayh1">Bachelors In {academic.major},{academic.endingYear}</Typography></Grid>
               <Grid item xs={.5}></Grid>
@@ -37,14 +40,12 @@ const useAcademicInformaction = ({academics}) => {
               <Grid item xs={11}><Typography variant="displayh5"> {academic.learning} </Typography></Grid>
               <Grid item xs={.5}></Grid>
 
-            </>
+
+            </React.Fragment>
           )
         })}
 
-
       </Grid>
-
-
     </>
   )
 }

@@ -11,7 +11,7 @@ const Item = styled(Paper)(({ theme }) => ({
     cursor: 'pointer',
     marginTop: '8.5rem',
 }));
-
+const size = 30;
 const CompanyDahboardLeftNavbar = () => {
     return (
         <>
@@ -25,38 +25,44 @@ const CompanyDahboardLeftNavbar = () => {
                 >
                     <Item>
                         <Link href="/company/companyDashboard/company_dashboard/CompanyDashboard">
-                            <Image
-                                src="/Vector.svg"
-                                alt="logo"
-                                width={30}
-                                height={30}
-                            />
+                            <a>
+                                <Image
+                                    src="/Vector.svg"
+                                    alt="logo"
+                                    width={size}
+                                    height={size}
+                                />
+                            </a>
                         </Link>
                     </Item>
                     <Item>
                         <Link href="/company/job/ActiveJobs">
-                            <Image
-                                src="/BriefcaseFill.svg"
-                                alt="logo"
-                                width={30}
-                                height={30}
-                            />
+                            <a>
+                                <Image
+                                    src="/BriefcaseFill.svg"
+                                    alt="logo"
+                                    width={size}
+                                    height={size}
+                                />
+                            </a>
                         </Link>
                     </Item>
                     <Item>
                         <Link href="/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails">
-                            <Image
-                                src="/Vector-1.svg"
-                                alt="logo"
-                                width={30}
-                                height={30}
-                            />
+                            <a>
+                                <Image
+                                    src="/Vector-1.svg"
+                                    alt="logo"
+                                    width={size}
+                                    height={size}
+                                />
+                            </a>
                         </Link>
                     </Item>
                     <Item>
                         <Link href="/company/job/jobResult/JobResult">
-                            <AutoGraphIcon/>
-                          
+                            <AutoGraphIcon />
+
                         </Link>
                     </Item>
                 </Stack>

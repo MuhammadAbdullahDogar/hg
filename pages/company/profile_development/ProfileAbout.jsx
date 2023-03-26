@@ -144,7 +144,7 @@ const ProfileAbout = ({ user }) => {
                 <Grid item xs={3.5} >
                     <FormControl fullWidth>
                         <InputLabel>Company Domain</InputLabel>
-                        <MySelect label="Company Domain" name="domain" {...formik.getFieldProps('domain')} error={formik.touched.domain && Boolean(formik.errors.domain)} helperText={formik.touched.domain && formik.errors.domain} >
+                        <MySelect label="Company Domain" name="domain" {...formik.getFieldProps('domain')} error={formik.touched.domain && Boolean(formik.errors.domain)} helpertext={formik.touched.domain && formik.errors.domain} >
                             <MenuItem value='Software Development'>Software Development  </MenuItem>
                             <MenuItem value="Finance">Finance </MenuItem>
                             <MenuItem value="Marketing">Marketing</MenuItem>

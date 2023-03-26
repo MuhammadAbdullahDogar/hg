@@ -13,7 +13,7 @@ const TagField = ({ suggestions, placeholder,tag }) => {
   useEffect(() => {
     tag(tags)
     // console.log(tags);
-  }, [tags])
+  }, [tag,tags])
   
 
   return (

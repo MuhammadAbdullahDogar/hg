@@ -16,7 +16,7 @@ import NextLink from "next/link";
 
 const actions = [
   { icon: <NextLink href="/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails"><PrintIcon /></NextLink>, name: "Company dashboard" },
-  { icon: <NextLink href="/company/JobCard"><PrintIcon /></NextLink>, name: "Job Card" },
+  { icon: <NextLink href="/company/companyDashboard/JobCard"><PrintIcon /></NextLink>, name: "Job Card" },
   { icon: <NextLink href="/company/profile_development/ProfileAbout"><PrintIcon /></NextLink>, name: "Company About Page" },
   { icon: <NextLink href="/company/profile_development/CompanyNotableWork"><PrintIcon /></NextLink>, name: "Company Notable Work Page" },
   { icon: <NextLink href="/"><PrintIcon /></NextLink>, name: "Landing page" },

@@ -21,7 +21,7 @@ const leftNavbar = (props) => {
                     <ListItem disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
-                                <img src="/overview.svg" alt=''></img>
+                                <Image src="/overview.svg" alt="Overview icon" width={iconSize} height={iconSize} />
                             </ListItemIcon>
                             <ListItemText primary="Overview" />
                         </ListItemButton>
@@ -30,7 +30,7 @@ const leftNavbar = (props) => {
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <img src="/job.svg" alt=''></img>
+                                <Image src="/job.svg" alt="Job icon" width={iconSize} height={iconSize} />
                                 </ListItemIcon>
                                 <ListItemText primary="Job Post" />
                             </ListItemButton>
@@ -70,7 +70,7 @@ const leftNavbar = (props) => {
                     <ListItem disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
-                                <img src="/feedback.svg" alt=''></img>
+                                <Image src="/feedback.svg" alt="feedback icon" width={iconSize} height={iconSize} />
                             </ListItemIcon>
                             <ListItemText primary="Feedbacks" />
                         </ListItemButton>
@@ -81,7 +81,7 @@ const leftNavbar = (props) => {
                         <ListItem disablePadding sx={{ mt: '5rem' }} >
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <img src="/Logout.svg" alt=''></img>
+                                    <Image src="/Logout.svg" alt="Logout icon" width={iconSize} height={iconSize} />
                                 </ListItemIcon>
                                 <ListItemText primary="Logout" />
                             </ListItemButton>

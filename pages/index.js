@@ -4,7 +4,7 @@ import CommonButton from '../styles/CommonButotn'
 import Navbar from './Navbar';
 import Head from 'next/head';
 import Footer from './Footer.jsx';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -28,18 +28,6 @@ const Home = () => {
       setToggleData({ ToggleName: 'FOR COMPANIES',ToggleColor:'textDataCompany'  });
     }
   }
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      console.log(token);
-      setUser({ token });
-    }
-    console.log(user);
-  }, []);
-
 
   return (
     <>
@@ -50,7 +38,7 @@ const Home = () => {
         <Grid item container sx={{ background: 'linear-gradient(266.95deg, #EDEDED 4.69%, #E0E0E0 101.7%)' }}>
           <Grid item xs={.3}></Grid>
           <Grid item xs={11.4}>
-            <Grid item xs={12} sx={{ marginTop: '1.5rem' }}><Navbar color='#5748F5' btnName='login' user={user} /></Grid>
+            <Grid item xs={12} sx={{ marginTop: '1.5rem' }}><Navbar color='#5748F5' btnName='login' /></Grid>
             <Grid item xs={12} align='center' sx={{ marginTop: '2rem' }}>
               <label className="switch">
                 <input type="checkbox" onClick={ChangeAccordingCandidate}></input>

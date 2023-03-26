@@ -96,11 +96,10 @@ const UserStatus = (props) => {
                 <DialogTitle>{"Portfolio/Social Links"}</DialogTitle>
                 <DialogContent>
 
-                    {props?.user?.about?.portfolios?.map((portfolio) => {
+
+                    {props?.user?.about?.portfolios?.map((portfolio, index) => {
                         return (
-                            <>
-
-
+                            <div key={index}>
                                 <Grid item container spacing={3}>
                                     <Grid item xs={2}>
                                         <Avatar>
@@ -108,13 +107,11 @@ const UserStatus = (props) => {
                                         </Avatar>
                                     </Grid>
                                     <Grid item xs={10}>
-                                    {portfolio.portfolioLink}
+                                        {portfolio.portfolioLink}
                                     </Grid>
-
                                 </Grid>
-
-                            </>
-                        )
+                            </div>
+                        );
                     })}
 
                 </DialogContent>

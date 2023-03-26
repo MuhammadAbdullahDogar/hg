@@ -118,7 +118,7 @@ const ProfileAcademic = ({ user }) => {
         <Grid item xs={12}><ProfileNavbar step={1} /></Grid>
         <Grid item xs={12}></Grid>
         <Grid item xs={12}></Grid>
-        <Grid Grid item xs={0.1} md={0.4} ></Grid>
+        <Grid item xs={0.1} md={0.4} ></Grid>
         <Grid item xs={2.1} md={2.5}><Typography variant="profileH1">Academic Information</Typography></Grid>
         <Grid item xs={9.1} md={7}><Typography variant="profileH2">Fill this form about the last degree that you did and you can add another university by tapping on add more</Typography></Grid>
         <Grid item xs={0.1} md={2} ></Grid>

@@ -1,4 +1,6 @@
 import { Grid, Typography } from '@mui/material'
+import React from 'react'
+
 const useExperienceAndSkills = ({ experiences }) => {
     return (
         <>
@@ -8,9 +10,9 @@ const useExperienceAndSkills = ({ experiences }) => {
                         <UserProfileTab value={2}></UserProfileTab>
                     </Box>
                 </Grid> */}
-                {experiences?.map((experience) => {
+                {experiences?.map((experience, index) => {
                     return (
-                        <>
+                        <React.Fragment key={index}>
                             <Grid item xs={.5}></Grid>
                             <Grid item xs={11}><Typography variant="displayh1">{experience?.jobTitle} Advance Web Developer</Typography></Grid>
                             <Grid item xs={.5}></Grid>
@@ -30,7 +32,7 @@ const useExperienceAndSkills = ({ experiences }) => {
                             <Grid item xs={.5}></Grid>
                             <Grid item xs={11}><Typography variant="displayh5">{experience?.responsibities} Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. </Typography></Grid>
                             <Grid item xs={.5}></Grid>
-                        </>
+                        </React.Fragment>
                     )
                 })}
             </Grid>

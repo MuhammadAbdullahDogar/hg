@@ -394,7 +394,7 @@ const ProfileExperience = ({ user }) => {
             <FormLabel >
               Select as many as you want, you can edit this from your profile anytime.
             </FormLabel>
-            <FormGroup col>
+            <FormGroup>
               <FormControlLabel
                 value="On-Site"
                 control={<Checkbox />}
@@ -464,7 +464,7 @@ const ProfileExperience = ({ user }) => {
             <FormLabel >
               Select as many as you want, you can edit this from your profile anytime.
             </FormLabel>
-            <FormGroup col>
+            <FormGroup>
               <FormControlLabel
                 value="Internship"
                 control={<Checkbox />}
