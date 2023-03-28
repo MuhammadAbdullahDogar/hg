@@ -1,4 +1,4 @@
-import { Grid, Typography, Box, Stack, Paper } from '@mui/material'
+import { Box, Stack, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import Image from 'next/image';
 import Link from 'next/link';

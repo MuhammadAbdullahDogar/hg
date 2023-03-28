@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ProfileNavbar from './profileNavbar/ProfileNavbar'
 import { Grid, Typography, MenuItem, InputLabel, FormControl } from '@mui/material'
 import MySelect from '../../../styles/MySelect';
@@ -42,7 +42,7 @@ const ProfileAbout = ({ user }) => {
   }
 
   //backend 
-  console.log(user);
+  // console.log(user);
 
   // const [user, setUser] = useState({});
 
@@ -69,62 +69,6 @@ const ProfileAbout = ({ user }) => {
 
     setAboutUser({ ...aboutUser, [name]: value });
   }
-
-  // const userID = async () => {
-  //   const res = await fetch('/api/candidate/getUserId', {
-  //     method: 'POST',
-  //     credentials: 'include', // Don't forget to specify this if you need cookies
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     }
-  //   });
-  //   const data = await res.json();
-  //   const id = data.id;
-
-  //   if (id === undefined)
-  //     return "";
-
-  //   return id;
-
-  // }
-
-
-  // const getData = async () => {
-  //   const id = await userID();
-  //   const res = await fetch('/api/candidate/getData', {
-  //     method: 'POST',
-  //     credentials: 'include', // Don't forget to specify this if you need cookies
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({ id })
-
-  //   });
-
-  //   const data = await res.json();
-  //   setUser(data.userExist);
-
-  // }
-
-  // // used to make useEffect work
-  // let a = null;
-  // if (aboutUser.temp === "")
-  //   a = true;
-  // else
-  //   a = null;
-
-
-  // useEffect(() => {
-
-  //   getData();
-  //   aboutUser.temp = "abc";
-  //   aboutUser.fname = user.fname || "";
-  //   aboutUser.lname = user.lname || "";
-  //   aboutUser.phone = user.phone || "";
-  //   aboutUser.email = user.email || "";
-
-  // }, [a])
-
 
 
   const PostData = async (e) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import CompanyNavbar from '../companyNavbar/CompanyNavbar';
 import { Grid, Typography, MenuItem, InputLabel, FormControl } from '@mui/material'
 import MySelect from '../../../styles/MySelect';

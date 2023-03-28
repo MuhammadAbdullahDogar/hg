@@ -2,8 +2,6 @@ import '../styles/globals.css';
 import { ThemeProvider } from "@mui/material";
 import customTheme from '../styles/Style'
 import Head from 'next/head'
-import { useState, createContext } from "react"
-import UserContext from '../context/UserContext';
 import { SessionProvider } from "next-auth/react"
 
 
@@ -35,7 +33,6 @@ const actions = [
 
 
 function MyApp({ Component, pageProps: {session , ...pageProps} }) {
-  const [user, setUser] = useState({});
 
   return (
     <>
@@ -58,12 +55,10 @@ function MyApp({ Component, pageProps: {session , ...pageProps} }) {
         <Head>
           <link rel="shortcut icon" href="/logo.svg" />
         </Head>
-        <UserContext.Provider value={{ user, setUser }}>
           <SessionProvider session={session}>
             <Component {...pageProps} />
           </SessionProvider>
 
-        </UserContext.Provider>
       </ThemeProvider>
     </>
   )

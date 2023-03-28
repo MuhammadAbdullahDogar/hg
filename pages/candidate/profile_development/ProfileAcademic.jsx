@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from "next/link";
 import ProfileNavbar from './profileNavbar/ProfileNavbar'
 import { Grid, Typography } from '@mui/material'
 import MyTextField from '../../../styles/MyTextField'
@@ -7,7 +6,6 @@ import AddIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
 import CommonButton from '../../../styles/CommonButotn'
 import { useState } from 'react';
-import Date_Picker from '../../../styles/Date_Picker';
 import Router from "next/router";
 import { getSession } from "next-auth/react"
 import { signIn } from 'next-auth/react'
@@ -36,28 +34,6 @@ const ProfileAcademic = ({ user }) => {
     data.splice(index, 1)
     setAcademicInfos(data)
   }
-
-
-
-  //backend
-
-
-  // const userID = async () => {
-  //   const res = await fetch('/api/candidate/getUserId', {
-  //     method: 'POST',
-  //     credentials: 'include', // Don't forget to specify this if you need cookies
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     }
-  //   });
-  //   const data = await res.json();
-  //   const id = data.id;
-
-  //   if (id === undefined)
-  //     return "";
-
-  //   return id;
-  // }
 
 
   const PostData = async (e) => {

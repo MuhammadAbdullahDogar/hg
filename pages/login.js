@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import Navbar from './Navbar'
 import Head from 'next/head'
 import Link from "next/link";
@@ -8,7 +8,6 @@ import MyTextField from '../styles/MyTextField'
 import Router from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
-// import UserContext from '../context/UserContext';
 import { signIn } from 'next-auth/react'
 
 
@@ -31,72 +30,6 @@ const Login_dark = () => {
 
     }
 
-    // const user = {
-    //     "fname": "check2",
-    //     "lname": "check",
-    //     "email": "check@check.com",
-    //     "phone": 123,
-    //     "about": {
-    //         "title": "Mr",
-    //         "gender": "Male",
-    //         "dob": "24/01/1902",
-    //         "city": "Lahore",
-    //         "country": "Egypt",
-    //         "description": "sxdcfvgbhnjmk,lhbj",
-    //         "portfolios": [
-    //             {
-    //                 "linkType": "link1",
-    //                 "portfolioLink": "linkkk",
-    //             }
-    //         ]
-    //     },
-    //     "academic": [
-    //         {
-    //             "universityName": "University of Central Punjab",
-    //             "major": "Computer Science",
-    //             "startingYear": "2019",
-    //             "endingYear": "2023",
-    //             "obtainedCgpa": "4",
-    //             "totalCgpa": "4.0",
-    //             "learning": "Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum."
-    //         },
-    //         {
-    //             "universityName": "abc",
-    //             "major": "abc",
-    //             "startingYear": "564",
-    //             "endignYear": "",
-    //             "obtainedCgpa": "465",
-    //             "totalCgpa": "463",
-    //             "learning": "hgbfvdcsx",
-    //             "endingYear": "546"
-    //         }
-    //     ],
-    //     "experience": [
-    //         {
-    //             "jobLevel": "qqq",
-    //             "cName": "qqq",
-    //             "cDomain": "qqq",
-    //             "jobTitle": "qqq",
-    //             "startingDate": "qqq",
-    //             "endingDate": "qqq",
-    //             "responsibities": "qqq"
-    //         }
-    //     ],
-    //     "openToWorkingAs": "fghbjnm",
-    //     "skills": [
-    //         {
-    //             "name": "s1",
-    //             "percent": 33
-    //         }
-    //     ]
-    // };
-    // const context = useContext(UserContext);
-
-
-
-
-
-    //data send backend
     const loginUser = async (e) => {
         e.preventDefault();
         if (email.length == 0 || password.length == 0) {
