@@ -11,7 +11,7 @@ const leftNavbar = (props) => {
     return (
         <>
             <Drawer
-                variant="persistent"
+                variant="permanent"
                 anchor="left"
                 open={value}
 
@@ -26,7 +26,7 @@ const leftNavbar = (props) => {
                             <ListItemText primary="Overview" />
                         </ListItemButton>
                     </ListItem>
-                    <Link href={`/candidate/JobPost`}>
+                    <Link href={`/candidate/job/JobPost`}>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>

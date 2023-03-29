@@ -1,7 +1,7 @@
 import { Grid,Button} from '@mui/material'
 import React from 'react'
-import LeftNavbar from './leftNavbar'
-import TopNavbar from './topNavbar'
+import LeftNavbar from '../leftNavbar'
+import TopNavbar from '../topNavbar'
 import { useRouter } from 'next/router'
 
 const ViewJob = () => {
@@ -10,7 +10,7 @@ const ViewJob = () => {
             <Grid item xs={12}><TopNavbar></TopNavbar></Grid>
             <Grid item xs={2}><LeftNavbar></LeftNavbar></Grid>
 
-            <Grid container item xs={9.8} sx={{ backgroundColor: 'yellow', minHeight: '80vh' }}>
+            <Grid container item xs={9.8} sx={{  minHeight: '80vh' }}>
                 <Grid item xs={12} >Back to All Jobs  <Button color='primary'>Apply to Job</Button></Grid>
                 <Grid item xs={12} >POSTED A WEEK AGO</Grid>
                 <Grid item xs={12} >Senior Software Engineer</Grid>
