@@ -45,7 +45,6 @@ const UserSchema = new mongoose.Schema({
         responsibities: { type: String },
     },
     yearsOfExperience: { type: String },
-    // skills: {}
     openToWorkingAs: [{ type: String }],
     skills: [{
         skill: { type: String },

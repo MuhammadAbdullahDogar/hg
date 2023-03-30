@@ -53,7 +53,17 @@ const JobSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Candidate'
     },
+    status: {
+      type: String,
+      enum: ['applied', 'invited', 'interviewed', 'feedback']
+    },
     matchPercent: {
+      type: String
+    },
+    statusUpdatedAt: {
+      type: Date
+    },
+    hiringStatus: {
       type: String
     }
   }],
@@ -61,7 +71,11 @@ const JobSchema = new mongoose.Schema({
     type: String,
     enum: ['open', 'closed'],
     default: 'open'
-  }
+  },
+  postedAt: {
+    type: Date,
+    default: Date.now
+  },
 });
 
 export default mongoose.models.Job || mongoose.model("Job", JobSchema);

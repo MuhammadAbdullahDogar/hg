@@ -69,8 +69,13 @@ const handler = async (req, res) => {
         console.log("job mode: " + jobModePercent);
         console.log("job category: " + jobCategoryPercent);
 
-        if(matchPercent >= parseInt(job.matchPercentage))
-          Jobs.push(job);
+        if(matchPercent >= parseInt(job.matchPercentage)){
+          const jobWithMpercent = {
+            ...job.toObject(),
+            mpercent: matchPercent
+          };
+          Jobs.push(jobWithMpercent);
+        }
       });
 
 
