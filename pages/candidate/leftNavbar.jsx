@@ -37,7 +37,7 @@ const leftNavbar = (props) => {
                         </ListItem>
                     </Link>
 
-                    <Link href={`/candidate/jobApplication`}>
+                    <Link href={`/candidate/JobApplication/jobApplication`}>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>

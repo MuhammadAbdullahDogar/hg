@@ -1,32 +1,47 @@
 import JobCard from "../companyDashboard/JobCard";
-import { Grid,Button } from '@mui/material'
-import React, { useState } from "react";
-import CompanyDashboardTopNavbar from '../companyDashboard/CompanyDashboardTopNavbar'
-import CompanyDashboardLeftNavbar from '../companyDashboard/CompanyDahboardLeftNavbar'
-import { getSession } from "next-auth/react"
+import { Grid, Button } from '@mui/material'
 import Router from "next/router";
 
-const ActiveJobs = ({jobs}) => {
-   // currently all jobs posted by this company are fetching
+const ActiveJobs = (props) => {
+    const data = [
+
+        { id: 1, name: "John Doe" },
+        { id: 2, name: "Victor Wayne" },
+        { id: 4, name: "Jane Doe" },
+        { id: 5, name: "John Doe" },
+        { id: 6, name: "Victor Wayne" },
+        { id: 7, name: "Jane Doe" },
+        { id: 8, name: "John Doe" },
+        { id: 9, name: "Victor Wayne" },
+        { id: 10, name: "Jane Doe" },
+        { id: 11, name: "John Doe" },
+        { id: 12, name: "Victor Wayne" },
+        { id: 13, name: "Jane Doe" },
+
+    ];
+    // currently all jobs posted by this company are fetching
     return (
         <>
-            <Grid container spacing={2}>
-                <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
-                <Grid item xs={11.3} ><CompanyDashboardTopNavbar />
-                <Button onClick={()=>{Router.push(`PostJob`)}}>Post New Job</Button>
-                    <Grid container>
-                        {
-                            jobs.map(job => (
+            <Button onClick={() => { Router.push(`PostJob`) }}>Post New Job</Button>
+            
+                <Grid container  >
+                    {
+                     
+                        // jobs.map(job => (
 
-                                <Grid item xs={2.4} sx={{ margin: '1rem' }} key={job._id}>
-                                    <JobCard job={job} ></JobCard>
-                                </Grid>
-                            ))
-                        }
-                    </Grid>
+                        //     <Grid item xs={2.4} sx={{ margin: '1rem' }} key={jobs.job._id}>
+                        //         <JobCard job={jobs.job} ></JobCard>
+                        //     </Grid>
+                        // ))
+                        data.map(job => (
 
+                            <Grid item xs={2.4} sx={{ margin: '1rem' }} key={job._id} onClick={() => props.setUserInfo(1)} >
+                                <JobCard ></JobCard>
+                            </Grid>
+                        ))
+                    }
                 </Grid>
-            </Grid>
+          
 
 
 
@@ -37,27 +52,4 @@ const ActiveJobs = ({jobs}) => {
 
 export default ActiveJobs
 
-export async function getServerSideProps(ctx) {
 
-    const session = await getSession(ctx)
-    const user = session?.user?.user || null
-  
-    const res = await fetch(`${process.env.WEBSITE}/api/company/job`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user.jobs)
-      });
-
-      const jobs = await res.json();
-      
-    ctx.res.setHeader(
-      'Cache-Control',
-      'public, s-maxage=10, stale-while-revalidate=59'
-    )
-  
-    return {
-      props: { jobs },
-    }
-  }

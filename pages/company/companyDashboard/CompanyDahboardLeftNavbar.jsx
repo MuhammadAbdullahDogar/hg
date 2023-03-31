@@ -36,7 +36,7 @@ const CompanyDahboardLeftNavbar = () => {
                         </Link>
                     </Item>
                     <Item>
-                        <Link href="/company/job/ActiveJobs">
+                        <Link href="/company/job">
                             <a>
                                 <Image
                                     src="/BriefcaseFill.svg"
