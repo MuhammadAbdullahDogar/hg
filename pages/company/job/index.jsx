@@ -9,6 +9,8 @@ import Link from 'next/link';
 import ActiveJobs from "./ActiveJobs";
 import Candidates from "./Candidates";
 const index = ({ jobs }) => {
+  
+
     const [userInfo, setUserInfo] = useState(0)
   return (
     <Grid container spacing={2}>
