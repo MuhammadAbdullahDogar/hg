@@ -1,28 +1,33 @@
-import JobCard from "../companyDashboard/JobCard";
-import { Grid, Button } from '@mui/material'
+import { Grid } from '@mui/material'
 import React, { useState } from "react";
 import CompanyDashboardTopNavbar from '../companyDashboard/CompanyDashboardTopNavbar'
 import CompanyDashboardLeftNavbar from '../companyDashboard/CompanyDahboardLeftNavbar'
 import { getSession } from "next-auth/react"
-import Router from "next/router";
-import Link from 'next/link';
-import ActiveJobs from "./ActiveJobs";
-import Candidates from "./Candidates";
+import ActiveJobs from "../../../components/company/job/ActiveJobs";
+import Candidates from "../../../components/company/job/Candidates";
 const Index = ({ jobs }) => {
-  
-
     const [userInfo, setUserInfo] = useState(0)
+    const [jobInfo, setJobInfo] = useState()
+
+    const handleJob = (user, job) => {
+        setUserInfo(user)
+        setJobInfo(job)
+    };
+
+
+
   return (
     <Grid container spacing={2}>
     <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
     <Grid item xs={11.3} ><CompanyDashboardTopNavbar />
-    {(userInfo == 0 && <ActiveJobs  setUserInfo={setUserInfo} />) || (userInfo == 1 && <Candidates/>) }
+    {(userInfo == 0 && <ActiveJobs jobs={jobs} handleJob={handleJob} />) || (userInfo == 1 && <Candidates job={jobInfo} />) }
     </Grid>
 </Grid>
   )
 }
 
 export default Index
+
 export async function getServerSideProps(ctx) {
 
     const session = await getSession(ctx)

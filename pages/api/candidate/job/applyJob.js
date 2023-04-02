@@ -8,7 +8,6 @@ const handler = async (req, res) => {
         return res.status(422).json({ error: 'Invalid request method' });
     }
 
-    console.log(req.body);
     const {jobId, candidateId, matchPercent, screeningQuestions} = req.body;
 
 

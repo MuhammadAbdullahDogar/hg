@@ -2,6 +2,7 @@ import { Grid, Divider, Typography, Box} from '@mui/material'
 
 
 const JobCard = ({job}) => {
+    // console.log(job);
     return (
         <Box sx={{ background: 'rgba(36, 162, 233, 0.1)', width: '18rem', height: '18.25rem', borderRadius: '0.625rem' }}>
             <Grid container spacing={2}>

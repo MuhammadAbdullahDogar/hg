@@ -1,10 +1,10 @@
-import { Grid, Typography, Box, Button, Divider, TextField } from '@mui/material'
+import { Grid, Typography, Box, Button, Divider } from '@mui/material'
 import React, { useState } from 'react'
 import Link from "next/link";
 import vector17 from '../../../public/Ellipse120.png'
 import CircularProgress from '@mui/material/CircularProgress';
 import Image from 'next/image'
-const CandidateCard = () => {
+const CandidateCard = ({candidate}) => {
   return (
     <Box sx={{ background: 'rgba(36, 162, 233, 0.1)', height: '7.68rem', borderRadius: '0.625rem' }}>
             <Grid container spacing={1}>

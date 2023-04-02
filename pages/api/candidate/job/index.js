@@ -57,12 +57,12 @@ const handler = async (req, res) => {
         if (matchPercent >= parseInt(job.matchPercentage)) {
 
           
-        console.log("///////////////////////////////////////////////");
-        console.log("skill: " + skillMatchPercent);
-        console.log("Match percent " + matchPercent);
-        console.log("job location: " + jobLocationPercent);
-        console.log("job mode: " + jobModePercent);
-        console.log("job category: " + jobCategoryPercent);
+        // console.log("///////////////////////////////////////////////");
+        // console.log("skill: " + skillMatchPercent);
+        // console.log("Match percent " + matchPercent);
+        // console.log("job location: " + jobLocationPercent);
+        // console.log("job mode: " + jobModePercent);
+        // console.log("job category: " + jobCategoryPercent);
 
 
           const jobWithMpercent = {
