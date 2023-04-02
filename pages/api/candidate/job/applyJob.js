@@ -8,7 +8,9 @@ const handler = async (req, res) => {
         return res.status(422).json({ error: 'Invalid request method' });
     }
 
-    const [jobId, candidateId, matchPercent] = req.body;
+    console.log(req.body);
+    const {jobId, candidateId, matchPercent, screeningQuestions} = req.body;
+
 
     if (!jobId || !candidateId) {
         return res.status(422).json({ error: 'Missing jobId or candidateId' });
@@ -23,6 +25,7 @@ const handler = async (req, res) => {
                         candidate: candidateId,
                         status: 'applied',
                         matchPercent: matchPercent,
+                        screeningQuestions
                     },
                 },
             }, { new: true }),

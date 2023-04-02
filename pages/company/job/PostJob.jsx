@@ -73,9 +73,8 @@ const PostJob = ({ user }) => {
       })
 
       if (ress.status === 200) {
-
-
-        Router.push('/company/job/QuestionForm');
+        const jobId = await res.json()
+        Router.push(`/company/job/${jobId}`);
       }
     }
     else {

@@ -65,7 +65,11 @@ const JobSchema = new mongoose.Schema({
     },
     hiringStatus: {
       type: String
-    }
+    },
+    screeningQuestion: [{
+      question: {type: String},
+      answer: {type: String}
+    }]
   }],
   status: {
     type: String,
@@ -76,6 +80,7 @@ const JobSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  questions : [{type: String}]
 });
 
 export default mongoose.models.Job || mongoose.model("Job", JobSchema);

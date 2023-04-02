@@ -12,7 +12,8 @@ const handler = async (req, res) => {
       const savedJob = await job.save();
       const updatedCompany = await Company.findByIdAndUpdate(companyId, { $push: { jobs: savedJob._id } }, { new: true });
       // return { savedJob, updatedCompany };
-      res.status(200).json({ success: "success" });
+      const jobId = savedJob._id
+      res.status(200).json(jobId);
     } catch (error) {
       console.error(error);
       throw error;

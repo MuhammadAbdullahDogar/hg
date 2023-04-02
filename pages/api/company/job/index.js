@@ -46,7 +46,6 @@ const fetchJobById = async (jobId) => {
   try {
     const job = await Job.findOne({ _id: jobId });
     if (job) {
-      console.log(job);
       return job;
     } else {
       console.log('Job not found');
