@@ -24,7 +24,8 @@ const handler = async (req, res) => {
                         candidate: candidateId,
                         status: 'applied',
                         matchPercent: matchPercent,
-                        screeningQuestions
+                        screeningQuestions,
+                        statusUpdatedAt: Date.now()
                     },
                 },
             }, { new: true }),
@@ -34,6 +35,7 @@ const handler = async (req, res) => {
                         job: jobId,
                         status: 'applied',
                         matchPercent: matchPercent,
+                        statusUpdatedAt: Date.now()
                     },
                 },
             }, { new: true })

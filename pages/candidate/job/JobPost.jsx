@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import LeftNavbar from '../leftNavbar'
 import TopNavbar from '../topNavbar'
 import ViewJob from './ViewJob'
-import JobCard from './JobCard'
+import JobCard from '../../../components/candidate/job/JobCard'
 import { getSession } from "next-auth/react"
 import Image from 'next/image'
 import vector17 from '../../../public/Ellipse120.png'

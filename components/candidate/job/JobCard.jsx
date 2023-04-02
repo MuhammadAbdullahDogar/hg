@@ -1,5 +1,7 @@
 import { Grid, Typography, Box, Button, Chip } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
+import moment from 'moment';
+
 
 const JobCard = ({ job, onData,showJob }) => {
 
@@ -33,7 +35,7 @@ const JobCard = ({ job, onData,showJob }) => {
                             ))
                         }
                     </Grid>
-                    <Grid item xs={1.5}><Typography variant='caption'>POSTED A WEEK AGO</Typography></Grid>
+                    <Grid item xs={1.5}><Typography variant='caption'>POSTED {moment(job.postedAt).fromNow()}</Typography></Grid>
                     <Grid item xs={.5}></Grid>
                 </Grid>
             </Box>

@@ -52,10 +52,10 @@ const UserSchema = new mongoose.Schema({
     }],
     preferences: {
         jobMode: [{ type: String }],
-        selectedCountries: [{ 
-            name: {type: String },
-            country: {type: String }
-    }],
+        selectedCountries: [{
+            name: { type: String },
+            country: { type: String }
+        }],
         jobCategory: [{ type: String }]
     },
     jobsApplied: [{
@@ -70,7 +70,10 @@ const UserSchema = new mongoose.Schema({
         },
         matchPercent: {
             type: String
-        }
+        },
+        statusUpdatedAt: {
+            type: Date
+        },
     }]
 });
 

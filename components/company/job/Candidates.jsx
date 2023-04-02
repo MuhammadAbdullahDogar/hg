@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import CandidateCard from '../../../pages/company/job/CandidateCard';
+import CandidateCard from './CandidateCard';
 import JobTab from '../../../pages/company/job/JobTab';
 import JobDetail from './JobDetail';
 import React, { useState } from "react";

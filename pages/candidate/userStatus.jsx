@@ -68,23 +68,16 @@ const UserStatus = (props) => {
                     <Typography variant='userStatush2'> Open to working as</Typography>
                 </Grid>
 
+                {props.user?.openToWorkingAs?.map(workAs => {
+                    return (
+                            <Grid item xs={12} key={workAs}>
+                                <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}>
+                                    <Typography variant='userStatush3'>{workAs}</Typography>
+                                </Button>
+                            </Grid>
+                    );
+                })}
 
-                <Grid item xs={12}>
-                    <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}><Typography variant='userStatush3'>Data Analyst</Typography></Button>
-                </Grid>
-
-                <Grid item xs={12}>
-                    <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}><Typography variant='userStatush3'> Software Engineer</Typography></Button>
-                </Grid>
-
-                <Grid item xs={12}>
-                    <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}><Typography variant='userStatush3'> Quality Engineer</Typography></Button>
-                </Grid>
-
-
-                <Grid item xs={12}>
-                    <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}> <Typography variant='userStatush3'>Product Designer</Typography></Button>
-                </Grid>
             </Grid >
 
             <Dialog
