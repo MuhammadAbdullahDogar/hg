@@ -55,7 +55,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-const leftNavbar = () => {
+const LeftNavbar = () => {
   
     const iconSize = 20;
  
@@ -171,6 +171,6 @@ const leftNavbar = () => {
     )
 }
 
-export default leftNavbar
+export default LeftNavbar
 
 

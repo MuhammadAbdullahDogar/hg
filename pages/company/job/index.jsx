@@ -8,7 +8,7 @@ import Router from "next/router";
 import Link from 'next/link';
 import ActiveJobs from "./ActiveJobs";
 import Candidates from "./Candidates";
-const index = ({ jobs }) => {
+const Index = ({ jobs }) => {
   
 
     const [userInfo, setUserInfo] = useState(0)
@@ -22,7 +22,7 @@ const index = ({ jobs }) => {
   )
 }
 
-export default index
+export default Index
 export async function getServerSideProps(ctx) {
 
     const session = await getSession(ctx)
