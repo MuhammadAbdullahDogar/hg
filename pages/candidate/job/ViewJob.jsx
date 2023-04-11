@@ -1,8 +1,5 @@
 import { Grid, Button } from '@mui/material'
 import React from 'react'
-import LeftNavbar from '../leftNavbar'
-import TopNavbar from '../topNavbar'
-import { useRouter } from 'next/router'
 
 const ViewJob = ({ job, onData, dialog }) => {
     console.log(job);

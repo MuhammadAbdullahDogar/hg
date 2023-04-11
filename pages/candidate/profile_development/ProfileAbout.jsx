@@ -15,7 +15,7 @@ import Head from 'next/head';
 import Router from "next/router";
 import { getSession } from "next-auth/react"
 import { signIn } from 'next-auth/react'
-
+import axios from 'axios';
 
 
 
@@ -27,10 +27,7 @@ const ProfileAbout = ({ user }) => {
     data[index][event.target.name] = event.target.value;
     setPortfolios(data);
   }
-  const submit = () => {
-    console.log(portfolios)
-  }
-
+  
   const addFields = () => {
     let portfolio = { linkType: '', portfolioLink: '' }
     setPortfolios([...portfolios, portfolio])
@@ -42,12 +39,7 @@ const ProfileAbout = ({ user }) => {
   }
 
   //backend 
-  // console.log(user);
-
-  // const [user, setUser] = useState({});
-
   const [aboutUser, setAboutUser] = useState({
-    temp: "", gender: '',
     fname: user?.fname, lname: user?.lname, phone: user?.phone, email: user?.email, gender: "",
     title: "", dob: "1/2/1992", city: "", country: "", description: "", portfolios
   });
@@ -60,8 +52,6 @@ const ProfileAbout = ({ user }) => {
     aboutUser.dob = dob;
   };
 
-
-
   let name, value;
   const handleInputs = (e) => {
     name = e.target.name;
@@ -73,39 +63,15 @@ const ProfileAbout = ({ user }) => {
 
   const PostData = async (e) => {
     e.preventDefault();
-    // const id = await userID();
-    const { fname, lname, phone, title, gender, dob, city, country, description } = aboutUser;
 
-    let userData = { _id: user?._id, fname, lname, phone, title, gender, dob, city, country, description, portfolios: portfolios };
-
-
-    const res = await fetch('/api/candidate/profile_development/ProfileAbout', {
-      method: 'POST',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    });
+    let userData = { _id: user?._id, ...aboutUser, portfolios: portfolios };
+    const res = await axios.post(`/api/candidate/profile_development/profileAbout`, { ...userData }, { headers: { 'Content-Type': 'application/json' } });
 
     if (res.status === 200) {
-
-      const credential = {
-        role: 'candidate',
-        log: 'auto',
-        email: user?.email,
-        password: user?.password
-      }
-
-
-      const ress = await signIn('credentials', {
-        ...credential,
-        redirect: false
-      })
+      const { role, email, password, _id } = user;
+      const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
 
       if (ress.status === 200) {
-
-
         Router.push('ProfileAcademic');
       }
     }
@@ -115,13 +81,6 @@ const ProfileAbout = ({ user }) => {
     }
 
   };
-
-
-
-
-
-
-
 
   return (
 
@@ -189,7 +148,7 @@ const ProfileAbout = ({ user }) => {
         <Grid item xs={2.5}><Typography variant="profileH2">Portfolio / Website</Typography></Grid>
 
         <Grid item xs={8.5}>
-          <form onSubmit={submit}>
+          <form>
             {portfolios.map((form, index) => {
               return (
                 <div key={index}>

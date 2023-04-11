@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-var CryptoJS = require("crypto-js");
+import * as bcrypt from 'bcrypt';
 
-// const bcrypt= require('bcrypt');
+
 // const jwt= require('jsonwebtoken');
 // const dotenv = require("dotenv");
 
@@ -40,40 +40,18 @@ const CompanySchema = new mongoose.Schema({
     }]
 });
 
-CompanySchema.pre('save', function (next) {
+CompanySchema.pre('save', async function (next) {
     if (this.isModified('password')) {
-        this.password = CryptoJS.AES.encrypt(this.password, process.env.SECRET_KEY).toString();
+        this.password = generateHash(this.password);
     }
     next();
 });
 
 
-// // hashing password before saveing on save function call
-// registerSchema.pre('save', async function(next) {
-//     if(this.isModified('password')){
-//         this.password = await bcrypt.hash(this.password,12);
-//     }
-//     next();
-// });
+function generateHash (password) {
+const salt = bcrypt.genSaltSync (12);
+const hash= bcrypt.hashSync (password, salt);
+return hash;
+}
 
-
-// registerSchema.methods.generateAuthToken = async function(){
-//     try{
-//         const SECRET_KEY=process.env.SECRET_KEY;
-//         let token = jwt.sign({_id:this._id}, SECRET_KEY);
-//         this.tokens = this.tokens.concat({token: token});
-//         await this.save();
-
-//         return token;
-//     }catch(err){
-//         console.log(err);
-//     }
-// }
-
-
-// const User = mongoose.model('user', UserSchema);
-
-// module.exports =User;
-
-// mongoose.models = {};
 export default mongoose.models.Company || mongoose.model("Company", CompanySchema);

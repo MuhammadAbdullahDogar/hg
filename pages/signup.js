@@ -9,7 +9,7 @@ import Router from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import { signIn } from 'next-auth/react'
-
+import axios from 'axios';
 
 const SignUp = () => {
   let role = '';
@@ -29,7 +29,6 @@ const SignUp = () => {
   //backend
   let name, value;
   const handleInputs = (e) => {
-    console.log(e);
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
@@ -38,45 +37,22 @@ const SignUp = () => {
   const PostData = async (e) => {
     e.preventDefault();
     setOpen(!open);
-    const { fname, lname, email, phone, password } = user;
-    let userData = { role, fname, lname, email, phone, password };
 
-    let credential = {
-      role: '',
-      email: email,
-      password: password
-    }
+    let userData = { role, ...user };
+    userData.role = (changeNames['fName'] == 'First Name') ? 'candidate' : 'company';
 
-    if (changeNames['fName'] == 'First Name'){
-      credential.role = 'candidate';
-      userData.role = 'candidate';
-    }
-    else 
-    {
-      credential.role = 'company';
-      userData.role = 'company';
-    }
-
-    const res = await fetch(`/api/${credential.role}/signup`, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    });
+    const res = await axios.post(`/api/${userData.role}/signup`, { userData }, { headers: { 'Content-Type': 'application/json' } });
 
     if (res.status === 200) {
-      const ress = await signIn('credentials', {
-        ...credential,
-        redirect: false
-      })
+      const { role, email, password, _id } = res.data.user;
+      const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
 
       if (ress.status === 200) {
         window.alert('Show toast success');
         console.log('Registration Sucessful');
-        Router.push(`/${credential.role}/profile_development/ProfileAbout`);
+        Router.push(`/${role}/profile_development/ProfileAbout`);
       }
-      
+
     } else {
       setOpen(false);
       console.log('Invalid Registration');

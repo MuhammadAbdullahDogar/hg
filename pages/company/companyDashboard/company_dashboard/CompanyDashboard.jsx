@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
 import CompanyDashboardTopNavbar from '../CompanyDashboardTopNavbar';
 import CompanyDashboardLeftNavbar from '../CompanyDahboardLeftNavbar';
 import CompanyStatus from '../companyProfileDetails/CompanyStatus';

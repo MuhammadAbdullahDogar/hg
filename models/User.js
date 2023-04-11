@@ -1,12 +1,5 @@
 const mongoose = require('mongoose');
-var CryptoJS = require("crypto-js");
-
-// const bcrypt= require('bcrypt');
-// const jwt= require('jsonwebtoken');
-// const dotenv = require("dotenv");
-
-// dotenv.config();
-
+import * as bcrypt from 'bcrypt';
 
 const UserSchema = new mongoose.Schema({
     role: { type: String },
@@ -78,50 +71,20 @@ const UserSchema = new mongoose.Schema({
 });
 
 // hashing password before saveing on save function call
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', async function (next) {
     if (this.isModified('password')) {
-        this.password = CryptoJS.AES.encrypt(this.password, process.env.SECRET_KEY).toString();
+        this.password = generateHash(this.password);
     }
     next();
 });
 
 
-// registerSchema.methods.generateAuthToken = async function(){
-//     try{
-//         const SECRET_KEY=process.env.SECRET_KEY;
-//         let token = jwt.sign({_id:this._id}, SECRET_KEY);
-//         this.tokens = this.tokens.concat({token: token});
-//         await this.save();
+function generateHash (password) {
+const salt = bcrypt.genSaltSync (12);
+const hash= bcrypt.hashSync (password, salt);
+return hash;
+}
 
-//         return token;
-//     }catch(err){
-//         console.log(err);
-//     }
-// }
-
-
-// const User = mongoose.model('user', UserSchema);
-
-// module.exports =User;
-
-// mongoose.models = {};
-
-
-// const candidates = await Candidate.find({ jobsApplied: { $elemMatch: { job: jobId, status: 'invited' } } });
-// const candidates = await Candidate.find().populate('jobsApplied.job');
-//find count of applied, invited, or interviewed
-
-// const jobId = '6074f4a251c85a2c8c2c1b44'; // replace with the ID of the job you want to calculate totals for
-
-// const result = await Job.aggregate([
-//   { $match: { _id: mongoose.Types.ObjectId(jobId) } },
-//   { $lookup: { from: 'candidates', localField: '_id', foreignField: 'jobsApplied.job', as: 'candidates' } },
-//   { $unwind: '$candidates' },
-//   { $unwind: '$candidates.jobsApplied' },
-//   { $group: { _id: '$candidates.jobsApplied.status', count: { $sum: 1 } } }
-// ]);
-
-// console.log(result);
 
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);

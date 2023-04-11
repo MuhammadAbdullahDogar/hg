@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import axios from 'axios';
 
 export const authOptions = {
     pages: {
@@ -13,26 +14,17 @@ export const authOptions = {
     providers: [
         CredentialsProvider({
             name: "Credentials",
-            async authorize(credentials, req) {
-
-                const { email, password, role, log } = credentials
-                console.log(email, password, role);
-                let res;
-                    res = await fetch(`${process.env.WEBSITE}/api/${role}/login`, {
-                        method: 'POST',
-                        credentials: 'include', // Don't forget to specify this if you need cookies
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({ email, password , log})
-                    });
-                
-                const user = await res.json();
-    
-                if (res.status === 200) 
-                    return user;
-                else
-                    return null
+            async authorize(credentials) {
+                console.log(credentials);
+                const { email, password, role, id } = credentials
+                const url = id ? `${process.env.WEBSITE}/api/fetchData` : `${process.env.WEBSITE}/api/login`;
+                const body = id ? { id, role } : { email, password, role };
+                try {
+                    const res = await axios.post(url, body, { headers: { 'Content-Type': 'application/json' } });
+                    return res.data;
+                } catch (error) {
+                    throw new Error('Failed to authenticate');
+                }
             }
         })
     ],
