@@ -16,56 +16,77 @@ import Router from "next/router";
 import { getSession } from "next-auth/react"
 import { signIn } from 'next-auth/react'
 import axios from 'axios';
+import { useFormik } from 'formik';
+import { userAboutSchema } from '../../../validationSchema'
 
 
 
 
 const ProfileAbout = ({ user }) => {
-  const [portfolios, setPortfolios] = useState([{ linkType: '', portfolioLink: '' }])
+
+  //portfolio
+  const [portfolios, setPortfolios] = useState([{ linkType: '', portfolioLink: '' }]);
+  const [errors, setErrors] = useState([]);
+
+
   const handelFormChange = (event, index) => {
     let data = [...portfolios];
     data[index][event.target.name] = event.target.value;
-    setPortfolios(data);
-  }
-  
-  const addFields = () => {
-    let portfolio = { linkType: '', portfolioLink: '' }
-    setPortfolios([...portfolios, portfolio])
-  }
-  const removeFields = (event, index) => {
-    let data = [...portfolios];
-    data.splice(index, 1)
-    setPortfolios(data)
-  }
 
+    let errors = [];
+    if (event.target.name === 'portfolioLink') {
+      if (!event.target.value.startsWith('https://')) {
+        errors[index] = 'Portfolio link must start with https://';
+      }
+    }
+
+    setPortfolios(data);
+    setErrors(errors);
+  };
+
+  const addFields = () => {
+    let portfolio = { linkType: '', portfolioLink: '' };
+    setPortfolios([...portfolios, portfolio]);
+    setErrors([...errors, '']);
+  };
+  const removeFields = (index) => {
+    let data = [...portfolios];
+    data.splice(index, 1);
+    setPortfolios(data);
+  };
+  
   //backend 
-  const [aboutUser, setAboutUser] = useState({
-    fname: user?.fname, lname: user?.lname, phone: user?.phone, email: user?.email, gender: "",
-    title: "", dob: "1/2/1992", city: "", country: "", description: "", portfolios
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      fname: user?.fname || '',
+      lname: user?.lname || '',
+      phone: user?.phone || '',
+      email: user?.email || '',
+      gender: '',
+      dob: '',
+      city: '',
+      country: '',
+      description: '',
+      portfolios: '',
+    },
+    validationSchema: userAboutSchema,
+    onSubmit: () => { PostData() }
+
   });
 
   function chooseCountry(country) {
-    aboutUser.country = country;
+    formik.values.country = country;
   };
 
   const chooseDob = (dob) => {
-    aboutUser.dob = dob;
+    formik.values.dob = dob;
   };
 
-  let name, value;
-  const handleInputs = (e) => {
-    name = e.target.name;
-    value = e.target.value;
-
-    setAboutUser({ ...aboutUser, [name]: value });
-  }
-
-
   const PostData = async (e) => {
-    e.preventDefault();
+    formik.values.portfolios = portfolios.filter((form) => form.linkType.trim() !== '' || form.portfolioLink.trim() !== '');
 
-    let userData = { _id: user?._id, ...aboutUser, portfolios: portfolios };
-    const res = await axios.post(`/api/candidate/profile_development/profileAbout`, { ...userData }, { headers: { 'Content-Type': 'application/json' } });
+    const res = await axios.post(`/api/candidate/profile_development/profileAbout`, { _id: user?._id,...formik.values }, { headers: { 'Content-Type': 'application/json' } });
 
     if (res.status === 200) {
       const { role, email, password, _id } = user;
@@ -110,7 +131,7 @@ const ProfileAbout = ({ user }) => {
         <Grid item md={1} xs={2} >
           <FormControl fullWidth>
             <InputLabel>Title</InputLabel>
-            <MySelect label="Gender" value={aboutUser.title} onChange={handleInputs} name="title" >
+            <MySelect label="Gender" {...formik.getFieldProps('title')} error={formik.touched.title && Boolean(formik.errors.title)} name="title" >
               <MenuItem value='Mr'>Mr  </MenuItem>
               <MenuItem value="Mrs">Mrs </MenuItem>
               <MenuItem value="Miss">Miss</MenuItem>
@@ -118,17 +139,17 @@ const ProfileAbout = ({ user }) => {
               <MenuItem value="Mx">Mx  </MenuItem>
             </MySelect>
           </FormControl></Grid>
-        <Grid item xs={3}><MyTextField label="First Name" variant="outlined" fullWidth value={aboutUser.fname} onChange={handleInputs} name="fname" /></Grid>
-        <Grid item xs={3}><MyTextField label="Last Name" variant="outlined" fullWidth value={aboutUser.lname} onChange={handleInputs} name="lname" /></Grid>
+        <Grid item xs={3}><MyTextField label="First Name" variant="outlined" fullWidth {...formik.getFieldProps('fname')} error={formik.touched.fname && Boolean(formik.errors.fname)} helperText={formik.touched.fname && formik.errors.fname} name="fname" /></Grid>
+        <Grid item xs={3}><MyTextField label="Last Name" variant="outlined" fullWidth {...formik.getFieldProps('lname')} error={formik.touched.lname && Boolean(formik.errors.lname)} helperText={formik.touched.lname && formik.errors.lname} name="lname" /></Grid>
         <Grid item xs={1} md={1.5}></Grid>
 
         <Grid item xs={3.5}></Grid>
-        <Grid item xs={3}><MyTextField label="Email Address" variant="outlined" fullWidth value={aboutUser.email} disabled /></Grid>
-        <Grid item xs={2.5}><MyTextField label="Phone Number" variant="outlined" fullWidth value={aboutUser.phone} onChange={handleInputs} name="phone" /></Grid>
+        <Grid item xs={3}><MyTextField label="Email Address" variant="outlined" fullWidth {...formik.getFieldProps('email')} error={formik.touched.email && Boolean(formik.errors.email)} helperText={formik.touched.email && formik.errors.email} disabled /></Grid>
+        <Grid item xs={2.5}><MyTextField label="Phone Number" variant="outlined" fullWidth {...formik.getFieldProps('phone')} error={formik.touched.phone && Boolean(formik.errors.phone)} helperText={formik.touched.phone && formik.errors.phone} name="phone" /></Grid>
         <Grid item xs={1.5} >
           <FormControl fullWidth>
             <InputLabel>Gender</InputLabel>
-            <MySelect label="Gender" value={aboutUser.gender} onChange={handleInputs} name="gender">
+            <MySelect label="Gender" {...formik.getFieldProps('gender')} error={formik.touched.gender && Boolean(formik.errors.gender)}  name="gender">
               <MenuItem value='male'>Male</MenuItem>
               <MenuItem value="female">Female</MenuItem>
               <MenuItem value="other">Other</MenuItem>
@@ -138,8 +159,8 @@ const ProfileAbout = ({ user }) => {
 
         <Grid item xs={3.5}></Grid>
         <Grid item md={2.33} xs={3}><Date_Picker name='dob' chooseDob={chooseDob}></Date_Picker></Grid>
-        <Grid item md={2.33} xs={3}><MyTextField label="City" variant="outlined" fullWidth value={aboutUser.city} onChange={handleInputs} name="city" /></Grid>
-        <Grid item md={2.33} xs={2}><Countryselect name='country' chooseCountry={chooseCountry} ></Countryselect></Grid>
+        <Grid item md={2.33} xs={3}><MyTextField label="City" variant="outlined" fullWidth {...formik.getFieldProps('city')} error={formik.touched.city && Boolean(formik.errors.city)} helperText={formik.touched.city && formik.errors.city} name="city" /></Grid>
+        <Grid item md={2.33} xs={2}><Countryselect name='country' chooseCountry={chooseCountry} formik={formik} ></Countryselect></Grid>
         <Grid item xs={1} md={1.5}></Grid>
         <Grid item xs={12}></Grid>
 
@@ -156,10 +177,16 @@ const ProfileAbout = ({ user }) => {
                     <Grid item xs={12}></Grid>
                     <Grid item xs={12}></Grid>
                     <Grid item xs={12}></Grid>
-                    <Grid item md={3.5} xs={3}><MyTextField name='linkType' value={form.linkType} label="Link Type" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
-                    <Grid item md={6.4} xs={5}><MyTextField name='portfolioLink' value={form.portfolioLink} label="Portfolio Link" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
+                    <Grid item md={3.5} xs={3}>
+                      <MyTextField name='linkType' value={form.linkType} label="Link Type" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} />
+                    </Grid>
+                    <Grid item md={6.4} xs={5}>
+                      <MyTextField name='portfolioLink' value={form.portfolioLink} label="Portfolio Link" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} helperText={errors[index]} />
+                    </Grid>
 
-                    <Grid item xs={1} md={2.1} sx={{ marginTop: ".5rem" }}><RemoveIcon fontSize='large' color='error' onClick={removeFields} /></Grid>
+                    <Grid item xs={1} md={2.1} sx={{ marginTop: ".5rem" }}>
+                      {index > 0 && <RemoveIcon fontSize='large' color='error' onClick={() => removeFields(index)} />}
+                    </Grid>
 
                   </Grid>
                 </div>
@@ -168,13 +195,13 @@ const ProfileAbout = ({ user }) => {
           </form>
         </Grid>
         <Grid item xs={3.5}></Grid>
-        <Grid item xs={8.5}><AddIcon fontSize='large' color='secondary' onClick={addFields} /></Grid>
+        <Grid item xs={8.5}><AddIcon fontSize='large' color='secondary' onClick={() => addFields()} /></Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={2.5}><Typography variant="profileH2">Brief Description</Typography><br />
           <Typography variant="profileH3">Describe who you are, and what makes you stand out of all the candidates.</Typography></Grid>
-        <Grid item md={7} xs={8}><MyTextField id="outlined-multiline-static" multiline fullWidth rows={5} value={aboutUser.description} onChange={handleInputs} name="description" /></Grid>
+        <Grid item md={7} xs={8}><MyTextField id="outlined-multiline-static" multiline fullWidth rows={5} {...formik.getFieldProps('description')} error={formik.touched.description && Boolean(formik.errors.description)} helperText={formik.touched.description && formik.errors.description} name="description" /></Grid>
         <Grid item xs={1} md={1.5}></Grid>
-        <Grid item xs={12} align='center'><CommonButton variant="Gradient" onClick={PostData}>NEXT</CommonButton></Grid>
+        <Grid item xs={12} align='center'><CommonButton variant="Gradient" onClick={formik.handleSubmit}>NEXT</CommonButton></Grid>
       </Grid>
     </div>
   )

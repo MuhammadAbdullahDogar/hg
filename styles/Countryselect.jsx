@@ -3,13 +3,13 @@ import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
 import MyTextField from './MyTextField';
 
-export default function Countryselect({chooseCountry, name}) {
+export default function Countryselect({ chooseCountry, name, formik }) {
 
     const [country, setCountry] = useState({});
-    if(name)
-        chooseCountry(country.label,name);
+    if (name)
+        chooseCountry(country?.label, name);
     else
-        chooseCountry(country.label);
+        chooseCountry(country?.label);
 
 
     return (
@@ -18,7 +18,7 @@ export default function Countryselect({chooseCountry, name}) {
                 id="country-select-demo"
                 onChange={(event, newValue) => {
                     setCountry(newValue);
-                  }}
+                }}
                 options={countries}
                 autoHighlight
                 getOptionLabel={(option) => option.label}
@@ -36,7 +36,7 @@ export default function Countryselect({chooseCountry, name}) {
                     </Box>
                 )}
                 renderInput={(params) => (
-                    
+
                     <MyTextField
                         {...params}
                         label="Choose a country"
@@ -44,15 +44,19 @@ export default function Countryselect({chooseCountry, name}) {
                             ...params.inputProps,
                             autoComplete: 'true', // disable autocomplete and autofill
                         }}
+                        // name="country"
+                        // {...formik.getFieldProps('country')}
+                        // error={formik.touched.country && Boolean(formik.errors.country)}
+                        // helperText={formik.touched.country && formik.errors.country}
+                        // value={country?.label}
                     />
-
                 )}
-              />
-        
+            />
+
         </>
-        
+
     )
-    
+
 }
 
 const countries = [

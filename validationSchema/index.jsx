@@ -1,4 +1,4 @@
-import * as Yup from 'yup';
+import * as Yup from 'Yup';
 
 export const companyAboutSchema = Yup.object().shape({
     cname: Yup.string()
@@ -53,14 +53,41 @@ export const postJobSchema = Yup.object().shape({
 
 
 
+export const userAboutSchema = Yup.object().shape({
+  fname: Yup.string().required('Required'),
+  lname: Yup.string().required('Required'),
+  email: Yup
+    .string()
+    .required('Required')
+    .email('Invalid email format')
+    .matches(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/g, 'Invalid email format')
+    .max(255, 'Email must be at most 255 characters long'),
+  phone: Yup
+    .string()
+    .required('Phone number is required')
+    .matches(/^\d{10}$/g, 'Invalid phone number format'),
+    title: Yup.string().max(5, 'Title must be at most 255 characters long').required('Required'),
+    gender: Yup.string().max(255, 'Gender must be at most 255 characters long').required('Required'),
+    // dob: Yup.string().max(255, 'Date of birth must be at most 255 characters long').required('Required'),
+    city: Yup.string().max(255, 'City must be at most 255 characters long').required('Required'),
+    // country: Yup.string().max(255, 'Country must be at most 255 characters long').required('Required'),
+    // portfolios: Yup
+    //   .array()
+    //   .of(
+    //     Yup.object().shape({
+    //       linkType: Yup.string().max(255, 'Link type must be at most 255 characters long'),
+    //       portfolioLink: Yup.string().max(255, 'Portfolio link must be at most 255 characters long'),
+    //     })
+    //   ),
+    description: Yup.string().max(5000, 'Description must be at most 5000 characters long').required('Required')
+})
 
 
-
-// const UserSchema = yup.object().shape({
-//   role: yup.string(),
-//   fname: yup.string().required('First name is required'),
-//   lname: yup.string().required('Last name is required'),
-//   email: yup
+// const UserSchema = Yup.object().shape({
+//   role: Yup.string(),
+//   fname: Yup.string().required('First name is required'),
+//   lname: Yup.string().required('Last name is required'),
+//   email: Yup
 //     .string()
 //     .required('Email is required')
 //     .email('Invalid email format')
@@ -70,7 +97,7 @@ export const postJobSchema = Yup.object().shape({
 //       const user = await User.findOne({ email: value });
 //       return !user;
 //     }),
-//   phone: yup
+//   phone: Yup
 //     .string()
 //     .required('Phone number is required')
 //     .matches(/^\d{10}$/g, 'Invalid phone number format')
@@ -78,7 +105,7 @@ export const postJobSchema = Yup.object().shape({
 //       const user = await User.findOne({ phone: value });
 //       return !user;
 //     }),
-//   password: yup
+//   password: Yup
 //     .string()
 //     .required('Password is required')
 //     .min(8, 'Password must be at least 8 characters long')
@@ -87,30 +114,30 @@ export const postJobSchema = Yup.object().shape({
 //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/,
 //       'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
 //     ),
-//   about: yup.object().shape({
-//     title: yup.string().max(255, 'Title must be at most 255 characters long'),
-//     gender: yup.string().max(255, 'Gender must be at most 255 characters long'),
-//     dob: yup.string().max(255, 'Date of birth must be at most 255 characters long'),
-//     city: yup.string().max(255, 'City must be at most 255 characters long'),
-//     country: yup.string().max(255, 'Country must be at most 255 characters long'),
-//     portfolios: yup
+//   about: Yup.object().shape({
+//     title: Yup.string().max(255, 'Title must be at most 255 characters long'),
+//     gender: Yup.string().max(255, 'Gender must be at most 255 characters long'),
+//     dob: Yup.string().max(255, 'Date of birth must be at most 255 characters long'),
+//     city: Yup.string().max(255, 'City must be at most 255 characters long'),
+//     country: Yup.string().max(255, 'Country must be at most 255 characters long'),
+//     portfolios: Yup
 //       .array()
 //       .of(
-//         yup.object().shape({
-//           linkType: yup.string().max(255, 'Link type must be at most 255 characters long'),
-//           portfolioLink: yup.string().max(255, 'Portfolio link must be at most 255 characters long'),
+//         Yup.object().shape({
+//           linkType: Yup.string().max(255, 'Link type must be at most 255 characters long'),
+//           portfolioLink: Yup.string().max(255, 'Portfolio link must be at most 255 characters long'),
 //         })
 //       ),
-//     description: yup.string().max(5000, 'Description must be at most 5000 characters long'),
+//     description: Yup.string().max(5000, 'Description must be at most 5000 characters long'),
 //   }),
-//   academic: yup.object().shape({
-//     universityName: yup.string().max(255, 'University name must be at most 255 characters long'),
-//     major: yup.string().max(255, 'Major must be at most 255 characters long'),
-//     startingYear: yup.string().max(255, 'Starting year must be at most 255 characters long'),
-//     endingYear: yup.string().max(255, 'Ending year must be at most 255 characters long'),
-//     obtainedCgpa: yup.string().max(255, 'Obtained CGPA must be at most 255 characters long'),
-//     totalCgpa: yup.string().max(255, 'Total CGPA must be at most 255 characters long'),
-//     learning: yup.string().max(5000, 'Learning must be at most 5000 characters long'),
+//   academic: Yup.object().shape({
+//     universityName: Yup.string().max(255, 'University name must be at most 255 characters long'),
+//     major: Yup.string().max(255, 'Major must be at most 255 characters long'),
+//     startingYear: Yup.string().max(255, 'Starting year must be at most 255 characters long'),
+//     endingYear: Yup.string().max(255, 'Ending year must be at most 255 characters long'),
+//     obtainedCgpa: Yup.string().max(255, 'Obtained CGPA must be at most 255 characters long'),
+//     totalCgpa: Yup.string().max(255, 'Total CGPA must be at most 255 characters long'),
+//     learning: Yup.string().max(5000, 'Learning must be at most 5000 characters long'),
 //   }),
  
 
@@ -182,88 +209,88 @@ export const postJobSchema = Yup.object().shape({
 //     cName: Yup.string().max(50, 'Company name must be less than 50
 
 
-// const userValidationSchema = yup.object().shape({
-//     role: yup.string().oneOf(['admin', 'user']).required(),
-//     fname: yup.string().required('First name is required'),
-//     lname: yup.string().required('Last name is required'),
-//     email: yup.string().email().required('Email is required').lowercase(),
-//     phone: yup
+// const userValidationSchema = Yup.object().shape({
+//     role: Yup.string().oneOf(['admin', 'user']).required(),
+//     fname: Yup.string().required('First name is required'),
+//     lname: Yup.string().required('Last name is required'),
+//     email: Yup.string().email().required('Email is required').lowercase(),
+//     phone: Yup
 //       .string()
 //       .required('Phone number is required')
 //       .matches(/^[0-9]+$/, 'Must be only digits')
 //       .min(10, 'Must be exactly 10 digits')
 //       .max(10, 'Must be exactly 10 digits'),
-//     password: yup
+//     password: Yup
 //       .string()
 //       .required('Password is required')
 //       .min(6, 'Password must be at least 6 characters')
 //       .max(20, 'Password must not exceed 20 characters'),
-//     about: yup.object().shape({
-//       title: yup.string().max(100, 'Title must not exceed 100 characters'),
-//       gender: yup.string().oneOf(['male', 'female', 'other'], 'Invalid gender'),
-//       dob: yup
+//     about: Yup.object().shape({
+//       title: Yup.string().max(100, 'Title must not exceed 100 characters'),
+//       gender: Yup.string().oneOf(['male', 'female', 'other'], 'Invalid gender'),
+//       dob: Yup
 //         .string()
 //         .matches(
 //           /^(0?[1-9]|[12][0-9]|3[01])[/-](0?[1-9]|1[012])[/-]\d{4}$/,
 //           'Invalid date format'
 //         ),
-//       city: yup.string().max(100, 'City name must not exceed 100 characters'),
-//       country: yup
+//       city: Yup.string().max(100, 'City name must not exceed 100 characters'),
+//       country: Yup
 //         .string()
 //         .max(100, 'Country name must not exceed 100 characters'),
-//       portfolios: yup.array().of(
-//         yup.object().shape({
-//           linkType: yup.string(),
-//           portfolioLink: yup.string().url('Invalid portfolio link'),
+//       portfolios: Yup.array().of(
+//         Yup.object().shape({
+//           linkType: Yup.string(),
+//           portfolioLink: Yup.string().url('Invalid portfolio link'),
 //         })
 //       ),
-//       description: yup.string().max(1000, 'Description must not exceed 1000 characters'),
+//       description: Yup.string().max(1000, 'Description must not exceed 1000 characters'),
 //     }),
-//     academic: yup.object().shape({
-//       universityName: yup
+//     academic: Yup.object().shape({
+//       universityName: Yup
 //         .string()
 //         .max(100, 'University name must not exceed 100 characters'),
-//       major: yup.string().max(100, 'Major name must not exceed 100 characters'),
-//       startingYear: yup
+//       major: Yup.string().max(100, 'Major name must not exceed 100 characters'),
+//       startingYear: Yup
 //         .string()
 //         .matches(/^[0-9]{4}$/, 'Must be a valid year (YYYY)'),
-//       endingYear: yup
+//       endingYear: Yup
 //         .string()
 //         .matches(/^[0-9]{4}$/, 'Must be a valid year (YYYY)'),
-//       obtainedCgpa: yup
+//       obtainedCgpa: Yup
 //         .number()
 //         .typeError('CGPA must be a number')
 //         .min(0, 'CGPA must be between 0 and 4')
 //         .max(4, 'CGPA must be between 0 and 4'),
-//       totalCgpa: yup
+//       totalCgpa: Yup
 //         .number()
 //         .typeError('CGPA must be a number')
 //         .min(0, 'CGPA must be between 0 and 4')
 //         .max(4, 'CGPA must be between 0 and 4'),
-//       learning: yup.string().max(1000, 'Learning must not exceed 1000 characters'),
+//       learning: Yup.string().max(1000, 'Learning must not exceed 1000 characters'),
 //     }),
-//     experience: yup.object().shape({
-//       cName: yup.string().max(100, 'Company name must not exceed 100 characters'),
-//       cDomain: yup.string().max(100, 'Company domain must not exceed 100 characters'),
-//       jobTitle: yup.string().max(100, 'Job title must not exceed 100 characters'),
-//       startingDate: yup
+//     experience: Yup.object().shape({
+//       cName: Yup.string().max(100, 'Company name must not exceed 100 characters'),
+//       cDomain: Yup.string().max(100, 'Company domain must not exceed 100 characters'),
+//       jobTitle: Yup.string().max(100, 'Job title must not exceed 100 characters'),
+//       startingDate: Yup
 //         .string()
 //         .matches(
 //           /^(0?[1-9]|[12][
   
 
 
-// const userSchema = yup.object().shape({
-//     role: yup.string(),
-//     fname: yup
+// const userSchema = Yup.object().shape({
+//     role: Yup.string(),
+//     fname: Yup
 //       .string()
 //       .required('First name is required')
 //       .matches(/^[A-Za-z]+$/, 'First name should contain only alphabets'),
-//     lname: yup
+//     lname: Yup
 //       .string()
 //       .required('Last name is required')
 //       .matches(/^[A-Za-z]+$/, 'Last name should contain only alphabets'),
-//     email: yup
+//     email: Yup
 //       .string()
 //       .required('Email is required')
 //       .email('Email must be a valid email address')
@@ -271,84 +298,84 @@ export const postJobSchema = Yup.object().shape({
 //         /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+$/,
 //         'Invalid email format'
 //       ),
-//     phone: yup
+//     phone: Yup
 //       .number()
 //       .required('Phone number is required')
 //       .min(1000000000, 'Invalid phone number')
 //       .max(9999999999, 'Invalid phone number'),
-//     password: yup
+//     password: Yup
 //       .string()
 //       .required('Password is required')
 //       .matches(
 //         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
 //         'Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one number'
 //       ),
-//     about: yup.object().shape({
-//       title: yup.string(),
-//       gender: yup.string(),
-//       dob: yup.string(),
-//       city: yup.string(),
-//       country: yup.string(),
-//       portfolios: yup.array().of(
-//         yup.object().shape({
-//           linkType: yup.string(),
-//           portfolioLink: yup.string(),
+//     about: Yup.object().shape({
+//       title: Yup.string(),
+//       gender: Yup.string(),
+//       dob: Yup.string(),
+//       city: Yup.string(),
+//       country: Yup.string(),
+//       portfolios: Yup.array().of(
+//         Yup.object().shape({
+//           linkType: Yup.string(),
+//           portfolioLink: Yup.string(),
 //         })
 //       ),
-//       description: yup.string(),
+//       description: Yup.string(),
 //     }),
-//     academic: yup.object().shape({
-//       universityName: yup.string(),
-//       major: yup.string(),
-//       startingYear: yup.string(),
-//       endingYear: yup.string(),
-//       obtainedCgpa: yup
+//     academic: Yup.object().shape({
+//       universityName: Yup.string(),
+//       major: Yup.string(),
+//       startingYear: Yup.string(),
+//       endingYear: Yup.string(),
+//       obtainedCgpa: Yup
 //         .string()
 //         .matches(
 //           /^[0-9]\.[0-9][0-9]$/,
 //           'CGPA should be in the format of X.XX'
 //         ),
-//       totalCgpa: yup
+//       totalCgpa: Yup
 //         .string()
 //         .matches(
 //           /^[0-9]\.[0-9][0-9]$/,
 //           'CGPA should be in the format of X.XX'
 //         ),
-//       learning: yup.string(),
+//       learning: Yup.string(),
 //     }),
-//     experience: yup.object().shape({
-//       cName: yup.string(),
-//       cDomain: yup.string(),
-//       jobTitle: yup.string(),
-//       startingDate: yup.string(),
-//       endingDate: yup.string(),
-//       responsibities: yup.string(),
+//     experience: Yup.object().shape({
+//       cName: Yup.string(),
+//       cDomain: Yup.string(),
+//       jobTitle: Yup.string(),
+//       startingDate: Yup.string(),
+//       endingDate: Yup.string(),
+//       responsibities: Yup.string(),
 //     }),
-//     yearsOfExperience: yup.string(),
-//     openToWorkingAs: yup.array().of(yup.string()),
-//     skills: yup.array().of(
-//       yup.object().shape({
-//         skill: yup.string(),
-//         percent: yup
+//     yearsOfExperience: Yup.string(),
+//     openToWorkingAs: Yup.array().of(Yup.string()),
+//     skills: Yup.array().of(
+//       Yup.object().shape({
+//         skill: Yup.string(),
+//         percent: Yup
 //           .number()
 //           .min(0, 'Percentage should be between 0 and 100')
 //           .max(100, 'Percentage should be between 0 and 100'),
 //       })
 //     ),
-//     preferences: yup.object().shape({
-//       jobMode: yup.array().of(yup.string()),
-//       selectedCountries: yup.array().of(
-//         yup.object().shape({
-//           name: yup.string(),
-//           country: yup.string(),
+//     preferences: Yup.object().shape({
+//       jobMode: Yup.array().of(Yup.string()),
+//       selectedCountries: Yup.array().of(
+//         Yup.object().shape({
+//           name: Yup.string(),
+//           country: Yup.string(),
 //         })
 //       ),
-//       jobCategory: yup.array().of(yup.string()),
+//       jobCategory: Yup.array().of(Yup.string()),
 //     }),
-//     jobsApplied: yup.array().of(
-//       yup.object().shape({
-//         job: yup.string().required(),
-//         status: yup
+//     jobsApplied: Yup.array().of(
+//       Yup.object().shape({
+//         job: Yup.string().required(),
+//         status: Yup
 //           .string()
 //           .oneOf(
 //             ['applied', '
