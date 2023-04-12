@@ -1,4 +1,4 @@
-import * as Yup from 'Yup';
+import * as Yup from 'yup';
 
 export const companyAboutSchema = Yup.object().shape({
     cname: Yup.string()
