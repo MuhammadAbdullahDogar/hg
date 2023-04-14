@@ -11,7 +11,14 @@ import Backdrop from '@mui/material/Backdrop';
 import { signIn } from 'next-auth/react'
 import axios from 'axios';
 
+async function connectDB() {
+  const response = await axios.post(`/api/connectToDb`);
+}
+
 const SignUp = () => {
+  
+  connectDB();
+
   let role = '';
   const [changeNames, setChangeNames] = useState({ fName: 'First Name', lName: 'Last Name', active_candiate_btn: 'btn_active', active_company_btn: '' })
   const [open, setOpen] = useState(false);

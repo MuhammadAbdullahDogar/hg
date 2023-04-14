@@ -11,9 +11,4 @@ const connectDb = handler => async (req, res)=>{
 
 }
 
-
-// mongoose.connect(process.env.MONGO_URI).then(()=>{
-//     console.log('Connection Sucessful');
-// }).catch((err) => console.log('Connection fail'));
-
 export default connectDb;

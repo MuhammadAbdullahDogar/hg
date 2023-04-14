@@ -9,9 +9,16 @@ import Router from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import { signIn } from 'next-auth/react'
+import axios from 'axios';
 
+async function connectDB() {
+    const response = await axios.post(`/api/connectToDb`);
+  }
 
 const Login_dark = () => {
+
+    connectDB();
+  
     const [state, setState] = useState({ active_candiate_btn: 'btn_active', active_company_btn: '' });
     const [err, setError] = useState({ err_msg: '', err_color: false });
     const [email, setEmail] = useState('');
