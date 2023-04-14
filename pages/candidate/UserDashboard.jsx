@@ -8,6 +8,7 @@ import UserCompanyData from './userProfileData/useExperienceAndSkills'
 import UserStatus from './userStatus'
 import UserProfileTab from './userProfileData/userProfileTab'
 import { getSession } from "next-auth/react"
+import Box from '@mui/material/Box';
 
 
 const UserDashboard = ({user}) => {
@@ -17,12 +18,15 @@ const UserDashboard = ({user}) => {
         <>
             <Grid container spacing={4}>
                 <Grid item xs={12}><TopNavbar /></Grid>
-                <Grid item xs={2}><LeftNavbar id={user?._id} /></Grid>
+                <Grid item xs={1}><LeftNavbar id={user?._id} /></Grid>
                 <Grid item xs={2.4}><UserStatus user={user} /></Grid>
                 <Grid item xs={.2}></Grid>
-                <Grid item xs={7} sx={{ backgroundColor: '#D8EBF6', borderRadius: '2rem 2rem 5rem 5rem' }}>
+                <Grid item xs={8} >
+                    <Box sx={{ backgroundColor: '#D8EBF6', borderRadius: '1rem' }}>
                     <UserProfileTab value={userInfo} setUserInfo={setUserInfo} />
                     {(userInfo == 0 && <UserProfileData user={user} />) || (userInfo == 1 && <UserAcademicData academics={user?.academic} />) || <UserCompanyData experiences={user?.experience} />}
+
+                    </Box>
                 </Grid>
             </Grid>
         </>

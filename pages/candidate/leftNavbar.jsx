@@ -57,7 +57,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const LeftNavbar = () => {
   
-    const iconSize = 20;
+    const iconSize = 25;
  
 
     const [open, setOpen] = React.useState(false);
@@ -75,7 +75,7 @@ const LeftNavbar = () => {
 
 
         <>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', }}>
                 <Drawer variant="permanent" open={open}>
                    
                     <List sx={{ mt: '5rem' }}>
