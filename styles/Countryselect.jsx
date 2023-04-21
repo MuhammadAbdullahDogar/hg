@@ -3,14 +3,13 @@ import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
 import MyTextField from './MyTextField';
 
-export default function Countryselect({ chooseCountry, name, formik }) {
+export default function Countryselect({ chooseCountry, name,defaultValue, formik, }) {
 
-    const [country, setCountry] = useState({});
+    const [country, setCountry] = useState({ code: '', label: defaultValue, phone: '' } || {});
     if (name)
         chooseCountry(country?.label, name);
     else
         chooseCountry(country?.label);
-
 
     return (
         <>
@@ -43,6 +42,8 @@ export default function Countryselect({ chooseCountry, name, formik }) {
                         inputProps={{
                             ...params.inputProps,
                             autoComplete: 'true', // disable autocomplete and autofill
+                            value: defaultValue ? defaultValue : '', // set the default value of the input field
+
                         }}
                         // name="country"
                         // {...formik.getFieldProps('country')}

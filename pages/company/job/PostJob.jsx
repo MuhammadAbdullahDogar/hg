@@ -58,19 +58,8 @@ const PostJob = ({ user }) => {
     });
 
     if (res.status === 200) {
-
-      const credential = {
-        role: 'company',
-        log: 'auto',
-        email: user?.email,
-        password: user?.password
-      }
-
-
-      const ress = await signIn('credentials', {
-        ...credential,
-        redirect: false
-      })
+      const { role, email, password, _id } = user;
+      const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
 
       if (ress.status === 200) {
         const jobId = await res.json()

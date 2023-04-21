@@ -25,7 +25,7 @@ import { userAboutSchema } from '../../../validationSchema'
 const ProfileAbout = ({ user }) => {
 
   //portfolio
-  const [portfolios, setPortfolios] = useState([{ linkType: '', portfolioLink: '' }]);
+  const [portfolios, setPortfolios] = useState(user?.about?.portfolios ? user?.about?.portfolios : [{ linkType: '', portfolioLink: '' }]);
   const [errors, setErrors] = useState([]);
 
 
@@ -54,20 +54,21 @@ const ProfileAbout = ({ user }) => {
     data.splice(index, 1);
     setPortfolios(data);
   };
+
   
   //backend 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      fname: user?.fname || '',
-      lname: user?.lname || '',
-      phone: user?.phone || '',
-      email: user?.email || '',
-      gender: '',
-      dob: '',
-      city: '',
-      country: '',
-      description: '',
+      title: user?.about?.title,
+      fname: user?.fname,
+      lname: user?.lname,
+      phone: user?.phone,
+      email: user?.email,
+      gender: user?.about?.gender,
+      dob: user?.about?.dob,
+      city: user?.about?.city,
+      country: user?.about?.country,
+      description: user?.about?.description,
       portfolios: '',
     },
     validationSchema: userAboutSchema,
@@ -158,9 +159,9 @@ const ProfileAbout = ({ user }) => {
         <Grid item xs={1.5} md={1.5}></Grid>
 
         <Grid item xs={3.5}></Grid>
-        <Grid item md={2.33} xs={3}><Date_Picker name='dob' chooseDob={chooseDob}></Date_Picker></Grid>
+        <Grid item md={2.33} xs={3}><Date_Picker name='dob' chooseDob={chooseDob} defaultValue={formik.values.dob} /></Grid>
         <Grid item md={2.33} xs={3}><MyTextField label="City" variant="outlined" fullWidth {...formik.getFieldProps('city')} error={formik.touched.city && Boolean(formik.errors.city)} helperText={formik.touched.city && formik.errors.city} name="city" /></Grid>
-        <Grid item md={2.33} xs={2}><Countryselect name='country' chooseCountry={chooseCountry} formik={formik} ></Countryselect></Grid>
+        <Grid item md={2.33} xs={2}><Countryselect name='country' chooseCountry={chooseCountry} formik={formik} defaultValue={formik.values.country}></Countryselect></Grid>
         <Grid item xs={1} md={1.5}></Grid>
         <Grid item xs={12}></Grid>
 

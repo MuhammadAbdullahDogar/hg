@@ -380,3 +380,41 @@ export const userAboutSchema = Yup.object().shape({
 //           .oneOf(
 //             ['applied', '
   
+
+// const academicInfosSchema = Yup.object().shape({
+//   universityName: Yup.string()
+//     .required("Required")
+//     .max(100, "Maximum characters allowed is 100"),
+//   major: Yup.string()
+//     .required("Required")
+//     .max(100, "Maximum characters allowed is 100"),
+//   startingYear: Yup.number()
+//     .typeError("Must be a number")
+//     .integer("Must be an integer")
+//     .required("Required")
+//     .min(1900, "Minimum value allowed is 1900")
+//     .max(2100, "Maximum value allowed is 2100"),
+//   endingYear: Yup.number()
+//     .typeError("Must be a number")
+//     .integer("Must be an integer")
+//     .required("Required")
+//     .min(1900, "Minimum value allowed is 1900")
+//     .max(2100, "Maximum value allowed is 2100")
+//     .test(
+//       "is-greater-than-start-year",
+//       "Ending year must be greater than starting year",
+//       function (value) {
+//         return value > this.parent.startingYear;
+//       }
+//     ),
+//   obtainedCgpa: Yup.number()
+//     .typeError("Must be a number")
+//     .required("Required")
+//     .min(0, "Minimum value allowed is 0")
+//     .max(4, "Maximum value allowed is 4"),
+//   totalCgpa: Yup.number()
+//     .typeError("Must be a number")
+//     .required("Required")
+//     .min(0, "Minimum value allowed is 0")
+//     .max(4, "Maximum value allowed is 4")
+// });

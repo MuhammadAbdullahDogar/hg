@@ -3,8 +3,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 import MyTextField from '../styles/MyTextField'
 
-const TagField = ({ suggestions, placeholder,tag }) => {
-  const [tags, setTags] = useState([]);
+const TagField = ({ suggestions, placeholder,tag, defaultValue }) => {
+  const [tags, setTags] = useState(defaultValue ? defaultValue : []);
 
   const handleTagChange = (event, value) => {
     setTags(value);

@@ -20,14 +20,14 @@ function format(inputDate) {
           .toString()
           .padStart(2, '0');
   
-    return `${date}/${month}/${year}`;
+    return `${month}/${date}/${year}`;
   }
 
 export default function Date_Picker(props) {
 
 
 
-    const [value, setValue] = React.useState(null);
+    const [value, setValue] = React.useState(props.defaultValue || null);
     const date = new Date(value);
     props.chooseDob(format(date));
     return (

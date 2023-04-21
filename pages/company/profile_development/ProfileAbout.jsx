@@ -59,33 +59,17 @@ const ProfileAbout = ({ user }) => {
 
         if (res.status === 200) {
 
-            const credential = {
-                role: 'company',
-                log: 'auto',
-                email: user?.email,
-                password: user?.password
-            }
+            const { role, email, password, _id } = user;
+            const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
 
-
-            const ress = await signIn('credentials', {
-                ...credential,
-                redirect: false
-            })
-
-            if (ress.status === 200) {
-
-
+            if (ress.status === 200)
                 Router.push('/company/profile_development/CompanyNotableWork');
-            }
         }
         else {
             // show database error message
             console.log(res.status);
         }
-
-
     }
-
 
     const [portfolios, setPortfolios] = useState([{ linkType: '', portfolioLink: '' }])
     const handelFormChange = (event, index) => {

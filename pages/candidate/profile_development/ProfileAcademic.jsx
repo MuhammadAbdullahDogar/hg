@@ -9,83 +9,51 @@ import { useState } from 'react';
 import Router from "next/router";
 import { getSession } from "next-auth/react"
 import { signIn } from 'next-auth/react'
+import axios from 'axios';
 
 
 
 const ProfileAcademic = ({ user }) => {
 
-  console.log(user);
-  const [academicInfos, setAcademicInfos] = useState([{ universityName: '', major: '', startingYear: '', endingYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' }])
+  const [academicInfos, setAcademicInfos] = useState(user?.academic || [{ universityName: '', major: '', startingYear: '', endingYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' }]);
+
   const handelFormChange = (event, index) => {
     let data = [...academicInfos];
     data[index][event.target.name] = event.target.value;
     setAcademicInfos(data);
-  }
-  const submit = () => {
-    console.log(academicInfos)
-  }
+  };
 
   const addFields = () => {
-    let object = { universityName: '', major: '', startingYear: '', endignYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' }
-    setAcademicInfos([...academicInfos, object])
-  }
+    let object = { universityName: '', major: '', startingYear: '', endingYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' };
+    setAcademicInfos([...academicInfos, object]);
+  };
+
   const removeFields = (index) => {
     let data = [...academicInfos];
-    data.splice(index, 1)
-    setAcademicInfos(data)
-  }
+    data.splice(index, 1);
+    setAcademicInfos(data);
+  };
 
 
   const PostData = async (e) => {
     e.preventDefault();
 
-    // const id = await userID();
-    let userData = { _id: user?._id, academic: academicInfos };
-
-
-    const res = await fetch('/api/candidate/profile_development/profileAcademic', {
-      method: 'POST',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    });
-    // console.log(userData);
-
-    const data = await res.json();
+    const res = await axios.post(`/api/candidate/profile_development/profileAcademic`, { _id: user?._id, ...userData }, { headers: { 'Content-Type': 'application/json' } });
 
     if (res.status === 200) {
-      console.log(data);
-
-
 
       if (res.status === 200) {
+        const { role, email, password, _id } = user;
+        const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
 
-        const credential = {
-          role: 'candidate',
-          log: 'auto',
-          email: user?.email,
-          password: user?.password
-        }
-
-
-        const ress = await signIn('credentials', {
-          ...credential,
-          redirect: false
-        })
-
-        if (ress.status === 200) {
-
+        if (ress.status === 200)
           Router.push('ProfileExperience');
-        }
       }
     }
     else {
       // show database error message
       console.log(res.status);
     }
-
   };
 
   return (
@@ -98,27 +66,24 @@ const ProfileAcademic = ({ user }) => {
         <Grid item xs={2.1} md={2.5}><Typography variant="profileH1">Academic Information</Typography></Grid>
         <Grid item xs={9.1} md={7}><Typography variant="profileH2">Fill this form about the last degree that you did and you can add another university by tapping on add more</Typography></Grid>
         <Grid item xs={0.1} md={2} ></Grid>
-        <form onSubmit={submit}>
+        <form onSubmit={PostData}>
           {academicInfos.map((form, index) => {
             return (
-
               <div key={index}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}></Grid>
                   <Grid item xs={12}></Grid>
                   <Grid item xs={0.1} md={0.5}></Grid>
                   <Grid item xs={2.1} md={2.5}><Typography variant="profileH2">Last Attended University</Typography></Grid>
-                  <Grid item xs={4} md={4}  ><MyTextField name='universityName' value={form.universityName} label="University Name" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
-                  <Grid item xs={4} md={3}  ><MyTextField name='major' value={form.major} label="Major/Degree" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
-                  <Grid item xs={0.1} md={2}  >{index !== 0 && (<RemoveIcon fontSize='large' color='error' onClick={removeFields} />)}</Grid>
-
+                  <Grid item xs={4} md={4}><MyTextField name='universityName' value={form.universityName} label="University Name" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
+                  <Grid item xs={4} md={3}><MyTextField name='major' value={form.major} label="Major/Degree" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
+                  <Grid item xs={0.1} md={2}>{index !== 0 && (<RemoveIcon fontSize='large' color='error' onClick={() => removeFields(index)} />)}</Grid>
                   <Grid item xs={0.1} md={3}></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='startingYear' value={form.startingYear} label="Starting Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)}></MyTextField></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='endingYear' value={form.endingYear} label="Ending Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='obtainedCgpa' value={form.obtainedCgpa} label="Obtained CGPA" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='totalCgpa' value={form.totalCgpa} label="Total CGPA" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={0.1} md={2}></Grid>
-
                   <Grid item xs={0.1} md={0.5}></Grid>
                   <Grid item xs={2.1} md={2.5}><Typography variant="profileH2">Learnings and Achievements</Typography><br />
                     <Typography variant="profileH3">It is okay to boast a bit, write here all of what you learnt and achieved throughout your university years.</Typography></Grid>
@@ -132,6 +97,7 @@ const ProfileAcademic = ({ user }) => {
         <Grid item xs={3}></Grid>
         <Grid item xs={9}><AddIcon fontSize='large' color='secondary' onClick={addFields} /></Grid>
         <Grid item xs={12} align='center'><CommonButton variant="Gradient" onClick={PostData}>NEXT</CommonButton></Grid>
+
       </Grid>
 
     </div>

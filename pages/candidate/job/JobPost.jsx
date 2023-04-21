@@ -87,24 +87,12 @@ const JobPost = ({ jobs, user }) => {
 
         if (res.status === 200) {
 
-            const credential = {
-                role: 'candidate',
-                log: 'auto',
-                email: user?.email,
-                password: user?.password
-            }
+            const { role, email, password, _id } = user;
+            const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
 
-
-            const ress = await signIn('credentials', {
-                ...credential,
-                redirect: false
-            })
-
-            if (ress.status === 200) {
-
-
+            if (ress.status === 200)
                 Router.push('JobPost');
-            }
+
         }
         else {
             // show database error message
