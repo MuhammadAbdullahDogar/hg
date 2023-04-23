@@ -4,6 +4,11 @@ import Tab from '@mui/material/Tab';
 import NextLink from "next/link";
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useRouter } from 'next/router';
+
+
 const Anchor = styled('a')({});
 const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
     const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
@@ -30,6 +35,29 @@ const CompanyProfileTab = (props) => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const router = useRouter();
+
+    const handleClickk = () => {
+      router.push({
+        pathname: '/company/profile_development/ProfileAbout',
+        // query: { myProp: 'hello' },
+      });
+    };
+
+
+
+
     return (
         <>
             <Tabs
@@ -47,8 +75,27 @@ const CompanyProfileTab = (props) => {
             >
                 <Tab  component={NextLinkComposed} to='/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails' label="Company Details" />
                 <Tab  component={NextLinkComposed} to='/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyNotableWork' label="Notable Work"   />
+                <Tab label="other" onClick={handleClick} />
+                <Menu
+                    id="demo-positioned-menu"
+                    aria-labelledby="demo-positioned-button"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                >
+                    <MenuItem onClick={() => {handleClickk(); handleClose(); }}>edit</MenuItem>
+                    <MenuItem onClick={() => { console.log("cv"); handleClose(); }}>generate cv</MenuItem>
+                </Menu>
             </Tabs>
-        </>
+        </> 
     )
 }
 

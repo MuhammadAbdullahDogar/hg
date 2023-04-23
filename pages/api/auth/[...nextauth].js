@@ -15,7 +15,6 @@ export const authOptions = {
         CredentialsProvider({
             name: "Credentials",
             async authorize(credentials) {
-                console.log(credentials);
                 const { email, password, role, id } = credentials
                 const url = id ? `${process.env.WEBSITE}/api/fetchData` : `${process.env.WEBSITE}/api/login`;
                 const body = id ? { id, role } : { email, password, role };

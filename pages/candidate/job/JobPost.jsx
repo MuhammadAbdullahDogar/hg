@@ -35,7 +35,6 @@ const JobPost = ({ jobs, user }) => {
     function handleData(data, status) {
         setShowJob(data);
         setshowJobs(status);
-        console.log(showJobs, showJob);
     }
 
     function handleShowJob(data) {
@@ -60,7 +59,6 @@ const JobPost = ({ jobs, user }) => {
     const handleOpen2 = () => {
         setOpen1(false);
         setOpen2(false);
-        // console.log(screeningQuestions);
         postData();
     }
     const handleClose = () => {
@@ -71,7 +69,6 @@ const JobPost = ({ jobs, user }) => {
 
     const postData = async () => {
 
-        console.log(showJob);
         const jobId = showJob?._id
         const matchPercent = showJob?.mpercent
         const candidateId = user._id
@@ -194,7 +191,6 @@ export async function getServerSideProps(ctx) {
 
     const session = await getSession(ctx)
     const user = session?.user?.user || null
-    console.log(user.skills);
     const res = await fetch(`${process.env.WEBSITE}/api/candidate/job`, {
         method: 'POST',
         headers: {

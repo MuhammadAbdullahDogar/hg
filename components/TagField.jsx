@@ -12,7 +12,6 @@ const TagField = ({ suggestions, placeholder,tag, defaultValue }) => {
 
   useEffect(() => {
     tag(tags)
-    // console.log(tags);
   }, [tag,tags])
   
 

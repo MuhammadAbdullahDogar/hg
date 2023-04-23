@@ -68,14 +68,10 @@ const Login_dark = () => {
                 else
                     Router.push(`/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails`);
 
-                // console.log(res)
-
             }
             else if (res.status === 401) {
                 setOpen(false);
                 setError({ err_msg: "Invalid credentials", err_color: 'error' })
-
-                console.log(res)
                 console.log("error")
             }
             else {

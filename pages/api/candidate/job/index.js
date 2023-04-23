@@ -20,7 +20,6 @@ const handler = async (req, res) => {
     const candidateId = user._id;
     const domain = user.openToWorkingAs; // user domains
     const skills = candidateSkills.map(skill => skill.skill); // extract the skill names from the user's skills array
-    // console.log(candidateSkills);
     try {
       const jobs = await Job.find({
         $and: [

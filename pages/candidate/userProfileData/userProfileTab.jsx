@@ -66,7 +66,7 @@ const UserProfileTab = (props) => {
                         horizontal: 'left',
                     }}
                 >
-                    <MenuItem onClick={() => {handleClickk(); console.log("edit"); handleClose(); }}>edit</MenuItem>
+                    <MenuItem onClick={() => {handleClickk(); handleClose(); }}>edit</MenuItem>
                     <MenuItem onClick={() => { console.log("cv"); handleClose(); }}>generate cv</MenuItem>
                 </Menu>
             </Tabs>

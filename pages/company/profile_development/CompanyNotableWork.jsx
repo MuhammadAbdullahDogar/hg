@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CompanyNavbar from '../companyNavbar/CompanyNavbar';
 import { Grid, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/AddCircleOutlined';
@@ -8,61 +7,51 @@ import CommonButton from '../../../styles/CommonButotn'
 import MyTextField from '../../../styles/MyTextField';
 import Head from 'next/head';
 import Router from "next/router";
-import { getSession } from "next-auth/react"
-import { signIn } from 'next-auth/react'
+import { getSession, signIn } from "next-auth/react"
 import { useFormik } from 'formik';
-
+import axios from 'axios';
 
 const CompanyNotableWork = ({ user }) => {
 
   const formik = useFormik({
     initialValues: {
-      culture: '',
+      culture: user?.culture,
     }
   });
 
-  const [CompanyNotableWork, setCompanyNotableWork] = useState([])
+  const [notableWork, setNotableWork] = useState(user?.notableWork ? user?.notableWork : [{ recognizedBy: '', natureOfWork: '', yearOfAchievement: '', linkToRecognition: '', description: '' }])
 
-  const submit = () => {
-    console.log(CompanyNotableWork)
-  }
   const handelFormChange = (event, index) => {
-    let data = [...CompanyNotableWork];
+    let data = [...notableWork];
     data[index][event.target.name] = event.target.value;
-    setCompanyNotableWork(data);
+    setNotableWork(data);
   }
+
   const addFields = () => {
-    let object = {}
-    setCompanyNotableWork([...CompanyNotableWork, object])
+    setNotableWork([...notableWork, { recognizedBy: "", natureOfWork: "", yearOfAchievement: "", linkToRecognition: "", description: "" }]);
   }
-  const removeFields = (event, index) => {
-    let data = [...CompanyNotableWork];
+  const removeFields = (index) => {
+    let data = [...notableWork];
     data.splice(index, 1)
-    setCompanyNotableWork(data)
+    setNotableWork(data)
   }
 
 
   const postData = async () => {
 
-    const res = await fetch('/api/company/profile_development/CompanyNotableWork', {
-      method: 'POST',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ _id: user._id, notableWork: CompanyNotableWork, culture: formik.values.culture })
-    });
+    const res = await axios.post(`/api/company/profile_development/CompanyNotableWork`, { _id: user._id, notableWork: CompanyNotableWork, culture: formik.values.culture }, { headers: { 'Content-Type': 'application/json' } });
 
     if (res.status === 200) {
       const { role, email, password, _id } = user;
       const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
 
       if (ress.status === 200)
-        Router.push('/company/UserDashboard');
+        Router.push('/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails');
+      else 
+        console.log(res.status);       // show database error message
     }
     else {
-      // show database error message
-      console.log(res.status);
+      console.log(res.status);       // show database error message
     }
   }
 
@@ -81,8 +70,8 @@ const CompanyNotableWork = ({ user }) => {
         <Grid item xs={1}></Grid>
 
         <Grid item xs={12}>
-          <form onSubmit={submit}>
-            {CompanyNotableWork.map((form, index) => {
+          <form>
+            {notableWork.map((form, index) => {
               return (
                 <div key={index}>
                   <Grid container spacing={1}>
@@ -91,21 +80,23 @@ const CompanyNotableWork = ({ user }) => {
 
                     <Grid item xs={1}></Grid>
                     <Grid item xs={2.5}><Typography variant="profileH2">Work Details</Typography></Grid>
-                    <Grid item xs={3.5}><MyTextField label="Recognized by" variant="outlined" fullWidth name="recognizedBy" onChange={event => handelFormChange(event, index)} required /></Grid>
-                    <Grid item xs={3.5}><MyTextField label="Nature of work" variant="outlined" fullWidth name="natureOfWork" onChange={event => handelFormChange(event, index)} required /></Grid>
+                    <Grid item xs={3.5}><MyTextField label="Recognized by" variant="outlined" fullWidth name="recognizedBy" onChange={event => handelFormChange(event, index)} value={form.recognizedBy} required /></Grid>
+                    <Grid item xs={3.5}><MyTextField label="Nature of work" variant="outlined" fullWidth name="natureOfWork" onChange={event => handelFormChange(event, index)} value={form.natureOfWork} required /></Grid>
                     <Grid item xs={1.5}></Grid>
 
 
                     <Grid item xs={3.5} ></Grid>
-                    <Grid item xs={3.5}><MyTextField label="Year of achievement" variant="outlined" fullWidth name="yearOfAchievement" onChange={event => handelFormChange(event, index)} required /></Grid>
-                    <Grid item xs={3.5}><MyTextField label="Link to recognition" variant="outlined" fullWidth name="linkToRecognition" onChange={event => handelFormChange(event, index)} required /></Grid>
+                    <Grid item xs={3.5}><MyTextField label="Year of achievement" variant="outlined" fullWidth name="yearOfAchievement" onChange={event => handelFormChange(event, index)} value={form.yearOfAchievement} required /></Grid>
+                    <Grid item xs={3.5}><MyTextField label="Link to recognition" variant="outlined" fullWidth name="linkToRecognition" onChange={event => handelFormChange(event, index)} value={form.linkToRecognition} required /></Grid>
                     <Grid item xs={1.5}></Grid>
 
                     <Grid item xs={1}></Grid>
                     <Grid item xs={2.5}><Typography variant="profileH2">Brief Description</Typography><br />
                       <Typography variant="profileH3">It is okay to boast a bit, write here all of what you learnt and achieved throughout your university years.</Typography></Grid>
-                    <Grid item xs={7}><MyTextField id="outlined-multiline-static" multiline fullWidth rows={3} name="description" onChange={event => handelFormChange(event, index)} required /></Grid>
-                    <Grid item xs={1.5} sx={{ marginTop: ".5rem" }}><RemoveIcon fontSize='large' color='error' onClick={removeFields} /></Grid>
+                    <Grid item xs={7}><MyTextField id="outlined-multiline-static" multiline fullWidth rows={3} name="description" onChange={event => handelFormChange(event, index)} value={form.description} required /></Grid>
+                    <Grid item xs={1.5} sx={{ marginTop: ".5rem" }}>
+                      {index > 0 && <RemoveIcon fontSize='large' color='error' onClick={() => { removeFields(index) }} />}
+                    </Grid>
                   </Grid>
                 </div>
               )
@@ -113,7 +104,7 @@ const CompanyNotableWork = ({ user }) => {
           </form>
         </Grid>
         <Grid item xs={3.5}></Grid>
-        <Grid item xs={8.5}><AddIcon fontSize='large' color='secondary' onClick={addFields} /></Grid>
+        <Grid item xs={8.5}><AddIcon fontSize='large' color='secondary' onClick={() => { addFields() }} /></Grid>
 
         <Grid item xs={12}></Grid>
 

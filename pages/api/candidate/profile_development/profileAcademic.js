@@ -3,9 +3,7 @@ import connectDb from "../../../../middleware/mongoose";
 
 
 const handler = async (req, res) => {
-    if (req.method == 'POST') {
-        // console.log(req.body);
-        
+    if (req.method == 'POST') {        
         const { _id, academic } = req.body;
         let u = await User.findByIdAndUpdate( {_id },{academic});
         res.status(200).json({ status: "success" });

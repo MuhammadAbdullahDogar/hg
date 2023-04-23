@@ -2,8 +2,6 @@ import { Grid, Button } from '@mui/material'
 import React from 'react'
 
 const ViewJob = ({ job, onData, dialog }) => {
-    console.log(job);
-
 
     function handleSubmit(e) {
         onData(job, true);

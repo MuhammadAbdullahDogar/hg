@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CompanyNavbar from '../companyNavbar/CompanyNavbar';
 import { Grid, Typography, MenuItem, InputLabel, FormControl } from '@mui/material'
 import MySelect from '../../../styles/MySelect';
@@ -15,25 +14,23 @@ import Head from 'next/head';
 import Router from "next/router";
 import { useFormik } from 'formik';
 import { companyAboutSchema } from '../../../validationSchema'
-import { getSession } from "next-auth/react"
-import { signIn } from 'next-auth/react'
-
+import { getSession, signIn } from "next-auth/react"
+import axios from 'axios';
 
 const ProfileAbout = ({ user }) => {
 
-    // console.log(user)
     const formik = useFormik({
         initialValues: {
             cname: user.cname,
             domain: user.domain,
             email: user.email,
             phone: user.phone,
-            foundingDate: '',
-            city: '',
-            country: '',
-            statement: '',
-            description: '',
-            portfolios: ''
+            foundingDate: user?.about?.foundingDate,
+            city: user?.about?.city,
+            country: user?.about?.country,
+            statement: user?.about?.statement,
+            description: user?.about?.description,
+            portfolios: user?.about?.portfolios
         },
         validationSchema: companyAboutSchema,
         onSubmit: () => { postData() }
@@ -42,20 +39,11 @@ const ProfileAbout = ({ user }) => {
 
 
     const postData = async () => {
-        // console.log(formik.values.description)
 
-        const { cname, domain, phone, foundingDate, city, country, statement, description, portfolios } = formik.values
+        const { cname, domain, phone, foundingDate, city, country, statement, description } = formik.values
         const about = { foundingDate, city, country, statement, description, portfolios }
-        // console.log(about);
 
-        const res = await fetch('/api/company/profile_development/profileAbout', {
-            method: 'POST',
-            credentials: 'include', // Don't forget to specify this if you need cookies
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ _id: user._id, cname, domain, phone, about })
-        });
+        const res = await axios.post(`/api/company/profile_development/profileAbout`, { _id: user._id, cname, domain, phone, about }, { headers: { 'Content-Type': 'application/json' } });
 
         if (res.status === 200) {
 
@@ -66,32 +54,25 @@ const ProfileAbout = ({ user }) => {
                 Router.push('/company/profile_development/CompanyNotableWork');
         }
         else {
-            // show database error message
-            console.log(res.status);
+            console.log(res.status);               // show database error message
         }
     }
 
-    const [portfolios, setPortfolios] = useState([{ linkType: '', portfolioLink: '' }])
+    const [portfolios, setPortfolios] = useState(user?.about?.portfolios ? user?.about?.portfolios : [{ linkType: '', portfolioLink: '' }])
     const handelFormChange = (event, index) => {
         let data = [...portfolios];
         data[index][event.target.name] = event.target.value;
         setPortfolios(data);
-        formik.values.portfolios = portfolios
     }
     const addFields = () => {
         let portfolio = { linkType: '', portfolioLink: '' }
         setPortfolios([...portfolios, portfolio])
     }
-    const removeFields = (event, index) => {
+    const removeFields = (index) => {
         let data = [...portfolios];
         data.splice(index, 1)
         setPortfolios(data)
-        formik.values.portfolios = portfolios
-
     }
-
-
-
 
     function chooseCountry(country) {
         formik.values.country = country;
@@ -146,15 +127,11 @@ const ProfileAbout = ({ user }) => {
                 <Grid item xs={1.5}></Grid>
 
                 <Grid item xs={3.5}></Grid>
-                <Grid item xs={2.5}><Date_Picker name='foundingDate' chooseDob={chooseDob} /></Grid>
+                <Grid item xs={2.5}><Date_Picker name='foundingDate' chooseDob={chooseDob} defaultValue={user?.about?.foundingDate} /></Grid>
                 <Grid item xs={2.5}><MyTextField label="City, State" variant="outlined" fullWidth name="city" {...formik.getFieldProps('city')} error={formik.touched.city && Boolean(formik.errors.city)} helperText={formik.touched.city && formik.errors.city} /></Grid>
-                <Grid item xs={2}><Countryselect name='country' chooseCountry={chooseCountry} /></Grid>
-
-
+                <Grid item xs={2}><Countryselect name='country' chooseCountry={chooseCountry} defaultValue={formik.values.country} /></Grid>
 
                 <Grid item xs={12}></Grid>
-
-
                 <Grid item xs={1}></Grid>
                 <Grid item xs={2.5}><Typography variant="profileH2">Company Website /<br />Social Handles</Typography></Grid>
 
@@ -169,9 +146,8 @@ const ProfileAbout = ({ user }) => {
                                         <Grid item xs={12}></Grid>
                                         <Grid item md={3.5} xs={3}><MyTextField name='linkType' value={form.linkType} label="Link Type" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} required /></Grid>
                                         <Grid item md={6.4} xs={5}><MyTextField name='portfolioLink' value={form.portfolioLink} label="Portfolio Link" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} required /></Grid>
-
-                                        <Grid item xs={1} md={2.1} sx={{ marginTop: ".5rem" }}><RemoveIcon fontSize='large' color='error' onClick={removeFields} /></Grid>
-
+                                        <Grid item xs={1} md={2.1} sx={{ marginTop: ".5rem" }}>{index > 0 && <RemoveIcon fontSize='large' color='error' onClick={() => { removeFields(index) }} />}
+                                        </Grid>
                                     </Grid>
                                 </div>
                             )
@@ -179,7 +155,7 @@ const ProfileAbout = ({ user }) => {
                     </form>
                 </Grid>
                 <Grid item xs={3.5}></Grid>
-                <Grid item xs={8.5}><AddIcon fontSize='large' color='secondary' onClick={addFields} /></Grid>
+                <Grid item xs={8.5}><AddIcon fontSize='large' color='secondary' onClick={() => addFields()} /></Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={2.5}><Typography variant="profileH2">Company Statement</Typography><br />
                     <Typography variant="profileH3">A crisp and attention-grabbing statement to compell the candidate to apply to your jobs.</Typography></Grid>

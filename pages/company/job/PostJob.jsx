@@ -44,8 +44,6 @@ const PostJob = ({ user }) => {
 
   const postData = async () => {
     formik.values.skills = skill
-    // console.log(formik.values)
-    // console.log(skill);
     const { title, level, type, domain, compensation, matchPercentage, description, responsibilites, skills, location, category, companyId } = formik.values
 
     const res = await fetch('/api/company/job/postJob', {
