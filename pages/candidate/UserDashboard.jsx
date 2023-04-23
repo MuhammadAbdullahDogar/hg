@@ -23,7 +23,7 @@ const UserDashboard = ({user}) => {
                 <Grid item xs={.2}></Grid>
                 <Grid item xs={8} >
                     <Box sx={{ backgroundColor: '#D8EBF6', borderRadius: '1rem' }}>
-                    <UserProfileTab value={userInfo} setUserInfo={setUserInfo} />
+                    <UserProfileTab value={userInfo} setUserInfo={setUserInfo} user={user} />
                     {(userInfo == 0 && <UserProfileData user={user} />) || (userInfo == 1 && <UserAcademicData academics={user?.academic} />) || <UserCompanyData experiences={user?.experience} />}
 
                     </Box>
