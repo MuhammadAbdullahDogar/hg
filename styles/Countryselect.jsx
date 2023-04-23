@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
 import MyTextField from './MyTextField';
 
 export default function Countryselect({ chooseCountry, name,defaultValue, formik, }) {
 
-    const [country, setCountry] = useState({ code: '', label: defaultValue, phone: '' } || {});
+    const [country, setCountry] = useState(defaultValue ? { code: '', label: defaultValue, phone: '' } : {});
     if (name)
         chooseCountry(country?.label, name);
     else
@@ -36,13 +36,14 @@ export default function Countryselect({ chooseCountry, name,defaultValue, formik
                 )}
                 renderInput={(params) => (
 
+                    defaultValue ? 
                     <MyTextField
                         {...params}
                         label="Choose a country"
                         inputProps={{
                             ...params.inputProps,
                             autoComplete: 'true', // disable autocomplete and autofill
-                            value: defaultValue ? defaultValue : '', // set the default value of the input field
+                            value: defaultValue, // set the default value of the input field
 
                         }}
                         // name="country"
@@ -50,6 +51,14 @@ export default function Countryselect({ chooseCountry, name,defaultValue, formik
                         // error={formik.touched.country && Boolean(formik.errors.country)}
                         // helperText={formik.touched.country && formik.errors.country}
                         // value={country?.label}
+                    /> :
+                    <MyTextField
+                        {...params}
+                        label="Choose a country"
+                        inputProps={{
+                            ...params.inputProps,
+                            autoComplete: 'true', // disable autocomplete and autofill
+                        }}
                     />
                 )}
             />

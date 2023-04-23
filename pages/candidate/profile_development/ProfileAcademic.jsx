@@ -38,7 +38,7 @@ const ProfileAcademic = ({ user }) => {
   const PostData = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post(`/api/candidate/profile_development/profileAcademic`, { _id: user?._id, ...userData }, { headers: { 'Content-Type': 'application/json' } });
+    const res = await axios.post(`/api/candidate/profile_development/profileAcademic`, { _id: user?._id, academic: academicInfos }, { headers: { 'Content-Type': 'application/json' } });
 
     if (res.status === 200) {
 

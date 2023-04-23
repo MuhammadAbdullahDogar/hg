@@ -1,26 +1,18 @@
-import React, { useState } from 'react'
-import ProfileNavbar from './profileNavbar/ProfileNavbar'
-import { Grid, Typography, FormControlLabel, Checkbox, Button } from '@mui/material'
+import FormGroup from '@mui/material/RadioGroup';
+import React, { useState } from 'react';
+import { getSession, signIn } from 'next-auth/react';
+import { Grid, Typography, FormControlLabel, Checkbox, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormLabel } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import CommonButton from '../../../styles/CommonButotn'
 import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
-import MyTextField from '../../../styles/MyTextField'
-import Router from "next/router";
-
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
-import { getSession } from "next-auth/react"
-import { signIn } from 'next-auth/react'
-import TagField from "../../../components/TagField";
+import CommonButton from '../../../styles/CommonButotn';
+import MyTextField from '../../../styles/MyTextField';
+import ProfileNavbar from './profileNavbar/ProfileNavbar';
+import TagField from '../../../components/TagField';
 import Countryselect from '../../../styles/Countryselect';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import FormGroup from '@mui/material/RadioGroup';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import Router from 'next/router';
 import axios from 'axios';
 
 const ProfileExperience = ({ user }) => {
@@ -183,8 +175,7 @@ const ProfileExperience = ({ user }) => {
     }
   };
 
-  //backend
-
+  //sending data to server
   const PostData = async (e) => {
     const preferences = { jobMode, selectedCountries, jobCategory };
 
@@ -198,8 +189,7 @@ const ProfileExperience = ({ user }) => {
         Router.push(`/candidate/UserDashboard`);
     }
     else {
-      // show database error message
-      console.log(res.status);
+      console.log(res.status);        // show database error message
     }
   };
 
@@ -237,7 +227,7 @@ const ProfileExperience = ({ user }) => {
 
                       <Grid item xs={3.5}></Grid>
                       <Grid item xs={6.5}><FormControlLabel control={<Checkbox defaultChecked size="small" />} label="Currently working in this role" /></Grid>
-                      <Grid item xs={2}>{index !== 0 && (<RemoveIcon fontSize='large' color='error' onClick={removeFields(index)} />)}</Grid>
+                      <Grid item xs={2}>{index !== 0 && (<RemoveIcon fontSize='large' color='error' onClick={()=>{removeFields(index)}} />)}</Grid>
 
                       <Grid item xs={1}></Grid>
                       <Grid item xs={2.5}><Typography variant="profileH2">Key Responsibities</Typography><br />
