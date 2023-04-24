@@ -20,6 +20,8 @@
     "bcrypt": "^5.1.0",
     "dayjs": "^1.11.6",
     "formik": "^2.2.9",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.28",
     "moment": "^2.29.4",
     "mongoose": "^6.7.2",
     "next": "12.3.1",

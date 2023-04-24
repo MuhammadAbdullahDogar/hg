@@ -4,76 +4,125 @@ import { useState } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/router';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+// import pdfMake from 'pdfmake/build/pdfmake';
+// import pdfFonts from 'pdfmake/build/vfs_fonts';
+
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
+
+const generatePdf = ({ user }) => {
+    // Initialize jspdf document
+    const doc = new jsPDF();
+  
+    
+    // Add content to the document
+    doc.text(`${user.fname} ${user.lname}`, 10, 10);
+    doc.text(user.email, 10, 20);
+    doc.text(user.phone.toString(), 10, 30);
+    doc.text(`${user.about.dob}, ${user.about.city}, ${user.about.country}`, 10, 40);
+    doc.text(user.about.description, 10, 50);
+    doc.text('Academic', 10, 70);
+    doc.autoTable({
+      startY: 80,
+      head: [['University Name', 'Major', 'Years']],
+      body: user.academic.map((data, index) => {
+        return [data.universityName, data.major, `${data.startingYear}-${data.endingYear}`];
+      })
+    });
+    doc.text('Experience', 10, doc.autoTable.previous.finalY + 10);
+    doc.autoTable({
+      startY: doc.autoTable.previous.finalY + 20,
+      head: [['Company Name', 'Domain', 'Job Title', 'Years']],
+      body: user.experience.map((data, index) => {
+        return [data.cName, data.cDomain, data.jobTitle, `${data.startingDate}-${data.endingDate}`];
+      })
+    });
+    doc.text(`Years of Experience: ${user.yearsOfExperience}`, 10, doc.autoTable.previous.finalY + 10);
+    doc.text('Skills', 10, doc.autoTable.previous.finalY + 20);
+    doc.autoTable({
+      startY: doc.autoTable.previous.finalY + 30,
+      head: [['Skill', 'Percent']],
+      body: user.skills.map((skill, index) => {
+        return [skill.skill, `${skill.percent}%`];
+      })
+    });
+  
+    // Set the PDF name as "My CV.pdf"
+    const pdfName = 'My CV.pdf';
+  
+    // Save the PDF
+    doc.save(pdfName);
+  };
+  
 
 
 const UserProfileTab = (props) => {
 
-    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    // pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
     const { user } = props
-    const generatePdf = () => {
-        // Define document structure
-        const documentDefinition = {
-            content: [
-                { text: `${user.fname} ${user.lname}`, style: 'header' },
-                { text: user.email, style: 'subheader' },
-                { text: user.phone, style: 'subheader' },
-                { text: `${user.about.dob}, ${user.about.city}, ${user.about.country}`, style: 'subheader' },
-                { text: user.about.description, style: 'paragraph' },
-                { text: 'Academic', style: 'sectionHeader' },
-                {
-                    ul: user.academic.map((data, index) => {
-                        return `${data.universityName}, ${data.major}, ${data.startingYear}-${data.endingYear}`;
-                    })
-                },
-                { text: 'Experience', style: 'sectionHeader' },
-                {
-                    ul: user.experience.map((data, index) => {
-                        return `${data.cName}, ${data.cDomain}, ${data.jobTitle}, ${data.startingDate}-${data.endingDate}`;
-                    })
-                },
-                { text: `Years of Experience: ${user.yearsOfExperience}`, style: 'paragraph' },
-                { text: 'Skills', style: 'sectionHeader' },
-                {
-                    table: {
-                        widths: ['*', '*'],
-                        body: user.skills.map((skill, index) => {
-                            return [skill.skill, `${skill.percent}%`];
-                        })
-                    }
-                }
-            ],
-            styles: {
-                header: {
-                    fontSize: 22,
-                    bold: true,
-                    margin: [0, 0, 0, 10]
-                },
-                subheader: {
-                    fontSize: 16,
-                    bold: true,
-                    margin: [0, 10, 0, 5]
-                },
-                paragraph: {
-                    fontSize: 14,
-                    margin: [0, 0, 0, 10]
-                },
-                sectionHeader: {
-                    fontSize: 18,
-                    bold: true,
-                    margin: [0, 10, 0, 5]
-                }
-            }
-        };
+    // const generatePdf = () => {
+    //     // Define document structure
+    //     const documentDefinition = {
+    //         content: [
+    //             { text: `${user.fname} ${user.lname}`, style: 'header' },
+    //             { text: user.email, style: 'subheader' },
+    //             { text: user.phone, style: 'subheader' },
+    //             { text: `${user.about.dob}, ${user.about.city}, ${user.about.country}`, style: 'subheader' },
+    //             { text: user.about.description, style: 'paragraph' },
+    //             { text: 'Academic', style: 'sectionHeader' },
+    //             {
+    //                 ul: user.academic.map((data, index) => {
+    //                     return `${data.universityName}, ${data.major}, ${data.startingYear}-${data.endingYear}`;
+    //                 })
+    //             },
+    //             { text: 'Experience', style: 'sectionHeader' },
+    //             {
+    //                 ul: user.experience.map((data, index) => {
+    //                     return `${data.cName}, ${data.cDomain}, ${data.jobTitle}, ${data.startingDate}-${data.endingDate}`;
+    //                 })
+    //             },
+    //             { text: `Years of Experience: ${user.yearsOfExperience}`, style: 'paragraph' },
+    //             { text: 'Skills', style: 'sectionHeader' },
+    //             {
+    //                 table: {
+    //                     widths: ['*', '*'],
+    //                     body: user.skills.map((skill, index) => {
+    //                         return [skill.skill, `${skill.percent}%`];
+    //                     })
+    //                 }
+    //             }
+    //         ],
+    //         styles: {
+    //             header: {
+    //                 fontSize: 22,
+    //                 bold: true,
+    //                 margin: [0, 0, 0, 10]
+    //             },
+    //             subheader: {
+    //                 fontSize: 16,
+    //                 bold: true,
+    //                 margin: [0, 10, 0, 5]
+    //             },
+    //             paragraph: {
+    //                 fontSize: 14,
+    //                 margin: [0, 0, 0, 10]
+    //             },
+    //             sectionHeader: {
+    //                 fontSize: 18,
+    //                 bold: true,
+    //                 margin: [0, 10, 0, 5]
+    //             }
+    //         }
+    //     };
 
-        // Set the PDF name as "My CV.pdf"
-        const pdfName = "My CV.pdf";
+    //     // Set the PDF name as "My CV.pdf"
+    //     const pdfName = "My CV.pdf";
 
-        // Create the PDF and download it
-        pdfMake.createPdf(documentDefinition).download(pdfName);
-    }
+    //     // Create the PDF and download it
+    //     pdfMake.createPdf(documentDefinition).download(pdfName);
+    // }
 
 
     const [value, setValue] = useState(props.value);
@@ -137,7 +186,7 @@ const UserProfileTab = (props) => {
                 >
                     <MenuItem onClick={() => { handleClickk(); handleClose(); }}>edit</MenuItem>
                     <MenuItem onClick={() => {
-                        console.log("cv"); generatePdf(); handleClose();
+                        console.log("cv"); generatePdf({user}); handleClose();
                     }}>Generate CV
                     </MenuItem>
                 </Menu>
