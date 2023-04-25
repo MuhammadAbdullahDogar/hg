@@ -5,25 +5,27 @@ import CompanyDashboardLeftNavbar from '../companyDashboard/CompanyDahboardLeftN
 import { getSession } from "next-auth/react"
 import ActiveJobs from "../../../components/company/job/ActiveJobs";
 import Candidates from "../../../components/company/job/Candidates";
-const Index = ({ jobs }) => {
+import { useRouter } from 'next/router';
+
+const Index = ({ jobs, company }) => {
+    const router = useRouter();
     const [userInfo, setUserInfo] = useState(0)
     const [jobInfo, setJobInfo] = useState()
+
 
     const handleJob = (user, job) => {
         setUserInfo(user)
         setJobInfo(job)
     };
 
-
-
-  return (
-    <Grid container spacing={2}>
-    <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
-    <Grid item xs={11.3} ><CompanyDashboardTopNavbar />
-    {(userInfo == 0 && <ActiveJobs jobs={jobs} handleJob={handleJob} />) || (userInfo == 1 && <Candidates job={jobInfo} />) }
-    </Grid>
-</Grid>
-  )
+    return (
+        <Grid container spacing={2}>
+            <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
+            <Grid item xs={11.3} ><CompanyDashboardTopNavbar />
+                {(userInfo == 0 && <ActiveJobs jobs={jobs} handleJob={handleJob} />) || (userInfo == 1 && <Candidates job={jobInfo} company={company} />)}
+            </Grid>
+        </Grid>
+    )
 }
 
 export default Index
@@ -42,13 +44,13 @@ export async function getServerSideProps(ctx) {
     });
 
     const jobs = await res.json();
-
+    const company = { _id: user._id, role: user.role };
     ctx.res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'
     )
 
     return {
-        props: { jobs },
+        props: { jobs, company },
     }
 }

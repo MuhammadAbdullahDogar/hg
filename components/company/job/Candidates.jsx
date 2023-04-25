@@ -3,9 +3,10 @@ import CandidateCard from './CandidateCard';
 import JobTab from '../../../pages/company/job/JobTab';
 import JobDetail from './JobDetail';
 import React, { useState } from "react";
-const Candidates = ({ job }) => {
-    const [userInfo, setUserInfo] = useState(0)
 
+
+const Candidates = ({ job, company }) => {
+    const [userInfo, setUserInfo] = useState(0)
 
     const appliedCandidates = job.candidates.filter(candidate => candidate.status === "applied");
     const invitedCandidates = job.candidates.filter(candidate => candidate.status === "invited");
@@ -36,7 +37,7 @@ const Candidates = ({ job }) => {
                                     appliedCandidates.map(candidate => (
 
                                         <Grid item xs={12} sx={{ margin: '0rem' }} key={candidate._id}>
-                                            <CandidateCard candidate={candidate} ></CandidateCard>
+                                            <CandidateCard candidate={candidate} btntext={"Invite To Interview"} txt={"Applied"} company={company} job={job}  ></CandidateCard>
                                         </Grid>
                                     ))
                                 }
@@ -47,7 +48,7 @@ const Candidates = ({ job }) => {
                                     invitedCandidates.map(candidate => (
 
                                         <Grid item xs={12} sx={{ margin: '0rem' }} key={candidate._id}>
-                                            <CandidateCard candidate={candidate} ></CandidateCard>
+                                            <CandidateCard candidate={candidate} btntext={"Send Reminder"} txt={"Invited"} company={company} job={job} ></CandidateCard>
                                         </Grid>
                                     ))
                                 }
@@ -58,7 +59,7 @@ const Candidates = ({ job }) => {
                                     interviewedCandidates.map(candidate => (
 
                                         <Grid item xs={12} sx={{ margin: '0rem' }} key={candidate._id}>
-                                            <CandidateCard candidate={candidate} ></CandidateCard>
+                                            <CandidateCard candidate={candidate} btntext={"View Result"} txt={"Submitted"} company={company} job={job}></CandidateCard>
                                         </Grid>
                                     ))
                                 }
@@ -69,7 +70,7 @@ const Candidates = ({ job }) => {
                                     feedbackCandidates.map(candidate => (
 
                                         <Grid item xs={12} sx={{ margin: '0rem' }} key={candidate._id}>
-                                            <CandidateCard candidate={candidate} ></CandidateCard>
+                                            <CandidateCard candidate={candidate} btntext={"View Candidate"} company={company} job={job}></CandidateCard>
                                         </Grid>
                                     ))
                                 }
