@@ -2,22 +2,44 @@ import { Grid } from '@mui/material'
 import CandidateCard from './CandidateCard';
 import JobTab from '../../../pages/company/job/JobTab';
 import JobDetail from './JobDetail';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
-const Candidates = ({ job, company }) => {
+const Candidates = ({ jobInfo, company }) => {
+
     const [userInfo, setUserInfo] = useState(0)
+    const [job, setJob] = useState(jobInfo)
 
-    const appliedCandidates = job.candidates.filter(candidate => candidate.status === "applied");
-    const invitedCandidates = job.candidates.filter(candidate => candidate.status === "invited");
-    const interviewedCandidates = job.candidates.filter(candidate => candidate.status === "interviewed");
-    const feedbackCandidates = job.candidates.filter(candidate => candidate.status === "feedback");
+    const handleChange = (updateJob) => {
+        setJob(updateJob);
+    };
+    let appliedCandidates = job.candidates.filter(candidate => candidate.status === "applied");
+    let invitedCandidates = job.candidates.filter(candidate => candidate.status === "invited");
+    let interviewedCandidates = job.candidates.filter(candidate => candidate.status === "interviewed");
+    let feedbackCandidates = job.candidates.filter(candidate => candidate.status === "feedback");
+    let appliedCandidatesLength = appliedCandidates.length
+    let invitedCandidatesLength = invitedCandidates.length
+    let interviewedCandidatesLength = interviewedCandidates.length
+    let feedbackCandidatesLength = feedbackCandidates.length
+    let totalCandidatesLength = appliedCandidatesLength + invitedCandidatesLength + interviewedCandidatesLength + feedbackCandidatesLength;
 
-    const appliedCandidatesLength = appliedCandidates.length
-    const invitedCandidatesLength = invitedCandidates.length
-    const interviewedCandidatesLength = interviewedCandidates.length
-    const feedbackCandidatesLength = feedbackCandidates.length
-    const totalCandidatesLength = appliedCandidatesLength + invitedCandidatesLength + interviewedCandidatesLength + feedbackCandidatesLength;
+
+
+    
+
+    useEffect(() => {
+        appliedCandidates = job.candidates.filter(candidate => candidate.status === "applied");
+        invitedCandidates = job.candidates.filter(candidate => candidate.status === "invited");
+        interviewedCandidates = job.candidates.filter(candidate => candidate.status === "interviewed");
+        feedbackCandidates = job.candidates.filter(candidate => candidate.status === "feedback");
+        appliedCandidatesLength = appliedCandidates.length
+        invitedCandidatesLength = invitedCandidates.length
+        interviewedCandidatesLength = interviewedCandidates.length
+        feedbackCandidatesLength = feedbackCandidates.length
+        totalCandidatesLength = appliedCandidatesLength + invitedCandidatesLength + interviewedCandidatesLength + feedbackCandidatesLength;
+
+    }, [job])
+
 
     return (
         <>
@@ -37,7 +59,7 @@ const Candidates = ({ job, company }) => {
                                     appliedCandidates.map(candidate => (
 
                                         <Grid item xs={12} sx={{ margin: '0rem' }} key={candidate._id}>
-                                            <CandidateCard candidate={candidate} btntext={"Invite To Interview"} txt={"Applied"} company={company} job={job}  ></CandidateCard>
+                                            <CandidateCard candidate={candidate} btntext={"Invite To Interview"} txt={"Applied"} company={company} job={job} handleChange={handleChange} ></CandidateCard>
                                         </Grid>
                                     ))
                                 }
@@ -48,7 +70,7 @@ const Candidates = ({ job, company }) => {
                                     invitedCandidates.map(candidate => (
 
                                         <Grid item xs={12} sx={{ margin: '0rem' }} key={candidate._id}>
-                                            <CandidateCard candidate={candidate} btntext={"Send Reminder"} txt={"Invited"} company={company} job={job} ></CandidateCard>
+                                            <CandidateCard candidate={candidate} btntext={"Send Reminder"} txt={"Invited"} company={company} job={job} handleChange={handleChange} ></CandidateCard>
                                         </Grid>
                                     ))
                                 }
@@ -59,7 +81,7 @@ const Candidates = ({ job, company }) => {
                                     interviewedCandidates.map(candidate => (
 
                                         <Grid item xs={12} sx={{ margin: '0rem' }} key={candidate._id}>
-                                            <CandidateCard candidate={candidate} btntext={"View Result"} txt={"Submitted"} company={company} job={job}></CandidateCard>
+                                            <CandidateCard candidate={candidate} btntext={"View Result"} txt={"Submitted"} company={company} job={job} handleChange={handleChange} ></CandidateCard>
                                         </Grid>
                                     ))
                                 }
@@ -70,7 +92,7 @@ const Candidates = ({ job, company }) => {
                                     feedbackCandidates.map(candidate => (
 
                                         <Grid item xs={12} sx={{ margin: '0rem' }} key={candidate._id}>
-                                            <CandidateCard candidate={candidate} btntext={"View Candidate"} company={company} job={job}></CandidateCard>
+                                            <CandidateCard candidate={candidate} btntext={"View Candidate"} company={company} job={job} handleChange={handleChange} ></CandidateCard>
                                         </Grid>
                                     ))
                                 }

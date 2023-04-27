@@ -66,10 +66,6 @@ const JobSchema = new mongoose.Schema({
     hiringStatus: {
       type: String
     },
-    screeningQuestion: [{
-      question: {type: String},
-      answer: {type: String}
-    }]
   }],
   status: {
     type: String,
@@ -80,7 +76,28 @@ const JobSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  questions : [{type: String}]
+  screeningQuestion : [{type: String}],
+  quiz: [{
+    question: {
+      type: String,
+      required: true
+    },
+    type: {
+      type: String,
+      enum: ['single', 'multiple'],
+      required: true
+    },
+    options: [{
+      option: {
+        type: String,
+        required: true
+      },
+      isCorrect: {
+        type: Boolean,
+        default: false
+      }
+    }]
+  }]
 });
 
 export default mongoose.models.Job || mongoose.model("Job", JobSchema);

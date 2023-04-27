@@ -15,7 +15,7 @@ import Router from 'next/router';
 const QuestionForm = ({ user }) => {
 
     const router = useRouter();
-    const { QuestionForm } = router.query;
+    const jobId = router.query.id;
 
     const [questions, setQuestions] = useState([{ question: '' }]);
 
@@ -43,7 +43,7 @@ const QuestionForm = ({ user }) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ question: questions, jobId: QuestionForm })
+            body: JSON.stringify({ question: questions, jobId })
         });
 
         if (res.status === 200) {
@@ -52,7 +52,7 @@ const QuestionForm = ({ user }) => {
             const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
 
             if (ress.status === 200)
-                Router.push('/company/job/ActiveJobs');
+                Router.push(`/company/job/quiz/PostQuiz?id=${jobId}`);
         }
         else {
             // show database error message

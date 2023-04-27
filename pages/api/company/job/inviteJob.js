@@ -39,7 +39,7 @@ const handler = async (req, res) => {
         ]);
 
 
-        res.json({ success: true });
+        res.json({ success: true, updatedJob });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Server error' });

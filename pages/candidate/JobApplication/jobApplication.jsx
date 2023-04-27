@@ -1,11 +1,20 @@
 import { Grid } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import LeftNavbar from '../leftNavbar'
 import TopNavbar from '../topNavbar'
 import JobApplicationCard from '../../../components/candidate/job/JobApplicationCard'
 import { getSession } from 'next-auth/react'
+import ViewJob from '../job/ViewJob'
 
 const JobApplication = ({ user }) => {
+
+    const [viewJob, setViewJob] = useState(0)
+    const [job, setJob] = useState()
+    const handleViewJob = (val,job) => {
+        setViewJob(val)
+        setJob(job)
+    }
+
 
     const appliedJob = user.jobsApplied.filter(job => job.status === "applied");
     const invitedJob = user.jobsApplied.filter(job => job.status === "invited");
@@ -18,12 +27,12 @@ const JobApplication = ({ user }) => {
     const feedbackJobLength = feedbackJob.length
     const totalJobsLength = appliedJobLength + interviewedJobLength + invitedJobLength + feedbackJobLength;
 
-
     return (
         <>
             <Grid container spacing={2}>
                 <Grid item xs={12}><TopNavbar></TopNavbar></Grid>
                 <Grid item xs={2}><LeftNavbar></LeftNavbar></Grid>
+                {viewJob === 0 ? 
                 <Grid container item xs={10} spacing={1} >
                     <Grid item xs={12}>Job Applications</Grid>
                     <Grid item xs={12}>Total Applied Jobs {totalJobsLength}</Grid>
@@ -33,8 +42,7 @@ const JobApplication = ({ user }) => {
                             appliedJob.map(job => (
 
                                 <Grid item xs={12} sx={{ margin: '0rem' }} key={job._id}>
-                                    {console.log(job)}
-                                    <JobApplicationCard job={job} />
+                                    <JobApplicationCard job={job} btntext={"View Job"} txt={"Applied"} handleViewJob={handleViewJob} />
                                 </Grid>
                             ))
                         }
@@ -45,7 +53,7 @@ const JobApplication = ({ user }) => {
                             invitedJob.map(job => (
 
                                 <Grid item xs={12} sx={{ margin: '0rem' }} key={job._id}>
-                                    <JobApplicationCard job={job} />
+                                    <JobApplicationCard job={job} btntext={"Attempt Interview"} txt={"Invited"} />
                                 </Grid>
                             ))
                         }
@@ -56,7 +64,7 @@ const JobApplication = ({ user }) => {
                             interviewedJob.map(job => (
 
                                 <Grid item xs={12} sx={{ margin: '0rem' }} key={job._id}>
-                                    <JobApplicationCard job={job} />
+                                    <JobApplicationCard job={job} btntext={"View Job"} txt={"Submitted"} handleViewJob={handleViewJob} />
                                 </Grid>
                             ))
                         }
@@ -67,13 +75,15 @@ const JobApplication = ({ user }) => {
                             feedbackJob.map(job => (
 
                                 <Grid item xs={12} sx={{ margin: '0rem' }} key={job._id}>
-                                    <JobApplicationCard job={job} />
+                                    <JobApplicationCard job={job} btntext={"View Feedback"} />
                                 </Grid>
                             ))
                         }
                     </Grid>
                     <Grid item xs={.4}> </Grid>
                 </Grid>
+                : <ViewJob job={job} back={setViewJob}/>
+                }
             </Grid>
         </>
     )

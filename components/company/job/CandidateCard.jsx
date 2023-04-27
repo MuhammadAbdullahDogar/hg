@@ -9,15 +9,16 @@ import axios from 'axios';
 import { signIn } from "next-auth/react"
 
 
-const CandidateCard = ({ candidate, btntext, txt, company, job }) => {
+const CandidateCard = ({ candidate, btntext, txt, company, job, handleChange }) => {
 
+  console.log(company);
   const handleclick = async () => {
     let res;
     if (btntext === "Invite To Interview") {
       res = await axios.post(`/api/company/job/inviteJob`, { jobId:job._id, candidateId:candidate.candidate }, { headers: { 'Content-Type': 'application/json' } });
-      
+      handleChange(res.data.updatedJob)
     } else if (btntext === "Send Reminder") {
-
+      res = await axios.post(`/api/candidate/addNotification`, { _id:candidate.candidate, notification:`${company.cname} invited you for Interview` }, { headers: { 'Content-Type': 'application/json' } });
     } else if (btntext === "View Result") {
 
     } else {

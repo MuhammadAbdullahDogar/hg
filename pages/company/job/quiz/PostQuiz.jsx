@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
+import axios from 'axios';
+import Router, { useRouter } from 'next/router';
 
 const PostQuiz = () => {
+
+    const router = useRouter();
+    const jobId = router.query.id;
+
     const [questions, setQuestions] = useState([{ question: '', type: '', options: [{ option: '', isCorrect: false }, { option: '', isCorrect: false }] }]);
 
     const addQuestionFields = () => {
@@ -58,9 +64,16 @@ const PostQuiz = () => {
         setQuestions(newQuestions);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
+        console.log(jobId);
+        const res = await axios.post(`/api/company/job/postQuiz`, { _id: jobId, quiz:questions }, { headers: { 'Content-Type': 'application/json' } });
+        if (res.status === 200)
+            Router.push('/company/job');
         console.log('Questions:', questions);
+
+
     };
 
     return (
@@ -92,7 +105,7 @@ const PostQuiz = () => {
                         {question.options.map((option, optionIndex) => (
                             <div key={optionIndex}>
                                 <div>Option {optionIndex + 1}</div>
-                                
+
                                 {question.type === 'single' ? (
                                     <input
                                         type="radio"
@@ -115,7 +128,7 @@ const PostQuiz = () => {
                                     value={option.option}
                                     onChange={(event) => handleChangeOption(event, questionIndex, optionIndex)}
                                 />
-                                
+
                                 <button type="button" onClick={() => removeOptionFields(questionIndex, optionIndex)}>
                                     Remove Option
                                 </button>

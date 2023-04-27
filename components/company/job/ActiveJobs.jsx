@@ -6,7 +6,7 @@ const ActiveJobs = ({ jobs, handleJob }) => {
     // currently all jobs posted by this company are fetching
     return (
         <>
-            <Button onClick={() => { Router.push(`PostJob`) }}>Post New Job</Button>
+            <Button onClick={() => { Router.push(`job/PostJob`) }}>Post New Job</Button>
 
             <Grid container  >
                 {

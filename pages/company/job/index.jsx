@@ -22,7 +22,7 @@ const Index = ({ jobs, company }) => {
         <Grid container spacing={2}>
             <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
             <Grid item xs={11.3} ><CompanyDashboardTopNavbar />
-                {(userInfo == 0 && <ActiveJobs jobs={jobs} handleJob={handleJob} />) || (userInfo == 1 && <Candidates job={jobInfo} company={company} />)}
+                {(userInfo == 0 && <ActiveJobs jobs={jobs} handleJob={handleJob} />) || (userInfo == 1 && <Candidates jobInfo={jobInfo} company={company} />)}
             </Grid>
         </Grid>
     )
@@ -44,7 +44,7 @@ export async function getServerSideProps(ctx) {
     });
 
     const jobs = await res.json();
-    const company = { _id: user._id, role: user.role };
+    const company = { _id: user._id, role: user.role, cname:user.cname, };
     ctx.res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'

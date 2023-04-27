@@ -4,9 +4,9 @@ import connectDb from "../../../../middleware/mongoose";
 const handler = async (req, res) => {
   if (req.method === 'POST') {
     const { jobId, question } = req.body;
-    const questions = question.map(q => q.question);
+    const screeningQuestion = question.map(q => q.question);
     try {
-        const updatedJob = await Job.findByIdAndUpdate(jobId,{ questions });
+        const updatedJob = await Job.findByIdAndUpdate(jobId,{ screeningQuestion });
         res.status(200).json({ status: "success", updatedJob });
     } catch (error) {
       console.error(error);

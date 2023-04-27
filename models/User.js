@@ -51,6 +51,7 @@ const UserSchema = new mongoose.Schema({
         }],
         jobCategory: [{ type: String }]
     },
+    notifications: [{ type: String }],
     jobsApplied: [{
         job: {
             type: mongoose.Schema.Types.ObjectId,
