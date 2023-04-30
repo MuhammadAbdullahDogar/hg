@@ -96,9 +96,9 @@ const PostQuiz = () => {
                         <div>
                             <label>Question Type: </label>
                             <select value={question.type} onChange={(event) => handleChangeType(event, questionIndex)}>
-                                <option value="">Select Type</option>
+                                <option value="" disabled>Select Type</option>
                                 <option value="single">Single Correct</option>
-                                <option value="multiple">Multiple Correct</option>
+                                <option value="multiple" >Multiple Correct</option>
                             </select>
                         </div>
 

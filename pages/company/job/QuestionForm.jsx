@@ -58,8 +58,6 @@ const QuestionForm = ({ user }) => {
             // show database error message
             console.log(res.status);
         }
-
-
     }
 
     return (

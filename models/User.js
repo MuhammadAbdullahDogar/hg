@@ -65,6 +65,12 @@ const UserSchema = new mongoose.Schema({
         matchPercent: {
             type: String
         },
+        obtainScore: {
+            type: String
+        },
+        totalScore: {
+            type: String
+        },
         statusUpdatedAt: {
             type: Date
         },

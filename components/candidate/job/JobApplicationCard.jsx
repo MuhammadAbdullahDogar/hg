@@ -6,7 +6,7 @@ import moment from 'moment';
 import Image from 'next/image'
 import axios from 'axios';
 
-const JobApplicationCard = ({ job, btntext, txt, user, handleViewJob }) => {
+const JobApplicationCard = ({ job, btntext, txt, user, handleViewJob, handleAttemptInterview }) => {
 
 
     const handleclick = async () => {
@@ -14,8 +14,9 @@ const JobApplicationCard = ({ job, btntext, txt, user, handleViewJob }) => {
         if (btntext === "View Job") {
             res = await axios.post(`/api/candidate/job/fetchJob`, { id:job.job }, { headers: { 'Content-Type': 'application/json' } });
             handleViewJob(1,res.data.job);
-        } else if (btntext === "Send Reminder") {
-          res = await axios.post(`/api/candidate/addNotification`, { _id:candidate.candidate, notification:`${company.cname} invited you for Interview` }, { headers: { 'Content-Type': 'application/json' } });
+        } else if (btntext === "Attempt Interview") {
+            res = await axios.post(`/api/candidate/job/fetchJob`, { id:job.job }, { headers: { 'Content-Type': 'application/json' } });
+            handleAttemptInterview(res.data.job.quiz,job)
         } else if (btntext === "View Result") {
     
         } else {
