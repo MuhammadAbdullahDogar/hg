@@ -13,12 +13,12 @@ import axios from 'axios';
 
 async function connectDB() {
     const response = await axios.post(`/api/connectToDb`);
-  }
+}
 
 const Login_dark = () => {
 
     connectDB();
-  
+
     const [state, setState] = useState({ active_candiate_btn: 'btn_active', active_company_btn: '' });
     const [err, setError] = useState({ err_msg: '', err_color: false });
     const [email, setEmail] = useState('');
@@ -104,7 +104,7 @@ const Login_dark = () => {
                             <button className={`signup_company_btn ${state.active_company_btn}`} onClick={changeNameCompany}>as a company</button>
                         </div>
                         <MyTextField error={err.err_color} label="Email Address" type="email" size="large" sx={{ width: '30%' }} onChange={(e) => setEmail(e.target.value)} onClick={handelClick} name="email" />
-                        <MyTextField error={err.err_color} helperText={err.err_msg} label="Password" type="password" size="large" autoComplete="current-password" sx={{ width: '30%' }} onChange={(e) => setPassword(e.target.value)} onClick={handelClick} name="password" />
+                         <MyTextField error={err.err_color} helperText={err.err_msg} label="Password" type="password" size="large" autoComplete="current-password" sx={{ width: '30%' }} onChange={(e) => setPassword(e.target.value)} onClick={handelClick} name="password" />
                         <FormControlLabel control={<Checkbox defaultChecked size="small" />} label="Remember me on this device" />
                         <CommonButton variant="Gradient" onClick={loginUser} >LOGIN</CommonButton>
                         <Typography variant="hgLink"><Link href="/signup">dont have account? sign up now</Link></Typography>

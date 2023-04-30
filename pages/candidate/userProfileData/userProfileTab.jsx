@@ -6,7 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/router';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-
+import IconButton from '@mui/material/IconButton';
+import MoreIcon from '@mui/icons-material/MoreVert';
 const generatePdf = ({ user }) => {
     // Initialize jspdf document
     const doc = new jsPDF();
@@ -97,26 +98,34 @@ const UserProfileTab = (props) => {
                 <Tab label="Personal Details" onClick={() => props.setUserInfo(0)} />
                 <Tab label="Academic Information" onClick={() => props.setUserInfo(1)} />
                 <Tab label="Experience and Skills" onClick={() => props.setUserInfo(2)} />
-                <Tab label="other" onClick={handleClick} />
-                <Menu
-                    id="demo-positioned-menu"
-                    aria-labelledby="demo-positioned-button"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                    }}
+                <IconButton
+                    size="large"
+                    color="inherit"
+                    onClick={handleClick}
                 >
-                    <MenuItem onClick={() => { handleClickk(); handleClose(); }}>edit</MenuItem>
-                    <MenuItem onClick={() => { generatePdf({ user }); handleClose(); }}>Generate CV</MenuItem>
-                </Menu>
+                    <MoreIcon />
+                    <Menu
+                        
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                    >
+                        <MenuItem onClick={() => { handleClickk() }}>edit</MenuItem>
+                        <MenuItem onClick={() => { generatePdf({ user }) }}>Generate CV</MenuItem>
+                    </Menu>
+                </IconButton>
             </Tabs>
+
+
+
         </>
     )
 }

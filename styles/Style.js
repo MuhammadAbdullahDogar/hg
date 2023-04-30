@@ -241,8 +241,47 @@ const customTheme = createTheme({
             lineHeight: "1rem",
             letterSpacing: '0.02em',
             color: '#143FCD'
-        }
-
+        },
+        //Candidate Job Application Fonts
+        JobApplicationH1: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.875rem',
+            lineHeight: "2.25rem",
+            color: '#143FCD'
+        },
+        JobApplicationH2: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.125rem',
+            lineHeight: "1.375rem",
+            color: '#143FCD'
+        },
+        JobApplicationH3:{
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.125rem',
+            lineHeight: "1.375rem",
+            color: '#143FCD',
+        },
+        JobApplicationNumberH1: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.25rem',
+            lineHeight: "1.5rem",
+            color: "#E9F3FF",
+            padding: '.9rem',
+            textAlign: 'center',
+        },
+        JobApplicationNumberH2: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.25rem',
+            lineHeight: "1.5rem",
+            color: "#556C87",
+            padding: '.9rem',
+            textAlign: 'center',
+        },
     },
     shape: {
         // borderRadius: '2.3vmin',

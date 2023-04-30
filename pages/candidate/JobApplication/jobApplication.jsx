@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid, Typography, Box } from '@mui/material'
 import React, { useState } from 'react'
 import LeftNavbar from '../leftNavbar'
 import TopNavbar from '../topNavbar'
@@ -6,7 +6,17 @@ import JobApplicationCard from '../../../components/candidate/job/JobApplication
 import { getSession } from 'next-auth/react'
 import ViewJob from '../job/ViewJob'
 import ShowQuiz from '../../../components/candidate/job/quiz/ShowQuiz'
+const box = {
+    backgroundColor: 'rgba(36, 162, 233, 0.1)', borderRadius: '10px', padding: '1rem'
+}
+const numBox = {
+    minWidth: '35px',
 
+    backgroundColor: 'rgba(118, 165, 220, 0.3)',
+    borderRadius: '3px',
+    position: 'absolute',
+    marginLeft: '1rem',
+}
 const JobApplication = ({ user }) => {
 
     const [viewJob, setViewJob] = useState(0)
@@ -15,11 +25,11 @@ const JobApplication = ({ user }) => {
         setViewJob(val)
         setJob(job)
     }
-    
+
     const [attemptInterview, setAttemptInterview] = useState(0)
     const [quiz, setQuiz] = useState()
 
-    const handleAttemptInterview = (quizz,job) => {
+    const handleAttemptInterview = (quizz, job) => {
         setAttemptInterview(1);
         setQuiz(quizz)
         setJob(job)
@@ -40,15 +50,18 @@ const JobApplication = ({ user }) => {
     return (
         <>
             {!attemptInterview ?
-                <Grid container spacing={2}>
+                <Grid container spacing={2.5}>
                     <Grid item xs={12}><TopNavbar></TopNavbar></Grid>
-                    <Grid item xs={2}><LeftNavbar></LeftNavbar></Grid>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={11}><Typography variant='JobApplicationH1'>Job Applications</Typography></Grid>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={11}><Typography variant='JobApplicationH2'> Total Applied Jobs</Typography> <span style={{ backgroundColor: '#143FCD', borderRadius: '3px', minWidth: '2.5rem', Height: '2.5rem', position: 'absolute', marginLeft: '1rem' }}><Typography variant='JobApplicationNumberH1'>{totalJobsLength}</Typography></span></Grid>
+                    <Grid item xs={12}></Grid>
+                    <Grid item xs={1} ><LeftNavbar></LeftNavbar></Grid>
                     {viewJob === 0 ?
-                        <Grid container item xs={10} spacing={1} >
-                            <Grid item xs={12}>Job Applications</Grid>
-                            <Grid item xs={12}>Total Applied Jobs {totalJobsLength}</Grid>
+                        <Grid container item xs={11} spacing={2} >
                             <Grid container item xs={2.9} rowSpacing={3}>
-                                <Grid item xs={12}>Recently Applied  {appliedJobLength}</Grid>
+                                <Grid item xs={12} style={box}><Typography variant='JobApplicationH3'>Recently Applied</Typography> <span style={numBox}><Typography variant='JobApplicationNumberH2'>{appliedJobLength}</Typography></span></Grid>
                                 {
                                     appliedJob.map(job => (
 
@@ -59,7 +72,7 @@ const JobApplication = ({ user }) => {
                                 }
                             </Grid>
                             <Grid container item xs={2.9} rowSpacing={3}>
-                                <Grid item xs={12}>Invited to Interview  {invitedJobLength}</Grid>
+                                <Grid item xs={12} style={box}><Typography variant='JobApplicationH3'>Invited to Interview</Typography>   <span style={numBox}><Typography variant='JobApplicationNumberH2'>{invitedJobLength}</Typography></span></Grid>
                                 {
                                     invitedJob.map(job => (
 
@@ -70,7 +83,7 @@ const JobApplication = ({ user }) => {
                                 }
                             </Grid>
                             <Grid container item xs={2.9} rowSpacing={3}>
-                                <Grid item xs={12}>In-Interview  {interviewedJobLength}</Grid>
+                                <Grid item xs={12} style={box}><Typography variant='JobApplicationH3'>In-Interview</Typography>   <span style={numBox}><Typography variant='JobApplicationNumberH2'>{interviewedJobLength}</Typography></span></Grid>
                                 {
                                     interviewedJob.map(job => (
 
@@ -81,7 +94,7 @@ const JobApplication = ({ user }) => {
                                 }
                             </Grid>
                             <Grid container item xs={2.9} rowSpacing={3}>
-                                <Grid item xs={12}>Awaiting Feedback  {feedbackJobLength}</Grid>
+                                <Grid item xs={12} style={box}><Typography variant='JobApplicationH3'>Awaiting Feedback</Typography>   <span style={numBox}><Typography variant='JobApplicationNumberH2'>{feedbackJobLength}</Typography></span></Grid>
                                 {
                                     feedbackJob.map(job => (
 

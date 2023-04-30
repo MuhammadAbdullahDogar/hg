@@ -18,6 +18,7 @@ const JobCard = ({ job, onData,showJob }) => {
         <>
             <Box sx={{ background: 'rgba(36, 162, 233, 0.1)', height: '13.75rem', borderRadius: '0.625rem' }}>
                 <Grid container spacing={2}>
+                    
                     <Grid item xs={12}></Grid>
                     <Grid item xs={.5}></Grid>
                     <Grid item xs={7}><Typography variant='JobCardH1'>{job?.title}</Typography><br></br><Typography variant='JobCardH2'> {job?.type} Possible - {job?.location}</Typography></Grid>
