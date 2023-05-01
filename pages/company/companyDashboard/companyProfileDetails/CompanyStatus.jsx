@@ -33,7 +33,7 @@ const CompanyStatus = (props) => {
                 <Grid item xs={5}><img className="ProfileImage" src='/Ellipse120.png'></img></Grid>
                 <Grid item xs={3.5}></Grid>
 
-                <Grid item xs={12}><Typography variant="userStatush1" sx={{ ml: '4.5rem' }}>Tech Geeks</Typography></Grid>
+                <Grid item xs={12}><Typography variant="userStatush1" sx={{ ml: '3.5rem',Align:'center' }}>Tech Geeks</Typography></Grid>
                 <Grid item xs={12}></Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={11}>

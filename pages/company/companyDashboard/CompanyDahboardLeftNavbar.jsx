@@ -49,7 +49,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     ({ theme, open }) => ({
         width: drawerWidth,
         flexShrink: 0,
-   
+
         whiteSpace: 'nowrap',
         boxSizing: 'border-box',
         ...(open && {
@@ -109,6 +109,25 @@ const CompanyDahboardLeftNavbar = () => {
                             </ListItem>
                         </Link>
                         <Link href="/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails">
+
+                            <ListItem disablePadding>
+                                <ListItemButton
+                                    onMouseEnter={handleDrawerOpen}
+                                    onMouseLeave={handleDrawerClose}
+                                >
+                                    <ListItemIcon>
+                                        <Image
+                                            src="/profile.png"
+                                            alt="logo"
+                                            width={size}
+                                            height={size}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Company Profile" />
+                                </ListItemButton>
+                            </ListItem>
+                        </Link>
+                        <Link href="/company/job">
 
                             <ListItem disablePadding>
                                 <ListItemButton

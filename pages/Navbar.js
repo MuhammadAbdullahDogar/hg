@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import NextLink from "next/link";
 import { Grid } from '@mui/material'
 import { styled } from '@mui/material/styles';
+import Image from 'next/image';
 
 const Anchor = styled('a')({});
 const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
@@ -52,7 +53,7 @@ const Navbar = (props) => {
 
         <>
             <Grid container >
-                <Grid item xs={1} sx={{ marginTop: '.4rem' }}><img src="/logo.svg" alt='logo' style={{ marginLeft: '3.75rem', width: '1.8125', height: '2.875' }}></img></Grid>
+                <Grid item xs={1} sx={{ marginTop: '.4rem' }}><Image src="/logo.svg" alt='logo' width={1.8125} height={2.875} style={{ marginLeft: '3.75rem' }}></Image></Grid>
                 <Grid item xs={9.8} >
                     <Tabs value={value} onChange={handleChange} centered sx={{
                         fontFamily: 'Comfortaa',

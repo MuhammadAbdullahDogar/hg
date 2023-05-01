@@ -44,7 +44,7 @@ const JobCard = ({ job, onData, showJob }) => {
                     <Grid item xs={9.5}>
                         {
                             job?.skills.map(skill => (
-                                <span style={skillChip}><Typography variant="JobCardH4" key={skill}>{skill}</Typography></span>
+                                <span style={skillChip}  key={skill}><Typography variant="JobCardH4">{skill}</Typography></span>
                             ))
                         }
                     </Grid>

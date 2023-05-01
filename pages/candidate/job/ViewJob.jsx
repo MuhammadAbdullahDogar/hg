@@ -50,7 +50,7 @@ const ViewJob = ({ job, onData, dialog, back }) => {
                     <Grid item xs={12}><Typography variant="ViewJobH3">Job Skills</Typography></Grid>
                     <Grid item xs={12}>                    {
                         job?.skills.map(skill => (
-                            <span style={skillChip}><Typography variant="ViewJobH5" key={skill}>{skill}</Typography></span>
+                            <span style={skillChip} key={skill}><Typography variant="ViewJobH5" >{skill}</Typography></span>
                         ))
                     }
                     </Grid>

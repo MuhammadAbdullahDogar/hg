@@ -7,7 +7,8 @@ import { useState } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/router';
-
+import IconButton from '@mui/material/IconButton';
+import MoreIcon from '@mui/icons-material/MoreVert';
 
 const Anchor = styled('a')({});
 const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
@@ -49,10 +50,10 @@ const CompanyProfileTab = (props) => {
     const router = useRouter();
 
     const handleClickk = () => {
-      router.push({
-        pathname: '/company/profile_development/ProfileAbout',
-        // query: { myProp: 'hello' },
-      });
+        router.push({
+            pathname: '/company/profile_development/ProfileAbout',
+            // query: { myProp: 'hello' },
+        });
     };
 
 
@@ -73,29 +74,35 @@ const CompanyProfileTab = (props) => {
                     color: '#363636',
                 }}
             >
-                <Tab  component={NextLinkComposed} to='/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails' label="Company Details" />
-                <Tab  component={NextLinkComposed} to='/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyNotableWork' label="Notable Work"   />
-                <Tab label="other" onClick={handleClick} />
-                <Menu
-                    id="demo-positioned-menu"
-                    aria-labelledby="demo-positioned-button"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                    }}
+                <Tab component={NextLinkComposed} to='/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails' label="Company Details" />
+                <Tab component={NextLinkComposed} to='/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyNotableWork' label="Notable Work" />
+
+                <IconButton
+                    size="large"
+                    color="inherit"
+                    onClick={handleClick}
                 >
-                    <MenuItem onClick={() => {handleClickk(); handleClose(); }}>edit</MenuItem>
-                    <MenuItem onClick={() => { console.log("cv"); handleClose(); }}>generate cv</MenuItem>
-                </Menu>
+                    <MoreIcon />
+                    <Menu
+
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                    >
+                        <MenuItem onClick={() => { handleClickk(); handleClose(); }}>edit</MenuItem>
+                        <MenuItem onClick={() => { console.log("cv"); handleClose(); }}>generate cv</MenuItem>
+                    </Menu>
+                </IconButton>
             </Tabs>
-        </> 
+        </>
     )
 }
 

@@ -18,8 +18,8 @@ const CompanyDetails = ({user}) => {
                         <Grid item xs={2.4}><CompanyStatus /></Grid>
                         <Grid item xs={.2}></Grid>
                         <Grid item xs={9} >
-                            <Grid container sx={{ borderRadius: '0 0 2rem 2rem', backgroundColor: '#F8F8F8', minHeight: '80vh' }} >
-                                <Grid item xs={12} sx={{ backgroundColor: '#D8EBF6', borderRadius: '2rem 2rem 0 0' }}><CompanyProfileTab value={0}></CompanyProfileTab></Grid>
+                            <Grid container sx={{ borderRadius: ' 2rem 2rem 0 0', backgroundColor: '#F8F8F8', minHeight: '80vh' }} >
+                                <Grid item xs={12} sx={{ backgroundColor: '#D8EBF6', borderRadius: '2rem 2rem 0 0',maxHeight:'3rem' }}><CompanyProfileTab value={0}></CompanyProfileTab></Grid>
                                 <Grid item xs={.5}></Grid>
                                 <Grid item xs={11}><Typography variant="displayh1"> Company Details</Typography></Grid>
                                 
