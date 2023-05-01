@@ -7,7 +7,7 @@ import { getSession } from 'next-auth/react'
 import ViewJob from '../job/ViewJob'
 import ShowQuiz from '../../../components/candidate/job/quiz/ShowQuiz'
 const box = {
-    backgroundColor: 'rgba(36, 162, 233, 0.1)', borderRadius: '10px', padding: '1rem'
+    backgroundColor: 'rgba(36, 162, 233, 0.1)', borderRadius: '10px', padding: '1rem',maxHeight: '4rem'
 }
 const numBox = {
     minWidth: '35px',
@@ -60,23 +60,23 @@ const JobApplication = ({ user }) => {
                     <Grid item xs={1} ><LeftNavbar></LeftNavbar></Grid>
                     {viewJob === 0 ?
                         <Grid container item xs={11} spacing={2} >
-                            <Grid container item xs={2.9} rowSpacing={3}>
+                            <Grid container item xs={2.9} rowSpacing={3} >
                                 <Grid item xs={12} style={box}><Typography variant='JobApplicationH3'>Recently Applied</Typography> <span style={numBox}><Typography variant='JobApplicationNumberH2'>{appliedJobLength}</Typography></span></Grid>
                                 {
                                     appliedJob.map(job => (
 
-                                        <Grid item xs={12} sx={{ margin: '0rem' }} key={job._id}>
+                                        <Grid item xs={12} key={job._id}>
                                             <JobApplicationCard job={job} btntext={"View Job"} txt={"Applied"} handleViewJob={handleViewJob} />
                                         </Grid>
                                     ))
                                 }
                             </Grid>
-                            <Grid container item xs={2.9} rowSpacing={3}>
+                            <Grid container item xs={2.9} rowSpacing={3} >
                                 <Grid item xs={12} style={box}><Typography variant='JobApplicationH3'>Invited to Interview</Typography>   <span style={numBox}><Typography variant='JobApplicationNumberH2'>{invitedJobLength}</Typography></span></Grid>
                                 {
                                     invitedJob.map(job => (
 
-                                        <Grid item xs={12} sx={{ margin: '0rem' }} key={job._id}>
+                                        <Grid item xs={12} key={job._id}>
                                             <JobApplicationCard job={job} btntext={"Attempt Interview"} txt={"Invited"} handleAttemptInterview={handleAttemptInterview} />
                                         </Grid>
                                     ))
@@ -87,7 +87,7 @@ const JobApplication = ({ user }) => {
                                 {
                                     interviewedJob.map(job => (
 
-                                        <Grid item xs={12} sx={{ margin: '0rem' }} key={job._id}>
+                                        <Grid item xs={12} key={job._id}>
                                             <JobApplicationCard job={job} btntext={"View Job"} txt={"Submitted"} handleViewJob={handleViewJob} />
                                         </Grid>
                                     ))
@@ -98,7 +98,7 @@ const JobApplication = ({ user }) => {
                                 {
                                     feedbackJob.map(job => (
 
-                                        <Grid item xs={12} sx={{ margin: '0rem' }} key={job._id}>
+                                        <Grid item xs={12} key={job._id}>
                                             <JobApplicationCard job={job} btntext={"View Feedback"} />
                                         </Grid>
                                     ))

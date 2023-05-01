@@ -219,28 +219,45 @@ const customTheme = createTheme({
             letterSpacing: '0.02em',
             color: '#0B1A2A'
         },
+        //Candidate Job Post Card Fonts
         JobCardH1: {
             fontFamily: 'Urbanist',
             fontWeight: '700',
-            fontSize: '1.125rem',
-            lineHeight: "1.5rem",
+            fontSize: '1.5625rem',
+            lineHeight: "1.875rem",
             color: '#143FCD'
         },
         JobCardH2: {
             fontFamily: 'Urbanist',
-            fontWeight: '500',
-            fontSize: '.937rem',
+            fontWeight: '700',
+            fontSize: '.9375rem',
             lineHeight: "1.125rem",
             letterSpacing: '0.02em',
-            color: '#76A5DC'
+            color: '#92A9C5'
         },
         JobCardH3: {
             fontFamily: 'Urbanist',
-            fontWeight: '600',
-            fontSize: '.8125rem',
+            fontWeight: '400',
+            fontSize: '1rem',
+            lineHeight: "1.125rem",
+            letterSpacing: '0.02em',
+            color: '#0960B0'
+        },
+        JobCardH4: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '.9375rem',
             lineHeight: "1rem",
             letterSpacing: '0.02em',
-            color: '#143FCD'
+            color: '#0960B0'
+        },
+        JobCardH5: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.8rem',
+            lineHeight: ".9rem",
+            letterSpacing: '0.02em',
+            color: '#92A9C5'
         },
         //Candidate Job Application Fonts
         JobApplicationH1: {
@@ -257,7 +274,7 @@ const customTheme = createTheme({
             lineHeight: "1.375rem",
             color: '#143FCD'
         },
-        JobApplicationH3:{
+        JobApplicationH3: {
             fontFamily: 'Urbanist',
             fontWeight: '700',
             fontSize: '1.125rem',
@@ -280,6 +297,78 @@ const customTheme = createTheme({
             lineHeight: "1.5rem",
             color: "#556C87",
             padding: '.9rem',
+            textAlign: 'center',
+        },
+        //Candidate Job Application card Font
+        JobApplicationCardH1: {
+            fontFamily: 'Urbanist',
+            fontWeight: '600',
+            fontSize: '1rem',
+            lineHeight: ".975rem",
+            color: "#143FCD",
+        },
+        JobApplicationCardH2: {
+            fontFamily: 'Urbanist',
+            fontWeight: '600',
+            fontSize: '.5rem',
+            lineHeight: ".6rem",
+            color: "#143FCD",
+            textAlign: 'center',
+        },
+        JobApplicationCardH3: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.7rem',
+            lineHeight: ".5rem",
+            color: "#143FCD",
+            textAlign: 'center',
+        },
+        JobApplicationCardH4: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.69rem',
+            lineHeight: ".75rem",
+            color: "#143FCD",
+            textAlign: 'center',
+        },
+        //Candidate Job Details font
+        ViewJobH1:{
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.875rem',
+            lineHeight: "2.25rem",
+            color: "#143FCD",
+        },
+        ViewJobH2:{
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '1.25rem',
+            lineHeight: "1.5rem",
+            color: "#76A5DC",
+        },
+        ViewJobH3:{
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.125rem',
+            lineHeight: "1.35rem",
+            color: "#143FCD",
+            textAlign: 'center',
+        },
+        ViewJobH4:{
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '1.1rem',
+            lineHeight: "1.6875rem",
+            color: "#0960B0",
+            textAlign: 'center',
+            Aign:'justify',
+        },
+        ViewJobH5:{
+            fontFamily: 'Urbanist',
+            fontWeight: '600',
+            fontSize: '.9375rem',
+            lineHeight: "1.125rem",
+            color: "#0960B0",
             textAlign: 'center',
         },
     },

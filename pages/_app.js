@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps: {session , ...pageProps} }) {
 
   return (
     <>
-      <div style={{ position: 'fixed', zIndex: '10' }}>
+      {/* <div style={{ position: 'fixed', zIndex: '10' }}>
         <SpeedDial
           ariaLabel="SpeedDial basic example"
           icon={<SpeedDialIcon />}
@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps: {session , ...pageProps} }) {
             />
           ))}
         </SpeedDial>
-      </div>
+      </div> */}
       <ThemeProvider theme={customTheme}>
         <Head>
           <link rel="shortcut icon" href="/logo.svg" />

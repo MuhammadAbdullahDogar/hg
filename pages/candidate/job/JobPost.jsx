@@ -104,14 +104,11 @@ const JobPost = ({ jobs, user }) => {
         <>
             <Grid container spacing={2}>
                 <Grid item xs={12}><TopNavbar /></Grid>
-                <Grid item xs={2} ><LeftNavbar /></Grid>
+                <Grid item xs={12}></Grid>
+                <Grid item xs={1} ><LeftNavbar /></Grid>
 
                 {showJobs && <React.Fragment>
-
-                    <Grid item xs={10}></Grid>
-                    <Grid item xs={2}></Grid>
-
-                    <Grid container item xs={9.5} rowSpacing={5.5}>
+                    <Grid container item xs={10.5} rowSpacing={5}>
                         {
                             jobs.Jobs.map(job => (
                                 <Grid item xs={12} sx={{ margin: '0rem' }} key={job._id}>

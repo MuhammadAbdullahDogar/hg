@@ -10,7 +10,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
+import Router from "next/router";
 
 const drawerWidth = 240;
 
@@ -35,7 +35,11 @@ const closedMixin = (theme) => ({
     },
 });
 
+const handleSignOut = () => {
+    signOut();
+    Router.push(`/login`);
 
+}
 
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -153,7 +157,7 @@ const LeftNavbar = () => {
                        
                             <ListItem disablePadding sx={{ mt: '5rem' }} >
                                 <ListItemButton
-                                onClick={signOut}
+                                onClick={handleSignOut}
                                 >
                                     <ListItemIcon>
                                         <Image src="/Logout.svg" alt="Logout icon" width={iconSize} height={iconSize} />
