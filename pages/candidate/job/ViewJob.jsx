@@ -22,7 +22,6 @@ const ViewJob = ({ job, onData, dialog, back }) => {
 
     return (
         <>
-            {console.log(job)}
             <Grid container item xs={11} spacing={2}>
                 <Grid container item xs={12} >
                     {/* <Grid item xs={12} >

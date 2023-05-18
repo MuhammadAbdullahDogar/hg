@@ -10,7 +10,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import { signIn } from 'next-auth/react'
 import axios from 'axios';
-
+const pFont={
+    fontFamily:'Verdana',
+}
 async function connectDB() {
     const response = await axios.post(`/api/connectToDb`);
 }
@@ -103,8 +105,8 @@ const Login_dark = () => {
                             <button className={`signup_canidate_btn ${state.active_candiate_btn}`} onClick={changeNameCanidate}>as a canidate</button>
                             <button className={`signup_company_btn ${state.active_company_btn}`} onClick={changeNameCompany}>as a company</button>
                         </div>
-                        <MyTextField error={err.err_color} label="Email Address" type="email" size="large" sx={{ width: '30%' }} onChange={(e) => setEmail(e.target.value)} onClick={handelClick} name="email" />
-                         <MyTextField error={err.err_color} helperText={err.err_msg} label="Password" type="password" size="large" autoComplete="current-password" sx={{ width: '30%' }} onChange={(e) => setPassword(e.target.value)} onClick={handelClick} name="password" />
+                        <MyTextField error={err.err_color} label="Email Address" type="email" size="large" sx={{ width: '30%',}} onChange={(e) => setEmail(e.target.value)} onClick={handelClick} name="email" />
+                         <MyTextField error={err.err_color} helperText={err.err_msg} label="Password" type="password" size="large" autoComplete="current-password" style={pFont}sx={{ width: '30%',fontSize:'15rem' }} onChange={(e) => setPassword(e.target.value)} onClick={handelClick} name="password" />
                         <FormControlLabel control={<Checkbox defaultChecked size="small" />} label="Remember me on this device" />
                         <CommonButton variant="Gradient" onClick={loginUser} >LOGIN</CommonButton>
                         <Typography variant="hgLink"><Link href="/signup">dont have account? sign up now</Link></Typography>

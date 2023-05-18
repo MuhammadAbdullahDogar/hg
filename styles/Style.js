@@ -18,7 +18,7 @@ const customTheme = createTheme({
         },
     },
     typography: {
-        fontFamily: 'Urbanist',
+        fontFamily: 'Verdana',
         color: "#19177E",
         HomeH1: {
             fontStyle: 'normal',
@@ -370,6 +370,50 @@ const customTheme = createTheme({
             lineHeight: "1.125rem",
             color: "#0960B0",
             textAlign: 'center',
+        },
+        //company Job card Font
+        companyJobCardH1: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.25rem',
+            lineHeight: "1.5rem",
+            color: '#143FCD'
+        },
+        companyJobCardH2: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.9375rem',
+            lineHeight: "1.125rem",
+            color: '#76A5DC'
+        },
+        companyJobCardH3: {
+            fontFamily: 'Urbanist',
+            fontWeight: '600',
+            fontSize: '.8125rem',
+            lineHeight: ".975rem",
+            textAlign: 'center',
+            color: '#143FCD'
+        },
+        companyJobCardH4: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.75rem',
+            lineHeight: ".9rem",
+            color: '#76A5DC'
+        },
+        companyJobCardH5: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.65rem',
+            lineHeight: ".6rem",
+            color: '#556C87'
+        },
+        companyJobCardH6: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.8rem',
+            lineHeight: ".6rem",
+            color: '#76A5DC'
         },
     },
     shape: {
