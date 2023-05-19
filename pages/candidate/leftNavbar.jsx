@@ -12,7 +12,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Router from "next/router";
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -82,7 +82,7 @@ const LeftNavbar = () => {
             <Box sx={{ display: 'flex', }}>
                 <Drawer variant="permanent" open={open}>
                    
-                    <List sx={{ mt: '5rem' }}>
+                    <List sx={{ mt: '7rem' }}>
                         <ListItem disablePadding>
                             <ListItemButton
                                 onMouseEnter={handleDrawerOpen}
@@ -95,7 +95,7 @@ const LeftNavbar = () => {
                             </ListItemButton>
                         </ListItem>
                         <Link href={`/candidate/job/JobPost`}>
-                            <ListItem disablePadding>
+                            <ListItem disablePadding sx={{ mt: '1rem' }}>
                                 <ListItemButton
                                  onMouseEnter={handleDrawerOpen}
                                  onMouseLeave={handleDrawerClose}
@@ -113,7 +113,7 @@ const LeftNavbar = () => {
                                  onMouseEnter={handleDrawerOpen}
                                  onMouseLeave={handleDrawerClose}
                                 >
-                                    <ListItemIcon>
+                                    <ListItemIcon sx={{ mt: '1rem' }} >
                                         <Image
                                             src="/applications.svg"
                                             alt="clickable image"
@@ -131,7 +131,7 @@ const LeftNavbar = () => {
                                  onMouseEnter={handleDrawerOpen}
                                  onMouseLeave={handleDrawerClose}
                                 >
-                                    <ListItemIcon>
+                                    <ListItemIcon sx={{ mt: '1rem' }}>
                                         <Image
                                             src="/profile.png"
                                             alt="clickable image"
@@ -148,14 +148,14 @@ const LeftNavbar = () => {
                              onMouseEnter={handleDrawerOpen}
                              onMouseLeave={handleDrawerClose}
                             >
-                                <ListItemIcon>
+                                <ListItemIcon sx={{ mt: '1rem' }}>
                                     <Image src="/feedback.svg" alt="feedback icon" width={iconSize} height={iconSize} />
                                 </ListItemIcon>
                                 <ListItemText primary="Feedbacks" />
                             </ListItemButton>
                         </ListItem>
                        
-                            <ListItem disablePadding sx={{ mt: '5rem' }} >
+                            <ListItem disablePadding sx={{ mt: '8rem' }} >
                                 <ListItemButton
                                 onClick={handleSignOut}
                                 >

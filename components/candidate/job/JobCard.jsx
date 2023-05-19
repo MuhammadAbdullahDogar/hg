@@ -31,10 +31,10 @@ const JobCard = ({ job, onData, showJob }) => {
                     <Grid item xs={.5}></Grid>
                     <Grid item xs={.7}><Image src={job?.img} width={60} height={60} alt="IMG" /></Grid>
                     <Grid item xs={7}><Typography variant='JobCardH1'>{job?.title}</Typography><br></br><Typography variant='JobCardH2'> {job?.type} Possible - {job?.location}</Typography></Grid>
-                    <Grid item xs={2}> <CommonButton variant="JobPostNotFill" onClick={handleSubmit} >View Job Posting</CommonButton></Grid>
+                    <Grid item xs={1.7}> <CommonButton variant="JobPostNotFill" onClick={handleSubmit} >View Job Posting</CommonButton></Grid>
 
                     <Grid item xs={1.3}> <CommonButton variant="JobPost" onClick={applyJob} >Apply to Job</CommonButton></Grid>
-                    <Grid item xs={.5}></Grid>
+                    <Grid item xs={.8}></Grid>
 
                     <Grid item xs={.5}></Grid>
                     <Grid item xs={11}><Typography variant='JobCardH3'> {job?.description + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} </Typography></Grid>
