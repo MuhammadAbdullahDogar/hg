@@ -182,7 +182,7 @@ const CompanyDahboardLeftNavbar = () => {
 
                         <ListItem disablePadding sx={{ mt: '5rem' }} >
                             <ListItemButton
-                                onClick={signOut}
+                                onClick={() => { signOut(); window.location.href = "/"; }}
                             >
                                 <ListItemIcon>
                                     <Image src="/Logout.svg" alt="Logout icon" width={iconSize} height={iconSize} />

@@ -11,6 +11,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Router from "next/router";
+import { useRouter } from "next/router";
 
 const drawerWidth = 250;
 
@@ -35,11 +36,6 @@ const closedMixin = (theme) => ({
     },
 });
 
-const handleSignOut = () => {
-    signOut();
-    Router.push(`/login`);
-
-}
 
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -60,9 +56,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const LeftNavbar = () => {
-  
+    const router = useRouter();
+
+    const handleSignOut = () => {
+        signOut();
+        window.location.href = "/";
+    
+    }
+    
+
     const iconSize = 25;
- 
+
 
     const [open, setOpen] = React.useState(false);
 
@@ -82,7 +86,7 @@ const LeftNavbar = () => {
             <Box sx={{ display: 'flex', }}>
                 <Drawer variant="permanent" open={open}>
                    
-                    <List sx={{ mt: '7rem' }}>
+                    <List sx={{ mt: '5rem' }}>
                         <ListItem disablePadding>
                             <ListItemButton
                                 onMouseEnter={handleDrawerOpen}
@@ -97,8 +101,8 @@ const LeftNavbar = () => {
                         <Link href={`/candidate/job/JobPost`}>
                             <ListItem disablePadding sx={{ mt: '1rem' }}>
                                 <ListItemButton
-                                 onMouseEnter={handleDrawerOpen}
-                                 onMouseLeave={handleDrawerClose}
+                                    onMouseEnter={handleDrawerOpen}
+                                    onMouseLeave={handleDrawerClose}
                                 >
                                     <ListItemIcon>
                                         <Image src="/job.svg" alt="Job icon" width={iconSize} height={iconSize} />
@@ -110,8 +114,8 @@ const LeftNavbar = () => {
                         <Link href={`/candidate/JobApplication/jobApplication`}>
                             <ListItem disablePadding>
                                 <ListItemButton
-                                 onMouseEnter={handleDrawerOpen}
-                                 onMouseLeave={handleDrawerClose}
+                                    onMouseEnter={handleDrawerOpen}
+                                    onMouseLeave={handleDrawerClose}
                                 >
                                     <ListItemIcon sx={{ mt: '1rem' }} >
                                         <Image
@@ -128,8 +132,8 @@ const LeftNavbar = () => {
                         <Link href={`/candidate/UserDashboard`}>
                             <ListItem disablePadding>
                                 <ListItemButton
-                                 onMouseEnter={handleDrawerOpen}
-                                 onMouseLeave={handleDrawerClose}
+                                    onMouseEnter={handleDrawerOpen}
+                                    onMouseLeave={handleDrawerClose}
                                 >
                                     <ListItemIcon sx={{ mt: '1rem' }}>
                                         <Image
@@ -145,8 +149,8 @@ const LeftNavbar = () => {
                         </Link>
                         <ListItem disablePadding>
                             <ListItemButton
-                             onMouseEnter={handleDrawerOpen}
-                             onMouseLeave={handleDrawerClose}
+                                onMouseEnter={handleDrawerOpen}
+                                onMouseLeave={handleDrawerClose}
                             >
                                 <ListItemIcon sx={{ mt: '1rem' }}>
                                     <Image src="/feedback.svg" alt="feedback icon" width={iconSize} height={iconSize} />
@@ -155,17 +159,17 @@ const LeftNavbar = () => {
                             </ListItemButton>
                         </ListItem>
                        
-                            <ListItem disablePadding sx={{ mt: '8rem' }} >
+                            <ListItem disablePadding sx={{ mt: '5rem' }} >
                                 <ListItemButton
                                 onClick={handleSignOut}
-                                >
-                                    <ListItemIcon>
-                                        <Image src="/Logout.svg" alt="Logout icon" width={iconSize} height={iconSize} />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Logout" />
-                                </ListItemButton>
-                            </ListItem>
-                       
+                            >
+                                <ListItemIcon>
+                                    <Image src="/Logout.svg" alt="Logout icon" width={iconSize} height={iconSize} />
+                                </ListItemIcon>
+                                <ListItemText primary="Logout" />
+                            </ListItemButton>
+                        </ListItem>
+
                     </List>
                 </Drawer>
 

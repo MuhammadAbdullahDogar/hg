@@ -40,7 +40,7 @@ const ActiveJobs = ({ jobs, handleJob }) => {
                 <Grid item xs={7}></Grid>
 
                 <Grid item xs={1.5} mt={1}><CommonButton onClick={() => { Router.push(`job/PostJob`) }} variant='JobPostNotFill'>Post New Job</CommonButton></Grid>
-                <Grid item xs={12}><Typography variant='JobApplicationH1'>3 Active Jobs</Typography></Grid>
+                <Grid item xs={12}><Typography variant='JobApplicationH1'>{jobs.length} Active Jobs</Typography></Grid>
             </Grid>
             <Grid container spacing={1} >
                 {
