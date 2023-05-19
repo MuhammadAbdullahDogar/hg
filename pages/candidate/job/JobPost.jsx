@@ -211,6 +211,18 @@ export async function getServerSideProps(ctx) {
 
     const session = await getSession(ctx)
     const user = session?.user?.user || null
+
+    if (!session) {
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false,
+          },
+        }
+      }
+
+
+
     const res = await fetch(`${process.env.WEBSITE}/api/candidate/job`, {
         method: 'POST',
         headers: {

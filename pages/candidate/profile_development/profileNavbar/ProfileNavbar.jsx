@@ -33,7 +33,7 @@ const ProfileNavbar = (props) => {
           <Grid item container direction="column" xs={8}>
             <Grid item xs={2}></Grid>
             <Grid item><Typography variant='profielH6'>Welcome,</Typography></Grid>
-            <Grid item><Typography variant='profielH5'>James Smith</Typography> </Grid>
+            <Grid item><Typography variant='profielH5'>{props.fname} {props.lname}</Typography> </Grid>
           </Grid>
 
 

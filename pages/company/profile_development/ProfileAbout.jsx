@@ -210,6 +210,17 @@ export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
     const user = session?.user?.user || null
 
+
+    if (!session) {
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false,
+          },
+        }
+      }
+
+
     ctx.res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'

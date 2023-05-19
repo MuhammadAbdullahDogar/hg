@@ -36,6 +36,17 @@ export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
     const user = session?.user?.user || null
 
+    if (!session) {
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false,
+          },
+        }
+      }
+
+
+
     const res = await fetch(`${process.env.WEBSITE}/api/company/job`, {
         method: 'POST',
         headers: {
@@ -46,6 +57,8 @@ export async function getServerSideProps(ctx) {
 
     const jobs = await res.json();
     const company = { _id: user._id, role: user.role, cname:user.cname, img:user.img };
+    
+    
     ctx.res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'

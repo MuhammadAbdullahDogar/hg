@@ -3,6 +3,7 @@ import CompanyDashboardTopNavbar from '../../companyDashboard/CompanyDashboardTo
 import CompanyDashboardLeftNavbar from '../../companyDashboard/CompanyDahboardLeftNavbar';
 import CompanyStatus from '../../companyDashboard/companyProfileDetails/CompanyStatus';
 import Graph from './Graph';
+import { getSession } from "next-auth/react"
 
 const JobResult = () => {
     return (
@@ -32,3 +33,28 @@ const JobResult = () => {
 }
 
 export default JobResult
+
+export async function getServerSideProps(ctx) {
+
+    const session = await getSession(ctx)
+    const user = session?.user?.user || null
+
+    if (!session) {
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false,
+          },
+        }
+      }
+
+    
+    ctx.res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+    )
+
+    return {
+        props: { user },
+    }
+}

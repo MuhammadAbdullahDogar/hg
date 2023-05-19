@@ -102,7 +102,7 @@ const ProfileExperience = ({ user }) => {
   const [experiences, setExperiences] = useState(user?.experience ? user?.experience : [{
     cName: "", cDomain: "", jobTitle: "", startingDate: "", endingDate: "", responsibities: ""
   }]);
-  const [skills, setSkills] = useState(user?.skills ? user?.skills : [{ skill: "", percent: 0 }]);
+  const [skills, setSkills] = useState(user?.skills[0] ? user?.skills : [{ skill: "", percent: 0 }]);
   const [openToWorkingAs, setOpenToWorkingAs] = useState(user?.openToWorkingAs ? user?.openToWorkingAs : '');
   const [yearsOfExperience, setYearsOfExperience] = useState(user?.yearsOfExperience ? user?.yearsOfExperience : '');
 
@@ -126,7 +126,7 @@ const ProfileExperience = ({ user }) => {
     setExperiences([...experiences, object])
   }
 
-  const suggestions = ["React", "Vue", "Angular", "JavaScript"];
+  const suggestions = ["Graphic Designer", "Content Writer", "Website Developer"];
   const getOpenToWorkingValue = (value) => {
     setOpenToWorkingAs(value);
   };
@@ -440,6 +440,18 @@ export async function getServerSideProps(ctx) {
 
   const session = await getSession(ctx)
   const user = session?.user?.user || null
+
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+
 
   ctx.res.setHeader(
     'Cache-Control',

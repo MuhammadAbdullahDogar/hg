@@ -9,9 +9,9 @@ import UserStatus from './userStatus'
 import UserProfileTab from './userProfileData/userProfileTab'
 import { getSession } from "next-auth/react"
 import Box from '@mui/material/Box';
+import Router from "next/router";
 
-
-const UserDashboard = ({user}) => {
+const UserDashboard = ({ user }) => {
 
     const [userInfo, setUserInfo] = useState(0)
     return (
@@ -23,8 +23,8 @@ const UserDashboard = ({user}) => {
                 <Grid item xs={.2}></Grid>
                 <Grid item xs={8} >
                     <Box sx={{ backgroundColor: '#D8EBF6', borderRadius: '1rem' }}>
-                    <UserProfileTab value={userInfo} setUserInfo={setUserInfo} user={user} />
-                    {(userInfo == 0 && <UserProfileData user={user} />) || (userInfo == 1 && <UserAcademicData academics={user?.academic} />) || <UserCompanyData experiences={user?.experience} />}
+                        <UserProfileTab value={userInfo} setUserInfo={setUserInfo} user={user} />
+                        {(userInfo == 0 && <UserProfileData user={user} />) || (userInfo == 1 && <UserAcademicData academics={user?.academic} />) || <UserCompanyData experiences={user?.experience} />}
 
                     </Box>
                 </Grid>
@@ -32,6 +32,7 @@ const UserDashboard = ({user}) => {
         </>
 
     )
+
 }
 
 export default UserDashboard
@@ -39,11 +40,31 @@ export default UserDashboard
 export async function getServerSideProps(ctx) {
 
     const session = await getSession(ctx)
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        }
+    }
+
     const user = session?.user?.user || null
-   
+
+    if (!user.about.city) {
+        return {
+            redirect: {
+                destination: 'candidate/profile_development/ProfileAbout',
+                permanent: false,
+            },
+        }
+    }
+
+
     ctx.res.setHeader(
-      'Cache-Control',
-      'public, s-maxage=10, stale-while-revalidate=59'
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
     )
 
     return {

@@ -25,7 +25,8 @@ import { userAboutSchema } from '../../../validationSchema'
 const ProfileAbout = ({ user }) => {
 
   //portfolio
-  const [portfolios, setPortfolios] = useState(user?.about?.portfolios ? user?.about?.portfolios : [{ linkType: '', portfolioLink: '' }]);
+  const [portfolios, setPortfolios] = useState(user?.about?.portfolios || [{ linkType: '', portfolioLink: '' }]);
+  // const [portfolios, setPortfolios] = useState(user?.about?.portfolios[0] || [{ linkType: '', portfolioLink: '' }]);
   const [errors, setErrors] = useState([]);
 
 
@@ -135,7 +136,7 @@ const ProfileAbout = ({ user }) => {
         <title>About</title>
       </Head>
       <Grid container spacing={2.5} >
-        <Grid item xs={12}><ProfileNavbar step={0} /></Grid>
+        <Grid item xs={12}><ProfileNavbar step={0} fname={user.fname} lname={user.lname} /></Grid>
         <Grid item xs={12}></Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={2.5}><Typography variant="profileH1">About You</Typography></Grid>
@@ -241,6 +242,17 @@ export async function getServerSideProps(ctx) {
 
   const session = await getSession(ctx)
   const user = session?.user?.user || null
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+
 
   ctx.res.setHeader(
     'Cache-Control',
