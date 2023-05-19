@@ -334,3 +334,41 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.question-container {
+  margin-bottom: 20px;
+}
+
+.question-heading {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.question-input {
+  margin-bottom: 10px;
+  width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.question-type {
+  margin-bottom: 10px;
+}
+
+.type-select {
+  padding: 8px;
+  border: 1px solid
+}
+
+.remove-option-button{
+  padding-top: 22px;
+}
