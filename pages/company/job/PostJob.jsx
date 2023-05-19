@@ -52,7 +52,7 @@ const PostJob = ({ user }) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ title, level, type, domain, compensation, matchPercentage, description, responsibilites, skills, location, category, companyId })
+      body: JSON.stringify({ title, level, type, domain, compensation, matchPercentage, description, responsibilites, skills, location, category, companyId, img:user?.img })
     });
 
     if (res.status === 200) {

@@ -24,7 +24,7 @@ const JobPost = ({ jobs, user }) => {
 
     const handleInputChange = (event, index) => {
         const newInputValues = [...screeningQuestions];
-        newInputValues[index] = { question: showJob?.questions[index], answer: event.target.value };
+        newInputValues[index] = { question: showJob?.screeningQuestion[index], answer: event.target.value };
         setScreeningQuestions(newInputValues);
     };
 
@@ -69,9 +69,12 @@ const JobPost = ({ jobs, user }) => {
 
     const postData = async () => {
 
+        console.log(showJob);
         const jobId = showJob?._id
         const matchPercent = showJob?.mpercent
         const candidateId = user._id
+        const img = showJob?.img
+
 
         const res = await fetch('/api/candidate/job/applyJob', {
             method: 'POST',
@@ -79,7 +82,7 @@ const JobPost = ({ jobs, user }) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ jobId, matchPercent, candidateId, screeningQuestions })
+            body: JSON.stringify({ jobId, matchPercent, candidateId, screeningQuestions, img })
         });
 
         if (res.status === 200) {
@@ -103,7 +106,7 @@ const JobPost = ({ jobs, user }) => {
     return (
         <>
             <Grid container spacing={2}>
-                <Grid item xs={12}><TopNavbar /></Grid>
+                <Grid item xs={12}><TopNavbar img={user?.img} /></Grid>
                 <Grid item xs={12}></Grid>
                 <Grid item xs={1} ><LeftNavbar /></Grid>
 
@@ -158,7 +161,7 @@ const JobPost = ({ jobs, user }) => {
             >
                 <DialogTitle>Screening Questions</DialogTitle>
                 <DialogContent>
-                    {showJob?.questions?.map((data, index) => (
+                    {showJob?.screeningQuestion?.map((data, index) => (
                         <TextField
                             label={data}
                             variant="outlined"

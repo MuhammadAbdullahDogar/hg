@@ -8,6 +8,7 @@ import Candidates from "../../../components/company/job/Candidates";
 import { useRouter } from 'next/router';
 
 const Index = ({ jobs, company }) => {
+    console.log(company);
     const router = useRouter();
     const [userInfo, setUserInfo] = useState(0)
     const [jobInfo, setJobInfo] = useState()
@@ -21,7 +22,7 @@ const Index = ({ jobs, company }) => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
-            <Grid item xs={11.3} ><CompanyDashboardTopNavbar />
+            <Grid item xs={11.3} ><CompanyDashboardTopNavbar img={company?.img} />
                 {(userInfo == 0 && <ActiveJobs jobs={jobs} handleJob={handleJob} />) || (userInfo == 1 && <Candidates jobInfo={jobInfo} company={company} />)}
             </Grid>
         </Grid>
@@ -44,7 +45,7 @@ export async function getServerSideProps(ctx) {
     });
 
     const jobs = await res.json();
-    const company = { _id: user._id, role: user.role, cname:user.cname, };
+    const company = { _id: user._id, role: user.role, cname:user.cname, img:user.img };
     ctx.res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'

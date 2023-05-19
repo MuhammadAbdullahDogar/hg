@@ -4,9 +4,9 @@ import connectDb from "../../../../middleware/mongoose";
 
 const handler = async (req, res) => {
   if (req.method == 'POST') {
-    const { title, level, type, domain, compensation, matchPercentage, description, responsibilites, skills, location, category, companyId } = req.body;
+    const { title, level, type, domain, compensation, matchPercentage, description, responsibilites, skills, location, category, companyId, img } = req.body;
     let job = new Job({
-      title, level, type, domain, compensation, matchPercentage, description, responsibilites, skills, location, category, company: companyId
+      title, level, type, domain, compensation, matchPercentage, description, responsibilites, skills, location, category, company: companyId, img
     });
     try {
       const savedJob = await job.save();

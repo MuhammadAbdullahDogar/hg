@@ -30,10 +30,10 @@ const CompanyStatus = (props) => {
         <>
             <Grid container sx={{ backgroundColor: '#f8f8f8', borderRadius: '1.5rem' }} spacing={1}>
                 <Grid item xs={3}></Grid>
-                <Grid item xs={5}><img className="ProfileImage" src='/Ellipse120.png'></img></Grid>
+                <Grid item xs={5}><img className="ProfileImage" src={props?.user?.img}></img></Grid>
                 <Grid item xs={3.5}></Grid>
 
-                <Grid item xs={12}><Typography variant="userStatush1" sx={{ ml: '3.5rem',Align:'center' }}>Tech Geeks</Typography></Grid>
+                <Grid item xs={12}><Typography variant="userStatush1" sx={{ ml: '3.5rem',Align:'center' }}>{props?.user?.cname}</Typography></Grid>
                 <Grid item xs={12}></Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={11}>

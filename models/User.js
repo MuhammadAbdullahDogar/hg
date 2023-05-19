@@ -3,6 +3,7 @@ import * as bcrypt from 'bcrypt';
 
 const UserSchema = new mongoose.Schema({
     role: { type: String },
+    img: { type: String },
     fname: { type: String, required: true },
     lname: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -74,6 +75,7 @@ const UserSchema = new mongoose.Schema({
         statusUpdatedAt: {
             type: Date
         },
+        img: { type: String },
     }]
 });
 

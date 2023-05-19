@@ -55,7 +55,6 @@ const ProfileAbout = ({ user }) => {
     setPortfolios(data);
   };
 
-  
   //backend 
   const formik = useFormik({
     initialValues: {
@@ -84,23 +83,48 @@ const ProfileAbout = ({ user }) => {
     formik.values.dob = dob;
   };
 
+  //img
+  const [uploadFile, setUploadFile] = useState("");
+  const [cloudinaryImage, setCloudinaryImage] = useState("")
+
+
+
   const PostData = async (e) => {
     formik.values.portfolios = portfolios.filter((form) => form.linkType.trim() !== '' || form.portfolioLink.trim() !== '');
 
-    const res = await axios.post(`/api/candidate/profile_development/profileAbout`, { _id: user?._id,...formik.values }, { headers: { 'Content-Type': 'application/json' } });
+    const formData = new FormData();
+    formData.append("file", uploadFile);
+    formData.append("upload_preset", "uploads");
 
-    if (res.status === 200) {
-      const { role, email, password, _id } = user;
-      const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
+    axios.post(
+      "https://api.cloudinary.com/v1_1/dkbhrixzf/image/upload",
+      formData
+    )
+      .then(async (response) => {
+        console.log(response);
+        setCloudinaryImage(response.data.secure_url);
 
-      if (ress.status === 200) {
-        Router.push('ProfileAcademic');
-      }
-    }
-    else {
-      // show database error message
-      console.log(res.status);
-    }
+        if (response.status === 200) {
+          const res = await axios.post(`/api/candidate/profile_development/profileAbout`, { _id: user?._id, ...formik.values, img: response.data.secure_url }, { headers: { 'Content-Type': 'application/json' } });
+
+          if (res.status === 200) {
+            const { role, email, password, _id } = user;
+            const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
+
+            if (ress.status === 200) {
+              Router.push('ProfileAcademic');
+            }
+          }
+          else {
+            // show database error message
+            console.log(res.status);
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
 
   };
 
@@ -115,10 +139,13 @@ const ProfileAbout = ({ user }) => {
         <Grid item xs={12}></Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={2.5}><Typography variant="profileH1">About You</Typography></Grid>
-        <Grid item ><IconButton color="primary">
-          <input hidden accept="image/*" type="file" />
-          <PhotoCamera />
-        </IconButton>
+        <Grid item >
+          <label htmlFor="upload-button">
+            <IconButton color="primary" component="span">
+              <PhotoCamera />
+            </IconButton>
+          </label>
+          <input hidden id="upload-button" type="file" accept="image/*" name='file' onChange={(event) => { setUploadFile(event.target.files[0]); }} />
         </Grid>
         <Grid item xs={6}>
           <Typography variant="profileH3">Upload a profile picture<br /></Typography>
@@ -150,7 +177,7 @@ const ProfileAbout = ({ user }) => {
         <Grid item xs={1.5} >
           <FormControl fullWidth>
             <InputLabel>Gender</InputLabel>
-            <MySelect label="Gender" {...formik.getFieldProps('gender')} error={formik.touched.gender && Boolean(formik.errors.gender)}  name="gender">
+            <MySelect label="Gender" {...formik.getFieldProps('gender')} error={formik.touched.gender && Boolean(formik.errors.gender)} name="gender">
               <MenuItem value='male'>Male</MenuItem>
               <MenuItem value="female">Female</MenuItem>
               <MenuItem value="other">Other</MenuItem>

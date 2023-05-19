@@ -5,6 +5,7 @@ const JobSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  img: { type: String },
   level: {
     type: String,
     required: true
@@ -72,6 +73,8 @@ const JobSchema = new mongoose.Schema({
     hiringStatus: {
       type: String
     },
+    img: { type: String },
+
   }],
   status: {
     type: String,

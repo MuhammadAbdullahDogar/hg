@@ -17,7 +17,7 @@ const UserDashboard = ({user}) => {
     return (
         <>
             <Grid container spacing={4}>
-                <Grid item xs={12}><TopNavbar /></Grid>
+                <Grid item xs={12}><TopNavbar img={user?.img} /></Grid>
                 <Grid item xs={1}><LeftNavbar id={user?._id} /></Grid>
                 <Grid item xs={2.4}><UserStatus user={user} /></Grid>
                 <Grid item xs={.2}></Grid>

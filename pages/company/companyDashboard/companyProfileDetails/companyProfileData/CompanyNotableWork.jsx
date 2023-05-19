@@ -12,10 +12,10 @@ const CompanyNotableWork = ({ user }) => {
     <>
       <Grid container spacing={2}>
         <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
-        <Grid item xs={11.3}><CompanyDashboardTopNavbar />
+        <Grid item xs={11.3}><CompanyDashboardTopNavbar img={user?.img} />
           <Grid container spacing={2} mt={1}>
             <Grid item xs={.1}></Grid>
-            <Grid item xs={2.4} mt={1}><CompanyStatus /></Grid>
+            <Grid item xs={2.4} mt={1}><CompanyStatus user={user} /></Grid>
             <Grid item xs={.1}></Grid>
             <Grid item xs={9} >
 

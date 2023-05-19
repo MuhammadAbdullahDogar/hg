@@ -29,7 +29,7 @@ const UserStatus = (props) => {
         <>
             <Grid container sx={{ backgroundColor: '#f8f8f8', borderRadius: '1.5rem' }} mt={.001} spacing={1}>
                 <Grid item xs={3}></Grid>
-                <Grid item xs={5}><img className="ProfileImage" src='/demo.jpg'></img></Grid>
+                <Grid item xs={5}><img className="ProfileImage" src={props.user?.img} /></Grid>
                 <Grid item xs={3.5}></Grid>
 
                 <Grid item xs={12}><Typography variant="userStatush1" sx={{ ml: '4.5rem' }}>{props.user?.fname} {props.user?.lname} </Typography></Grid>

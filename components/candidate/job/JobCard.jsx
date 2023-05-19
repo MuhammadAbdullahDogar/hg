@@ -29,7 +29,7 @@ const JobCard = ({ job, onData, showJob }) => {
                     <Grid item xs={12}></Grid>
 
                     <Grid item xs={.5}></Grid>
-                    <Grid item xs={.7}><Image src={vector17} alt="IMG" /></Grid>
+                    <Grid item xs={.7}><Image src={job?.img} width={60} height={60} alt="IMG" /></Grid>
                     <Grid item xs={7}><Typography variant='JobCardH1'>{job?.title}</Typography><br></br><Typography variant='JobCardH2'> {job?.type} Possible - {job?.location}</Typography></Grid>
                     <Grid item xs={2}> <CommonButton variant="JobPostNotFill" onClick={handleSubmit} >View Job Posting</CommonButton></Grid>
 

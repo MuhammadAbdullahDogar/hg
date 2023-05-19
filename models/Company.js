@@ -10,6 +10,7 @@ import * as bcrypt from 'bcrypt';
 
 const CompanySchema = new mongoose.Schema({
     role: { type: String },
+    img: { type: String },
     cname: { type: String, required: true },
     domain: { type: String, required: true },
     email: { type: String, required: true, unique: true },

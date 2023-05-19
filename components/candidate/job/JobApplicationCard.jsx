@@ -44,7 +44,7 @@ const JobApplicationCard = ({ job, btntext, txt, user, handleViewJob, handleAtte
             <Grid container spacing={.5}>
                 <Grid item xs={12}></Grid>
                 <Grid item xs={.5}></Grid>
-                <Grid item xs={2}><Image src={vector17} alt="IMG" /></Grid>
+                <Grid item xs={2}><Image src={job?.img} height={60} width={60} alt="IMG" /></Grid>
                 <Grid item xs={.5}></Grid>
                 <Grid item xs={6}><Typography variant='JobApplicationCardH1'>Senior Software Engineer</Typography></Grid>
                 <Grid item xs={3}> <CircularProgress variant="determinate" value={70} size={50} thickness={3} /></Grid>

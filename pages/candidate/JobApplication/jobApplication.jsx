@@ -51,7 +51,7 @@ const JobApplication = ({ user }) => {
         <>
             {!attemptInterview ?
                 <Grid container spacing={2.5}>
-                    <Grid item xs={12}><TopNavbar></TopNavbar></Grid>
+                    <Grid item xs={12}><TopNavbar img={user?.img}></TopNavbar></Grid>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={11}><Typography variant='JobApplicationH1'>Job Applications</Typography></Grid>
                     <Grid item xs={1}></Grid>

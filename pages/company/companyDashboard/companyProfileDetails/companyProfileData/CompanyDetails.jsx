@@ -13,9 +13,9 @@ const CompanyDetails = ({user}) => {
             <Grid container spacing={2}>
                 <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
                 <Grid item xs={11.3}>
-                    <CompanyDashboardTopNavbar />
+                    <CompanyDashboardTopNavbar img={user?.img} />
                     <Grid container spacing={2} mt={1}>
-                        <Grid item xs={2.4}><CompanyStatus /></Grid>
+                        <Grid item xs={2.4}><CompanyStatus user={user} /></Grid>
                         <Grid item xs={.2}></Grid>
                         <Grid item xs={9} >
                             <Grid container sx={{ borderRadius: ' 2rem 2rem 0 0', backgroundColor: '#F8F8F8', minHeight: '80vh' }} >

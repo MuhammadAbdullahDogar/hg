@@ -37,25 +37,52 @@ const ProfileAbout = ({ user }) => {
 
     });
 
+    //img
+    const [uploadFile, setUploadFile] = useState("");
+    const [cloudinaryImage, setCloudinaryImage] = useState("")
+
 
     const postData = async () => {
 
         const { cname, domain, phone, foundingDate, city, country, statement, description } = formik.values
         const about = { foundingDate, city, country, statement, description, portfolios }
 
-        const res = await axios.post(`/api/company/profile_development/profileAbout`, { _id: user._id, cname, domain, phone, about }, { headers: { 'Content-Type': 'application/json' } });
+        const formData = new FormData();
+        formData.append("file", uploadFile);
+        formData.append("upload_preset", "uploads");
 
-        if (res.status === 200) {
+        axios.post(
+            "https://api.cloudinary.com/v1_1/dkbhrixzf/image/upload",
+            formData
+        )
+            .then(async (response) => {
+                // console.log(response);
+                setCloudinaryImage(response.data.secure_url);
 
-            const { role, email, password, _id } = user;
-            const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
+                if (response.status === 200) {
+                    // console.log(cloudinaryImage);
+                    const res = await axios.post(`/api/company/profile_development/profileAbout`, { _id: user._id, cname, domain, phone, about, img: response.data.secure_url }, { headers: { 'Content-Type': 'application/json' } });
 
-            if (ress.status === 200)
-                Router.push('/company/profile_development/CompanyNotableWork');
-        }
-        else {
-            console.log(res.status);               // show database error message
-        }
+                    if (res.status === 200) {
+
+                        const { role, email, password, _id } = user;
+                        const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
+
+                        if (ress.status === 200)
+                            console.log();
+                        Router.push('/company/profile_development/CompanyNotableWork');
+                    }
+                    else {
+                        console.log(res.status);               // show database error message
+                    }
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+
+
     }
 
     const [portfolios, setPortfolios] = useState(user?.about?.portfolios ? user?.about?.portfolios : [{ linkType: '', portfolioLink: '' }])
@@ -91,10 +118,13 @@ const ProfileAbout = ({ user }) => {
                 <Grid item xs={12}></Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={2.5}><Typography variant="profileH1">About Company</Typography></Grid>
-                <Grid item ><IconButton color="primary">
-                    <input hidden accept="image/*" type="file" />
-                    <PhotoCamera />
-                </IconButton>
+                <Grid item >
+                    <label htmlFor="upload-button">
+                        <IconButton color="primary" component="span">
+                            <PhotoCamera />
+                        </IconButton>
+                    </label>
+                    <input hidden id="upload-button" type="file" accept="image/*" name='file' onChange={(event) => { setUploadFile(event.target.files[0]); }} />
                 </Grid>
                 <Grid item xs={6}>
                     <Typography variant="profileH3">Upload a Company Logo<br /></Typography>

@@ -6,7 +6,7 @@ import Image from 'next/image'
 import logo from '../../public/logo.svg'
 
 
-const navbar = () => {
+const navbar = ({img}) => {
     return (
         <>
             <Grid container>
@@ -20,7 +20,7 @@ const navbar = () => {
                     <Badge color="secondary" >
                     <MailIcon />
                 </Badge></Grid>
-                <Grid item xs={.8} sx={{ marginTop: '1rem' }}><Avatar alt="Travis Howard" src="/demo.jpg" /></Grid>
+                <Grid item xs={.8} sx={{ marginTop: '1rem' }}><Avatar alt="Travis Howard" src={img} /></Grid>
                 <Grid item xs={12} sx={{borderBottom:'3px solid #F6F6F6',marginTop:'.5rem'}}></Grid>
             </Grid>
         </>
