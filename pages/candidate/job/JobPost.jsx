@@ -1,4 +1,4 @@
-import { Grid, Button, TextField } from '@mui/material'
+import { Grid, Button, TextField,Box, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import LeftNavbar from '../leftNavbar'
 import TopNavbar from '../topNavbar'
@@ -16,7 +16,8 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { signIn } from 'next-auth/react'
 import Router from 'next/router'
-
+import MyTextField from '../../../styles/MyTextField'
+import CommonButton from '../../../styles/CommonButotn'
 
 const JobPost = ({ jobs, user }) => {
 
@@ -50,7 +51,9 @@ const JobPost = ({ jobs, user }) => {
 
 
     const handleClickOpen = () => {
+        
         setOpen1(true);
+
     };
     const handleOpen1 = () => {
         setOpen1(false);
@@ -127,55 +130,72 @@ const JobPost = ({ jobs, user }) => {
                 {!showJobs && <ViewJob job={showJob} onData={handleData} dialog={handleClickOpen} />}
 
             </Grid>
+          
+                <Dialog
+                    open={open1}
+                    // TransitionComponent={Transition}
+                    keepMounted
+                    onClose={handleClose}
+                    PaperProps={{
+                        style: {
+                          minHeight: "75vh",
+                          minWidth: "28vw",
+                          borderRadius:'30px',
+                          backgroundColor:'#DEF1FC'
+                        }
+                       }}
+                >
+                    <DialogTitle sx={{marginTop:'1.5rem',marginLeft:'7rem'}}><Image src={vector17} alt="IMG" /><br></br><Typography variant='h5'> Tech Geeks</Typography></DialogTitle>
+                    <DialogContent >
+                        <FormControl sx={{borderRadius:'10px',backgroundColor:'rgba(6, 82, 125, 0.1)',width:'376px',height:'119px'}}>
+                            <FormLabel >
+                                {showJob?.title}
+                            </FormLabel>
+                            <FormGroup>
 
-            <Dialog
-                open={open1}
-                // TransitionComponent={Transition}
-                keepMounted
-                onClose={handleClose}
-            >
-                <DialogTitle><Image src={vector17} alt="IMG" /></DialogTitle>
-                <DialogContent>
-                    <FormControl >
-                        <FormLabel >
-                            {showJob?.title}
-                        </FormLabel>
-                        <FormGroup>
 
+                            </FormGroup>
+                        </FormControl>
 
-                        </FormGroup>
-                    </FormControl>
-
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleOpen1}>Next</Button>
-                </DialogActions>
-            </Dialog>
+                    </DialogContent>
+                    <DialogActions>
+                      
+                        <CommonButton variant="JobPost"onClick={handleOpen1}>Apply to Job</CommonButton>
+                    </DialogActions>
+                </Dialog>
 
             <Dialog
                 open={open2}
                 // TransitionComponent={Transition}
                 keepMounted
                 onClose={handleClose}
+                PaperProps={{
+                    style: {
+                      minHeight: "75vh",
+                      minWidth: "28vw",
+                      borderRadius:'30px',
+                      backgroundColor:'#DEF1FC'
+                    }
+                   }}
             >
-                <DialogTitle>Screening Questions</DialogTitle>
-                <DialogContent>
+                <DialogTitle sx={{marginTop:'1.5rem'}}><Image src={vector17} width={80} height={80}alt="IMG" /></DialogTitle>
+                <DialogContent sx={{borderRadius:'10px',backgroundColor:'rgba(6, 82, 125, 0.1)',marginTop:'1rem'}}>
+                <Typography variant='JobCardH4'> Screening Questions</Typography>
                     {showJob?.screeningQuestion?.map((data, index) => (
-                        <TextField
+                        <MyTextField
                             label={data}
-                            variant="outlined"
+                            
                             fullWidth
                             key={data}
                             name={`question-${index}`}
                             value={screeningQuestions[index]?.answer || ''}
                             onChange={(event) => handleInputChange(event, index)}
+                            sx={{marginTop:'1rem'}}
                         />
                     ))}
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleOpen2}>Next</Button>
+                <CommonButton variant="JobPost" onClick={handleOpen2}>Send Application</CommonButton>
                 </DialogActions>
             </Dialog>
         </>
