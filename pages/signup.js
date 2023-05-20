@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import Navbar from './Navbar'
 import Link from "next/link";
 import Head from 'next/head'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography, FormControl, InputLabel, MenuItem } from '@mui/material'
 import MyTextField from '../styles/MyTextField'
 import CommonButton from '../styles/CommonButotn'
 import Router from "next/router";
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
+import MySelect from '../styles/MySelect';
 import { signIn } from 'next-auth/react'
 import axios from 'axios';
 
@@ -16,7 +17,7 @@ async function connectDB() {
 }
 
 const SignUp = () => {
-  
+
   connectDB();
 
   let role = '';
@@ -39,6 +40,10 @@ const SignUp = () => {
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
+  }
+
+  const handleChange = (event) => {
+    user.lname = event.target.value;
   }
 
   const PostData = async (e) => {
@@ -91,7 +96,23 @@ const SignUp = () => {
             <Grid item sm={1} md={3}></Grid>
             <Grid item sm={5} md={3}><MyTextField label={changeNames.fName} fullWidth variant="outlined" value={user.fname} onChange={handleInputs} name="fname" required /></Grid>
 
-            <Grid item sm={5} md={3}><MyTextField label={changeNames.lName} fullWidth variant="outlined" value={user.lname} onChange={handleInputs} name="lname" /></Grid>
+            {/* <Grid item sm={5} md={3}></Grid> */}
+            <Grid item sm={5} md={3}>
+              {changeNames['fName'] == 'First Name' ? <MyTextField label={changeNames.lName} fullWidth variant="outlined" value={user.lname} onChange={handleInputs} name="lname" /> :
+                <FormControl fullWidth>
+                  <InputLabel>Company Domain</InputLabel>
+                  <MySelect label="Company Domain" name="lname"  onChange={handleChange} >
+                    <MenuItem value='Software Development'>Software Development  </MenuItem>
+                    <MenuItem value="Finance">Finance </MenuItem>
+                    <MenuItem value="Marketing">Marketing</MenuItem>
+                    <MenuItem value="Education">Education  </MenuItem>
+                    <MenuItem value="Architecture">Architecture  </MenuItem>
+                    <MenuItem value="Fashion">Fashion  </MenuItem>
+                    <MenuItem value="Food Chain">Food Chain  </MenuItem>
+                  </MySelect>
+                </FormControl>
+              }
+            </Grid>
             <Grid item sm={1} md={3}></Grid>
 
             <Grid item sm={1} md={3}></Grid>

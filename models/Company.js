@@ -12,7 +12,7 @@ const CompanySchema = new mongoose.Schema({
     role: { type: String },
     img: { type: String },
     cname: { type: String, required: true },
-    domain: { type: String, required: true },
+    domain: { type: String },
     email: { type: String, required: true, unique: true },
     phone: { type: Number, required: true },
     password: { type: String, required: true },

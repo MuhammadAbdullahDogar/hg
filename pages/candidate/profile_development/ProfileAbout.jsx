@@ -25,7 +25,7 @@ import { userAboutSchema } from '../../../validationSchema'
 const ProfileAbout = ({ user }) => {
 
   //portfolio
-  const [portfolios, setPortfolios] = useState(user?.about?.portfolios || [{ linkType: '', portfolioLink: '' }]);
+  const [portfolios, setPortfolios] = useState(user?.about?.portfolios[0] ? user?.about?.portfolios : [{ linkType: '', portfolioLink: '' }]);
   // const [portfolios, setPortfolios] = useState(user?.about?.portfolios[0] || [{ linkType: '', portfolioLink: '' }]);
   const [errors, setErrors] = useState([]);
 
