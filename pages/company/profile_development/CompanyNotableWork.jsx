@@ -19,7 +19,7 @@ const CompanyNotableWork = ({ user }) => {
     }
   });
 
-  const [notableWork, setNotableWork] = useState(user?.notableWork ? user?.notableWork : [{ recognizedBy: '', natureOfWork: '', yearOfAchievement: '', linkToRecognition: '', description: '' }])
+  const [notableWork, setNotableWork] = useState(user?.notableWork[0] ? user?.notableWork : [{ recognizedBy: '', natureOfWork: '', yearOfAchievement: '', linkToRecognition: '', description: '' }])
 
   const handelFormChange = (event, index) => {
     let data = [...notableWork];

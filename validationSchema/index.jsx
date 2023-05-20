@@ -2,52 +2,54 @@ import * as Yup from 'yup';
 
 export const companyAboutSchema = Yup.object().shape({
     cname: Yup.string()
-        .max(15, 'Must be 15 characters or less')
-        .required('Required')
-        .matches(/^[a-zA-Z0-9]+$/, 'Cannot contain special characters or spaces'),
+        .max(50, 'Must be 50 characters or less')
+        .required('Required'),
+        // .matches(/^[a-zA-Z0-9]+$/, 'Cannot contain special characters or spaces'),
     domain: Yup.string()
-        .max(30, 'Must be 30 characters or less')
+        .max(50, 'Must be 50 characters or less')
         .required('Required'),
     email: Yup.string()
-        .max(30, 'Must be 30 characters or less')
-        .required('Required'),
+    .required('Required')
+    .email('Invalid email format')
+    .matches(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/g, 'Invalid email format')
+    .max(255, 'Email must be at most 255 characters long'),
     phone: Yup.string()
-        .max(15, 'Must be 15 characters or less')
+        .max(50, 'Must be 50 characters or less')
         .required('Required'),
     city: Yup.string()
-        .max(30, 'Must be 30 characters or less')
+        .max(50, 'Must be 50 characters or less')
         .required('Required'),
     statement: Yup.string()
-        .max(100, 'Must be 100 characters or less')
+        .max(300, 'Must be 300 characters or less')
         .required('Required'),
     description: Yup.string()
-        .max(120, 'Must be 120 characters or less')
+        .max(500, 'Must be 500 characters or less')
         .required('Required')
 })
 
 
 export const postJobSchema = Yup.object().shape({
     title: Yup.string()
-        .max(15, 'Must be 15 characters or less')
-        .required('Required')
-        .matches(/^[a-zA-Z0-9]+$/, 'Cannot contain special characters or spaces'),
+        .max(50, 'Must be 50 characters or less')
+        .required('Required'),
+        // .matches(/^[a-zA-Z0-9]+$/, 'Cannot contain special characters or spaces'),
     level: Yup.string()
-        .max(30, 'Must be 30 characters or less')
+        .max(50, 'Must be 50 characters or less')
         .required('Required'),
     type: Yup.string()
-        .max(30, 'Must be 30 characters or less')
+        .max(50, 'Must be 50 characters or less')
         .required('Required'),
     compensation: Yup.string()
         .max(100, 'Must be 100 characters or less')
         .required('Required'),
     matchPercentage: Yup.string()
-        .max(30, 'Must be 30 characters or less')
+        .max(40, 'Must be 40 characters or less')
         .required('Required'),
     description: Yup.string()
-        .max(100, 'Must be 100 characters or less')
+        .max(500, 'Must be 500 characters or less')
         .required('Required'),
     responsibilites: Yup.string()
-        .max(120, 'Must be 120 characters or less')
+        .max(500, 'Must be 500 characters or less')
         .required('Required')
 })
 
@@ -79,7 +81,7 @@ export const userAboutSchema = Yup.object().shape({
     //       portfolioLink: Yup.string().max(255, 'Portfolio link must be at most 255 characters long'),
     //     })
     //   ),
-    description: Yup.string().max(5000, 'Description must be at most 5000 characters long').required('Required')
+    description: Yup.string().max(500, 'Description must be at most 500 characters long').required('Required')
 })
 
 
