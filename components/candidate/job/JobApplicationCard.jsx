@@ -1,5 +1,5 @@
 import { Grid, Typography, Box, Button, Divider, ButtonGroup } from '@mui/material'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import vector17 from '../../../public/Ellipse120.png'
 import CircularProgress from '@mui/material/CircularProgress';
 import moment from 'moment';
@@ -8,6 +8,13 @@ import axios from 'axios';
 
 const JobApplicationCard = ({ job, btntext, txt, user, handleViewJob, handleAttemptInterview }) => {
 
+    const [img, setImg] = useState(null)
+
+    useEffect(() => async () => {
+        const res = await axios.post(`/api/candidate/job/fetchJob`, { id: job.job }, { headers: { 'Content-Type': 'application/json' } });
+        setImg(res.data.job.img)
+    }, [])
+    
 
     const handleclick = async () => {
         let res;
@@ -44,7 +51,7 @@ const JobApplicationCard = ({ job, btntext, txt, user, handleViewJob, handleAtte
             <Grid container spacing={.5}>
                 <Grid item xs={12}></Grid>
                 <Grid item xs={.5}></Grid>
-                <Grid item xs={2}><Image src={job?.img} height={60} width={60} alt="IMG" /></Grid>
+                <Grid item xs={2}><Image src={img? img : ''} height={60} width={60} alt="IMG" /></Grid>
                 <Grid item xs={.5}></Grid>
                 <Grid item xs={6}><Typography variant='JobApplicationCardH1'>Senior Software Engineer</Typography></Grid>
                 <Grid item xs={3}> <CircularProgress variant="determinate" value={70} size={50} thickness={3} /></Grid>

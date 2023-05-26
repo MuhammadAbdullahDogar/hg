@@ -211,7 +211,7 @@ const ProfileExperience = ({ user }) => {
                 <FormControl fullWidth>
                   <InputLabel>Experience</InputLabel>
                   <MySelect label="Experience" name="yearsOfExperience" onChange={handelChange} >
-                    <MenuItem value="Beginner">Beginner </MenuItem>
+                    <MenuItem value="Beginner" >Beginner </MenuItem>
                     <MenuItem value="Intermediate">Intermediate</MenuItem>
                     <MenuItem value="Expert">Expert  </MenuItem>
                   </MySelect>

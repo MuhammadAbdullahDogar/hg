@@ -97,6 +97,8 @@ const ProfileAbout = ({ user }) => {
     formData.append("file", uploadFile);
     formData.append("upload_preset", "uploads");
 
+    if(formData.get("file")!=''){
+    
     axios.post(
       "https://api.cloudinary.com/v1_1/dkbhrixzf/image/upload",
       formData
@@ -125,7 +127,28 @@ const ProfileAbout = ({ user }) => {
       .catch((error) => {
         console.log(error);
       });
+    }
+    else {
+      if(user.img){
+        const res = await axios.post(`/api/candidate/profile_development/profileAbout`, { _id: user?._id, ...formik.values, img: user.img }, { headers: { 'Content-Type': 'application/json' } });
 
+          if (res.status === 200) {
+            const { role, email, password, _id } = user;
+            const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
+
+            if (ress.status === 200) {
+              Router.push('ProfileAcademic');
+            }
+          }
+          else {
+            // show database error message
+            console.log(res.status);
+          }
+      }
+      else {
+        alert("add img")
+      }
+    }
 
   };
 
@@ -146,7 +169,7 @@ const ProfileAbout = ({ user }) => {
               <PhotoCamera />
             </IconButton>
           </label>
-          <input hidden id="upload-button" type="file" accept="image/*" name='file' onChange={(event) => { setUploadFile(event.target.files[0]); }} />
+          <input hidden id="upload-button" required type="file" accept="image/*" name='file' onChange={(event) => { setUploadFile(event.target.files[0]); }} />
         </Grid>
         <Grid item xs={6}>
           <Typography variant="profileH3">Upload a profile picture<br /></Typography>
