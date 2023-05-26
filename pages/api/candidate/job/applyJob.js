@@ -9,7 +9,6 @@ const handler = async (req, res) => {
     }
 
     const {jobId, candidateId, matchPercent, screeningQuestions, img} = req.body;
-    console.log(req.body);
 
     if (!jobId || !candidateId) {
         return res.status(422).json({ error: 'Missing jobId or candidateId' });

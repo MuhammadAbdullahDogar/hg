@@ -132,7 +132,6 @@ const userID = async () => {
         }
     });
     const data = await res.json();
-    console.log(data);
     const id = data.id;
 
     if (id === undefined)

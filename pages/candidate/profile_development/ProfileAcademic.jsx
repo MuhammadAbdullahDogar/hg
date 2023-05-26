@@ -59,7 +59,7 @@ const ProfileAcademic = ({ user }) => {
   return (
     <div style={{ overflow: 'hidden', width: '100vw' }}>
       <Grid container spacing={2}>
-        <Grid item xs={12}><ProfileNavbar step={1} /></Grid>
+        <Grid item xs={12}><ProfileNavbar step={1} fname={user.fname} lname={user.lname} /></Grid>
         <Grid item xs={12}></Grid>
         <Grid item xs={12}></Grid>
         <Grid item xs={0.1} md={0.4} ></Grid>

@@ -11,10 +11,8 @@ const ShowQuiz = ({ quiz, id, job }) => {
     const [obtainScore, setObtainScore] = useState(0)
 
     const submitQuiz = async () => {
-        console.log("jjjjjjjjjj");
         const res = await axios.post(`/api/candidate/job/jobInterview`, { jobId: job.job, candidateId: id, obtainScore, totalScore }, { headers: { 'Content-Type': 'application/json' } });
         if (res.status === 200) {
-            console.log("ggggg");
             const ress = await signIn('credentials', { role: "candidate", id, redirect: false })
             if (ress.status === 200) {
 

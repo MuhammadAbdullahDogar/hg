@@ -48,11 +48,22 @@ CompanySchema.pre('save', async function (next) {
     next();
 });
 
-
+CompanySchema.post('save', async function(doc) {
+    const Job = mongoose.model('Job');
+    const updatedJobs = await Job.updateMany(
+      { company: doc._id },
+      { $set: { 'candidates.$[].img': doc.img } },
+      { multi: true }
+    );
+    console.log(`${updatedJobs.nModified} jobs updated`);
+  });
+  
 function generateHash (password) {
 const salt = bcrypt.genSaltSync (12);
 const hash= bcrypt.hashSync (password, salt);
 return hash;
 }
+
+
 
 export default mongoose.models.Company || mongoose.model("Company", CompanySchema);

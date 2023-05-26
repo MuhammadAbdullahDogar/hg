@@ -72,7 +72,7 @@ const JobPost = ({ jobs, user }) => {
 
     const postData = async () => {
 
-        console.log(showJob);
+        // console.log(showJob);
         const jobId = showJob?._id
         const matchPercent = showJob?.mpercent
         const candidateId = user._id
@@ -232,7 +232,6 @@ export async function getServerSideProps(ctx) {
     });
 
     const jobs = await res.json();
-
     ctx.res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'

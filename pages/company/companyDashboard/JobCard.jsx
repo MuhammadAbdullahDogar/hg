@@ -1,5 +1,5 @@
-import { Grid, Divider, Typography, Box,Button } from '@mui/material'
-
+import { Grid, Divider, Typography, Box, Button } from '@mui/material'
+import axios from 'axios';
 
 const JobCard = ({ job }) => {
 
@@ -12,10 +12,26 @@ const JobCard = ({ job }) => {
     const interviewedCandidateLength = interviewedJob?.length
     // const totalJobsLength = appliedJobLength + interviewedJobLength + invitedJobLength + feedbackJobLength;
 
+    const inactive = async () => {
+        const res = await axios.post(`/api/company/job/inActiveJob`, { _id: job._id }, { headers: { 'Content-Type': 'application/json' } });
 
-    console.log(job);
+        if (res.status === 200) {
+            Router.push('/company/job');
+        //   const { role, email, password, _id } = user;
+        //   const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
+    
+        //   if (ress.status === 200)
+        //   else 
+        //     console.log(res.status);       // show database error message
+        }
+        else {
+          console.log(res.status);       // show database error message
+        }
+    }
+
+
     return (
-        <Box sx={{ background: 'rgba(36, 162, 233, 0.1)', height: '18.25rem', borderRadius: '0.625rem', marginTop: '1rem',cursor:'pointer' }}>
+        <Box sx={{ background: 'rgba(36, 162, 233, 0.1)', height: '18.25rem', borderRadius: '0.625rem', marginTop: '1rem', cursor: 'pointer' }}>
             <Grid container spacing={2}>
                 <Grid item xs={12}></Grid>
 
@@ -49,7 +65,7 @@ const JobCard = ({ job }) => {
 
                 <Grid item xs={1}></Grid>
                 <Grid item xs={5} mt={.7}><Typography variant='companyJobCardH4'>Published 2 Days Ago</Typography></Grid>
-                <Grid item xs={5}><Button size='small' >View Options</Button></Grid>
+                <Grid item xs={5}><Button size='small' onClick={inactive}>Inactive Job</Button></Grid>
 
 
             </Grid>

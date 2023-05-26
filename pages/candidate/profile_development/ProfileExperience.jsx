@@ -1,7 +1,7 @@
 import FormGroup from '@mui/material/RadioGroup';
 import React, { useState } from 'react';
 import { getSession, signIn } from 'next-auth/react';
-import { Grid, Typography, FormControlLabel, Checkbox, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormLabel } from '@mui/material';
+import { Grid, Typography, FormControlLabel, Checkbox, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormLabel, InputLabel, MenuItem } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
@@ -14,6 +14,8 @@ import TagField from '../../../components/TagField';
 import Countryselect from '../../../styles/Countryselect';
 import Router from 'next/router';
 import axios from 'axios';
+import MySelect from '../../../styles/MySelect';
+
 
 const ProfileExperience = ({ user }) => {
 
@@ -199,13 +201,22 @@ const ProfileExperience = ({ user }) => {
       <form onSubmit={PostData}>
         <div style={{ overflow: 'hidden', width: '100vw' }}>
           <Grid container spacing={2} >
-            <Grid item xs={12}><ProfileNavbar step={2} /></Grid>
+            <Grid item xs={12}><ProfileNavbar step={2} fname={user.fname} lname={user.lname} /></Grid>
             <Grid item xs={12}>
 
               <Grid item xs={12}></Grid>
               <Grid item xs={1}></Grid>
-              <Grid item xs={4.5}><Typography variant="profileH1">Experience and Skills</Typography>
-                <MyTextField label="Years of Experience" variant="outlined" value={yearsOfExperience} onChange={event => handelChange(event)} name="yearsOfExperience" /></Grid>
+              <Grid item xs={2.5}><Typography variant="profileH1">Experience and Skills</Typography>
+                {/* <MyTextField label="Years of Experience" variant="outlined" value={yearsOfExperience} onChange={event => handelChange(event)} name="yearsOfExperience" /> */}
+                <FormControl fullWidth>
+                  <InputLabel>Experience</InputLabel>
+                  <MySelect label="Experience" name="yearsOfExperience" onChange={handelChange} >
+                    <MenuItem value="Beginner">Beginner </MenuItem>
+                    <MenuItem value="Intermediate">Intermediate</MenuItem>
+                    <MenuItem value="Expert">Expert  </MenuItem>
+                  </MySelect>
+                </FormControl>
+              </Grid>
               <Grid item xs={6.5}></Grid>
 
               {experiences.map((form, index) => {
@@ -227,7 +238,7 @@ const ProfileExperience = ({ user }) => {
 
                       <Grid item xs={3.5}></Grid>
                       <Grid item xs={6.5}><FormControlLabel control={<Checkbox defaultChecked size="small" />} label="Currently working in this role" /></Grid>
-                      <Grid item xs={2}>{index !== 0 && (<RemoveIcon fontSize='large' color='error' onClick={()=>{removeFields(index)}} />)}</Grid>
+                      <Grid item xs={2}>{index !== 0 && (<RemoveIcon fontSize='large' color='error' onClick={() => { removeFields(index) }} />)}</Grid>
 
                       <Grid item xs={1}></Grid>
                       <Grid item xs={2.5}><Typography variant="profileH2">Key Responsibities</Typography><br />

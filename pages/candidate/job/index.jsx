@@ -3,7 +3,6 @@ import { getSession } from "next-auth/react"
 
 const ShowJobs = ({jobs}) => {
 
-    console.log(jobs);
 
     return (
         <div>ShowJobs
@@ -23,7 +22,6 @@ export async function getServerSideProps(ctx) {
 
     const session = await getSession(ctx)
     const user = session?.user?.user || null
-    console.log(user.skills);
     const res = await fetch(`${process.env.WEBSITE}/api/candidate/job`, {
         method: 'POST',
         headers: {

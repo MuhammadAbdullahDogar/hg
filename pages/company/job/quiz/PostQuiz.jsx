@@ -70,7 +70,6 @@ const PostQuiz = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(jobId);
         const res = await axios.post(`/api/company/job/postQuiz`, { _id: jobId, quiz: questions }, { headers: { 'Content-Type': 'application/json' } });
         if (res.status === 200)
             Router.push('/company/job');

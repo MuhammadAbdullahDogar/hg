@@ -8,7 +8,6 @@ import Candidates from "../../../components/company/job/Candidates";
 import { useRouter } from 'next/router';
 
 const Index = ({ jobs, company }) => {
-    console.log(company);
     const router = useRouter();
     const [userInfo, setUserInfo] = useState(0)
     const [jobInfo, setJobInfo] = useState()

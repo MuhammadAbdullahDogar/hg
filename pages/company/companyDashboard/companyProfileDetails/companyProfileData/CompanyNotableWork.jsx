@@ -7,7 +7,6 @@ import { getSession } from "next-auth/react"
 import React from 'react';
 
 const CompanyNotableWork = ({ user }) => {
-console.log(user);
   return (
     <>
       <Grid container spacing={2}>
@@ -28,19 +27,19 @@ console.log(user);
                     <React.Fragment key={work._id}>
                       <Grid item xs={11}><Typography variant="displayh1">Notable Work</Typography></Grid>
                       <Grid item xs={1}></Grid>
-                      <Grid item xs={5}><Typography variant="displayh4">Reognized By</Typography><br /><Typography variant="displayh5">{user.notableWork.recognizedBy}</Typography></Grid>
+                      <Grid item xs={5}><Typography variant="displayh4">Reognized By</Typography><br /><Typography variant="displayh5">{work.recognizedBy}</Typography></Grid>
                       <Grid item xs={2}></Grid>
-                      <Grid item xs={3}><Typography variant="displayh4">Nature of Work</Typography> <br /><Typography variant="displayh5">{user.notableWork.natureOfWork}</Typography></Grid>
+                      <Grid item xs={3}><Typography variant="displayh4">Nature of Work</Typography> <br /><Typography variant="displayh5">{work.natureOfWork}</Typography></Grid>
                       <Grid item xs={1}></Grid>
                       <Grid item xs={1}></Grid>
-                      <Grid item xs={3}><Typography variant="displayh4">Year of Recignition</Typography><br /><Typography variant="displayh5">{user.notableWork.yearOfAchievement}</Typography></Grid>
+                      <Grid item xs={3}><Typography variant="displayh4">Year of Recignition</Typography><br /><Typography variant="displayh5">{work.yearOfAchievement}</Typography></Grid>
                       <Grid item xs={2}></Grid>
-                      <Grid item xs={5}><Typography variant="displayh4">Link to  Recognition</Typography><br /><Typography variant="displayh5">{user.notableWork.linkToRecognition}</Typography></Grid>
+                      <Grid item xs={5}><Typography variant="displayh4">Link to  Recognition</Typography><br /><Typography variant="displayh5">{work.linkToRecognition}</Typography></Grid>
                       <Grid item xs={1}></Grid>
                       <Grid item xs={1}></Grid>
                       <Grid item xs={11}><Typography variant="displayh4">About Recognition:</Typography></Grid>
                       <Grid item xs={1}></Grid>
-                      <Grid item xs={11}><Typography variant="displayh5">{user.notableWork.description}</Typography></Grid>
+                      <Grid item xs={11}><Typography variant="displayh5">{work.description}</Typography></Grid>
                       <Grid item xs={.5}></Grid>
                       </React.Fragment>
                   ))

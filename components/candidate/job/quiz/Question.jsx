@@ -16,9 +16,9 @@ function Question({ question, submitQuestion }) {
     const correctOptions = question.options.filter(option => option.isCorrect);
     const correctSelectedOptions = selectedOptions.filter(option => option.isCorrect);
 
-    console.log("selectedAnswer:", selectedOptions);
-    console.log("correctOptions:", correctOptions);
-    console.log("correctSelectedOptions:",correctSelectedOptions);
+    // console.log("selectedAnswer:", selectedOptions);
+    // console.log("correctOptions:", correctOptions);
+    // console.log("correctSelectedOptions:",correctSelectedOptions);
 
     let earnedMarks = 0;
     if (correctSelectedOptions.length === correctOptions.length && selectedOptions.length === correctSelectedOptions.length) {

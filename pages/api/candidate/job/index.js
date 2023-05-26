@@ -8,13 +8,14 @@ function countMatchingSkills(arr1, arr2) {
 const handler = async (req, res) => {
   if (req.method == 'POST') {
     const user = req.body;
-    let jobLevel = '';
-    if (parseInt(user.yearsOfExperience) === 1)
-      jobLevel = "Beginner"
-    else if (parseInt(user.yearsOfExperience) > 1 && parseInt(user.yearsOfExperience) <= 3)
-      jobLevel = "Intermediate"
-    else
-      jobLevel = "Expert"
+    let jobLevel = user.yearsOfExperience;
+    // let jobLevel = '';
+    // if (parseInt(user.yearsOfExperience) === 1)
+    //   jobLevel = "Beginner"
+    // else if (parseInt(user.yearsOfExperience) > 1 && parseInt(user.yearsOfExperience) <= 3)
+    //   jobLevel = "Intermediate"
+    // else
+    //   jobLevel = "Expert"
 
     const candidateSkills = user.skills;
     const candidateId = user._id;
@@ -30,7 +31,6 @@ const handler = async (req, res) => {
 
         ]
       })
-
 
       const Jobs = [];
 

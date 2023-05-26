@@ -19,7 +19,7 @@ const CompanyNotableWork = ({ user }) => {
     }
   });
 
-  const [notableWork, setNotableWork] = useState(user?.notableWork[0] ? user?.notableWork : [{ recognizedBy: '', natureOfWork: '', yearOfAchievement: '', linkToRecognition: '', description: '' }])
+  const [notableWork, setNotableWork] = useState(user?.notableWork[0] ? user.notableWork : [{ recognizedBy: '', natureOfWork: '', yearOfAchievement: '', linkToRecognition: '', description: '' }])
 
   const handelFormChange = (event, index) => {
     let data = [...notableWork];
@@ -39,7 +39,7 @@ const CompanyNotableWork = ({ user }) => {
 
   const postData = async () => {
 
-    const res = await axios.post(`/api/company/profile_development/CompanyNotableWork`, { _id: user._id, notableWork: CompanyNotableWork, culture: formik.values.culture }, { headers: { 'Content-Type': 'application/json' } });
+    const res = await axios.post(`/api/company/profile_development/CompanyNotableWork`, { _id: user._id, notableWork, culture: formik.values.culture }, { headers: { 'Content-Type': 'application/json' } });
 
     if (res.status === 200) {
       const { role, email, password, _id } = user;

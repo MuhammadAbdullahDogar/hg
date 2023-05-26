@@ -20,7 +20,7 @@ import Group55 from '../public/Group 10955.png'
 import Group54 from '../public/Group 10954.png'
 import Group53 from '../public/Group 10953.png'
 import Group47 from '../public/Group 10947.png'
-import axios from 'axios';
+// import axios from 'axios';
 
 const textDataCandidate={
   color:'#7DCE77',
@@ -29,13 +29,13 @@ const textDataCompany={
   color:'#2D91C9',
 }
 
-async function connectDB() {
-  const response = await axios.post(`/api/connectToDb`);
-}
+// async function connectDB() {
+//   const response = await axios.post(`/api/connectToDb`);
+// }
 
 
 const Home = () => {
-  connectDB()
+  // connectDB()
   const [toggleData, setToggleData] = useState({ ToggleName: 'FOR COMPANIES',ToggleColor:'textDataCandidate' });
 
   const ChangeAccordingCandidate = () => {
