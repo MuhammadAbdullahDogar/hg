@@ -1,5 +1,5 @@
 import FormGroup from '@mui/material/RadioGroup';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getSession, signIn } from 'next-auth/react';
 import { Grid, Typography, FormControlLabel, Checkbox, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormLabel, InputLabel, MenuItem } from '@mui/material';
 import Fab from '@mui/material/Fab';
@@ -15,7 +15,170 @@ import Countryselect from '../../../styles/Countryselect';
 import Router from 'next/router';
 import axios from 'axios';
 import MySelect from '../../../styles/MySelect';
+import Autocomplete from '@mui/material/Autocomplete';
 
+
+const SkillAutocomplete = ({ suggestions, placeholder, onChange, value, selectedValues }) => {
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const isInvalid = value && !suggestions.includes(value);
+    setError(isInvalid);
+  }, [value, suggestions]);
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value;
+    onChange(event);
+
+    const isInvalid = !suggestions.includes(inputValue);
+    setError(isInvalid);
+  };
+
+  const skills = selectedValues.map(skill => skill.skill); // extract the skill names from the user's skills array
+
+  const filteredSuggestions = suggestions.filter(suggestion => !skills.includes(suggestion));
+
+  console.log(skills);
+
+  return (
+    <div>
+      <Autocomplete
+        options={filteredSuggestions}
+        freeSolo
+        value={value}
+        renderInput={(params) => (
+          <MyTextField
+            {...params}
+            variant="outlined"
+            fullWidth
+            value={value}
+            onChange={handleInputChange}
+            placeholder={placeholder}
+          />
+        )}
+      />
+      {error && <p style={{ color: 'red' }}>Invalid skill entered</p>}
+    </div>
+  );
+};
+const suggestions = [
+  "Python",
+  "HTML5",
+  "JavaScript",
+  "CSS",
+  "PHP",
+  "SQL",
+  "C++",
+  "Ruby",
+  ".NET",
+  "Linux",
+  "Windows",
+  "masOS",
+  "Android",
+  "iOS",
+  "Azure",
+  "AWS",
+  "Google Cloud",
+  "Amazon Web",
+  "Kamatera",
+  "Oracle",
+  "Shopify",
+  "WooCommerce",
+  "BigCommerce",
+  "Magento",
+  "OpenCart",
+  "Cloud security",
+  "malware analysis",
+  "intrusion detection",
+  "CEH",
+  "OSCP",
+  "CISA",
+  "GCIH",
+  "secude code development",
+  "OLAP",
+  "data queries",
+  "data cube technology",
+  "raw data processing and integration",
+  "data structures and algorithms",
+  "Tableau",
+  "AI",
+  "machine learning",
+  "natural language processing",
+  "Android/iOS Software Development Kit",
+  "Android/iOS UX and UI",
+  "SQL",
+  "Xcode development",
+  "Github",
+  "React.js",
+  "Angular",
+  "Web development",
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "PHP",
+  "MySQL",
+  "WordPress",
+  "Drupal",
+  "Joomla",
+  "Magento",
+  "Shopify",
+  "WooCommerce",
+  "Software development",
+  "Java",
+  "C++",
+  "C#",
+  "Python",
+  "Ruby",
+  "Swift",
+  "Kotlin",
+  "Objective-C",
+  "PHP",
+  "MySQL",
+  "PostgreSQL",
+  "MongoDB",
+  "Docker",
+  "Kubernetes",
+  "Data science",
+  "Machine learning",
+  "Natural language processing",
+  "Data mining",
+  "Statistics",
+  "SQL",
+  "Python",
+  "R",
+  "Cybersecurity",
+  "Ethical hacking",
+  "Penetration testing",
+  "Vulnerability assessment",
+  "Risk management",
+  "Incident response",
+  "Threat intelligence",
+  "DevOps",
+  "Continuous integration",
+  "Continuous delivery",
+  "Infrastructure as code",
+  "Cloud computing",
+  "Automation",
+  "Monitoring",
+  "Logging",
+  "UI/UX design",
+  "Wireframing",
+  "Prototyping",
+  "User research",
+  "Usability testing",
+  "Visual design",
+  "Typography",
+  "Color theory",
+  "Project management",
+  "Agile",
+  "Waterfall",
+  "Scrum",
+  "Kanban",
+  "Project planning",
+  "Risk management",
+  "Communication",
+  "Collaboration"
+];
 
 const ProfileExperience = ({ user }) => {
 
@@ -128,7 +291,7 @@ const ProfileExperience = ({ user }) => {
     setExperiences([...experiences, object])
   }
 
-  const suggestions = ["Graphic Designer", "Content Writer", "Website Developer"];
+  const domainOptions = ["Computer technician", "Help desk support", "IT support specialist", "Problem manager", "Operations analyst", "Technical assistance specialist", "Computer operator", "Systems designer", "Systems analyst", "IT manager", "Solutions architect", "Web designer", "User experience (UX) designer", "User interface (UI) designer", "UX/UI researcher", "UX/UI specialist", "Web analytics developer", "Search engine optimization (SEO) consultant", "SEO manager", "Interaction designer", "Front-end designer", "Front-end developer", "Mobile developer", "Full-stack developer", "Technology manager", "IT sales executive", "Business systems analyst", "IT security analyst", "Network security engineer", "Information security analyst", "Information security engineer", "Information security consultant", "Cyber security manager", "Database developer", "Database analyst", "Database manager", "Database engineer", "Database specialist", "Database coordinator", "Data scientist", "Information architect", "Computer data scientist", "Software engineer", "Software architect", "Software test engineer", "Software development engineer", "Artificial intelligence engineer", "Application developer", "Application designer", "Application engineer", "DevOps engineer", "Computer programmer", "Game developer", "Cloud systems engineer", "Cloud computing engineer", "Cloud consultant", "Cloud services developer", "Cloud product manager", "Chief technology officer (CTO)", "IT manager", "IT project manager", "Senior IT consultant", "Graphic Designer", "Content Writer"];
   const getOpenToWorkingValue = (value) => {
     setOpenToWorkingAs(value);
   };
@@ -257,7 +420,7 @@ const ProfileExperience = ({ user }) => {
             <Grid item xs={1}></Grid>
             <Grid item xs={2.5}><Typography variant="profileH2">Open to working as</Typography><br />
               <Typography variant="profileH3">Write names of the roles that you’d like to work as (upto 5)</Typography></Grid>
-            <Grid item xs={7}><TagField suggestions={suggestions} placeholder={"E.g: Graphic Designer, Content Writer etc..."} tag={getOpenToWorkingValue} defaultValue={openToWorkingAs} /></Grid>
+            <Grid item xs={7}><TagField suggestions={domainOptions} placeholder={"E.g: Graphic Designer, Content Writer etc..."} tag={getOpenToWorkingValue} defaultValue={openToWorkingAs} /></Grid>
             <Grid item xs={1.5}></Grid>
             <Grid item xs={12}></Grid>
             <Grid item xs={1}></Grid>
@@ -269,11 +432,29 @@ const ProfileExperience = ({ user }) => {
                 <div key={index}>
                   <Grid container spacing={2} mt={.1}>
                     <Grid item xs={3.5}></Grid>
-                    <Grid item xs={3}><MyTextField label="Skill" variant="outlined" fullWidth value={field.skill}
-                      onChange={(event) =>
-                        skillHandleChange(index, "skill", event.target.value)
-                      }
-                      placeholder={`Skill ${index + 1}`} /></Grid>
+                    <Grid item xs={3}>
+                      {/* <MyTextField label="Skill" variant="outlined" fullWidth value={field.skill}
+                        onChange={(event) =>
+                          skillHandleChange(index, "skill", event.target.value)
+                        }
+                        placeholder={`Skill ${index + 1}`}
+                        InputProps={{
+                          endAdornment: (
+                            <Autocomplete
+                              options={suggestions}
+                              freeSolo
+                              renderInput={(params) => <MyTextField {...params} variant="outlined" />}
+                            />
+                          ),
+                        }} /> */}
+                      <SkillAutocomplete
+                        suggestions={suggestions}
+                        value={field.skill}
+                        onChange={(event) => skillHandleChange(index, "skill", event.target.value)}
+                        placeholder={`Skill ${index + 1}`}
+                        selectedValues={skills}
+                      />
+                    </Grid>
                     <Grid item xs={3.5} mt={1}>
                       <PrettoSlider
                         valueLabelDisplay="auto"
