@@ -19,9 +19,6 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import { userAboutSchema } from '../../../validationSchema'
 
-
-
-
 const ProfileAbout = ({ user }) => {
 
   //portfolio

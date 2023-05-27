@@ -10,7 +10,6 @@ import { getSession } from "next-auth/react"
 import Router from "next/router";
 import { signIn } from 'next-auth/react'
 import TagField from "../../../components/TagField";
-import { red } from '@mui/material/colors';
 
 
 const PostJob = ({ user }) => {
