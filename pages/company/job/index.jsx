@@ -57,7 +57,6 @@ export async function getServerSideProps(ctx) {
     const jobs = await res.json();
     const company = { _id: user._id, role: user.role, cname:user.cname, img:user.img };
     
-    
     ctx.res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'

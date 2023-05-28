@@ -10,8 +10,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import { signIn } from 'next-auth/react'
 import axios from 'axios';
-const pFont={
-    fontFamily:'Verdana',
+
+const pFont = {
+    fontFamily: 'Verdana',
 }
 async function connectDB() {
     const response = await axios.post(`/api/connectToDb`);
@@ -27,7 +28,6 @@ const Login_dark = () => {
     const [password, setPassword] = useState('');
     const [open, setOpen] = useState(false);
 
-
     const changeNameCompany = () => {
         setState({ active_company_btn: 'btn_active', active_candiate_btn: '' });
     }
@@ -40,47 +40,66 @@ const Login_dark = () => {
     }
 
     const loginUser = async (e) => {
-        e.preventDefault();
         if (email.length == 0 || password.length == 0) {
             setError({ err_msg: "Empty Field not allowed", err_color: 'error' })
         }
         else {
-            setOpen(!open);
-
-
-            let credential = {
-                role: '',
-                email: email,
-                password: password
-            }
-
-            if (state['active_candiate_btn'] == 'btn_active')
-                credential.role = 'candidate';
-            else
-                credential.role = 'company';
-
-            const res = await signIn('credentials', {
-                ...credential,
-                redirect: false
-            })
-
-            if (res.status === 200) {
-                if (credential.role === 'candidate')
-                    Router.push(`/${credential.role}/UserDashboard`);
-                else
-                    Router.push(`/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails`);
-
-            }
-            else if (res.status === 401) {
-                setOpen(false);
-                setError({ err_msg: "Invalid credentials", err_color: 'error' })
-                console.log("error")
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(email)) {
+                setError({ err_msg: "Email Format is not correct", err_color: 'error' })
             }
             else {
-                setOpen(false);
-                setError({ err_msg: "An Unknown Error occured", err_color: 'error' })
-            }
+                setOpen(!open);
 
+                let credential = {
+                    role: '',
+                    email: email,
+                    password: password
+                }
+
+                if (state['active_candiate_btn'] == 'btn_active')
+                    credential.role = 'candidate';
+                else
+                    credential.role = 'company';
+
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: credential.email,
+                        role: credential.role,
+                        password: credential.password,
+                    }),
+                });
+                if (response.status === 200) {
+                    const res = await signIn('credentials', {
+                        ...credential,
+                        redirect: false
+                    })
+
+                    if (res.status === 200) {
+                        if (credential.role === 'candidate')
+                            Router.push(`/${credential.role}/UserDashboard`);
+                        else
+                            Router.push(`/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails`);
+                    }
+                    else
+                        alert("Unknown Error occurred try again");
+                }
+                else if (response.status === 401) {
+                    setOpen(false);
+                    setError({ err_msg: "Invalid credentials", err_color: 'error' })
+                    console.log("error")
+                }
+                else {
+                    setOpen(false);
+                    setError({ err_msg: "An Unknown Error occured", err_color: 'error' })
+                }
+            }
 
         }
     }
@@ -105,8 +124,8 @@ const Login_dark = () => {
                             <button className={`signup_canidate_btn ${state.active_candiate_btn}`} onClick={changeNameCanidate}>as a canidate</button>
                             <button className={`signup_company_btn ${state.active_company_btn}`} onClick={changeNameCompany}>as a company</button>
                         </div>
-                        <MyTextField error={err.err_color} label="Email Address" type="email" size="large" sx={{ width: '30%',}} onChange={(e) => setEmail(e.target.value)} onClick={handelClick} name="email" />
-                         <MyTextField error={err.err_color} helperText={err.err_msg} label="Password" type="password" size="large" autoComplete="current-password" style={pFont}sx={{ width: '30%',fontSize:'15rem' }} onChange={(e) => setPassword(e.target.value)} onClick={handelClick} name="password" />
+                        <MyTextField error={err.err_color} label="Email Address" type="email" size="large" sx={{ width: '30%', }} onChange={(e) => setEmail(e.target.value)} onClick={handelClick} name="email" />
+                        <MyTextField error={err.err_color} helperText={err.err_msg} label="Password" type="password" size="large" autoComplete="current-password" style={pFont} sx={{ width: '30%', fontSize: '15rem' }} onChange={(e) => setPassword(e.target.value)} onClick={handelClick} name="password" />
                         <FormControlLabel control={<Checkbox defaultChecked size="small" />} label="Remember me on this device" />
                         <CommonButton variant="Gradient" onClick={loginUser} >LOGIN</CommonButton>
                         <Typography variant="hgLink"><Link href="/signup">dont have account? sign up now</Link></Typography>
@@ -115,7 +134,7 @@ const Login_dark = () => {
             </Box>
             <Backdrop open={open}>
                 <CircularProgress color="inherit" />
-             
+
             </Backdrop>
         </>
     )
