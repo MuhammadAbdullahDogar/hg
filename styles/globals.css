@@ -264,15 +264,15 @@ html {
   /* background: linear-gradient(320.66deg, #24A2E9 14.75%, #214175 84.81%); */
 /* background-color: #7DCE77;
   /* filter: blur(1.5px); */
-  /* border-radius: 50px;
-} */ 
+/* border-radius: 50px;
+} */
 
 /* input:checked+.slider:before {
   transform: translateX(240px);
 }
 input:checked + .slider {
   background-color: #7DCE77;
-} */ 
+} */
 
 .switch {
   position: relative;
@@ -281,7 +281,7 @@ input:checked + .slider {
   height: 69px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -312,15 +312,15 @@ input:checked + .slider {
   transition: .9s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #7DCE77;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #7DCE77;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(240px);
   -ms-transform: translateX(240px);
   transform: translateX(240px);
@@ -335,7 +335,164 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.question-heading {
+  font-family: 'Urbanist', sans-serif;
+}
+
+.main-head {
+  color: #5748F5;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+  font-family: 'Urbanist', sans-serif;
+}
+
+.sub-head {
+  color: #5748F5;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 30px;
+  font-family: 'comfortaa', sans-serif;
+}
+
+
 .quiz-form {
+  border: 3px solid #5748F5;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 50px;
+  margin-bottom: 30px;
+  border-radius: 18px;
+}
+
+.question-container {
+  margin-bottom: 20px;
+}
+
+.question-heading {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0c3c8e;
+  margin-bottom: 10px;
+}
+
+.question-input {
+  width: 100%;
+  font-family: 'Urbanist', sans-serif;
+  color:#19177E;
+  font-size: 17px;
+  padding: 10px;
+  border: none;
+  border-bottom: 3px solid #5748F5;
+  margin-bottom: 10px;
+}
+
+.question-type {
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.type-select {
+  font-family: 'Urbanist', sans-serif;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.option-container {
+  display: flex;
+  align-items: center;
+  border: none;
+}
+
+.option-heading {
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0c3c8e;
+  margin-right: 10px;
+}
+
+.radio-input,
+.checkbox-input {
+  margin-right: 10px;
+}
+
+.option-input {
+  flex-grow: 1;
+  border: none;
+  font-family: 'Comfortaa', sans-serif;
+  color:#19177E;
+  font-size: 14px;
+  border-bottom: 3px solid #5748F5;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.remove-option-button {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.add-question-button {
+  cursor: pointer;
+  font-family: 'Urbanist', sans-serif;
+  background-color: #214175;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.add-option-button {
+  background-color: #7DCE77;
+  cursor: pointer;
+  font-family: 'Urbanist', sans-serif;
+  color: #fff;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 10px;
+  margin-bottom: 3px;
+  margin-top: 20px;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.remove-question-button {
+  background-color: #ed5a50;
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  font-family: 'Urbanist', sans-serif;
+  padding: 9px 14px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.submit-button {
+  cursor: pointer;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: 'Urbanist', sans-serif;
+  margin-top: 30px;
+  margin-left: 220px;
+}
+
+
+/* .quiz-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -371,4 +528,4 @@ input:checked + .slider:before {
 
 .remove-option-button{
   padding-top: 22px;
-}
+} */

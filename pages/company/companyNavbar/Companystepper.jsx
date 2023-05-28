@@ -9,6 +9,7 @@ const CompanyStepper = (props) => {
             <Stepper activeStep={props.step} >
                 <Step ><StepLabel ><Typography variant="profileH2">{props.step1_Name}</Typography></StepLabel></Step>
                 <Step><StepLabel><Typography variant="profileH2">{props.step2_Name}</Typography></StepLabel></Step>
+                <Step><StepLabel><Typography variant="profileH2">{props.step3_Name}</Typography></StepLabel></Step>
             </Stepper>
         </>
     )
