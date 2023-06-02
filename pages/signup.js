@@ -61,15 +61,26 @@ const SignUp = () => {
   const PostData = async (e) => {
     setOpen(!open);
 
-    const response = await axios.post(`/api/checkEmailAvailability`, { email: formik.values.email, role: formik.values.role }, { headers: { 'Content-Type': 'application/json' } });
-
-    if (response.status === 200){
-      setError(true)
-      setOpen(false)
-
+    try {
+      const response = await axios.post(`/api/checkEmailAvailability`, { email: formik.values.email, role: formik.values.role }, { headers: { 'Content-Type': 'application/json' } });
+    } catch (error) {
+      if (error.response && error.response.status === 200){
+        setError(true)
+        setOpen(false)
+        console.log("cccc");
+      }
     }
+
+
+
+    // if (response.status === 200){
+    //   setError(true)
+    //   setOpen(false)
+    //   console.log("cccc");
+
+    // }
     if (!error) {
-      let userData = { role, ...formik.values };
+      let userData = { ...formik.values };
       userData.role = (changeNames['fName'] == 'First Name') ? 'candidate' : 'company';
       const res = await axios.post(`/api/${userData.role}/signup`, { userData }, { headers: { 'Content-Type': 'application/json' } });
 

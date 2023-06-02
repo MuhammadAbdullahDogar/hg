@@ -18,12 +18,12 @@ const handler = async (req, res) => {
             userExist = await User.findOne({ email });
 
         if (!userExist)
-            return res.status(401);
+            return res.status(400).json({ user: "false" });
         else {
             return res.status(200).json({ user: "true" });
         }
     }
     else
-        res.status(400);
+        res.status(400).json({ user: "false" });;
 }
 export default connectDb(handler);
