@@ -5,11 +5,24 @@ import CompanyStatus from '../companyProfileDetails/CompanyStatus';
 import Image from 'next/image';
 import { getSession } from "next-auth/react"
 import HiringPipeline from '../../../../components/company/job/dashboard/HiringPipeline';
-const CompanyDashboard = ({user, jobs}) => {
+import JobResult from '../../../../components/company/job/dashboard/JobResult';
+import JobSummary from '../../../../components/company/job/dashboard/JobSummary';
+import { useState } from 'react';
+
+const CompanyDashboard = ({ user, jobs }) => {
 
     const openJobs = jobs.filter(job => job.status === "open");
 
-    
+    const [selectedJob, setSelectedJob] = useState(openJobs.length > 0 ? openJobs[0].title : '');
+
+    const handleJobChange = (event) => {
+      setSelectedJob(event.target.value);
+    };
+
+    const getJobDetails = () => {
+        const selectedJobObj = openJobs.find((job) => job.title === selectedJob);
+        return selectedJobObj ? <JobResult job={selectedJobObj} /> : null;
+      };
 
 
     return (
@@ -23,7 +36,7 @@ const CompanyDashboard = ({user, jobs}) => {
                             <img
                                 src="/Group 10975.png"
                                 alt="logo"
-                               
+
                             />
                         </Grid>
                         <Grid item xs={.1}></Grid>
@@ -38,6 +51,17 @@ const CompanyDashboard = ({user, jobs}) => {
 
                         <Grid item xs={.4}></Grid>
                         <Grid item xs={7.3} >
+                            <select value={selectedJob} onChange={handleJobChange}>
+                                <option value="" disabled>Select a job</option>
+                                {openJobs.map((job) => (
+                                    <option key={job._id} value={job.title}>
+                                        {job.title}
+                                    </option>
+                                ))}
+                            </select>
+                            {getJobDetails()}
+
+                            
                             {/* <img
                                 src="/Group 10974.png"
                                 alt="logo"
@@ -45,6 +69,7 @@ const CompanyDashboard = ({user, jobs}) => {
                             /> */}
                         </Grid>
                         <Grid item xs={3.5} >
+                            <JobSummary jobs={jobs} />
                             {/* <img
                                 src="/Group 10973.png"
                                 alt="logo"
@@ -68,14 +93,14 @@ export async function getServerSideProps(ctx) {
 
     if (!session) {
         return {
-          redirect: {
-            destination: '/',
-            permanent: false,
-          },
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
         }
-      }
+    }
 
-      const res = await fetch(`${process.env.WEBSITE}/api/company/job`, {
+    const res = await fetch(`${process.env.WEBSITE}/api/company/job`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -87,8 +112,8 @@ export async function getServerSideProps(ctx) {
     const jobs = await res.json();
 
     ctx.res.setHeader(
-      'Cache-Control',
-      'public, s-maxage=10, stale-while-revalidate=59'
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
     )
 
     return {

@@ -75,6 +75,7 @@ const JobSchema = new mongoose.Schema({
     },
     img: { type: String },
     personality: [{ type: String }],
+    name: { type: String },
 
 
   }],

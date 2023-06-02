@@ -78,6 +78,7 @@ const JobPost = ({ jobs, user }) => {
         const candidateId = user._id
         const img = showJob?.img
         const personality = user.personality.personality
+        const name = user.fname + " " + user.lname
 
         const res = await fetch('/api/candidate/job/applyJob', {
             method: 'POST',
@@ -85,7 +86,7 @@ const JobPost = ({ jobs, user }) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ jobId, matchPercent, candidateId, screeningQuestions, img, personality })
+            body: JSON.stringify({ jobId, matchPercent, candidateId, screeningQuestions, img, personality, name })
         });
 
         if (res.status === 200) {
