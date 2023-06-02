@@ -56,7 +56,7 @@ const JobSchema = new mongoose.Schema({
     },
     status: {
       type: String,
-      enum: ['applied', 'invited', 'interviewed', 'feedback']
+      enum: ['applied', 'invited', 'interviewed', 'feedback', 'hired']
     },
     matchPercent: {
       type: String
@@ -78,14 +78,14 @@ const JobSchema = new mongoose.Schema({
   }],
   status: {
     type: String,
-    enum: ['open', 'closed'],
+    enum: ['open', 'closed', 'hired'],
     default: 'open'
   },
   postedAt: {
     type: Date,
     default: Date.now
   },
-  screeningQuestion : [{type: String}],
+  screeningQuestion: [{ type: String }],
   quiz: [{
     question: {
       type: String,
