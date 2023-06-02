@@ -10,6 +10,7 @@ const CompanyDashboard = ({user, jobs}) => {
     const openJobs = jobs.filter(job => job.status === "open");
 
     
+    
 
     return (
         <>
