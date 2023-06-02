@@ -53,6 +53,10 @@ const UserSchema = new mongoose.Schema({
         jobCategory: [{ type: String }]
     },
     notifications: [{ type: String }],
+    personality: {
+        personality: [{ type: String }],
+        Date: { type: Date, default: Date.now },
+    },
     jobsApplied: [{
         job: {
             type: mongoose.Schema.Types.ObjectId,
@@ -88,10 +92,10 @@ UserSchema.pre('save', async function (next) {
 });
 
 
-function generateHash (password) {
-const salt = bcrypt.genSaltSync (12);
-const hash= bcrypt.hashSync (password, salt);
-return hash;
+function generateHash(password) {
+    const salt = bcrypt.genSaltSync(12);
+    const hash = bcrypt.hashSync(password, salt);
+    return hash;
 }
 
 

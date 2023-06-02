@@ -11,10 +11,10 @@ const PostQuiz = () => {
     const router = useRouter();
     const jobId = router.query.id;
 
-    const [questions, setQuestions] = useState([{ question: '', type: '', options: [{ option: '', isCorrect: false }, { option: '', isCorrect: false }] }]);
+    const [questions, setQuestions] = useState([{ question: '', type: 'multiple', options: [{ option: '', isCorrect: false }, { option: '', isCorrect: false }] }]);
 
     const addQuestionFields = () => {
-        setQuestions([...questions, { question: '', type: '', options: [{ option: '', isCorrect: false }, { option: '', isCorrect: false }] }]);
+        setQuestions([...questions, { question: '', type: 'multiple', options: [{ option: '', isCorrect: false }, { option: '', isCorrect: false }] }]);
     };
 
     const removeQuestionFields = (index) => {
@@ -73,7 +73,8 @@ const PostQuiz = () => {
 
         const res = await axios.post(`/api/company/job/postQuiz`, { _id: jobId, quiz: questions }, { headers: { 'Content-Type': 'application/json' } });
         if (res.status === 200)
-            Router.push('/company/job');
+            Router.push(`/company/job/personality?id=${jobId}`);
+
         console.log('Questions:', questions);
 
 

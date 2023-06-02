@@ -74,6 +74,8 @@ const JobSchema = new mongoose.Schema({
       type: String
     },
     img: { type: String },
+    personality: [{ type: String }],
+
 
   }],
   status: {
@@ -86,6 +88,7 @@ const JobSchema = new mongoose.Schema({
     default: Date.now
   },
   screeningQuestion: [{ type: String }],
+  jobPersonality: [{ type: String }],
   quiz: [{
     question: {
       type: String,
