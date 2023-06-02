@@ -17,14 +17,14 @@ const CompanyNavbar = (props) => {
         <Grid item container xs={4} spacing={1.5}>
           <Grid item xs={12}></Grid>
           <Grid item xs={12}></Grid>
-          <Grid item xs={12}> <CompanyStepper step={props.step} step1_Name={props.step1_Name} step2_Name={props.step2_Name}></CompanyStepper></Grid>
+          <Grid item xs={12}> <CompanyStepper step={props.step} step1_Name={props.step1_Name} step2_Name={props.step2_Name} step3_Name={props.step3_Name}></CompanyStepper></Grid>
           <Grid item xs={12}></Grid>
           <Grid item xs={12}></Grid>
         </Grid>
 
 
 
-        <Grid item container xs={3.5} >
+        <Grid item container xs={3.5}>
           <Grid item xs={12}></Grid>
           <Grid item xs={2}></Grid>
           <Grid item xs={2}><Avatar alt="Image" src="/demo.jpg" sx={{ width: 56, height: 56 }} /></Grid>
@@ -37,7 +37,7 @@ const CompanyNavbar = (props) => {
 
         </Grid>
 
-        <Grid item xs={12}><LinearProgress variant="determinate" value={30} /></Grid>
+        <Grid item xs={12}><LinearProgress variant="determinate" value={20} /></Grid>
       </Grid>
     </>
   )

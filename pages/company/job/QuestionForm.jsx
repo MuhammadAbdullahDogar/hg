@@ -65,7 +65,7 @@ const QuestionForm = ({ user }) => {
             <form onSubmit={postData}>
                 <div style={{ overflow: 'hidden', width: '100vw' }}>
                     <Grid container spacing={6} >
-                        <Grid item xs={12}><CompanyNavbar step={2} step1_Name={'Job details'} step2_Name={'Screening Questions'} /></Grid>
+                        <Grid item xs={12}><CompanyNavbar step={1} step1_Name={'Job details'} step2_Name={'Screening Questions'} step3_Name={'Domain-Based Questions'}/></Grid>
 
                         <Grid item xs={1}></Grid>
                         <Grid item xs={2.5}><Typography variant="profileH1">Screening Questions</Typography><br /><Typography variant="profileH3">Optional</Typography></Grid>
