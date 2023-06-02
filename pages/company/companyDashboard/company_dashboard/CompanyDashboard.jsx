@@ -4,13 +4,13 @@ import CompanyDashboardLeftNavbar from '../CompanyDahboardLeftNavbar';
 import CompanyStatus from '../companyProfileDetails/CompanyStatus';
 import Image from 'next/image';
 import { getSession } from "next-auth/react"
-import HiringPipeline from '../../../../components/company/job/dashboard/hiringPipeline';
+import HiringPipeline from '../../../../components/company/job/dashboard/HiringPipeline';
 const CompanyDashboard = ({user, jobs}) => {
 
     const openJobs = jobs.filter(job => job.status === "open");
 
     
-    
+
 
     return (
         <>
