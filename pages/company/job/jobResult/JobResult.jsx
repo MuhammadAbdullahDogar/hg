@@ -4,6 +4,10 @@ import CompanyDashboardLeftNavbar from '../../companyDashboard/CompanyDahboardLe
 import CompanyStatus from '../../companyDashboard/companyProfileDetails/CompanyStatus';
 import Graph from './Graph';
 import { getSession } from "next-auth/react"
+import JobResultTable from '../../../../components/company/job/JobResultTable';
+import BarChart from       '../../../../components/company/job/BarChart';
+import PieChart from       '../../../../components/company/job/PieChart';
+
 
 const JobResult = () => {
     return (
@@ -16,11 +20,13 @@ const JobResult = () => {
 
 
                         <Grid item xs={.1}></Grid>
-                        <Grid item xs={7} sx={{ backgroundColor: 'red' }}><Graph></Graph></Grid>
-                        <Grid item xs={4} sx={{ backgroundColor: 'blue' }}>Job Summay</Grid>
+                        <Grid item xs={5.5} ><BarChart ></BarChart></Grid>
+                        <Grid item xs={2.8}></Grid>
+
+                        <Grid item xs={2.5} ><PieChart></PieChart></Grid>
 
                         <Grid item xs={.1}></Grid>
-                        <Grid item xs={11.9} sx={{ backgroundColor: 'yellow' }}>Table</Grid>
+                        <Grid item xs={11.9}><JobResultTable></JobResultTable></Grid>
 
 
 
