@@ -43,10 +43,6 @@ const CompanyDashboard = ({ user, jobs }) => {
 
                         <Grid item xs={7.8} >
                             <HiringPipeline jobs={openJobs} />
-                            {/* <img
-                                src="/Group 10972.png"
-                                alt="logo"
-                            /> */}
                         </Grid>
 
                         <Grid item xs={.4}></Grid>
