@@ -65,7 +65,7 @@ const CompanyStatus = (props) => {
                 </Grid>
 
 
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                     <Typography variant='userStatush2'> Profile Completion</Typography>
                 </Grid>
 
@@ -74,7 +74,7 @@ const CompanyStatus = (props) => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button sx={{ backgroundColor: '#BFDDEE', borderRadius: '10px', padding: '.6rem' }}><Typography variant='userStatush3'>Complete your profile</Typography></Button>
-                </Grid>
+                </Grid> */}
 
               
             </Grid >

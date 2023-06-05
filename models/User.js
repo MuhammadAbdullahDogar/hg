@@ -23,6 +23,7 @@ const UserSchema = new mongoose.Schema({
     },
     academic: {
         universityName: { type: String },
+        level: { type: String },
         major: { type: String },
         startingYear: { type: String },
         endingYear: { type: String },

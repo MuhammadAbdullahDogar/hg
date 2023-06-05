@@ -56,8 +56,8 @@ export const companyAboutSchema = Yup.object().shape({
 export const postJobSchema = Yup.object().shape({
     title: Yup.string()
         .max(50, 'Must be 50 characters or less')
-        .required('Required')
-        .matches(/^[a-zA-Z0-9]+$/, 'Cannot contain special characters or spaces'),
+        .required('Required'),
+        // .matches(/^[a-zA-Z0-9]+$/, 'Cannot contain special characters or spaces'),
     level: Yup.string()
         .max(50, 'Must be 50 characters or less')
         .required('Required'),
@@ -71,10 +71,10 @@ export const postJobSchema = Yup.object().shape({
         .max(40, 'Must be 40 characters or less')
         .required('Required'),
     description: Yup.string()
-        .max(500, 'Must be 500 characters or less')
+        .max(1000, 'Must be 500 characters or less')
         .required('Required'),
     responsibilites: Yup.string()
-        .max(500, 'Must be 500 characters or less')
+        .max(1000, 'Must be 1000 characters or less')
         .required('Required')
 })
 

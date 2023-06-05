@@ -1,4 +1,4 @@
-import { Grid, Typography, Box } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import LeftNavbar from '../leftNavbar'
 import TopNavbar from '../topNavbar'

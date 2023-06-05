@@ -199,9 +199,9 @@ const ProfileAbout = ({ user }) => {
           <FormControl fullWidth>
             <InputLabel>Gender</InputLabel>
             <MySelect label="Gender" {...formik.getFieldProps('gender')} error={formik.touched.gender && Boolean(formik.errors.gender)} name="gender">
-              <MenuItem value='male'>Male</MenuItem>
-              <MenuItem value="female">Female</MenuItem>
-              <MenuItem value="other">Other</MenuItem>
+              <MenuItem value='Male'>Male</MenuItem>
+              <MenuItem value="Female">Female</MenuItem>
+              <MenuItem value="Other">Other</MenuItem>
             </MySelect>
           </FormControl></Grid>
         <Grid item xs={1.5} md={1.5}></Grid>

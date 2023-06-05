@@ -364,16 +364,15 @@ const ProfileExperience = ({ user }) => {
       <form onSubmit={PostData}>
         <div style={{ overflow: 'hidden', width: '100vw' }}>
           <Grid container spacing={2} >
-            <Grid item xs={12}><ProfileNavbar step={2} fname={user.fname} lname={user.lname} /></Grid>
+            <Grid item xs={12}><ProfileNavbar step={2} fname={user.fname} lname={user.lname} img={user.img} /></Grid>
             <Grid item xs={12}>
 
               <Grid item xs={12}></Grid>
               <Grid item xs={1}></Grid>
               <Grid item xs={2.5}><Typography variant="profileH1">Experience and Skills</Typography>
-                {/* <MyTextField label="Years of Experience" variant="outlined" value={yearsOfExperience} onChange={event => handelChange(event)} name="yearsOfExperience" /> */}
                 <FormControl fullWidth>
                   <InputLabel>Experience</InputLabel>
-                  <MySelect label="Experience" name="yearsOfExperience" onChange={handelChange} >
+                  <MySelect label="Experience" name="yearsOfExperience" onChange={handelChange} value={yearsOfExperience} >
                     <MenuItem value="Beginner" >Beginner </MenuItem>
                     <MenuItem value="Intermediate">Intermediate</MenuItem>
                     <MenuItem value="Expert">Expert  </MenuItem>
