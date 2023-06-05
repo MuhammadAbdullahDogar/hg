@@ -16,14 +16,19 @@ function createData(Rank, Candidates,InitialScreening, BehavioralAnalysis, Skill
     return { Rank, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation };
 }
 
-const rows = [
-    createData(1, 'Muhammad Sajjad',85 , 85, 85),
-    createData(2, 'Muhammad Sajjad',85 , 85, 85),
-    createData(3, 'Muhammad Sajjad',85 , 85, 85),
-    createData(4, 'Muhammad Sajjad',85 , 85, 85),
-    createData(5, 'Muhammad Sajjad',85 , 85, 85),
-];
 
+// {filteredCandidates.slice(0, 4).map((candidate) => (
+//     <div key={candidate.candidate}>
+//         {/* add image in avatar of mui  */}
+//         <img src={candidate.img} alt="" />
+//         <li >name {candidate.name}</li>
+//         <li >personality: {(checkPersonality(candidate.personality, job.jobPersonality) / 4) * 100}%</li>
+//         <li >match %: {candidate.matchPercent}%</li>
+//         <li >skill %: {(candidate.obtainScore / candidate.totalScore) * 100}%</li>
+
+//     </div>
+
+// ))}
 const JobResult = ({ job }) => {
 
     function checkPersonality(array1, array2) {
@@ -43,6 +48,16 @@ const JobResult = ({ job }) => {
 
     const filteredCandidates = job.candidates.filter(candidate => candidate.status !== 'applied' && candidate.status !== 'invited');
 
+    console.log("jsufjshuh");
+    console.log(filteredCandidates);
+
+    const rows = [
+        // createData(1, filteredCandidates[0].name,85 , 85, 85),
+        createData(2, 'Muhammad Sajjad',85 , 85, 85),
+        createData(3, 'Muhammad Sajjad',85 , 85, 85),
+        createData(4, 'Muhammad Sajjad',85 , 85, 85),
+        createData(5, 'Muhammad Sajjad',85 , 85, 85),
+    ];
 
     return (
         <>
@@ -83,18 +98,7 @@ const JobResult = ({ job }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            {filteredCandidates.slice(0, 4).map((candidate) => (
-                <div key={candidate.candidate}>
-                    {/* add image in avatar of mui  */}
-                    <img src={candidate.img} alt="" />
-                    <li >name {candidate.name}</li>
-                    <li >personality: {(checkPersonality(candidate.personality, job.jobPersonality) / 4) * 100}%</li>
-                    <li >match %: {candidate.matchPercent}%</li>
-                    <li >skill %: {(candidate.obtainScore / candidate.totalScore) * 100}%</li>
-
-                </div>
-
-            ))}
+            
         </>
     )
 }

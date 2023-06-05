@@ -10,7 +10,7 @@ import JobSummary from '../../../../components/company/job/dashboard/JobSummary'
 import { useState } from 'react';
 
 const CompanyDashboard = ({ user, jobs }) => {
-
+    console.log(user);
     const openJobs = jobs.filter(job => job.status === "open");
 
     const [selectedJob, setSelectedJob] = useState(openJobs.length > 0 ? openJobs[0].title : '');
@@ -29,7 +29,7 @@ const CompanyDashboard = ({ user, jobs }) => {
         <>
             <Grid container spacing={2}>
                 <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
-                <Grid item xs={11.3}><CompanyDashboardTopNavbar />
+                <Grid item xs={11.3}><CompanyDashboardTopNavbar img={user.img} fname={user.cname} />
                     <Grid container spacing={2} mt={1}>
                         <Grid item xs={.4}></Grid>
                         <Grid item xs={3.5}>
