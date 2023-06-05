@@ -29,7 +29,7 @@ const ProfileNavbar = (props) => {
         <Grid item container xs={3.5} >
           <Grid item xs={12}></Grid>
           <Grid item xs={2}></Grid>
-          <Grid item xs={2}><Avatar alt="Image" src="/demo.jpg" sx={{ width: 56, height: 56 }} /></Grid>
+          <Grid item xs={2}><Avatar alt="Image" src={props.img} sx={{ width: 56, height: 56 }} /></Grid>
           <Grid item container direction="column" xs={8}>
             <Grid item xs={2}></Grid>
             <Grid item><Typography variant='profielH6'>Welcome,</Typography></Grid>
