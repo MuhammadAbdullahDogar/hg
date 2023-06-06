@@ -21,11 +21,11 @@ const HiringLine = ({ job }) => {
         <Grid item xs={12}></Grid>
 
         <Grid item xs={.5}></Grid>
-        <Grid item xs={2.5} >{job.title} </Grid>
+        <Grid item xs={2.5} > <Typography variant='pipelineH3'>{job.title}</Typography> </Grid>
 
         {appliedCandidatesLength > 0 ? (
           <Grid item xs={1.6} sx={{ backgroundColor: 'rgba(36, 162, 233, 0.3)', borderRadius: '3px' }}>
-            {appliedCandidatesLength}
+            <Typography variant='pipelineH4'>{appliedCandidatesLength} Candidate</Typography>
           </Grid>
         ) : (
           <Grid item xs={1.6} sx={{ backgroundColor: '#ECEDEF', borderRadius: '3px' }}>
@@ -34,8 +34,8 @@ const HiringLine = ({ job }) => {
         <Grid item xs={.1}></Grid>
 
         {invitedCandidatesLength > 0 ? (
-          <Grid item xs={1.6} sx={{ backgroundColor: 'rgba(36, 162, 233, 0.3)', borderRadius: '3px' }}>
-            {invitedCandidatesLength}
+          <Grid item xs={1.6} sx={{ backgroundColor: '#24A2E9', borderRadius: '3px' }}>
+             <Typography variant='pipelineH4'>{invitedCandidatesLength} Candidate</Typography>
           </Grid>
         ) : (
           <Grid item xs={1.6} sx={{ backgroundColor: '#ECEDEF', borderRadius: '3px' }}>
@@ -47,7 +47,7 @@ const HiringLine = ({ job }) => {
 
         {interviewedCandidatesLength > 0 ? (
           <Grid item xs={1.6} sx={{ backgroundColor: '#7DCE77', borderRadius: '3px' }}>
-            {interviewedCandidatesLength}
+             <Typography variant='pipelineH4'>{interviewedCandidatesLength} Candidate</Typography>
           </Grid>
         ) : (
           <Grid item xs={1.6} sx={{ backgroundColor: '#ECEDEF', borderRadius: '3px' }}>
@@ -57,8 +57,8 @@ const HiringLine = ({ job }) => {
 
 
         {feedbackCandidatesLength > 0 ? (
-          <Grid item xs={1.6} sx={{ backgroundColor: 'rgba(36, 162, 233, 0.3)', borderRadius: '3px' }}>
-            {feedbackCandidatesLength}
+          <Grid item xs={1.6} sx={{ backgroundColor: '#44ABB1', borderRadius: '3px' }}>
+             <Typography variant='pipelineH4'>{feedbackCandidatesLength} Candidate</Typography>
           </Grid>
         ) : (
           <Grid item xs={1.6} sx={{ backgroundColor: '#ECEDEF', borderRadius: '3px' }}>
@@ -68,8 +68,8 @@ const HiringLine = ({ job }) => {
 
 
         {hiredCandidatesLength > 0 ? (
-          <Grid item xs={1.6} sx={{ backgroundColor: 'rgba(36, 162, 233, 0.3)', borderRadius: '3px' }}>
-            {hiredCandidatesLength}
+          <Grid item xs={1.6} sx={{ backgroundColor: '#786EED', borderRadius: '3px' }}>
+             <Typography variant='pipelineH4'>{hiredCandidatesLength} Candidate</Typography>
           </Grid>
         ) : (
           <Grid item xs={1.6} sx={{ backgroundColor: '#ECEDEF', borderRadius: '3px' }}>

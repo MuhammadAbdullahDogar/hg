@@ -33,12 +33,6 @@ export const data = {
 const PieChart=()=>{
   return(
     <Pie data={data} />
-
   )
 }
-
 export default PieChart
-// export default () => (
-//   <>
-//   </>
-// );

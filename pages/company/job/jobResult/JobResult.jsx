@@ -16,20 +16,12 @@ const JobResult = () => {
                 <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
                 <Grid item xs={11.3}><CompanyDashboardTopNavbar />
                     <Grid container spacing={2} mt={1}>
-
-
-
                         <Grid item xs={.1}></Grid>
                         <Grid item xs={5.5} ><BarChart ></BarChart></Grid>
                         <Grid item xs={2.8}></Grid>
-
                         <Grid item xs={2.5} ><PieChart></PieChart></Grid>
-
                         <Grid item xs={.1}></Grid>
                         <Grid item xs={11.9}><JobResultTable></JobResultTable></Grid>
-
-
-
                     </Grid>
                 </Grid>
             </Grid>

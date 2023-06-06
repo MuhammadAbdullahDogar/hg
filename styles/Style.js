@@ -415,6 +415,40 @@ const customTheme = createTheme({
             lineHeight: ".6rem",
             color: '#76A5DC'
         },
+        //company dashboard pipeline
+        pipelineH1: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.25rem',
+            lineHeight: "1.5rem",
+            color: '#5748F5',
+            letterSpacing:'0.03em',
+        },
+        pipelineH2: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.9rem',
+            lineHeight: ".875rem",
+            color: '#92A9C5',
+            textAlign:'center',
+        },
+        pipelineH3: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '.9375rem',
+            lineHeight: "1.125rem",
+            color: '#5748F5',
+            // letterSpacing:'0.3em',
+        },
+        pipelineH4: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.9rem',
+            lineHeight: ".875rem",
+            color: '#0C0B38',
+            textAlign:'center',
+            letterSpacing:'0.03em',
+        },
     },
     shape: {
         // borderRadius: '2.3vmin',

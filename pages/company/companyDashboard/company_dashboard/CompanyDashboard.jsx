@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material'
 import CompanyDashboardTopNavbar from '../CompanyDashboardTopNavbar';
 import CompanyDashboardLeftNavbar from '../CompanyDahboardLeftNavbar';
 import CompanyStatus from '../companyProfileDetails/CompanyStatus';
@@ -8,6 +7,8 @@ import HiringPipeline from '../../../../components/company/job/dashboard/HiringP
 import JobResult from '../../../../components/company/job/dashboard/JobResult';
 import JobSummary from '../../../../components/company/job/dashboard/JobSummary';
 import { useState } from 'react';
+import { Grid, Typography, MenuItem, InputLabel, FormControl, Select } from '@mui/material'
+import MySelect from '../../../../styles/MySelect';
 
 const CompanyDashboard = ({ user, jobs }) => {
     console.log(user);
@@ -16,13 +17,13 @@ const CompanyDashboard = ({ user, jobs }) => {
     const [selectedJob, setSelectedJob] = useState(openJobs.length > 0 ? openJobs[0].title : '');
 
     const handleJobChange = (event) => {
-      setSelectedJob(event.target.value);
+        setSelectedJob(event.target.value);
     };
 
     const getJobDetails = () => {
         const selectedJobObj = openJobs.find((job) => job.title === selectedJob);
         return selectedJobObj ? <JobResult job={selectedJobObj} /> : null;
-      };
+    };
 
 
     return (
@@ -30,14 +31,14 @@ const CompanyDashboard = ({ user, jobs }) => {
             <Grid container spacing={2}>
                 <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
                 <Grid item xs={11.3}><CompanyDashboardTopNavbar img={user.img} fname={user.cname} />
-                    <Grid container spacing={2} mt={1}>
-                        <Grid item xs={.4}></Grid>
+                    <Grid container spacing={1} mt={1}>
+                        <Grid item xs={.3}></Grid>
                         <Grid item xs={3.5}>
-                            <img
+                            {/* <img
                                 src="/Group 10975.png"
                                 alt="logo"
 
-                            />
+                            /> */}
                         </Grid>
                         <Grid item xs={.1}></Grid>
 
@@ -45,33 +46,34 @@ const CompanyDashboard = ({ user, jobs }) => {
                             <HiringPipeline jobs={openJobs} />
                         </Grid>
 
-                        <Grid item xs={.4}></Grid>
-                        <Grid item xs={7.3} >
-                            <select value={selectedJob} onChange={handleJobChange}>
-                                <option value="" disabled>Select a job</option>
-                                {openJobs.map((job) => (
-                                    <option key={job._id} value={job.title}>
-                                        {job.title}
-                                    </option>
-                                ))}
-                            </select>
-                            {getJobDetails()}
+                        <Grid item xs={.3} ></Grid>
 
-                            
-                            {/* <img
-                                src="/Group 10974.png"
-                                alt="logo"
-                               
-                            /> */}
+                        <Grid item xs={.3}></Grid>
+                        <Grid container item xs={7.8} >
+                            <Grid item xs={2}>Hello wordls</Grid>
+                            <Grid item xs={3.5}>
+                                <FormControl fullWidth size="small">
+                                    <InputLabel >Select a job</InputLabel>
+                                    <Select label="Select a job" value={selectedJob} onChange={handleJobChange}>
+                                        {openJobs.map((job) => (
+                                            <MenuItem key={job._id} value={job.title}>
+                                                {job.title}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={4}></Grid>
+                            <Grid item xs={2.5}></Grid>
+                            <Grid item xs={12}>
+                                {getJobDetails()}
+                            </Grid>
                         </Grid>
-                        <Grid item xs={3.5} >
+                        <Grid item xs={.1}></Grid>
+                        <Grid item xs={3.5}>
                             <JobSummary jobs={jobs} />
-                            {/* <img
-                                src="/Group 10973.png"
-                                alt="logo"
-                               
-                            /> */}
                         </Grid>
+                        <Grid item xs={.3}></Grid>
                     </Grid>
                 </Grid>
             </Grid>
