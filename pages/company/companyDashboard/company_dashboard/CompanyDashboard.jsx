@@ -7,8 +7,8 @@ import HiringPipeline from '../../../../components/company/job/dashboard/HiringP
 import JobResult from '../../../../components/company/job/dashboard/JobResult';
 import JobSummary from '../../../../components/company/job/dashboard/JobSummary';
 import { useState } from 'react';
-import { Grid, Typography, MenuItem, InputLabel, FormControl, Select } from '@mui/material'
-import MySelect from '../../../../styles/MySelect';
+import { Grid, Typography, MenuItem, InputLabel, FormControl, Select, Box } from '@mui/material'
+import CommonButton from '../../../../styles/CommonButotn';
 
 const CompanyDashboard = ({ user, jobs }) => {
     console.log(user);
@@ -31,14 +31,16 @@ const CompanyDashboard = ({ user, jobs }) => {
             <Grid container spacing={2}>
                 <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
                 <Grid item xs={11.3}><CompanyDashboardTopNavbar img={user.img} fname={user.cname} />
-                    <Grid container spacing={1} mt={1}>
+                    <Grid container item spacing={1} mt={1}>
                         <Grid item xs={.3}></Grid>
                         <Grid item xs={3.5}>
-                            {/* <img
-                                src="/Group 10975.png"
-                                alt="logo"
-
-                            /> */}
+                            <Box sx={{ height: '17.625rem', background: 'rgba(146, 169, 197, 0.1)', borderRadius: '10px', minHeight: '' }}>
+                                <Grid container rowSpacing={2} sx={{ background: 'url(/dashboard.png)', backgroundRepeat: 'no-repeat', backgroundPosition: 'right' }}>
+                                    <Grid item xs={12} ml={4} ><Typography variant='companyH3'>Welcome Back!</Typography><br></br><Typography variant='companyH1'>TechGeeks</Typography></Grid>
+                                    <Grid item xs={12} ml={4}><Typography variant='companyH2'>You have 10 new application<br></br>on your job posts.</Typography></Grid>
+                                    <Grid item xs={12} ml={4}><CommonButton variant='JobPost'>View Applicants</CommonButton></Grid>
+                                </Grid>
+                            </Box>
                         </Grid>
                         <Grid item xs={.1}></Grid>
 
