@@ -7,8 +7,9 @@ import HiringPipeline from '../../../../components/company/job/dashboard/HiringP
 import JobResult from '../../../../components/company/job/dashboard/JobResult';
 import JobSummary from '../../../../components/company/job/dashboard/JobSummary';
 import { useState } from 'react';
-import { Grid, Typography, MenuItem, InputLabel, FormControl } from '@mui/material'
+import { Grid, Typography, MenuItem, InputLabel, FormControl, Box } from '@mui/material'
 import MySelect from '../../../../styles/MySelect';
+import CommonButton from '../../../../styles/CommonButotn';
 
 const CompanyDashboard = ({ user, jobs }) => {
     const openJobs = jobs.filter(job => job.status === "open");
