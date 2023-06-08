@@ -49,7 +49,24 @@ const CommonButotn = (props) => {
                         alignItems: 'center',
                         padding: '.75rem 1.0625rem',
                         gap: '.9375rem',
+                },
+                '&.MuiButton-Hire': {
+                        fontFamily: 'Urbanist',
+                        textDecoration: 'none',
+                        fontWeight: '400',
+                        fontSize: '.9375rem',
+                        lineHeight: '1.125rem',
+
+                        color:props.color,
+                        border: `.125rem solid ${props.color}`,
+                        borderRadius: '.625rem',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        padding: '.75rem 1.0625rem',
+                        gap: '.9375rem',
+                        marginLeft:'1rem'
                 }
+
         }
         return (
                 <Button

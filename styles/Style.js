@@ -449,6 +449,28 @@ const customTheme = createTheme({
             textAlign:'center',
             letterSpacing:'0.03em',
         },
+        //company dashboard table
+        tableH2: {
+            fontFamily: 'Urbanist',
+            fontWeight: '600',
+            fontSize: '1.875rem',
+            lineHeight: "2.25rem",
+            color: '#7DCE77',
+            textAlign:'center',
+            letterSpacing:'0.03em',
+        },
+        tableH3: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.25rem',
+            lineHeight: "1.5rem",
+            color: '#5748F5',
+            textAlign:'center',
+            letterSpacing:'0.03em',
+            marginLeft:'1rem'
+        },
+
+
     },
     shape: {
         // borderRadius: '2.3vmin',

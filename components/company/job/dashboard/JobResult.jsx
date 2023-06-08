@@ -12,8 +12,8 @@ import Avatar from '@mui/material/Avatar';
 import Image from 'next/image';
 import { Typography, Box } from '@mui/material';
 
-function createData(Rank, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation) {
-    return { Rank, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation };
+function createData(Rank, CandidateImg,Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation) {
+    return { Rank, CandidateImg,Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation };
 }
 
 const JobResult = ({ job }) => {
@@ -45,6 +45,7 @@ const JobResult = ({ job }) => {
         console.log(candidate);
         rows.push(createData(
             index + 1,
+            candidate.img,
             candidate.name,
             (checkPersonality(candidate.personality, job.jobPersonality) / 4) * 100,
             candidate.matchPercent,
@@ -79,7 +80,7 @@ const JobResult = ({ job }) => {
                                 <TableCell component="th" scope="row">
                                     {row.Rank}
                                 </TableCell>
-                                <TableCell align="center" ><Box><Avatar alt="img" src="/demo.jpg" /><Typography variant='body'>{row.Candidates}</Typography></Box></TableCell>
+                                <TableCell align="center" ><Box><Avatar alt="img" src={row.CandidateImg} /><Typography variant='body'>{row.Candidates}</Typography></Box></TableCell>
 
                                 <TableCell align="center"><CircularProgress variant="determinate" value={row.InitialScreening} /></TableCell>
                                 <TableCell align="center"><CircularProgress variant="determinate" value={row.BehavioralAnalysis} /></TableCell>
