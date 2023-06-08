@@ -30,6 +30,12 @@ const PersonalityType = () => {
   
     const handleSubmit = async (event) => {
       event.preventDefault();
+
+      if (!group1 || !group2 || !group3 || !group4) {
+        alert('Please select one option from each group');
+        return;
+      }
+
       const jobPersonality = [group1, group2, group3, group4]
 
       const res = await axios.post(`/api/company/job/personalityType`, { jobId, jobPersonality }, { headers: { 'Content-Type': 'application/json' } });

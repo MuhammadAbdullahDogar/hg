@@ -47,8 +47,8 @@ const JobResult = ({ job }) => {
             index + 1,
             candidate.img,
             candidate.name,
-            (checkPersonality(candidate.personality, job.jobPersonality) / 4) * 100,
             candidate.matchPercent,
+            (checkPersonality(candidate.personality, job.jobPersonality) / 4) * 100,
             (candidate.obtainScore / candidate.totalScore) * 100
         ));
     });

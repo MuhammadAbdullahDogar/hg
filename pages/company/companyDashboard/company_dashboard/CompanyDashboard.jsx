@@ -7,11 +7,10 @@ import HiringPipeline from '../../../../components/company/job/dashboard/HiringP
 import JobResult from '../../../../components/company/job/dashboard/JobResult';
 import JobSummary from '../../../../components/company/job/dashboard/JobSummary';
 import { useState } from 'react';
-import { Grid, Typography, MenuItem, InputLabel, FormControl, Select } from '@mui/material'
+import { Grid, MenuItem, InputLabel, FormControl } from '@mui/material'
 import MySelect from '../../../../styles/MySelect';
 
 const CompanyDashboard = ({ user, jobs }) => {
-    console.log(user);
     const openJobs = jobs.filter(job => job.status === "open");
 
     const [selectedJob, setSelectedJob] = useState(openJobs.length > 0 ? openJobs[0].title : '');
@@ -50,17 +49,17 @@ const CompanyDashboard = ({ user, jobs }) => {
 
                         <Grid item xs={.3}></Grid>
                         <Grid container item xs={7.8} >
-                            <Grid item xs={2}>Hello wordls</Grid>
+                            <Grid item xs={2}></Grid>
                             <Grid item xs={3.5}>
                                 <FormControl fullWidth size="small">
-                                    <InputLabel >Select a job</InputLabel>
-                                    <Select label="Select a job" value={selectedJob} onChange={handleJobChange}>
+                                    <InputLabel >Select a Job</InputLabel>
+                                    <MySelect label="Select a job" value={selectedJob} onChange={handleJobChange}>
                                         {openJobs.map((job) => (
                                             <MenuItem key={job._id} value={job.title}>
                                                 {job.title}
                                             </MenuItem>
                                         ))}
-                                    </Select>
+                                    </MySelect>
                                 </FormControl>
                             </Grid>
                             <Grid item xs={4}></Grid>

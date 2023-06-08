@@ -10,12 +10,12 @@ const JobSummary = ({ jobs }) => {
   const closedJobs = jobs.filter(job => job.status === 'closed');
   const openJobs = jobs.filter(job => job.status === 'open');
   const data = {
-    labels: [openJobs.length + ' Active', jobs.length + ' Inactive', closedJobs.length + 'Hired'],
+    labels: [openJobs.length + ' Active', closedJobs.length + ' Inactive'],
     datasets: [
       {
-        label: '# of Votes',
-        data: [jobs.length, openJobs.length, closedJobs.length],
-        innerRadius: '90%',
+        label: '# of Jobs',
+        data: [ openJobs.length, closedJobs.length],
+        innerRadius: '85%',
         backgroundColor: [
           '#24A2E9',
           '#7DCE77',
@@ -27,7 +27,7 @@ const JobSummary = ({ jobs }) => {
   const options = {
     // maintainAspectRatio: false,
     responsive: true,
-    cutout: '90%',
+    cutout: '85%',
     plugins: {
       legend: {
         display: true,

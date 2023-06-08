@@ -56,14 +56,14 @@ const generatePdf = ({ user }) => {
 const UserProfileTab = (props) => {
 
 
-    
+
     const { user } = props
     const [value, setValue] = useState(props.value);
-    
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    
+
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -72,21 +72,21 @@ const UserProfileTab = (props) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    
+
     useEffect(() => {
         const handleOutsideClick = (event) => {
-          if (anchorEl && !anchorEl.contains(event.target)) {
-            handleClose();
-          }
+            if (anchorEl && !anchorEl.contains(event.target)) {
+                handleClose();
+            }
         };
-    
+
         document.addEventListener('click', handleOutsideClick);
-    
+
         return () => {
-          document.removeEventListener('click', handleOutsideClick);
+            document.removeEventListener('click', handleOutsideClick);
         };
-      }, [anchorEl]);
-      
+    }, [anchorEl]);
+
     const router = useRouter();
 
     const handleClickk = () => {
@@ -121,7 +121,7 @@ const UserProfileTab = (props) => {
                 >
                     <MoreIcon />
                     <Menu
-                        
+
                         anchorEl={anchorEl}
                         open={open}
                         onClose={handleClose}

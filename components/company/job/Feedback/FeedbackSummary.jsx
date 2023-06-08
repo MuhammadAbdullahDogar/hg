@@ -4,13 +4,27 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-const FeedbackSummary = () => {
+const FeedbackSummary = ({candidates}) => {
+
+    const appliedcandidates = candidates?.filter(candidate => candidate.status === "applied");
+    const invitedcandidates = candidates?.filter(candidate => candidate.status === "invited");
+    const interviewedcandidates = candidates?.filter(candidate => candidate.status === "interviewed");
+    // const feedbackcandidates = candidates?.filter(candidate => candidate.status === "feedback");
+    const hiredcandidates = candidates?.filter(candidate => candidate.status === "hired");
+
+    const appliedCandidateLength = appliedcandidates?.length
+    const invitedCandidateLength = invitedcandidates?.length
+    const interviewedCandidateLength = interviewedcandidates?.length
+    const hiredCandidateLength = hiredcandidates?.length
+    const candidateLength = candidates?.length
+console.log(hiredCandidateLength);
+
     const data = {
-        labels: ['interviewed 10', 'Passed 10', 'Failed 4', 'Hired 6'],
+        labels: [`Applied ${appliedCandidateLength}`, `Invited ${invitedCandidateLength}`, `Interviewed ${interviewedCandidateLength}`, `Hired ${hiredCandidateLength}`],
         datasets: [
             {
-                label: '# of Votes',
-                data: [10, 10, 4, 6],
+                label: '# of Candidates',
+                data: [appliedCandidateLength, invitedCandidateLength, interviewedCandidateLength, hiredCandidateLength],
                 backgroundColor: [
                     '#24A2E9',
                     '#7DCE77',
@@ -31,9 +45,9 @@ const FeedbackSummary = () => {
             var fontSize = (height / 160).toFixed(2);
             ctx.font = fontSize + "em sans-serif";
             ctx.textBaseline = "top";
-            var text = "18",
+            var text = `${candidateLength}`,
                 textX = Math.round((width - ctx.measureText(text).width) / 2),
-                textY = height / 2;
+                textY = height / 1.8;
             ctx.fillText(text, textX, textY);
             ctx.save();
         }

@@ -1,5 +1,7 @@
 import { Grid, Divider, Typography, Box, Button } from '@mui/material'
 import axios from 'axios';
+import moment from 'moment';
+
 
 const JobCard = ({ job }) => {
 
@@ -63,8 +65,8 @@ const JobCard = ({ job }) => {
 
                 <Grid item xs={12}><Divider variant="middle"></Divider></Grid>
 
-                <Grid item xs={1}></Grid>
-                <Grid item xs={5} mt={.7}><Typography variant='companyJobCardH4'>Published 2 Days Ago</Typography></Grid>
+                <Grid item xs={1}></Grid> 
+                <Grid item xs={5} mt={.7}><Typography variant='companyJobCardH4'>Published {moment(job?.postedAt).fromNow()}</Typography></Grid>
                 <Grid item xs={5}><Button size='small' onClick={inactive}>Inactive Job</Button></Grid>
 
 

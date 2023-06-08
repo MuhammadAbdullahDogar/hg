@@ -12,18 +12,52 @@ import Avatar from '@mui/material/Avatar';
 import Image from 'next/image';
 import { Typography, Box } from '@mui/material';
 
-function createData(Rank, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation) {
-    return { Rank, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation };
+function createData(Rank, CandidateImg, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation) {
+    return { Rank, CandidateImg, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation };
 }
 
-const rows = [
-    createData(1, 'Muhammad Sajjad', 20, 15, 2),
-    createData(2, 'Hammad Javaid', 99, 80, 85),
-    createData(3, 'Muhammad Sajjad', 85, 85, 85),
-    
-];
 
-const JobResultTable = () => {
+// const rows = [
+//     createData(1, 'Muhammad Sajjad', 20, 15, 2),
+//     createData(2, 'Hammad Javaid', 99, 80, 85),
+//     createData(3, 'Muhammad Sajjad', 85, 85, 85),
+
+// ];
+
+const JobResultTable = ({ job }) => {
+
+    function checkPersonality(array1, array2) {
+        if (array1.length !== array2.length) {
+            throw new Error('Arrays must have the same length');
+        }
+
+        const matchCount = array1.reduce((count, _, index) => {
+            if (array1[index] === array2[index]) {
+                return count + 1;
+            }
+            return count;
+        }, 0);
+
+        return matchCount;
+    }
+
+    const filteredCandidates = job.candidates.filter(candidate => candidate.status !== 'applied' && candidate.status !== 'invited');
+
+    const rows = [];
+
+    filteredCandidates.forEach((candidate, index) => {
+        rows.push(createData(
+            index + 1,
+            candidate.img,
+            candidate.name,
+            candidate.matchPercent,
+            (checkPersonality(candidate.personality, job.jobPersonality) / 4) * 100,
+            (candidate.obtainScore / candidate.totalScore) * 100
+        ));
+    });
+
+
+
     return (
         <TableContainer >
 
@@ -51,7 +85,7 @@ const JobResultTable = () => {
                             </TableCell>
                             <TableCell align="center" >
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <Avatar alt="img" src="/demo.jpg" />
+                                    <Avatar alt="img" src={row.CandidateImg} />
                                     <span ><Typography variant='tableH3'>{row.Candidates}</Typography></span>
                                 </div>
                             </TableCell>
@@ -74,8 +108,10 @@ const JobResultTable = () => {
                                     <span ><Typography variant='tableH3'>{row.SkillEvaluation + '%'}</Typography></span>
                                 </div>
                             </TableCell>
-                            <TableCell align="center"><CommonButton variant="Hire" color='green'>Hire</CommonButton>
-                                <CommonButton variant="Hire" color='red'>Reject</CommonButton></TableCell>
+                            <TableCell align="center">
+                                <CommonButton variant="Hire" color='green'>Hire</CommonButton>
+                                <CommonButton variant="Hire" color='red'>Reject</CommonButton>
+                            </TableCell>
 
                         </TableRow>
                     ))}

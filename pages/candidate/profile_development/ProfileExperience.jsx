@@ -38,8 +38,6 @@ const SkillAutocomplete = ({ suggestions, placeholder, onChange, value, selected
 
   const filteredSuggestions = suggestions.filter(suggestion => !skills.includes(suggestion));
 
-  console.log(skills);
-
   return (
     <div>
       <Autocomplete
@@ -115,7 +113,6 @@ const suggestions = [
   "HTML",
   "CSS",
   "JavaScript",
-  "PHP",
   "MySQL",
   "WordPress",
   "Drupal",
@@ -125,14 +122,12 @@ const suggestions = [
   "WooCommerce",
   "Software development",
   "Java",
-  "C++",
   "C#",
   "Python",
   "Ruby",
   "Swift",
   "Kotlin",
   "Objective-C",
-  "PHP",
   "MySQL",
   "PostgreSQL",
   "MongoDB",
@@ -179,6 +174,9 @@ const suggestions = [
   "Communication",
   "Collaboration"
 ];
+
+const uniqueSuggestions = [...new Set(suggestions)];
+
 
 const ProfileExperience = ({ user }) => {
 
@@ -447,7 +445,7 @@ const ProfileExperience = ({ user }) => {
                           ),
                         }} /> */}
                       <SkillAutocomplete
-                        suggestions={suggestions}
+                        suggestions={uniqueSuggestions}
                         value={field.skill}
                         onChange={(event) => skillHandleChange(index, "skill", event.target.value)}
                         placeholder={`Skill ${index + 1}`}
