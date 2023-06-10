@@ -39,7 +39,7 @@ const JobApplication = ({ user }) => {
     const appliedJob = user.jobsApplied.filter(job => job.status === "applied");
     const invitedJob = user.jobsApplied.filter(job => job.status === "invited");
     const interviewedJob = user.jobsApplied.filter(job => job.status === "inInterview");
-    const feedbackJob = user.jobsApplied.filter(job => job.status === "feedback");
+    const feedbackJob = user.jobsApplied.filter(job => job.status === "hired" || job.status === "reject");
 
     const appliedJobLength = appliedJob.length
     const invitedJobLength = invitedJob.length

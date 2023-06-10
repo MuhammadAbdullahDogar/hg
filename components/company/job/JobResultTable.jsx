@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,20 +11,13 @@ import CommonButton from '../../../styles/CommonButotn'
 import Avatar from '@mui/material/Avatar';
 import Image from 'next/image';
 import { Typography, Box } from '@mui/material';
+import axios from 'axios'
 
-function createData(Rank, CandidateImg, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation) {
-    return { Rank, CandidateImg, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation };
+function createData(Rank, CandidateImg, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation, id) {
+    return { Rank, CandidateImg, Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation, id };
 }
 
-
-// const rows = [
-//     createData(1, 'Muhammad Sajjad', 20, 15, 2),
-//     createData(2, 'Hammad Javaid', 99, 80, 85),
-//     createData(3, 'Muhammad Sajjad', 85, 85, 85),
-
-// ];
-
-const JobResultTable = ({ job }) => {
+const JobResultTable = ({ job, upJob }) => {
 
     function checkPersonality(array1, array2) {
         if (array1.length !== array2.length) {
@@ -41,7 +34,7 @@ const JobResultTable = ({ job }) => {
         return matchCount;
     }
 
-    const filteredCandidates = job.candidates.filter(candidate => candidate.status !== 'applied' && candidate.status !== 'invited');
+    const filteredCandidates = job.candidates.filter(candidate => candidate.status == 'interviewed');
 
     const rows = [];
 
@@ -52,9 +45,25 @@ const JobResultTable = ({ job }) => {
             candidate.name,
             candidate.matchPercent,
             (checkPersonality(candidate.personality, job.jobPersonality) / 4) * 100,
-            (candidate.obtainScore / candidate.totalScore) * 100
+            (candidate.obtainScore / candidate.totalScore) * 100,
+            candidate.candidate
         ));
     });
+
+    const hire = async (status, candidateId) => {
+        try {
+            const response = await axios.post('/api/company/job/hire', { status, jobId: job._id, candidateId });
+            // Handle the response
+
+            if(response.status==200){
+                window.location.reload();
+            }
+
+        } catch (error) {
+            // Handle the error
+            console.error(error);
+        }
+    }
 
 
 
@@ -109,8 +118,8 @@ const JobResultTable = ({ job }) => {
                                 </div>
                             </TableCell>
                             <TableCell align="center">
-                                <CommonButton variant="Hire" color='green'>Hire</CommonButton>
-                                <CommonButton variant="Hire" color='red'>Reject</CommonButton>
+                                <CommonButton variant="Hire" color='green' onClick={() => { hire('hired', row.id) }} >Hire</CommonButton>
+                                <CommonButton variant="Hire" color='red' onClick={() => { hire('reject', row.id) }} >Reject</CommonButton>
                             </TableCell>
 
                         </TableRow>

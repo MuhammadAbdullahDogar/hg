@@ -16,7 +16,7 @@ const numBox = {
     position: 'absolute',
     marginLeft: '1rem',
 }
-const Candidates = ({ jobInfo, company }) => {
+const Candidates = ({ jobInfo, company, handleUserInfo }) => {
 
     const [userInfo, setUserInfo] = useState(0)
     const [job, setJob] = useState(jobInfo)
@@ -27,7 +27,7 @@ const Candidates = ({ jobInfo, company }) => {
     let appliedCandidates = job.candidates.filter(candidate => candidate.status === "applied");
     let invitedCandidates = job.candidates.filter(candidate => candidate.status === "invited");
     let interviewedCandidates = job.candidates.filter(candidate => candidate.status === "interviewed");
-    let feedbackCandidates = job.candidates.filter(candidate => candidate.status === "feedback");
+    let feedbackCandidates = job.candidates.filter(candidate => candidate.status === "hired" || candidate.status === "reject" );
     let appliedCandidatesLength = appliedCandidates.length
     let invitedCandidatesLength = invitedCandidates.length
     let interviewedCandidatesLength = interviewedCandidates.length
@@ -35,6 +35,9 @@ const Candidates = ({ jobInfo, company }) => {
     let totalCandidatesLength = appliedCandidatesLength + invitedCandidatesLength + interviewedCandidatesLength + feedbackCandidatesLength;
 
 
+    const back = ()=>{
+        handleUserInfo(0);
+    }
 
 
 
@@ -61,7 +64,7 @@ const Candidates = ({ jobInfo, company }) => {
 
                     <Grid container item xs={12} >
                         <Grid item xs={.4} mt={2}>
-                            <ArrowBackIosNewSharpIcon color='primary' >Back to All Jobs  </ArrowBackIosNewSharpIcon>
+                            <ArrowBackIosNewSharpIcon color='primary' onClick={back} >Back to All Jobs  </ArrowBackIosNewSharpIcon>
                         </Grid>
                         <Grid item xs={9.6} ><Typography variant="ViewJobH2">DESIGN</Typography><br /><Typography variant="ViewJobH1">{job?.title}</Typography></Grid>
                         <Grid item xs={2}> <CommonButton variant="JobPost"  >View Job Posting</CommonButton></Grid>

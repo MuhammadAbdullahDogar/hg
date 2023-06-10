@@ -56,7 +56,7 @@ const JobSchema = new mongoose.Schema({
     },
     status: {
       type: String,
-      enum: ['applied', 'invited', 'interviewed', 'feedback', 'hired']
+      enum: ['applied', 'invited', 'interviewed', 'reject', 'hired']
     },
     matchPercent: {
       type: String

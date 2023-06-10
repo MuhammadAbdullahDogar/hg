@@ -142,14 +142,14 @@ const Linechart = ({ candidates }) => {
       {
         label: 'Interviewed',
         data: interviewedCandidateCount,
-        borderColor: getRandomColor,
-        backgroundColor: getRandomColor,
+        borderColor: 'rgb(53, 235, 168)',
+        backgroundColor: 'rgb(9, 253, 163)',
       },
       {
         label: 'Hired',
         data: hiredCandidateCount,
-        borderColor: getRandomColor,
-        backgroundColor: getRandomColor,
+        borderColor: 'rgb(126, 53, 235)',
+        backgroundColor: 'rgba(126, 53, 235, 0.153)',
       },
     ],
   };

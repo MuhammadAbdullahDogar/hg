@@ -66,7 +66,7 @@ const UserSchema = new mongoose.Schema({
         },
         status: {
             type: String,
-            enum: ['applied', 'invited', 'inInterview', 'feedback']
+            enum: ['applied', 'invited', 'inInterview', 'hired', 'reject']
         },
         matchPercent: {
             type: String

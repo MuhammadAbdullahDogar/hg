@@ -1,4 +1,4 @@
-import { Grid, Button, TextField,Box, Typography } from '@mui/material'
+import { Grid, Button, TextField, Box, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import LeftNavbar from '../leftNavbar'
 import TopNavbar from '../topNavbar'
@@ -51,18 +51,33 @@ const JobPost = ({ jobs, user }) => {
 
 
     const handleClickOpen = () => {
-        
+
         setOpen1(true);
 
     };
     const handleOpen1 = () => {
-        setOpen1(false);
-        setOpen2(true);
+        
+        if(showJob?.screeningQuestion.length > 0){   
+            setOpen1(false);
+            setOpen2(true);
+        }
+        else{
+            setOpen1(false);
+            setOpen2(false);
+            postData(); 
+        }
     }
     const handleOpen2 = () => {
-        setOpen1(false);
-        setOpen2(false);
-        postData();
+
+        const emptyFields = screeningQuestions.filter(question => !question.answer);
+        if (emptyFields.length > 0) {
+            alert('Please fill in all the fields');
+        } else {
+            setOpen1(false);
+            setOpen2(false);
+            postData();
+        }
+
     }
     const handleClose = () => {
         setOpen1(false);
@@ -72,38 +87,48 @@ const JobPost = ({ jobs, user }) => {
 
     const postData = async () => {
 
-        // console.log(showJob);
-        const jobId = showJob?._id
-        const matchPercent = showJob?.mpercent
-        const candidateId = user._id
-        const img = showJob?.img
-        const personality = user.personality.personality
-        const name = user.fname + " " + user.lname
 
-        const res = await fetch('/api/candidate/job/applyJob', {
-            method: 'POST',
-            credentials: 'include', // Don't forget to specify this if you need cookies
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ jobId, matchPercent, candidateId, screeningQuestions, img, personality, name })
-        });
-
-        if (res.status === 200) {
-
-            const { role, email, password, _id } = user;
-            const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
-
-            if (ress.status === 200)
-                Router.push('JobPost');
-
+        if (showJob?.screeningQuestion.length > 0 && screeningQuestions.length == 0){
+            
+            alert('Please fill in all the fields');
+            setOpen2(true);    
         }
         else {
-            // show database error message
-            console.log(res.status);
+
+
+            const jobId = showJob?._id
+            const matchPercent = showJob?.mpercent
+            const candidateId = user._id
+            const img = showJob?.img
+            const personality = user.personality.personality
+            const name = user.fname + " " + user.lname
+
+
+            const res = await fetch('/api/candidate/job/applyJob', {
+                method: 'POST',
+                credentials: 'include', // Don't forget to specify this if you need cookies
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ jobId, matchPercent, candidateId, screeningQuestions, img, personality, name })
+            });
+
+            if (res.status === 200) {
+
+                const { role, email, password, _id } = user;
+                const ress = await signIn('credentials', { role, email, password, id: _id, redirect: false })
+
+                if (ress.status === 200)
+                    Router.push('JobPost');
+
+            }
+            else {
+                // show database error message
+                console.log(res.status);
+            }
+
+
         }
-
-
     }
 
 
@@ -131,39 +156,42 @@ const JobPost = ({ jobs, user }) => {
                 {!showJobs && <ViewJob job={showJob} onData={handleData} dialog={handleClickOpen} />}
 
             </Grid>
-          
-                <Dialog
-                    open={open1}
-                    // TransitionComponent={Transition}
-                    keepMounted
-                    onClose={handleClose}
-                    PaperProps={{
-                        style: {
-                          minHeight: "75vh",
-                          minWidth: "28vw",
-                          borderRadius:'30px',
-                          backgroundColor:'#DEF1FC'
-                        }
-                       }}
-                >
-                    <DialogTitle sx={{marginTop:'1.5rem',marginLeft:'7rem'}}><Image src={vector17} alt="IMG" /><br></br><Typography variant='h5'> Tech Geeks</Typography></DialogTitle>
-                    <DialogContent >
-                        <FormControl sx={{borderRadius:'10px',backgroundColor:'rgba(6, 82, 125, 0.1)',width:'376px',height:'119px'}}>
-                            <FormLabel >
-                                {showJob?.title}
-                            </FormLabel>
-                            <FormGroup>
+
+            <Dialog
+                open={open1}
+                // TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClose}
+                PaperProps={{
+                    style: {
+                        minHeight: "75vh",
+                        minWidth: "28vw",
+                        borderRadius: '30px',
+                        backgroundColor: '#DEF1FC'
+                    }
+                }}
+            >
+                <DialogTitle sx={{ marginTop: '1.5rem', marginLeft: '7rem' }}><Image src={vector17} alt="IMG" /><br></br><Typography variant='h5'> Tech Geeks</Typography></DialogTitle>
+                <DialogContent >
+                    <FormControl sx={{ borderRadius: '10px', backgroundColor: 'rgba(6, 82, 125, 0.1)', width: '376px', height: '119px' }}>
+                        <FormLabel >
+                            job title:
+                            {showJob?.title}
+                            job candidate match
+                            {showJob?.mpercent}
+                        </FormLabel>
+                        <FormGroup>
 
 
-                            </FormGroup>
-                        </FormControl>
+                        </FormGroup>
+                    </FormControl>
 
-                    </DialogContent>
-                    <DialogActions>
-                      
-                        <CommonButton variant="JobPost"onClick={handleOpen1}>Apply to Job</CommonButton>
-                    </DialogActions>
-                </Dialog>
+                </DialogContent>
+                <DialogActions>
+
+                    <CommonButton variant="JobPost" onClick={handleOpen1}>Apply to Job</CommonButton>
+                </DialogActions>
+            </Dialog>
 
             <Dialog
                 open={open2}
@@ -172,31 +200,31 @@ const JobPost = ({ jobs, user }) => {
                 onClose={handleClose}
                 PaperProps={{
                     style: {
-                      minHeight: "75vh",
-                      minWidth: "28vw",
-                      borderRadius:'30px',
-                      backgroundColor:'#DEF1FC'
+                        minHeight: "75vh",
+                        minWidth: "28vw",
+                        borderRadius: '30px',
+                        backgroundColor: '#DEF1FC'
                     }
-                   }}
+                }}
             >
-                <DialogTitle sx={{marginTop:'1.5rem'}}><Image src={vector17} width={80} height={80}alt="IMG" /></DialogTitle>
-                <DialogContent sx={{borderRadius:'10px',backgroundColor:'rgba(6, 82, 125, 0.1)',marginTop:'1rem'}}>
-                <Typography variant='JobCardH4'> Screening Questions</Typography>
+                <DialogTitle sx={{ marginTop: '1.5rem' }}><Image src={vector17} width={80} height={80} alt="IMG" /></DialogTitle>
+                <DialogContent sx={{ borderRadius: '10px', backgroundColor: 'rgba(6, 82, 125, 0.1)', marginTop: '1rem' }}>
+                    <Typography variant='JobCardH4'> Screening Questions</Typography>
                     {showJob?.screeningQuestion?.map((data, index) => (
                         <MyTextField
                             label={data}
-                            
+
                             fullWidth
                             key={data}
                             name={`question-${index}`}
                             value={screeningQuestions[index]?.answer || ''}
                             onChange={(event) => handleInputChange(event, index)}
-                            sx={{marginTop:'1rem'}}
+                            sx={{ marginTop: '1rem' }}
                         />
                     ))}
                 </DialogContent>
                 <DialogActions>
-                <CommonButton variant="JobPost" onClick={handleOpen2}>Send Application</CommonButton>
+                    <CommonButton variant="JobPost" onClick={handleOpen2}>Send Application</CommonButton>
                 </DialogActions>
             </Dialog>
         </>
@@ -215,12 +243,12 @@ export async function getServerSideProps(ctx) {
 
     if (!session) {
         return {
-          redirect: {
-            destination: '/',
-            permanent: false,
-          },
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
         }
-      }
+    }
 
 
 
