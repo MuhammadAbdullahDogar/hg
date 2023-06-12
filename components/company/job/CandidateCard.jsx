@@ -1,4 +1,4 @@
-import { Grid, Typography, Box, Button, Divider } from '@mui/material'
+import { Grid, Typography, Box, Avatar, Divider } from '@mui/material'
 import React, { useState } from 'react'
 import Link from "next/link";
 import vector17 from '../../../public/Ellipse120.png'
@@ -15,10 +15,10 @@ const CandidateCard = ({ candidate, btntext, txt, company, job, handleChange }) 
   const handleclick = async () => {
     let res;
     if (btntext === "Invite To Interview") {
-      res = await axios.post(`/api/company/job/inviteJob`, { jobId:job._id, candidateId:candidate.candidate }, { headers: { 'Content-Type': 'application/json' } });
+      res = await axios.post(`/api/company/job/inviteJob`, { jobId: job._id, candidateId: candidate.candidate }, { headers: { 'Content-Type': 'application/json' } });
       handleChange(res.data.updatedJob)
     } else if (btntext === "Send Reminder") {
-      res = await axios.post(`/api/candidate/addNotification`, { _id:candidate.candidate, notification:`${company.cname} invited you for Interview` }, { headers: { 'Content-Type': 'application/json' } });
+      res = await axios.post(`/api/candidate/addNotification`, { _id: candidate.candidate, notification: `${company.cname} invited you for Interview` }, { headers: { 'Content-Type': 'application/json' } });
     } else if (btntext === "View Result") {
 
     } else {
@@ -30,8 +30,8 @@ const CandidateCard = ({ candidate, btntext, txt, company, job, handleChange }) 
       const ress = await signIn('credentials', { role, id: _id, redirect: false })
 
       if (ress.status === 200)
-      console.log("updated");
-        // Router.push('/company/profile_development/CompanyNotableWork');
+        console.log("updated");
+      // Router.push('/company/profile_development/CompanyNotableWork');
     }
     else {
       console.log(res.status);               // show database error message
@@ -40,18 +40,31 @@ const CandidateCard = ({ candidate, btntext, txt, company, job, handleChange }) 
   }
 
   return (
-    <Box sx={{ background: 'rgba(36, 162, 233, 0.1)', height: '7.68rem', borderRadius: '0.625rem' }}>
-      <Grid container spacing={1}>
-        <Grid item xs={.5}></Grid>
-        <Grid item xs={2}><Image src={company.img} height={50} width={50} alt="IMG" /><br></br>dfksj</Grid>
-        <Grid item xs={6.5}><Typography variant='JobCardH1'>Senior Software Engineer</Typography></Grid>
-        <Grid item xs={2}> <CircularProgress variant="determinate" value={70} size={50} thickness={3} /></Grid>
-        <Grid item xs={12}> <Divider variant="middle"></Divider></Grid>
-        <Grid item xs={.5}></Grid>
-        <Grid item xs={7.5}><Typography variant='caption'>{txt} {moment(candidate.statusUpdatedAt).fromNow()}</Typography></Grid>
-        <Grid item xs={4}><Button onClick={handleclick}>{btntext}</Button></Grid>
-      </Grid>
-    </Box>
+    <>
+      <Box sx={{ background: 'rgba(36, 162, 233, 0.1)', height: '8rem', borderRadius: '0.625rem' }}>
+        <Grid container spacing={.1}>
+          <Grid item xs={12}></Grid>
+          <Grid item xs={.5}></Grid>
+          <Grid item xs={1}><Avatar alt="Image" src={company.img ? company.img : ''} /></Grid>
+          <Grid item xs={1.5}></Grid>
+          <Grid item xs={6}><Typography variant='JobApplicationCardH1'>Senior Software Engineer</Typography></Grid>
+          <Grid item xs={3}>
+            <Box display='flex' justifyContent='center' alignItems='center'>
+            <CircularProgress variant="determinate" value={70} size={50} thickness={2}  />
+              <Typography variant='JobApplicationCardH4'position='absolute'>{99}%<br></br>match</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={.5}></Grid>
+          <Grid item xs={11.5}><Typography variant='JobApplicationCardH3'>Tech Geeks</Typography></Grid>
+          <Grid item xs={12}> <Divider variant="middle"></Divider></Grid>
+          <Grid item xs={12}></Grid>
+          <Grid item xs={.5}></Grid>
+          <Grid item xs={5}><Typography variant='JobApplicationCardH4'>{txt} {moment(job.statusUpdatedAt).fromNow()}</Typography></Grid>
+          <Grid item xs={6.5}><Typography variant='JobApplicationCardH1' onClick={handleclick}>{btntext}</Typography></Grid>
+        </Grid>
+      </Box>
+    </>
+
   )
 }
 
