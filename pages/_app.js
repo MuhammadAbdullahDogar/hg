@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider ,Link} from "@mui/material";
 import customTheme from '../styles/Style'
 import Head from 'next/head'
 import { SessionProvider } from "next-auth/react"
@@ -11,6 +11,7 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import PrintIcon from '@mui/icons-material/Print';
 import NextLink from "next/link";
+import CommonButton from '../styles/CommonButotn'
 
 const actions = [
   { icon: <NextLink href="/company/companyDashboard/companyProfileDetails/companyProfileData/CompanyDetails"><PrintIcon /></NextLink>, name: "Company dashboard" },
@@ -36,8 +37,9 @@ function MyApp({ Component, pageProps: {session , ...pageProps} }) {
 
   return (
     <>
-      {/* <div style={{ position: 'fixed', zIndex: '10' }}>
-        <SpeedDial
+      <div style={{ position: 'fixed', zIndex: '10' }}>
+      <Link href="/game" sx={{float:'left'}}><CommonButton variant="Gradient">Start Game</CommonButton></Link> 
+        {/* <SpeedDial
           ariaLabel="SpeedDial basic example"
           icon={<SpeedDialIcon />}
           direction="left"
@@ -49,8 +51,8 @@ function MyApp({ Component, pageProps: {session , ...pageProps} }) {
               tooltipTitle={action.name}
             />
           ))}
-        </SpeedDial>
-      </div> */}
+        </SpeedDial> */}
+      </div>
       <ThemeProvider theme={customTheme}>
         <Head>
           <link rel="shortcut icon" href="/logo.svg" />
