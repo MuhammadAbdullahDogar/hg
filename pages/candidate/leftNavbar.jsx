@@ -61,9 +61,9 @@ const LeftNavbar = () => {
     const handleSignOut = () => {
         signOut();
         window.location.href = "/";
-    
+
     }
-    
+
 
     const iconSize = 25;
 
@@ -85,19 +85,22 @@ const LeftNavbar = () => {
         <>
             <Box sx={{ display: 'flex', }}>
                 <Drawer variant="permanent" open={open}>
-                   
+
                     <List sx={{ mt: '5rem' }}>
-                        <ListItem disablePadding>
-                            <ListItemButton
-                                onMouseEnter={handleDrawerOpen}
-                                onMouseLeave={handleDrawerClose}
-                            >
-                                <ListItemIcon>
-                                    <Image src="/overview.svg" alt="Overview icon" width={iconSize} height={iconSize} />
-                                </ListItemIcon>
-                                <ListItemText primary="Overview" />
-                            </ListItemButton>
-                        </ListItem>
+                        <Link href={`/candidate/Overview`}>
+                            <ListItem disablePadding>
+                                <ListItemButton
+                                    onMouseEnter={handleDrawerOpen}
+                                    onMouseLeave={handleDrawerClose}
+                                >
+                                    <ListItemIcon>
+                                        <Image src="/overview.svg" alt="Overview icon" width={iconSize} height={iconSize} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Overview" />
+                                </ListItemButton>
+                            </ListItem>
+                        </Link>
+
                         <Link href={`/candidate/job/JobPost`}>
                             <ListItem disablePadding sx={{ mt: '1rem' }}>
                                 <ListItemButton
@@ -158,9 +161,9 @@ const LeftNavbar = () => {
                                 <ListItemText primary="Feedbacks" />
                             </ListItemButton>
                         </ListItem>
-                       
-                            <ListItem disablePadding sx={{ mt: '5rem' }} >
-                                <ListItemButton
+
+                        <ListItem disablePadding sx={{ mt: '5rem' }} >
+                            <ListItemButton
                                 onClick={handleSignOut}
                             >
                                 <ListItemIcon>
