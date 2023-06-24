@@ -11,7 +11,7 @@ import { signIn } from "next-auth/react"
 
 const CandidateCard = ({ candidate, btntext, txt, company, job, handleChange }) => {
 
-  console.log(company);
+  console.log(candidate);
   const handleclick = async () => {
     let res;
     if (btntext === "Invite To Interview") {
@@ -47,15 +47,15 @@ const CandidateCard = ({ candidate, btntext, txt, company, job, handleChange }) 
           <Grid item xs={.5}></Grid>
           <Grid item xs={1}><Avatar alt="Image" src={company.img ? company.img : ''} /></Grid>
           <Grid item xs={1.5}></Grid>
-          <Grid item xs={6}><Typography variant='JobApplicationCardH1'>Senior Software Engineer</Typography></Grid>
+          <Grid item xs={6}><Typography variant='JobApplicationCardH1'>{candidate.name}</Typography></Grid>
           <Grid item xs={3}>
             <Box display='flex' justifyContent='center' alignItems='center'>
             <CircularProgress variant="determinate" value={70} size={50} thickness={2}  />
-              <Typography variant='JobApplicationCardH4'position='absolute'>{99}%<br></br>match</Typography>
+              <Typography variant='JobApplicationCardH4'position='absolute'>{candidate.matchPercent}%<br></br>match</Typography>
             </Box>
           </Grid>
           <Grid item xs={.5}></Grid>
-          <Grid item xs={11.5}><Typography variant='JobApplicationCardH3'>Tech Geeks</Typography></Grid>
+          <Grid item xs={11.5}><Typography variant='JobApplicationCardH3'>{job.title}</Typography></Grid>
           <Grid item xs={12}> <Divider variant="middle"></Divider></Grid>
           <Grid item xs={12}></Grid>
           <Grid item xs={.5}></Grid>
