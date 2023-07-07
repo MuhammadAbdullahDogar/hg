@@ -50,6 +50,7 @@ function Question({ question, submitQuestion }) {
                   value={option.option}
                   checked={selectedAnswer === option.option}
                   onChange={handleAnswerChange}
+                  className='options'
                 />
                 {option.option}
               </label>
@@ -65,6 +66,7 @@ function Question({ question, submitQuestion }) {
                 <label>
                   <input
                     type="checkbox"
+                    className='options'
                     name="answer"
                     value={option.option}
                     checked={selectedAnswer.includes(option.option)}
@@ -89,7 +91,7 @@ function Question({ question, submitQuestion }) {
 
   return (
     <div>
-      <h2>{question.question}</h2>
+      <h2 className='question'>{question.question}</h2>
       <form onSubmit={handleSubmit}>
         {renderAnswerOptions()}
         <button type="submit">Submit</button>

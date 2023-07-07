@@ -17,7 +17,7 @@ const CompanyNavbar = (props) => {
         <Grid item container xs={4} spacing={1.5}>
           <Grid item xs={12}></Grid>
           <Grid item xs={12}></Grid>
-          <Grid item xs={12}> <CompanyStepper step={props.step} step1_Name={props.step1_Name} step2_Name={props.step2_Name} step3_Name={props.step3_Name}></CompanyStepper></Grid>
+          <Grid item xs={12}> <CompanyStepper step={props.step} step1_Name={props.step1_Name} step2_Name={props.step2_Name} step3_Name={props.step3_Name} step4_Name={props.step4_Name}></CompanyStepper></Grid>
           <Grid item xs={12}></Grid>
           <Grid item xs={12}></Grid>
         </Grid>

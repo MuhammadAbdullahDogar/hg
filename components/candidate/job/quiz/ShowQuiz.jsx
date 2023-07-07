@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react"
 
 const ShowQuiz = ({ quiz, id, job }) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [secondsRemaining, setSecondsRemaining] = useState(60);
+    const [secondsRemaining, setSecondsRemaining] = useState(1600);
     const totalScore = quiz.length
     const [obtainScore, setObtainScore] = useState(0)
 
@@ -55,24 +55,28 @@ const ShowQuiz = ({ quiz, id, job }) => {
 
     if (!currentQuestion) {
         return (
-            <div>
-                <h1>Quiz Complete!</h1>
-                <p>Congratulations on finishing the quiz.</p>
+            <div className="quiz-complete">
+              <h1 className="quiz-complete__heading">Quiz Complete!</h1>
+              <p className="quiz-complete__message">Congratulations on finishing the quiz.</p>
             </div>
-        );
+          );
+          
     }
 
-    return (
-        <div>
-            <div>hhhh</div>
-            <div>hhhh</div>
-            <div>hhhh</div>
-            <div>hhhh</div>
-            <div>hhhh</div>
-            <Question question={currentQuestion} submitQuestion={submitQuestion} />
-            <div>Time remaining: {secondsRemaining} seconds</div>
+      
+      return (
+        <div className="quiz-container">
+          <Question
+            question={currentQuestion}
+            submitQuestion={submitQuestion}
+            className="card"
+          />
+          <div className="timer">
+            Time remaining: {secondsRemaining} seconds
+          </div>
         </div>
-    );
+      );
+      
 }
 
 export default ShowQuiz;
