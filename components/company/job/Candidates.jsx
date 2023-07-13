@@ -16,7 +16,7 @@ const numBox = {
     position: 'absolute',
     marginLeft: '1rem',
 }
-const Candidates = ({ jobInfo, company }) => {
+const Candidates = ({ jobInfo, company, handleUserInfo }) => {
 
     const [userInfo, setUserInfo] = useState(0)
     const [job, setJob] = useState(jobInfo)
@@ -27,7 +27,7 @@ const Candidates = ({ jobInfo, company }) => {
     let appliedCandidates = job.candidates.filter(candidate => candidate.status === "applied");
     let invitedCandidates = job.candidates.filter(candidate => candidate.status === "invited");
     let interviewedCandidates = job.candidates.filter(candidate => candidate.status === "interviewed");
-    let feedbackCandidates = job.candidates.filter(candidate => candidate.status === "feedback");
+    let feedbackCandidates = job.candidates.filter(candidate => candidate.status === "hired" || candidate.status === "reject");
     let appliedCandidatesLength = appliedCandidates.length
     let invitedCandidatesLength = invitedCandidates.length
     let interviewedCandidatesLength = interviewedCandidates.length
@@ -35,6 +35,9 @@ const Candidates = ({ jobInfo, company }) => {
     let totalCandidatesLength = appliedCandidatesLength + invitedCandidatesLength + interviewedCandidatesLength + feedbackCandidatesLength;
 
 
+    const back = () => {
+        handleUserInfo(0);
+    }
 
 
 
@@ -54,67 +57,61 @@ const Candidates = ({ jobInfo, company }) => {
 
     return (
         <>
-
-            <Grid container spacing={1}  >
+            <Grid container spacing={2}  >
                 <Grid item xs={.5}></Grid>
-                <Grid item xs={11.5}>
-
-                    <Grid container item xs={12} >
-                        <Grid item xs={.4} mt={2}>
-                            <ArrowBackIosNewSharpIcon color='primary' >Back to All Jobs  </ArrowBackIosNewSharpIcon>
-                        </Grid>
-                        <Grid item xs={9.6} ><Typography variant="ViewJobH2">DESIGN</Typography><br /><Typography variant="ViewJobH1">{job?.title}</Typography></Grid>
-                        <Grid item xs={2}> <CommonButton variant="JobPost"  >View Job Posting</CommonButton></Grid>
-                    </Grid>
-
+                <Grid container item xs={11.5} spacing={1}>
+                    <Grid item xs={.1}></Grid>
+                    <Grid item xs={11.9} ><Typography variant="ViewJobH2">DESIGN</Typography><br /><Typography variant="ViewJobH1">{job?.title}</Typography></Grid>
+                    <Grid item xs={.1}></Grid>
+                    <Grid item xs={11.9}><Typography variant='JobApplicationH2'> Total Candidates </Typography> <span style={{ backgroundColor: '#143FCD', borderRadius: '3px', minWidth: '2.5rem', Height: '2.5rem', position: 'absolute', marginLeft: '1rem' }}><Typography variant='JobApplicationNumberH1'>{totalCandidatesLength}</Typography></span></Grid>
                     <Grid item xs={4}><JobTab value={userInfo} setUserInfo={setUserInfo}></JobTab></Grid>
                     <Grid item xs={8}></Grid>
+                    <Grid item xs={12}></Grid>
+                    <Grid item xs={12}></Grid>
+                    <Grid item xs={12}></Grid>
+
                     {(userInfo == 0 &&
                         <>
-
-
                             <Grid container item xs={11} spacing={2} >
-                                <Grid item xs={12}>Total Candidates {totalCandidatesLength}</Grid>
                                 <Grid container item xs={2.9} rowSpacing={3}>
-
                                     <Grid item xs={12} style={box}><Typography variant='JobApplicationH3'>Recently Applied</Typography> <span style={numBox}><Typography variant='JobApplicationNumberH2'>{appliedCandidatesLength}</Typography></span></Grid>
                                     {
                                         appliedCandidates.map(candidate => (
 
-                                            <Grid item xs={12}  key={candidate._id}>
+                                            <Grid item xs={12} key={candidate._id}>
                                                 <CandidateCard candidate={candidate} btntext={"Invite To Interview"} txt={"Applied"} company={company} job={job} handleChange={handleChange} ></CandidateCard>
                                             </Grid>
                                         ))
                                     }
                                 </Grid>
                                 <Grid container item xs={2.9} rowSpacing={3}>
-                                    <Grid item xs={12}style={box}><Typography variant='JobApplicationH3'>Recently Applied</Typography> <span style={numBox}><Typography variant='JobApplicationNumberH2'>{invitedCandidatesLength}</Typography></span></Grid>
+                                    <Grid item xs={12} style={box}><Typography variant='JobApplicationH3'>Recently Applied</Typography> <span style={numBox}><Typography variant='JobApplicationNumberH2'>{invitedCandidatesLength}</Typography></span></Grid>
                                     {
                                         invitedCandidates.map(candidate => (
 
-                                            <Grid item xs={12}  key={candidate._id}>
+                                            <Grid item xs={12} key={candidate._id}>
                                                 <CandidateCard candidate={candidate} btntext={"Send Reminder"} txt={"Invited"} company={company} job={job} handleChange={handleChange} ></CandidateCard>
                                             </Grid>
                                         ))
                                     }
                                 </Grid>
                                 <Grid container item xs={2.9} rowSpacing={3}>
-                                    <Grid item xs={12}style={box}><Typography variant='JobApplicationH3'>Recently Applied</Typography> <span style={numBox}><Typography variant='JobApplicationNumberH2'>{interviewedCandidatesLength}</Typography></span></Grid>
+                                    <Grid item xs={12} style={box}><Typography variant='JobApplicationH3'>Recently Applied</Typography> <span style={numBox}><Typography variant='JobApplicationNumberH2'>{interviewedCandidatesLength}</Typography></span></Grid>
                                     {
                                         interviewedCandidates.map(candidate => (
 
-                                            <Grid item xs={12}  key={candidate._id}>
+                                            <Grid item xs={12} key={candidate._id}>
                                                 <CandidateCard candidate={candidate} btntext={"View Result"} txt={"Submitted"} company={company} job={job} handleChange={handleChange} ></CandidateCard>
                                             </Grid>
                                         ))
                                     }
                                 </Grid>
                                 <Grid container item xs={2.9} rowSpacing={3}>
-                                    <Grid item xs={12}style={box}><Typography variant='JobApplicationH3'>Recently Applied</Typography> <span style={numBox}><Typography variant='JobApplicationNumberH2'>{feedbackCandidatesLength}</Typography></span></Grid>
+                                    <Grid item xs={12} style={box}><Typography variant='JobApplicationH3'>Recently Applied</Typography> <span style={numBox}><Typography variant='JobApplicationNumberH2'>{feedbackCandidatesLength}</Typography></span></Grid>
                                     {
                                         feedbackCandidates.map(candidate => (
 
-                                            <Grid item xs={12}  key={candidate._id}>
+                                            <Grid item xs={12} key={candidate._id}>
                                                 <CandidateCard candidate={candidate} btntext={"View Candidate"} company={company} job={job} handleChange={handleChange} ></CandidateCard>
                                             </Grid>
                                         ))

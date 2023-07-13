@@ -16,7 +16,7 @@ const UserProfileData = ({ user }) => {
                 <Grid item xs={2}></Grid>
                 <Grid item xs={1}><Typography variant="displayh4">LastName</Typography><br /><Typography variant="displayh5">{user?.lname}</Typography></Grid>
                 <Grid item xs={1.5}></Grid>
-                <Grid item xs={2}><Typography variant="displayh4">Gender</Typography><br /><Typography variant="displayh5">Male</Typography></Grid>
+                <Grid item xs={2}><Typography variant="displayh4">Gender</Typography><br /><Typography variant="displayh5">{user?.about?.gender}</Typography></Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={.5}></Grid>
                 <Grid item xs={3}><Typography variant="displayh4">Date of Birth</Typography><br /><Typography variant="displayh5">{user?.about?.dob}</Typography></Grid>

@@ -5,19 +5,23 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import CircularProgress from '@mui/material/CircularProgress';
-import CommonButton from '../../../../styles/CommonButotn'
+import CommonButton from '../../../styles/CommonButotn'
 import Avatar from '@mui/material/Avatar';
-import Image from 'next/image';
 import { Typography, Box } from '@mui/material';
 
 function createData(Rank, CandidateImg,Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation) {
     return { Rank, CandidateImg,Candidates, InitialScreening, BehavioralAnalysis, SkillEvaluation };
 }
 
-const JobResult = ({ job }) => {
+const JobResult = ({ jobs, user }) => {
 
+    console.log(user);
+    const filteredCandidates = jobs.flatMap(job => job.candidates.filter(candidate => candidate.candidate == user._id && candidate.status !== 'applied' && candidate.status !== 'invited'));
+    const filteredJobs = jobs.filter(job => job.candidates.some(candidate => candidate.candidate.toString() === user._id && candidate.status !== 'applied' && candidate.status !== 'invited'));
+
+      console.log(filteredJobs);
+      
     function checkPersonality(array1, array2) {
         if (array1.length !== array2.length) {
             throw new Error('Arrays must have the same length');
@@ -33,22 +37,17 @@ const JobResult = ({ job }) => {
         return matchCount;
     }
 
-    const filteredCandidates = job.candidates.filter(candidate => candidate.status !== 'applied' && candidate.status !== 'invited');
-
-    // console.log(filteredCandidates[0].name);
-    console.log(filteredCandidates);
-
 
     const rows = [];
 
     filteredCandidates.forEach((candidate, index) => {
-        console.log(candidate);
+        // console.log(candidate);
         rows.push(createData(
             index + 1,
-            candidate.img,
-            candidate.name,
+            filteredJobs[index].img,
+            filteredJobs[index].title,
             candidate.matchPercent,
-            (checkPersonality(candidate.personality, job.jobPersonality) / 4) * 100,
+            (checkPersonality(candidate.personality, filteredJobs[index].jobPersonality) / 4) * 100,
             (candidate.obtainScore / candidate.totalScore) * 100
         ));
     });
@@ -62,11 +61,10 @@ const JobResult = ({ job }) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>Rank</TableCell>
-                            <TableCell align="center" >Candidates</TableCell>
+                            <TableCell align="center" >Jobs</TableCell>
                             <TableCell align="center">Initial Screening</TableCell>
                             <TableCell align="center">Behavioral Analysis</TableCell>
                             <TableCell align="center">Skill Evaluation</TableCell>
-                            <TableCell align="center">Actions</TableCell>
 
                         </TableRow>
                     </TableHead>
@@ -85,9 +83,7 @@ const JobResult = ({ job }) => {
                                 <TableCell align="center"><CircularProgress variant="determinate" value={row.InitialScreening} /></TableCell>
                                 <TableCell align="center"><CircularProgress variant="determinate" value={row.BehavioralAnalysis} /></TableCell>
                                 <TableCell align="center"><CircularProgress variant="determinate" value={row.SkillEvaluation} /></TableCell>
-                                <TableCell align="center"><CommonButton variant="JobPostNotFill">Hire</CommonButton>
-                                    <CommonButton variant="JobPostNotFill">Reject</CommonButton></TableCell>
-
+                                
                             </TableRow>
                         ))}
                     </TableBody>

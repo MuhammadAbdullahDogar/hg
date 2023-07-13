@@ -23,6 +23,7 @@ const UserSchema = new mongoose.Schema({
     },
     academic: {
         universityName: { type: String },
+        level: { type: String },
         major: { type: String },
         startingYear: { type: String },
         endingYear: { type: String },
@@ -65,7 +66,7 @@ const UserSchema = new mongoose.Schema({
         },
         status: {
             type: String,
-            enum: ['applied', 'invited', 'inInterview', 'feedback']
+            enum: ['applied', 'invited', 'inInterview', 'hired', 'reject']
         },
         matchPercent: {
             type: String

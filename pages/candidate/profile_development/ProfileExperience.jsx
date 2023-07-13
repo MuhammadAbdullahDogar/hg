@@ -38,8 +38,6 @@ const SkillAutocomplete = ({ suggestions, placeholder, onChange, value, selected
 
   const filteredSuggestions = suggestions.filter(suggestion => !skills.includes(suggestion));
 
-  console.log(skills);
-
   return (
     <div>
       <Autocomplete
@@ -115,7 +113,6 @@ const suggestions = [
   "HTML",
   "CSS",
   "JavaScript",
-  "PHP",
   "MySQL",
   "WordPress",
   "Drupal",
@@ -125,14 +122,12 @@ const suggestions = [
   "WooCommerce",
   "Software development",
   "Java",
-  "C++",
   "C#",
   "Python",
   "Ruby",
   "Swift",
   "Kotlin",
   "Objective-C",
-  "PHP",
   "MySQL",
   "PostgreSQL",
   "MongoDB",
@@ -179,6 +174,9 @@ const suggestions = [
   "Communication",
   "Collaboration"
 ];
+
+const uniqueSuggestions = [...new Set(suggestions)];
+
 
 const ProfileExperience = ({ user }) => {
 
@@ -364,16 +362,15 @@ const ProfileExperience = ({ user }) => {
       <form onSubmit={PostData}>
         <div style={{ overflow: 'hidden', width: '100vw' }}>
           <Grid container spacing={2} >
-            <Grid item xs={12}><ProfileNavbar step={2} fname={user.fname} lname={user.lname} /></Grid>
+            <Grid item xs={12}><ProfileNavbar step={2} fname={user.fname} lname={user.lname} img={user.img} /></Grid>
             <Grid item xs={12}>
 
               <Grid item xs={12}></Grid>
               <Grid item xs={1}></Grid>
               <Grid item xs={2.5}><Typography variant="profileH1">Experience and Skills</Typography>
-                {/* <MyTextField label="Years of Experience" variant="outlined" value={yearsOfExperience} onChange={event => handelChange(event)} name="yearsOfExperience" /> */}
                 <FormControl fullWidth>
                   <InputLabel>Experience</InputLabel>
-                  <MySelect label="Experience" name="yearsOfExperience" onChange={handelChange} >
+                  <MySelect label="Experience" name="yearsOfExperience" onChange={handelChange} value={yearsOfExperience} >
                     <MenuItem value="Beginner" >Beginner </MenuItem>
                     <MenuItem value="Intermediate">Intermediate</MenuItem>
                     <MenuItem value="Expert">Expert  </MenuItem>
@@ -448,7 +445,7 @@ const ProfileExperience = ({ user }) => {
                           ),
                         }} /> */}
                       <SkillAutocomplete
-                        suggestions={suggestions}
+                        suggestions={uniqueSuggestions}
                         value={field.skill}
                         onChange={(event) => skillHandleChange(index, "skill", event.target.value)}
                         placeholder={`Skill ${index + 1}`}

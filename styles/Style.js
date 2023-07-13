@@ -415,6 +415,87 @@ const customTheme = createTheme({
             lineHeight: ".6rem",
             color: '#76A5DC'
         },
+        //company dashboard pipeline
+        pipelineH1: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.25rem',
+            lineHeight: "1.5rem",
+            color: '#5748F5',
+            letterSpacing:'0.03em',
+        },
+        pipelineH2: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.9rem',
+            lineHeight: ".875rem",
+            color: '#92A9C5',
+            textAlign:'center',
+        },
+        pipelineH3: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '.9375rem',
+            lineHeight: "1.125rem",
+            color: '#5748F5',
+            // letterSpacing:'0.3em',
+        },
+        pipelineH4: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.9rem',
+            lineHeight: ".875rem",
+            color: '#0C0B38',
+            textAlign:'center',
+            letterSpacing:'0.03em',
+        },
+        //company dashboard table
+        tableH2: {
+            fontFamily: 'Urbanist',
+            fontWeight: '600',
+            fontSize: '1.875rem',
+            lineHeight: "2.25rem",
+            color: '#7DCE77',
+            textAlign:'center',
+            letterSpacing:'0.03em',
+        },
+        tableH3: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.25rem',
+            lineHeight: "1.5rem",
+            color: '#5748F5',
+            textAlign:'center',
+            letterSpacing:'0.03em',
+            marginLeft:'1rem'
+        },
+        //company dashboard
+        companyH1: {
+            fontFamily: 'Urbanist',
+            fontWeight: '700',
+            fontSize: '1.5625rem',
+            lineHeight: "1.875rem",
+            color: '#5748F5',
+            letterSpacing:'0.05em',
+        },
+        companyH2: {
+            fontFamily: 'Urbanist',
+            fontWeight: '400',
+            fontSize: '.9375rem',
+            lineHeight: "1.125rem",
+            color: '#5748F5',
+            letterSpacing:'0.05em',
+        },
+        companyH3: {
+            fontFamily: 'Urbanist',
+            fontWeight: '500',
+            fontSize: '.75rem',
+            lineHeight: ".875rem",
+            color: '#5748F5',
+            letterSpacing:'0.05em',
+        },
+
+
     },
     shape: {
         // borderRadius: '2.3vmin',

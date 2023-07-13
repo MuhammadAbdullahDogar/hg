@@ -36,7 +36,7 @@ const ViewJob = ({ job, onData, dialog, back }) => {
                         <ArrowBackIosNewSharpIcon color='primary' onClick={handleSubmit}>Back to All Jobs  </ArrowBackIosNewSharpIcon>
                     </Grid>
                     <Grid item xs={9.6} ><Typography variant="ViewJobH2">DESIGN</Typography><br /><Typography variant="ViewJobH1">{job?.title}</Typography></Grid>
-                    <Grid item xs={2}> <CommonButton variant="JobPost"  >View Job Posting</CommonButton></Grid>
+                    {/* <Grid item xs={2}> <CommonButton variant="JobPost"  >View Job Posting</CommonButton></Grid> */}
                 </Grid>
 
                 <Grid container item xs={8} spacing={2}>

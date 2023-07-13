@@ -1,7 +1,7 @@
 import React from 'react'
 import HiringLine from './HiringLine'
 import { Box, Typography, Grid } from '@mui/material'
-import CommonButton from '../../../../styles/CommonButotn';
+import CommonButton from '../../../styles/CommonButotn';
 import Router from 'next/router';
 const HiringPipeline = ({ jobs }) => {
     return (
@@ -10,7 +10,9 @@ const HiringPipeline = ({ jobs }) => {
                 <Grid container spacing={1}>
                     <Grid item xs={.5}></Grid>
                     <Grid item xs={9}><Typography variant='pipelineH1'>Hiring Pipeline</Typography> </Grid>
-                    <Grid item xs={2.5}><CommonButton onClick={()=>{Router.push('/company/job')}} variant='JobPostNotFill'>View All Jobs</CommonButton></Grid>
+                    <Grid item xs={2.5}>
+                        {/* <CommonButton onClick={()=>{Router.push('/company/job')}} variant='JobPostNotFill'>View All Jobs</CommonButton> */}
+                        </Grid>
                     <Grid item xs={12}></Grid>
 
                     <Grid item xs={.5}></Grid>

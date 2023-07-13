@@ -1,6 +1,6 @@
 import React from 'react'
 import ProfileNavbar from './profileNavbar/ProfileNavbar'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography,InputLabel,FormControl,MenuItem } from '@mui/material'
 import MyTextField from '../../../styles/MyTextField'
 import AddIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveIcon from '@mui/icons-material/RemoveCircleOutlined';
@@ -10,12 +10,13 @@ import Router from "next/router";
 import { getSession } from "next-auth/react"
 import { signIn } from 'next-auth/react'
 import axios from 'axios';
+import MySelect from '../../../styles/MySelect';
 
 
 
 const ProfileAcademic = ({ user }) => {
 
-  const [academicInfos, setAcademicInfos] = useState(user?.academic || [{ universityName: '', major: '', startingYear: '', endingYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' }]);
+  const [academicInfos, setAcademicInfos] = useState(user?.academic || [{ universityName: '', level: '', major: '', startingYear: '', endingYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' }]);
 
   const handelFormChange = (event, index) => {
     let data = [...academicInfos];
@@ -24,7 +25,7 @@ const ProfileAcademic = ({ user }) => {
   };
 
   const addFields = () => {
-    let object = { universityName: '', major: '', startingYear: '', endingYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' };
+    let object = { universityName: '', level: '', major: '', startingYear: '', endingYear: '', obtainedCgpa: '', totalCgpa: '', learning: '' };
     setAcademicInfos([...academicInfos, object]);
   };
 
@@ -59,7 +60,7 @@ const ProfileAcademic = ({ user }) => {
   return (
     <div style={{ overflow: 'hidden', width: '100vw' }}>
       <Grid container spacing={2}>
-        <Grid item xs={12}><ProfileNavbar step={1} fname={user.fname} lname={user.lname} /></Grid>
+        <Grid item xs={12}><ProfileNavbar step={1} fname={user.fname} lname={user.lname} img={user.img} /></Grid>
         <Grid item xs={12}></Grid>
         <Grid item xs={12}></Grid>
         <Grid item xs={0.1} md={0.4} ></Grid>
@@ -75,8 +76,20 @@ const ProfileAcademic = ({ user }) => {
                   <Grid item xs={12}></Grid>
                   <Grid item xs={0.1} md={0.5}></Grid>
                   <Grid item xs={2.1} md={2.5}><Typography variant="profileH2">Last Attended University</Typography></Grid>
-                  <Grid item xs={4} md={4}><MyTextField name='universityName' value={form.universityName} label="University Name" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
-                  <Grid item xs={4} md={3}><MyTextField name='major' value={form.major} label="Major/Degree" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
+                  <Grid item xs={4} md={3}><MyTextField name='universityName' value={form.universityName} label="University Name" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
+                  <Grid item xs={4} md={2}>
+                    {/* <MyTextField name='level' value={form.level} label="Degree Level" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /> */}
+                    <FormControl fullWidth>
+                      <InputLabel>Degree Level</InputLabel>
+                      <MySelect name='level' value={form.level} label="Degree Level"  fullWidth onChange={event => handelFormChange(event, index)} >
+                        <MenuItem value="Bachelors" >Bachelor </MenuItem>
+                        <MenuItem value="Masters">Master</MenuItem>
+                        <MenuItem value="MPhil">MPhil  </MenuItem>
+                        <MenuItem value="PHD">PHD  </MenuItem>
+                      </MySelect>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={4} md={2}><MyTextField name='major' value={form.major} label="Major/Degree" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)} /></Grid>
                   <Grid item xs={0.1} md={2}>{index !== 0 && (<RemoveIcon fontSize='large' color='error' onClick={() => removeFields(index)} />)}</Grid>
                   <Grid item xs={0.1} md={3}></Grid>
                   <Grid item xs={2.8} md={1.75}><MyTextField name='startingYear' value={form.startingYear} label="Starting Date" variant="outlined" fullWidth onChange={event => handelFormChange(event, index)}></MyTextField></Grid>

@@ -13,7 +13,7 @@ const useAcademicInformaction = ({ academics }) => {
               <Grid item xs={12} mt={3}></Grid>
 
               <Grid item xs={.5}></Grid>
-              <Grid item xs={11}><Typography variant="displayh1">Bachelors In {academic.major},{academic.endingYear}</Typography></Grid>
+              <Grid item xs={11}><Typography variant="displayh1">{academic?.level} In {academic.major},{academic.endingYear}</Typography></Grid>
               <Grid item xs={.5}></Grid>
 
               <Grid item xs={.5}></Grid>

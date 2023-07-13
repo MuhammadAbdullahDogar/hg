@@ -146,7 +146,7 @@ const CompanyDahboardLeftNavbar = () => {
                                 </ListItemButton>
                             </ListItem>
                         </Link>
-                        <Link href="/company/job/jobResult/JobResult">
+                        {/* <Link href="/company/job/jobResult/JobResult">
 
                             <ListItem disablePadding>
                                 <ListItemButton
@@ -164,7 +164,7 @@ const CompanyDahboardLeftNavbar = () => {
                                     <ListItemText primary="Job Application" />
                                 </ListItemButton>
                             </ListItem>
-                        </Link>
+                        </Link> */}
                         <Link href="/company/job/jobResult/JobResult">
                             <ListItem disablePadding>
                                 <ListItemButton

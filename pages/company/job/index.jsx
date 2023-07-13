@@ -18,11 +18,15 @@ const Index = ({ jobs, company }) => {
         setJobInfo(job)
     };
 
+    const handleUserInfo = (info) => {
+        setUserInfo(info)
+    };
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={.7}><CompanyDashboardLeftNavbar /></Grid>
-            <Grid item xs={11.3} ><CompanyDashboardTopNavbar img={company?.img} />
-                {(userInfo == 0 && <ActiveJobs jobs={jobs} handleJob={handleJob} />) || (userInfo == 1 && <Candidates jobInfo={jobInfo} company={company} />)}
+            <Grid item xs={11.3} ><CompanyDashboardTopNavbar fname={company.cname} img={company?.img} />
+                {(userInfo == 0 && <ActiveJobs jobs={jobs} handleJob={handleJob} />) || (userInfo == 1 && <Candidates jobInfo={jobInfo} company={company} handleUserInfo={handleUserInfo} />)}
             </Grid>
         </Grid>
     )

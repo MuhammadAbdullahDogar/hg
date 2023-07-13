@@ -667,3 +667,7 @@ form {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.remove-option-button{
+  padding-top: 22px;
+}

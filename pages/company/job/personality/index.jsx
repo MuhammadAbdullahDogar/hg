@@ -9,10 +9,36 @@ const PersonalityType = () => {
   const router = useRouter();
   const jobId = router.query.id;
 
-  const [group1, setGroup1] = useState('');
-  const [group2, setGroup2] = useState('');
-  const [group3, setGroup3] = useState('');
-  const [group4, setGroup4] = useState('');
+    const [group1, setGroup1] = useState('');
+    const [group2, setGroup2] = useState('');
+    const [group3, setGroup3] = useState('');
+    const [group4, setGroup4] = useState('');
+  
+    const handleGroup1Click = (factor) => {
+      setGroup1(factor);
+    };
+  
+    const handleGroup2Click = (factor) => {
+      setGroup2(factor);
+    };
+  
+    const handleGroup3Click = (factor) => {
+      setGroup3(factor);
+    };
+  
+    const handleGroup4Click = (factor) => {
+      setGroup4(factor);
+    };
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+
+      if (!group1 || !group2 || !group3 || !group4) {
+        alert('Please select one option from each group');
+        return;
+      }
+
+      const jobPersonality = [group1, group2, group3, group4]
 
   const handleGroup1Click = (factor) => {
     setGroup1(factor);

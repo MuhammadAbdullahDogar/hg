@@ -3,7 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import NextLink from "next/link";
 import { styled } from '@mui/material/styles';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/router';
@@ -47,6 +47,8 @@ const CompanyProfileTab = (props) => {
         setAnchorEl(null);
     };
 
+
+
     const router = useRouter();
 
     const handleClickk = () => {
@@ -57,6 +59,20 @@ const CompanyProfileTab = (props) => {
     };
 
 
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+          if (anchorEl && !anchorEl.contains(event.target)) {
+            handleClose();
+          }
+        };
+    
+        document.addEventListener('click', handleOutsideClick);
+    
+        return () => {
+          document.removeEventListener('click', handleOutsideClick);
+        };
+      }, [anchorEl]);
+    
 
 
     return (
@@ -95,10 +111,9 @@ const CompanyProfileTab = (props) => {
                         transformOrigin={{
                             vertical: 'top',
                             horizontal: 'left',
-                        }}
+                        }} 
                     >
-                        <MenuItem onClick={() => { handleClickk(); handleClose(); }}>edit</MenuItem>
-                        <MenuItem onClick={() => { console.log("cv"); handleClose(); }}>generate cv</MenuItem>
+                        <MenuItem onClick={() => { handleClickk(); handleClose(); }}>Edit</MenuItem>
                     </Menu>
                 </IconButton>
             </Tabs>
