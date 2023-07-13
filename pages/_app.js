@@ -3,6 +3,7 @@ import { ThemeProvider ,Link} from "@mui/material";
 import customTheme from '../styles/Style'
 import Head from 'next/head'
 import { SessionProvider } from "next-auth/react"
+import '../styles/as.css';
 
 
 
@@ -20,7 +21,8 @@ function MyApp({ Component, pageProps: {session , ...pageProps} }) {
   return (
     <>
       <div style={{ position: 'fixed', zIndex: '10' }}>
-      {/* <Link href="/game" sx={{float:'left'}}><CommonButton variant="Gradient">Start Game</CommonButton></Link>  */}
+      <Link href="/candidate/personalityTest/Assessment" sx={{float:'left'}}><CommonButton variant="Gradient">Start quiz</CommonButton></Link> 
+      <Link href="/game" sx={{float:'left'}}><CommonButton variant="Gradient">Start Game</CommonButton></Link> 
        
       </div>
       <ThemeProvider theme={customTheme}>
