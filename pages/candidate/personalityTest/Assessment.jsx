@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { questions } from './Questions';
-import { types } from './Types';
+import { questions } from '../../../components/candidate/personalityTest/Questions';
+import { types } from '../../../components/candidate/personalityTest/Types';
 
 const Assessment = () => { 
   const [answers, setAnswers] = useState({});
