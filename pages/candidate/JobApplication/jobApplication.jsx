@@ -5,9 +5,11 @@ import TopNavbar from '../topNavbar'
 import JobApplicationCard from '../../../components/candidate/job/JobApplicationCard'
 import { getSession } from 'next-auth/react'
 import ViewJob from '../job/ViewJob'
+
 import ShowQuiz from '../../../components/candidate/job/quiz/ShowQuiz'
+import MemoryGame from '../../game/index.js'
 const box = {
-    backgroundColor: 'rgba(36, 162, 233, 0.1)', borderRadius: '10px', padding: '1rem',maxHeight: '4rem'
+    backgroundColor: 'rgba(36, 162, 233, 0.1)', borderRadius: '10px', padding: '1rem', maxHeight: '4rem'
 }
 const numBox = {
     minWidth: '35px',
@@ -109,7 +111,9 @@ const JobApplication = ({ user }) => {
                         : <ViewJob job={job} back={setViewJob} />
                     }
                 </Grid>
-                : <ShowQuiz quiz={quiz} id={user._id} job={job} />}
+                : <MemoryGame></MemoryGame>
+                // : <ShowQuiz quiz={quiz} id={user._id} job={job} />
+            }
         </>
     )
 }
@@ -124,12 +128,12 @@ export async function getServerSideProps(ctx) {
 
     if (!session) {
         return {
-          redirect: {
-            destination: '/',
-            permanent: false,
-          },
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
         }
-      }
+    }
 
 
 

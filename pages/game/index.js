@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 const board = ["🤖", "👽", "👻", "🤡", "🐧", "🦚", "😄", "🚀"];
+import CommonButton from '../../styles/CommonButotn'
+import { Link} from "@mui/material";
 export default function Home() {
   const [boardData, setBoardData] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
@@ -52,7 +54,8 @@ export default function Home() {
   };
 
   return (
-    <div className=" Gamebody">
+    <div className="login_signup_glass" >
+      <div className='Gamebody'>
       <div className="menu">
         <p>{`Moves - ${moves}`}</p>
       </div>
@@ -77,11 +80,18 @@ export default function Home() {
           );
         })}
       </div>
-      <div className="menu">
+      {!(gameOver==false)?<div>
+      <Link href="/candidate/personalityTest/Assessment"><CommonButton  variant="Gradient">Next</CommonButton></Link>
+      </div>
+      :<CommonButton disabled variant="Gradient">Next</CommonButton>
+      }
+      
+      {/* <div className="menu">
         <p>{`GameOver - ${gameOver}`}</p>
         <button onClick={() => initialize()} className="reset-btn">
           Reset
         </button>
+      </div> */}
       </div>
     </div>
   );

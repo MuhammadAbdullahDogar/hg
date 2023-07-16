@@ -136,7 +136,7 @@ const Assessment = () => {
             <div style={{ backgroundColor: 'rgb(208, 242, 208)', borderRadius: '10px', boxShadow: '0px 5px 20px rgba(0, 0, 0, 0.1)', textAlign: 'center', padding: '3rem', marginTop: '10vh', marginRight: '10%', marginLeft: '10%' }}>
               <h2 style={{ fontSize: '2.5rem', fontFamily: 'Galano Classic DEMO', marginBottom: '3rem', color: '#5748F5' }}>Your personality type is {result && result.type}</h2>
               <p style={{ fontSize: '1rem', fontFamily: 'Galano Classic DEMO', marginBottom: '1rem', marginRight: '5%', marginLeft: '5%', color: 'darkgreen' }}>{result && result.description}</p>
-              <button style={{ backgroundColor: '#776bf5', color: 'white', border: 'none', borderRadius: '15px', padding: '11px 25px', marginTop: '3rem', cursor: 'pointer' }} onClick={restartQuiz}>Start Over</button>
+              <button style={{ backgroundColor: '#776bf5', color: 'white', border: 'none', borderRadius: '15px', padding: '11px 25px', marginTop: '3rem', cursor: 'pointer' }} onClick={restartQuiz}>Next</button>
             </div>
           </div>
         </>

@@ -19,11 +19,11 @@ function MyApp({ Component, pageProps: {session , ...pageProps} }) {
 
   return (
     <>
-      <div style={{ position: 'fixed', zIndex: '10' }}>
+      {/* <div style={{ position: 'fixed', zIndex: '10' }}>
       <Link href="/candidate/personalityTest/Assessment" sx={{float:'left'}}><CommonButton variant="Gradient">Start quiz</CommonButton></Link> 
       <Link href="/game" sx={{float:'left'}}><CommonButton variant="Gradient">Start Game</CommonButton></Link> 
        
-      </div>
+      </div> */}
       <ThemeProvider theme={customTheme}>
         <Head>
           <link rel="shortcut icon" href="/logo.svg" />

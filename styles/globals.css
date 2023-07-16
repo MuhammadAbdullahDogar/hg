@@ -357,7 +357,7 @@ input:checked+.slider:before {
 
 /* Game CSS */
 .Gamebody {
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -608,13 +608,7 @@ input:checked+.slider:before {
   margin-top: 10px;
 }
 
-.quiz-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 8px;
-}
+
 
 .card {
   background-color: #fff;
@@ -630,6 +624,13 @@ input:checked+.slider:before {
   color: #333;
   margin-bottom: 10px;
 } */
+.quiz-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+}
 
 .options {
   margin-bottom: 10px;
