@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Router from "next/router";
 function Question({ question, submitQuestion }) {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   
@@ -28,12 +28,13 @@ function Question({ question, submitQuestion }) {
       earnedMarks = eachMarks * correctSelectedOptions.length;
     }
   
-    alert(`Earned Marks: ${earnedMarks}`);
+    // alert(`Earned Marks: ${earnedMarks}`);
     
     // Clear the user's answer
     setSelectedAnswer([]);
     
     submitQuestion(earnedMarks);
+    Router.push('/game')
   };
   
   

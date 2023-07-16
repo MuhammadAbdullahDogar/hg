@@ -5,9 +5,7 @@ import TopNavbar from '../topNavbar'
 import JobApplicationCard from '../../../components/candidate/job/JobApplicationCard'
 import { getSession } from 'next-auth/react'
 import ViewJob from '../job/ViewJob'
-
 import ShowQuiz from '../../../components/candidate/job/quiz/ShowQuiz'
-import MemoryGame from '../../game/index.js'
 const box = {
     backgroundColor: 'rgba(36, 162, 233, 0.1)', borderRadius: '10px', padding: '1rem', maxHeight: '4rem'
 }
@@ -111,8 +109,7 @@ const JobApplication = ({ user }) => {
                         : <ViewJob job={job} back={setViewJob} />
                     }
                 </Grid>
-                : <MemoryGame></MemoryGame>
-                // : <ShowQuiz quiz={quiz} id={user._id} job={job} />
+                : <ShowQuiz quiz={quiz} id={user._id} job={job} />
             }
         </>
     )

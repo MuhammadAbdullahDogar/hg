@@ -69,7 +69,7 @@ const ShowQuiz = ({ quiz, id, job }) => {
           <Question
             question={currentQuestion}
             submitQuestion={submitQuestion}
-            className="card"
+            className="Quizcard"
           />
           <div className="timer">
             Time remaining: {secondsRemaining} seconds
