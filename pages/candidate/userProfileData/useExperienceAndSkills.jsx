@@ -2,7 +2,7 @@ import { Grid, Typography, Box } from '@mui/material'
 import React, { useState } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import CommonButton from '../../../styles/CommonButotn'
-const useExperienceAndSkills = ({ experiences }) => {
+const useExperienceAndSkills = ({ experiences, skills }) => {
     function LinearProgressWithLabel(props) {
         return (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -17,7 +17,7 @@ const useExperienceAndSkills = ({ experiences }) => {
             </Box>
         );
     }
-    const [items, setItems] = useState([60, 70, 90, 100, 40, 80]);
+    // const [items, setItems] = useState([60, 70, 90, 100, 40, 80]);
     return (
         <>
             <Grid container sx={{ borderRadius: '0 0 1rem 1rem', backgroundColor: '#F8F8F8', maxHeight: '80vh', overflowY: 'scroll' }}>
@@ -47,11 +47,11 @@ const useExperienceAndSkills = ({ experiences }) => {
                                 <Grid item xs={.5}></Grid>
                                 <Grid item xs={.5}></Grid>
                                 <Grid container item xs={11.5} rowSpacing={3}>
-                                    {items.map((value, index) => (
+                                    {skills.map((skill, index) => (
                                         <>
-                                            <Grid item xs={3}><CommonButton variant="Hire" color="blue">Requirment Analysis</CommonButton></Grid >
+                                            <Grid item xs={3}><CommonButton variant="Hire" color="blue">{skill.skill}</CommonButton></Grid >
                                             <Grid item xs={.5}></Grid>
-                                            <Grid item xs={8}><LinearProgressWithLabel key={index} value={value} sx={{ marginTop:".9rem" ,width: "100%", height: "10px", borderRadius: "5px", bgcolor: "#bdbdbd", "& .MuiLinearProgress-bar": { bgcolor: "#8bc34a" }, "& .MuiLinearProgress-bar1Determinate": { transition: "none" }, "& .MuiLinearProgress-bar1Buffer": { backgroundColor: "#9e9e9e" }, "& .MuiLinearProgress-dashed": { borderRadius: 1 } }}/></Grid>
+                                            <Grid item xs={8}><LinearProgressWithLabel key={index} value={skill.percent} sx={{ marginTop:".9rem" ,width: "100%", height: "10px", borderRadius: "5px", bgcolor: "#bdbdbd", "& .MuiLinearProgress-bar": { bgcolor: "#8bc34a" }, "& .MuiLinearProgress-bar1Determinate": { transition: "none" }, "& .MuiLinearProgress-bar1Buffer": { backgroundColor: "#9e9e9e" }, "& .MuiLinearProgress-dashed": { borderRadius: 1 } }}/></Grid>
                                             <Grid item xs={.5}></Grid>
                                         </>
                                     ))}
