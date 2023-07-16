@@ -28,11 +28,11 @@ const UserStatus = (props) => {
     return (
         <>
             <Grid container sx={{ backgroundColor: '#f8f8f8', borderRadius: '1.5rem' }} mt={.001} spacing={1}>
-                <Grid item xs={3}></Grid>
-                <Grid item xs={5}><img className="ProfileImage" src={props.user?.img} /></Grid>
+                <Grid item xs={2}></Grid>
+                <Grid item xs={5}><img className="ProfileImage" src={props.user?.img} width={150} height={150}/></Grid>
                 <Grid item xs={3.5}></Grid>
 
-                <Grid item xs={12}><Typography variant="userStatush1" sx={{ ml: '4.5rem' }}>{props.user?.fname} {props.user?.lname} </Typography></Grid>
+                <Grid item xs={12}><Typography variant="userStatush1" sx={{ ml: '.7rem' }}>{props.user?.fname} {props.user?.lname} </Typography></Grid>
                 <Grid item xs={12}></Grid>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={11}>

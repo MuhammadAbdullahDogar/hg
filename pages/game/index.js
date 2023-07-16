@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <div className="container Gamebody">
+    <div className=" Gamebody">
       <div className="menu">
         <p>{`Moves - ${moves}`}</p>
       </div>

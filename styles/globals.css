@@ -355,8 +355,90 @@ input:checked+.slider:before {
   font-family: 'comfortaa', sans-serif;
 }
 
+/* Game CSS */
+.Gamebody {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 75px);
+  grid-gap: 8px;
+}
 
-.quiz-form {
+.card {
+  border-radius: 4px;
+  text-align: center;
+  height: 75px;
+  font-size: 36px;
+  font-weight: bold;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.2s;
+  user-select: none;
+}
+.card.gameover {
+  pointer-events: none;
+}
+.card-0 {
+  transform: rotateY(0deg);
+}
+.card.active {
+  transform: rotateY(180deg);
+}
+.card.matched .card-front {
+  background-color: lightgoldenrodyellow;
+  color: white;
+}
+.card-front,
+.card-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  backface-visibility: hidden;
+  height: 100%;
+  border-radius: 50%;
+}
+.card-front {
+  transform: rotateY(180deg);
+  background-color: #eee;
+  line-height: 70px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 50px;
+
+  z-index: 2;
+}
+.card-back {
+  background-color: #ddd;
+
+  transform: rotateY(0);
+  z-index: 1;
+}
+.card-back::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+}
+.menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu p {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+/* .quiz-form {
   border: 3px solid #5748F5;
   max-width: 600px;
   margin: 0 auto;
@@ -510,19 +592,19 @@ input:checked+.slider:before {
 
 /* show quiz to candidate */
 
-.quiz-complete {
+/* .quiz-complete {
   text-align: center;
   margin-top: 40px;
 }
 
 .quiz-complete h1 {
   font-size: 24px;
-  color: #00b8d4; /* Blue color */
+  color: #00b8d4; 
 }
 
 .quiz-complete p {
   font-size: 16px;
-  color: #4caf50; /* Green color */
+  color: #4caf50; 
   margin-top: 10px;
 }
 
@@ -547,7 +629,7 @@ input:checked+.slider:before {
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
-}
+} */
 
 .options {
   margin-bottom: 10px;
@@ -586,7 +668,7 @@ input:checked+.slider:before {
 
 .timer-progress {
   height: 100%;
-  background-color: #4caf50; /* Green color */
+  background-color: #4caf50; 
   border-radius: 5px;
   transition: width 1s linear;
 }
@@ -596,13 +678,13 @@ input:checked+.slider:before {
   top: -25px;
   right: 0;
   font-weight: bold;
-  color: #4caf50; /* Green color */
-}
+  color: #4caf50; 
+} 
 
 
 /* personality_selection */
 
-.cardPersonality {
+/* .cardPersonality {
   background-color: #f2f2f2;
   font-family: 'Comfortaa', sans-serif;
   border: 2px solid #ccc;
@@ -670,4 +752,4 @@ form {
 
 .remove-option-button{
   padding-top: 22px;
-}
+} */

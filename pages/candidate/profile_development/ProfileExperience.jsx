@@ -362,23 +362,24 @@ const ProfileExperience = ({ user }) => {
       <form onSubmit={PostData}>
         <div style={{ overflow: 'hidden', width: '100vw' }}>
           <Grid container spacing={2} >
+
             <Grid item xs={12}><ProfileNavbar step={2} fname={user.fname} lname={user.lname} img={user.img} /></Grid>
+            <Grid item xs={12}></Grid>
+
+            <Grid item xs={1}></Grid>
+            <Grid item xs={2.5}><Typography variant="profileH1">Experience and Skills</Typography> </Grid>
+            <Grid item xs={2.5}>
+              <FormControl fullWidth>
+                <InputLabel>Experience</InputLabel>
+                <MySelect label="Experience" name="yearsOfExperience" onChange={handelChange} value={yearsOfExperience} >
+                  <MenuItem value="Beginner" >Beginner </MenuItem>
+                  <MenuItem value="Intermediate">Intermediate</MenuItem>
+                  <MenuItem value="Expert">Expert  </MenuItem>
+                </MySelect>
+              </FormControl>
+            </Grid>
+
             <Grid item xs={12}>
-
-              <Grid item xs={12}></Grid>
-              <Grid item xs={1}></Grid>
-              <Grid item xs={2.5}><Typography variant="profileH1">Experience and Skills</Typography>
-                <FormControl fullWidth>
-                  <InputLabel>Experience</InputLabel>
-                  <MySelect label="Experience" name="yearsOfExperience" onChange={handelChange} value={yearsOfExperience} >
-                    <MenuItem value="Beginner" >Beginner </MenuItem>
-                    <MenuItem value="Intermediate">Intermediate</MenuItem>
-                    <MenuItem value="Expert">Expert  </MenuItem>
-                  </MySelect>
-                </FormControl>
-              </Grid>
-              <Grid item xs={6.5}></Grid>
-
               {experiences.map((form, index) => {
                 return (
                   <div key={index}>
@@ -410,8 +411,8 @@ const ProfileExperience = ({ user }) => {
                   </div>
                 )
               })}
-
             </Grid>
+
             <Grid item xs={3.5}></Grid>
             <Grid item xs={8.5}><Fab size="small" color="secondary" aria-label="add" onClick={addFields}><AddIcon /></Fab></Grid>
             <Grid item xs={1}></Grid>
