@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { questions } from '../../../components/candidate/personalityTest/Questions';
 import { types } from '../../../components/candidate/personalityTest/Types';
 
-const Assessment = () => { 
+const Assessment = () => {
   const [answers, setAnswers] = useState({});
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showResults, setShowResults] = useState(false);
@@ -26,7 +26,6 @@ const Assessment = () => {
       alert('Please select an option before proceeding to the next question.');
     }
   };
-
 
   const calculateResult = () => {
     let introversion = 0;
@@ -101,49 +100,47 @@ const Assessment = () => {
     setResult(null);
   };
 
-  if (showResults) {
-    return (
-      <>
-      {/* <NavBar/> */}
-      {/* change page */}
-      <div className="assessment">
-        <h1 className='headd'>Personality Assessment Test Results</h1>
-        <div className="result">
-          <h2 className='type'>Your personality type is {result.type}</h2>
-          <p className='desc'>{result.description}</p>
-          <button onClick={restartQuiz}>Start Over</button>
-        </div>
-      </div>
-      </>
-    );
-  }
-
   const question = questions[currentQuestionIndex];
 
   return (
     <>
-      <div className="assessment">
-        <h1 className='headd'>Personality Assessment</h1>
-        <div className="bg">
-          <p className='ques'>{question.text}</p>
+      {!showResults && <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginTop: '5%' }}>
+        <h1 style={{ marginTop: '3vh', color: '#5748F5', fontSize: '2rem' }}>Personality Assessment</h1>
+        <div style={{ padding: '3rem', backgroundColor: 'rgb(208, 242, 208)', borderRadius: '10px', boxShadow: '0px 5px 20px rgba(0, 0, 0, 0.1)', marginTop: '10vh', marginRight: '10%', marginLeft: '10%' }}>
+          <p style={{ color: 'darkgreen', fontSize: '1.5rem' }}>{question.text}</p>
 
           {question.answers.map((answer, index) => (
             <div key={index}>
-              <input className='check'
+              <input
                 type="radio"
                 id={`${question.id}-${index}`}
                 name={question.id}
                 value={answer.value}
                 checked={answers[question.id] === answer.value}
                 onChange={handleChange}
+                style={{ marginTop: '3vh', color: '#5748F5' }}
               />
 
               <label htmlFor={`${question.id}-${index}`}>{answer.text}</label>
             </div>
           ))}
-          <button onClick={handleNextClick}>Next</button>
+          <button style={{ backgroundColor: '#776bf5', color: 'white', border: 'none', borderRadius: '15px', padding: '11px 25px', marginTop: '3rem', cursor: 'pointer' }} onClick={handleNextClick}>Next</button>
         </div>
       </div>
+      }
+
+      {showResults && (
+        <>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginTop: '5%' }}>
+            <h1 style={{ marginTop: '3vh', color: '#5748F5', fontSize: '2rem' }}>Personality Assessment Test Results</h1>
+            <div style={{ backgroundColor: 'rgb(208, 242, 208)', borderRadius: '10px', boxShadow: '0px 5px 20px rgba(0, 0, 0, 0.1)', textAlign: 'center', padding: '3rem', marginTop: '10vh', marginRight: '10%', marginLeft: '10%' }}>
+              <h2 style={{ fontSize: '2.5rem', fontFamily: 'Galano Classic DEMO', marginBottom: '3rem', color: '#5748F5' }}>Your personality type is {result && result.type}</h2>
+              <p style={{ fontSize: '1rem', fontFamily: 'Galano Classic DEMO', marginBottom: '1rem', marginRight: '5%', marginLeft: '5%', color: 'darkgreen' }}>{result && result.description}</p>
+              <button style={{ backgroundColor: '#776bf5', color: 'white', border: 'none', borderRadius: '15px', padding: '11px 25px', marginTop: '3rem', cursor: 'pointer' }} onClick={restartQuiz}>Start Over</button>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

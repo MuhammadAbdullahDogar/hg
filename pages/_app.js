@@ -3,7 +3,6 @@ import { ThemeProvider ,Link} from "@mui/material";
 import customTheme from '../styles/Style'
 import Head from 'next/head'
 import { SessionProvider } from "next-auth/react"
-import '../styles/as.css';
 
 
 
