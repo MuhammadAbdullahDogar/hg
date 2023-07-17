@@ -198,7 +198,7 @@ const PostJob = ({ user }) => {
       <form>
         <div style={{ overflow: 'hidden', width: '100vw' }}>
           <Grid container spacing={2} >
-            <Grid item xs={12}><CompanyNavbar step={1} step1_Name={'Job details'} step2_Name={'Screening Questions'} step3_Name={'Domain-Based Questions'}/></Grid>
+            <Grid item xs={12}><CompanyNavbar step={1} step1_Name={'Job Details'} step2_Name={'Screening Questions'} step3_Name={'Domain-Based Questions'} step4_Name={'Personality Selection'} /></Grid>
             <Grid item xs={1}></Grid>
             <Grid item xs={2.5}><Typography variant="profileH1">About Job</Typography></Grid>
             <Grid item xs={2}><MyTextField label="Job Title" variant="outlined" name="title" fullWidth {...formik.getFieldProps('title')} error={formik.touched.title && Boolean(formik.errors.title)} helperText={formik.touched.title && formik.errors.title} /></Grid>

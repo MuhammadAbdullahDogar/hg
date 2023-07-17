@@ -94,10 +94,13 @@ const Assessment = () => {
   };
 
   const restartQuiz = () => {
-    setAnswers({});
-    setCurrentQuestionIndex(0);
-    setShowResults(false);
-    setResult(null);
+    // setAnswers({});
+    // setCurrentQuestionIndex(0);
+    // setShowResults(false);
+    // setResult(null);
+    window.location.href = '/candidate/JobApplication/jobApplication';
+
+    
   };
 
   const question = questions[currentQuestionIndex];

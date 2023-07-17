@@ -101,35 +101,35 @@ const PostQuiz = () => {
         if (res.status === 200)
             Router.push(`/company/job/personality?id=${jobId}`);
 
-        console.log('Questions:', questions);
+        // console.log('Questions:', questions);
 
 
     };
 
     return (
         <>
-            <Grid item xs={12}><CompanyNavbar step={2} step1_Name={'Job details'} step2_Name={'Screening Questions'} step3_Name={'Domain-Based Questions'} /></Grid>
+            <Grid item xs={12}><CompanyNavbar step={2} step1_Name={'Job Details'} step2_Name={'Screening Questions'} step3_Name={'Domain-Based Questions'} step4_Name={'Personality Selection'} /></Grid>
 
             <h1 className="main-head">Domain Based Quiz</h1>
-            <h3 className="sub-head">Enter Job Title</h3>
-            <form onSubmit={handleSubmit} className="quiz-form">
+            {/* <h3 className="sub-head">Enter Job Title</h3> */}
+            <form onSubmit={handleSubmit} className="quiz-form2">
                 {questions.map((question, questionIndex) => (
-                    <div key={questionIndex} className="question-container">
-                        <div className="question-heading">Question {questionIndex + 1}</div>
+                    <div key={questionIndex} className="question-container2">
+                        <div className="question-heading2">Question {questionIndex + 1}</div>
                         <input
                             label="Question"
                             name={`question${questionIndex}`}
                             value={question.question}
                             onChange={(event) => handleChangeQuestion(event, questionIndex)}
-                            className="question-input"
+                            className="question-input2"
                         />
 
-                        <div className="question-type">
+                        <div className="question-type2">
                             <label>Question Type: </label>
                             <select
                                 value={question.type}
                                 onChange={(event) => handleChangeType(event, questionIndex)}
-                                className="type-select"
+                                className="type-select2"
                             >
                                 <option value="" disabled>Select Type</option>
                                 <option value="single">Single Correct</option>
@@ -138,8 +138,8 @@ const PostQuiz = () => {
                         </div>
 
                         {question.options.map((option, optionIndex) => (
-                            <div key={optionIndex} className="option-container">
-                                <div className="option-heading">Option {optionIndex + 1}</div>
+                            <div key={optionIndex} className="option-container2">
+                                <div className="option-heading2">Option {optionIndex + 1}</div>
 
                                 {question.type === "single" ? (
                                     <input
@@ -149,7 +149,7 @@ const PostQuiz = () => {
                                         onChange={(event) =>
                                             handleChangeCorrectOption(event, questionIndex, optionIndex)
                                         }
-                                        className="radio-input"
+                                        className="radio-input2"
                                     />
                                 ) : (
                                     <input
@@ -159,7 +159,7 @@ const PostQuiz = () => {
                                         onChange={(event) =>
                                             handleChangeCorrectOption(event, questionIndex, optionIndex)
                                         }
-                                        className="checkbox-input"
+                                        className="checkbox-input2"
                                     />
                                 )}
 
@@ -170,16 +170,16 @@ const PostQuiz = () => {
                                     onChange={(event) =>
                                         handleChangeOption(event, questionIndex, optionIndex)
                                     }
-                                    className="option-input"
+                                    className="option-input2"
                                 />
-                                <RemoveIcon fontSize="medium" color="error" className="remove-option-button" onClick={() => removeOptionFields(questionIndex, optionIndex)} />
+                                <RemoveIcon fontSize="medium" color="error" className="remove-option-button2" onClick={() => removeOptionFields(questionIndex, optionIndex)} />
                             </div>
                         ))}
 
                         <button
                             type="button"
                             onClick={() => addOptionFields(questionIndex)}
-                            className="add-option-button"
+                            className="add-option-button2"
                         >
                             Add Option
                         </button>
@@ -187,7 +187,7 @@ const PostQuiz = () => {
                             <button
                                 type="button"
                                 onClick={() => removeQuestionFields(questionIndex)}
-                                className="remove-question-button"
+                                className="remove-question-button2"
                             >
                                 Remove Question
                             </button>
@@ -197,12 +197,12 @@ const PostQuiz = () => {
                 <button
                     type="button"
                     onClick={() => addQuestionFields()}
-                    className="add-question-button"
+                    className="add-question-button2"
                 >
                     Add Question
                 </button>
                 <br />
-                <button type="submit" className="submit-button">Submit Quiz</button>
+                <button type="submit" className="submit-button2">Submit Quiz</button>
             </form>
         </>
     );

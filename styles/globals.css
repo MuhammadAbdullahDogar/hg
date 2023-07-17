@@ -438,7 +438,7 @@ input:checked+.slider:before {
 }
 
 
-/* .quiz-form {
+.quiz-form2 {
   border: 3px solid #5748F5;
   max-width: 600px;
   margin: 0 auto;
@@ -446,19 +446,19 @@ input:checked+.slider:before {
   margin-bottom: 30px;
   border-radius: 18px;
 }
-
-.question-container {
+ 
+.question-container2 {
   margin-bottom: 20px;
 }
 
-.question-heading {
+.question-heading2 {
   font-size: 20px;
   font-weight: bold;
   color: #0c3c8e;
   margin-bottom: 10px;
 }
 
-.question-input {
+.question-input2 {
   width: 100%;
   font-family: 'Urbanist', sans-serif;
   color:#19177E;
@@ -469,7 +469,7 @@ input:checked+.slider:before {
   margin-bottom: 10px;
 }
 
-.question-type {
+.question-type2 {
   font-family: 'Comfortaa', sans-serif;
   font-size: 14px;
   font-weight: bold;
@@ -477,20 +477,20 @@ input:checked+.slider:before {
   margin-bottom: 20px;
 }
 
-.type-select {
+.type-select2 {
   font-family: 'Urbanist', sans-serif;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.option-container {
+.option-container2 {
   display: flex;
   align-items: center;
   border: none;
 }
 
-.option-heading {
+.option-heading2 {
   font-family: 'Comfortaa', sans-serif;
   font-size: 14px;
   font-weight: bold;
@@ -498,12 +498,12 @@ input:checked+.slider:before {
   margin-right: 10px;
 }
 
-.radio-input,
-.checkbox-input {
+.radio-input2,
+.checkbox-input2 {
   margin-right: 10px;
 }
 
-.option-input {
+.option-input2 {
   flex-grow: 1;
   border: none;
   font-family: 'Comfortaa', sans-serif;
@@ -514,12 +514,12 @@ input:checked+.slider:before {
   padding: 10px;
 }
 
-.remove-option-button {
+.remove-option-button2 {
   margin-left: 20px;
   cursor: pointer;
 }
 
-.add-question-button {
+.add-question-button2 {
   cursor: pointer;
   font-family: 'Urbanist', sans-serif;
   background-color: #214175;
@@ -530,7 +530,7 @@ input:checked+.slider:before {
   font-size: 16px;
 }
 
-.add-option-button {
+.add-option-button2 {
   background-color: #7DCE77;
   cursor: pointer;
   font-family: 'Urbanist', sans-serif;
@@ -544,7 +544,7 @@ input:checked+.slider:before {
   font-size: 16px;
 }
 
-.remove-question-button {
+.remove-question-button2 {
   background-color: #ed5a50;
   cursor: pointer;
   color: #fff;
@@ -558,7 +558,7 @@ input:checked+.slider:before {
   font-size: 16px;
 }
 
-.submit-button {
+.submit-button2 {
   cursor: pointer;
   background-color: #2196f3;
   color: #fff;
@@ -572,7 +572,7 @@ input:checked+.slider:before {
   margin-top: 30px;
   margin-left: 220px;
 }
-
+/*
 .card {
   display: inline-block;
   padding: 10px;
@@ -592,7 +592,7 @@ input:checked+.slider:before {
 
 /* show quiz to candidate */
 
-/* .quiz-complete {
+.quiz-complete {
   text-align: center;
   margin-top: 40px;
 }
@@ -610,7 +610,7 @@ input:checked+.slider:before {
 
 
 
-.card {
+.Quizcard {
   background-color: #fff;
   border-radius: 8px;
   padding: 20px;
@@ -618,7 +618,7 @@ input:checked+.slider:before {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-*/
+
 .quiz-container {
   max-width: 600px;
   margin: 0 auto;
@@ -685,7 +685,7 @@ input:checked+.slider:before {
 
 /* personality_selection */
 
-/* .cardPersonality {
+.cardPersonality {
   background-color: #f2f2f2;
   font-family: 'Comfortaa', sans-serif;
   border: 2px solid #ccc;
@@ -706,7 +706,7 @@ input:checked+.slider:before {
   transition: background-color 0.3s ease;
   background-color: #2195f330;
 }
-
+/* 
 h3 {
   font-family: 'Urbanist', sans-serif;
   font-size: 20px;
