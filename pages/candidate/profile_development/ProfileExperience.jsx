@@ -187,7 +187,13 @@ const ProfileExperience = ({ user }) => {
 
 
   const handleClickOpen = () => {
-    setOpen(true);
+    const isAnySkillEmpty = skills.some(skillObj => !Boolean(skillObj.skill));
+
+    console.log(skills);
+    if(isAnySkillEmpty)
+      alert("Please ReEnter Skill!")
+    else
+      setOpen(true);
   };
 
 
